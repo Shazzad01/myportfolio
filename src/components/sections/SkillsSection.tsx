@@ -85,12 +85,12 @@ export default function SkillsSection() {
           <h2 className="font-heading text-4xl sm:text-5xl font-bold">Skills & Frameworks</h2>
         </motion.div>
 
-        {/* Category Filter Bar with Sliding Active Pill */}
+        {/* Category Filter Bar */}
         <motion.div
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
           animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex flex-wrap items-center justify-center gap-2 mb-12 relative"
+          className="flex flex-wrap items-center justify-center gap-2.5 mb-12"
         >
           {categories.map((cat) => {
             const isActive = activeFilter === cat.id;
@@ -98,42 +98,31 @@ export default function SkillsSection() {
               <button
                 key={cat.id}
                 onClick={() => setActiveFilter(cat.id)}
-                className={`relative px-4.5 py-2.5 rounded-xl text-xs font-semibold transition-colors duration-200 z-10 ${
+                className={`px-5 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-300 ${
                   isActive
-                    ? "text-white"
-                    : "glass text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]"
+                    ? "bg-[hsl(var(--primary))] text-white shadow-lg glow-purple scale-105"
+                    : "glass text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] hover:border-[hsl(var(--primary)/0.4)]"
                 }`}
               >
-                {isActive && (
-                  <motion.div
-                    layoutId="activeSkillTab"
-                    className="absolute inset-0 rounded-xl bg-[hsl(var(--primary))] shadow-lg glow-purple -z-10"
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  />
-                )}
                 {cat.label}
               </button>
             );
           })}
         </motion.div>
 
-        {/* Skills Cards Grid with PopLayout Spring Fluid Animation */}
-        <motion.div layout className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 text-left min-h-[380px]">
-          <AnimatePresence mode="popLayout">
+        {/* Skills Cards Grid */}
+        <motion.div layout className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 text-left">
+          <AnimatePresence>
             {filteredSkills.map((skill) => {
               const BrandIcon = skill.icon;
               return (
                 <motion.div
                   layout
                   key={skill.name}
-                  initial={shouldReduceMotion ? {} : { opacity: 0, scale: 0.85, y: 15 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={shouldReduceMotion ? {} : { opacity: 0, scale: 0.85, y: -15 }}
-                  transition={
-                    shouldReduceMotion
-                      ? { duration: 0 }
-                      : { type: "spring", stiffness: 350, damping: 26, opacity: { duration: 0.25 } }
-                  }
+                  initial={shouldReduceMotion ? {} : { opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={shouldReduceMotion ? {} : { opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.25 }}
                   className="glass-card p-5 rounded-2xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.4)] flex flex-col justify-between"
                 >
                   <div>
