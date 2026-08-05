@@ -110,19 +110,25 @@ export default function SkillsSection() {
         </motion.div>
 
         {/* Skills Cards Grid */}
-        <motion.div layout className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 text-left">
-          <AnimatePresence>
-            {filteredSkills.map((skill) => {
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeFilter}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={shouldReduceMotion ? false : { opacity: 0, y: -12 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 text-left"
+          >
+            {filteredSkills.map((skill, i) => {
               const BrandIcon = skill.icon;
               return (
                 <motion.div
-                  layout
                   key={skill.name}
-                  initial={shouldReduceMotion ? {} : { opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={shouldReduceMotion ? {} : { opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.25 }}
-                  className="glass-card p-5 rounded-2xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.4)] flex flex-col justify-between"
+                  initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.18, delay: i * 0.03 }}
+                  whileHover={shouldReduceMotion ? {} : { y: -4, scale: 1.01 }}
+                  className="glass-card p-5 rounded-2xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.4)] flex flex-col justify-between transition-colors duration-200"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-3">
@@ -143,8 +149,8 @@ export default function SkillsSection() {
                 </motion.div>
               );
             })}
-          </AnimatePresence>
-        </motion.div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );
