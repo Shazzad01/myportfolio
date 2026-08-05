@@ -13,14 +13,8 @@ const projects = [
     subtitle: "Bangladesh's Largest Retail Grocery & E-Commerce Platform (ACI Logistics)",
     period: "Apr 2024 – Present",
     platforms: ["Web App", "Flutter Mobile App", "Admin Portal", "Order & Delivery App"],
-    tags: ["Playwright", "GitHub Actions", "JMeter", "Regression", "CI/CD", "nopCommerce"],
+    tags: ["Playwright", "GitHub Actions", "JMeter", "Regression", "CI/CD"],
     brandIcons: [PlaywrightIcon, JMeterIcon, GitHubActionsIcon],
-    caseStudyUrl: "https://www.nop-station.com/empowering-shwapno-a-journey-towards-digital-excellence-in-retail",
-    testimonial: {
-      quote: "They followed an agile approach, delivered milestones on time, and were highly responsive to our evolving needs.",
-      author: "Head of Growth & E-Commerce Platform Dev, ACI Logistics",
-      rating: "5.0 ★★★★★ (Clutch Verified)",
-    },
     problem:
       "Shwopno required enterprise-grade QA for high-concurrency traffic (1M+ active shoppers). Manual regression cycles across Web, Storefront Mobile, Admin, Order Management, and Delivery apps caused release bottlenecks.",
     approach:
