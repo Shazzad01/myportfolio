@@ -3,7 +3,7 @@
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Terminal, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
+import { ExternalLink, Terminal, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
 import { PlaywrightIcon, JMeterIcon, GitHubActionsIcon, GitLabIcon } from "@/components/ui/SvgIcons";
 
 interface Project {
@@ -70,7 +70,8 @@ const projects: Project[] = [
       "✓ [WebKit] › payment.spec.ts › Credit Card Authorization (380ms)",
       "🎉 28 passed in 1.9s across cross-browser grid",
     ],
-    caseStudyUrl: "https://paragonfood.com.bd",
+    caseStudyUrl:
+      "https://www.nop-station.com/paragon-agro-modernizing-food-retail-through-hyperlocal-ecommerce-ecosystem",
   },
 ];
 
@@ -140,7 +141,7 @@ export default function ProjectsSection() {
                     </p>
                   </div>
 
-                  {/* Platform Pills */}
+                  {/* Platform Pills & Case Study Link */}
                   <div className="flex flex-wrap items-center gap-2">
                     {project.platforms.map((p) => (
                       <span
@@ -150,6 +151,16 @@ export default function ProjectsSection() {
                         {p}
                       </span>
                     ))}
+                    {project.caseStudyUrl && (
+                      <a
+                        href={project.caseStudyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-[hsl(var(--primary)/0.15)] text-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))] hover:text-white transition-all glow-purple"
+                      >
+                        Case Study <ExternalLink size={12} />
+                      </a>
+                    )}
                   </div>
                 </div>
 
