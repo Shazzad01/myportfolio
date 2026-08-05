@@ -97,19 +97,25 @@ export default function HeroSection() {
               {...anim(0.4)}
               className="flex flex-wrap items-center gap-4 mb-10"
             >
-              <a
+              <motion.a
+                whileHover={shouldReduceMotion ? {} : { scale: 1.04, y: -2 }}
+                whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 href="#projects"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] text-white font-bold text-sm shadow-lg glow-purple hover:scale-105 transition-all duration-300"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] text-white font-bold text-sm shadow-lg glow-purple"
               >
                 Explore Projects <ExternalLink size={16} />
-              </a>
-              <a
+              </motion.a>
+              <motion.a
+                whileHover={shouldReduceMotion ? {} : { scale: 1.04, y: -2 }}
+                whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 href="/resume.pdf"
                 download
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl glass border border-[hsl(var(--card-border))] font-semibold text-sm hover:border-[hsl(var(--primary)/0.5)] hover:scale-105 transition-all duration-300"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl glass border border-[hsl(var(--card-border))] font-semibold text-sm hover:border-[hsl(var(--primary)/0.5)]"
               >
                 Download Resume <Download size={16} />
-              </a>
+              </motion.a>
             </motion.div>
 
             {/* Social Links */}
@@ -117,24 +123,30 @@ export default function HeroSection() {
               {...anim(0.5)}
               className="flex items-center gap-3"
             >
-              <a
+              <motion.a
+                whileHover={shouldReduceMotion ? {} : { scale: 1.1, y: -2 }}
+                whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 href="https://github.com/Shazzad01"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="p-3 rounded-xl glass border border-[hsl(var(--card-border))] text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))] hover:border-[hsl(var(--primary)/0.4)] transition-all duration-200 hover:scale-110"
+                className="p-3 rounded-xl glass border border-[hsl(var(--card-border))] text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))] hover:border-[hsl(var(--primary)/0.4)] transition-colors"
               >
                 <GithubIcon />
-              </a>
-              <a
+              </motion.a>
+              <motion.a
+                whileHover={shouldReduceMotion ? {} : { scale: 1.1, y: -2 }}
+                whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 href="https://linkedin.com/in/md-shazzad-mia"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="p-3 rounded-xl glass border border-[hsl(var(--card-border))] text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))] hover:border-[hsl(var(--primary)/0.4)] transition-all duration-200 hover:scale-110"
+                className="p-3 rounded-xl glass border border-[hsl(var(--card-border))] text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))] hover:border-[hsl(var(--primary)/0.4)] transition-colors"
               >
                 <LinkedinIcon />
-              </a>
+              </motion.a>
             </motion.div>
           </div>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { ExternalLink, Terminal, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
@@ -157,42 +157,6 @@ export default function ProjectsSection() {
                 </div>
 
                 {/* Tab Content */}
-                {currentTab === "overview" ? (
-                  <div className="grid sm:grid-cols-3 gap-6 mb-6">
-                    <div className="space-y-1.5">
-                      <p className="text-xs font-bold uppercase tracking-wider text-rose-400 flex items-center gap-1">
-                        🔴 Problem
-                      </p>
-                      <p className="text-xs sm:text-sm text-[hsl(var(--muted-foreground))] leading-relaxed">
-                        {project.problem}
-                      </p>
-                    </div>
-                    <div className="space-y-1.5">
-                      <p className="text-xs font-bold uppercase tracking-wider text-sky-400 flex items-center gap-1">
-                        🔵 Approach
-                      </p>
-                      <p className="text-xs sm:text-sm text-[hsl(var(--muted-foreground))] leading-relaxed">
-                        {project.approach}
-                      </p>
-                    </div>
-                    <div className="space-y-1.5">
-                      <p className="text-xs font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1">
-                        🟢 Result
-                      </p>
-                      <p className="text-xs sm:text-sm text-[hsl(var(--muted-foreground))] leading-relaxed">
-                        {project.result}
-                      </p>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="p-4 rounded-xl bg-[hsl(var(--background))] border border-[hsl(var(--card-border))] font-mono text-xs space-y-2 mb-6 text-left">
-                    {project.testLogSample.map((line, idx) => (
-                      <p
-                        key={idx}
-                        className={
-                          line.startsWith("🎉")
-                            ? "text-emerald-400 font-bold mt-2"
-                            : line.startsWith("✓")
                             ? "text-emerald-300"
                             : "text-[hsl(var(--accent))]"
                         }

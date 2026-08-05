@@ -79,9 +79,13 @@ export default function ExperienceSection() {
               return (
                 <motion.div
                   key={exp.title + exp.period}
-                  initial={shouldReduceMotion ? {} : { opacity: 0, y: 30 }}
+                  initial={shouldReduceMotion ? {} : { opacity: 0, y: 35 }}
                   animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: i * 0.15 }}
+                  transition={
+                    shouldReduceMotion
+                      ? { duration: 0 }
+                      : { type: "spring", stiffness: 240, damping: 22, delay: i * 0.15 }
+                  }
                   className={`relative flex flex-col ${
                     isEven ? "sm:flex-row-reverse" : "sm:flex-row"
                   } items-center`}
@@ -93,7 +97,11 @@ export default function ExperienceSection() {
 
                   {/* Content Card */}
                   <div className="w-full sm:w-1/2 pl-12 sm:pl-0 sm:px-8 text-left">
-                    <div className="glass-card p-6 sm:p-7 rounded-3xl border border-[hsl(var(--card-border))]">
+                    <motion.div
+                      whileHover={shouldReduceMotion ? {} : { y: -4 }}
+                      transition={{ duration: 0.2 }}
+                      className="glass-card p-6 sm:p-7 rounded-3xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.5)] transition-colors duration-200"
+                    >
                       <div className="flex items-center justify-between gap-2 mb-2">
                         <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[hsl(var(--primary)/0.15)] text-[hsl(var(--primary))]">
                           {exp.badge}
@@ -123,7 +131,7 @@ export default function ExperienceSection() {
                           </li>
                         ))}
                       </ul>
-                    </div>
+                    </motion.div>
                   </div>
                 </motion.div>
               );

@@ -36,24 +36,30 @@ export default function ResumeSection() {
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <a
+              <motion.a
+                whileHover={shouldReduceMotion ? {} : { scale: 1.05, y: -2 }}
+                whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 href="/resume.pdf"
                 download
                 id="resume-download-btn"
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] text-white font-bold text-sm hover:scale-105 transition-all duration-300 shadow-lg glow-purple"
+                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] text-white font-bold text-sm shadow-lg glow-purple"
               >
                 <Download size={18} />
                 Download Resume (PDF)
-              </a>
-              <a
+              </motion.a>
+              <motion.a
+                whileHover={shouldReduceMotion ? {} : { scale: 1.05, y: -2 }}
+                whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl glass border border-[hsl(var(--card-border))] font-semibold text-sm hover:border-[hsl(var(--primary)/0.5)] hover:scale-105 transition-all duration-300"
+                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl glass border border-[hsl(var(--card-border))] font-semibold text-sm hover:border-[hsl(var(--primary)/0.5)]"
               >
                 <FileText size={18} />
                 View PDF Online
-              </a>
+              </motion.a>
             </div>
           </div>
         </motion.div>

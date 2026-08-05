@@ -59,10 +59,15 @@ export default function TechStackSection() {
             return (
               <motion.div
                 key={tech.name}
-                initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
-                animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
-                className="glass-card p-5 rounded-2xl border border-[hsl(var(--card-border))] flex flex-col items-center justify-center gap-3 text-center group cursor-pointer"
+                initial={shouldReduceMotion ? {} : { opacity: 0, y: 25, scale: 0.95 }}
+                animate={inView || shouldReduceMotion ? { opacity: 1, y: 0, scale: 1 } : {}}
+                transition={
+                  shouldReduceMotion
+                    ? { duration: 0 }
+                    : { type: "spring", stiffness: 260, damping: 22, delay: i * 0.04 }
+                }
+                whileHover={shouldReduceMotion ? {} : { y: -6, scale: 1.03 }}
+                className="glass-card p-5 rounded-2xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.5)] flex flex-col items-center justify-center gap-3 text-center group cursor-pointer transition-colors duration-200"
               >
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"

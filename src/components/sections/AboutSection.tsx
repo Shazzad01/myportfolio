@@ -109,16 +109,19 @@ export default function AboutSection() {
         </motion.div>
 
         {/* Animated Metric Cards Row */}
-        <motion.div
-          initial={shouldReduceMotion ? {} : { opacity: 0, y: 30 }}
-          animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
-        >
-          {metrics.map((metric) => (
-            <div
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+          {metrics.map((metric, i) => (
+            <motion.div
               key={metric.label}
-              className="glass-card p-6 rounded-2xl text-center border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.4)]"
+              initial={shouldReduceMotion ? {} : { opacity: 0, y: 30, scale: 0.95 }}
+              animate={inView || shouldReduceMotion ? { opacity: 1, y: 0, scale: 1 } : {}}
+              transition={
+                shouldReduceMotion
+                  ? { duration: 0 }
+                  : { type: "spring", stiffness: 260, damping: 22, delay: i * 0.08 }
+              }
+              whileHover={shouldReduceMotion ? {} : { y: -5, scale: 1.02 }}
+              className="glass-card p-6 rounded-2xl text-center border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.5)] transition-colors duration-200"
             >
               <p className="font-heading text-3xl sm:text-4xl font-bold text-gradient mb-1">
                 <AnimatedCounter
@@ -133,9 +136,9 @@ export default function AboutSection() {
                 {metric.label}
               </p>
               <p className="text-[11px] text-[hsl(var(--muted-foreground))]">{metric.sub}</p>
-            </div>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Main Content Grid */}
         <div className="grid lg:grid-cols-12 gap-12 items-start">

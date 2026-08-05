@@ -34,7 +34,13 @@ export default function CertificationsSection() {
           <motion.div
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 30 }}
             animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
-            className="glass-card p-8 rounded-3xl border border-[hsl(var(--card-border))] flex flex-col justify-between"
+            transition={
+              shouldReduceMotion
+                ? { duration: 0 }
+                : { type: "spring", stiffness: 240, damping: 22, delay: 0.1 }
+            }
+            whileHover={shouldReduceMotion ? {} : { y: -5, scale: 1.02 }}
+            className="glass-card p-8 rounded-3xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.5)] flex flex-col justify-between transition-colors duration-200"
           >
             <div>
               <div className="w-12 h-12 rounded-2xl bg-[hsl(var(--primary)/0.15)] flex items-center justify-center text-[hsl(var(--primary))] mb-6">
@@ -52,11 +58,11 @@ export default function CertificationsSection() {
               <ul className="space-y-2 text-xs text-[hsl(var(--muted-foreground))]">
                 <li className="flex items-center gap-2">
                   <CheckCircle2 size={13} className="text-emerald-400 shrink-0" />
-                  Manual & Automated Testing Principles
+                  Manual &amp; Automated Testing Principles
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 size={13} className="text-emerald-400 shrink-0" />
-                  Test Management, Bug Tracking & Jira
+                  Test Management, Bug Tracking &amp; Jira
                 </li>
               </ul>
             </div>
@@ -66,7 +72,13 @@ export default function CertificationsSection() {
           <motion.div
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 30 }}
             animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
-            className="glass-card p-8 rounded-3xl border border-[hsl(var(--card-border))] flex flex-col justify-between"
+            transition={
+              shouldReduceMotion
+                ? { duration: 0 }
+                : { type: "spring", stiffness: 240, damping: 22, delay: 0.2 }
+            }
+            whileHover={shouldReduceMotion ? {} : { y: -5, scale: 1.02 }}
+            className="glass-card p-8 rounded-3xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--accent)/0.5)] flex flex-col justify-between transition-colors duration-200"
           >
             <div>
               <div className="w-12 h-12 rounded-2xl bg-[hsl(var(--accent)/0.15)] flex items-center justify-center text-[hsl(var(--accent))] mb-6">
@@ -76,7 +88,7 @@ export default function CertificationsSection() {
                 CGPA 3.59 / 4.00
               </span>
               <h3 className="font-heading font-bold text-xl text-[hsl(var(--foreground))] mt-3 mb-1">
-                BSc in Computer Science & Engineering
+                BSc in Computer Science &amp; Engineering
               </h3>
               <p className="text-sm font-semibold text-[hsl(var(--primary))] mb-4">
                 Daffodil International University (2023)
@@ -84,11 +96,11 @@ export default function CertificationsSection() {
               <ul className="space-y-2 text-xs text-[hsl(var(--muted-foreground))]">
                 <li className="flex items-center gap-2">
                   <CheckCircle2 size={13} className="text-emerald-400 shrink-0" />
-                  Software Engineering & System Architecture
+                  Software Engineering &amp; System Architecture
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 size={13} className="text-emerald-400 shrink-0" />
-                  Data Structures, Algorithms & OOP
+                  Data Structures, Algorithms &amp; OOP
                 </li>
               </ul>
             </div>

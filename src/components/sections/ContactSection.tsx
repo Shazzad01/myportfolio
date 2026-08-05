@@ -256,14 +256,17 @@ export default function ContactSection() {
                   )}
                 </div>
 
-                <button
+                <motion.button
+                  whileHover={shouldReduceMotion || status === "sending" ? {} : { scale: 1.02, y: -1 }}
+                  whileTap={shouldReduceMotion || status === "sending" ? {} : { scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
                   type="submit"
                   disabled={status === "sending"}
-                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] text-white font-bold text-sm shadow-lg glow-purple hover:scale-[1.02] transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed disabled:scale-100"
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] text-white font-bold text-sm shadow-lg glow-purple disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                   <Send size={16} />
                   {status === "sending" ? "Sending Message..." : "Send Message"}
-                </button>
+                </motion.button>
               </form>
             )}
           </motion.div>
