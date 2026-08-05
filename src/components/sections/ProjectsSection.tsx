@@ -29,23 +29,23 @@ const projects: Project[] = [
   {
     id: "shwopno",
     title: "Shwopno.com",
-    subtitle: "Bangladesh's Largest Retail Grocery & E-Commerce Platform (ACI Logistics)",
+    subtitle: "shwapno.com — Digital Transformation & E-Commerce Supermarket Ecosystem (ACI Logistics)",
     period: "Apr 2024 – Present",
-    platforms: ["Web App", "Flutter Mobile App", "Admin Portal", "Order & Delivery App"],
-    tags: ["Playwright", "GitHub Actions", "JMeter", "Regression", "CI/CD"],
+    platforms: ["Storefront Web", "Flutter Mobile App", "SAP S/4HANA ERP", "Order & Delivery System"],
+    tags: ["Playwright", "GitHub Actions", "JMeter", "nexCommerce", "Algolia Search", "CI/CD"],
     brandIcons: [PlaywrightIcon, JMeterIcon, GitHubActionsIcon],
     problem:
-      "Shwopno required enterprise-grade QA for high-concurrency traffic (1M+ active shoppers). Manual regression cycles across Web, Storefront Mobile, Admin, Order Management, and Delivery apps caused release bottlenecks.",
+      "Legacy SaaS platform struggled to handle massive national retail traffic and lacked real-time hyperlocal inventory visibility across nationwide stores, leading to checkout drop-offs and operational bottlenecks.",
     approach:
-      "Engineered an automated Playwright (TypeScript) test framework covering end-to-end user journeys. Integrated tests directly into GitHub Actions CI/CD pipelines, executing automated regression runs on every Pull Request. Executed JMeter load testing to ensure zero-downtime server performance.",
+      "Engineered an automated Playwright (TypeScript) E2E test framework covering complex SAP S/4HANA inventory sync, Algolia search flows, and one-page checkout across Web and Mobile. Integrated automated regression runs into GitHub Actions CI/CD and executed JMeter high-concurrency load testing.",
     result:
-      "Cut release regression testing duration by over 60%. Achieved zero production downtime during high-volume nationwide retail sales campaigns.",
+      "Supported a 5X active user expansion (100k to 500k active users) with zero downtime during peak retail sales campaigns, cutting release regression testing duration by over 60%.",
     testLogSample: [
       "▶ npx playwright test --project=chromium",
-      "✓ [Chromium] › cart.spec.ts › Add Item to Cart (180ms)",
-      "✓ [Chromium] › checkout.spec.ts › bKash Payment Flow (410ms)",
-      "✓ [Chromium] › auth.spec.ts › OTP Authentication (290ms)",
-      "🎉 42 passed in 2.8s across 4 workers",
+      "✓ [Chromium] › cart.spec.ts › Add Item & Hyperlocal Inventory Sync (180ms)",
+      "✓ [Chromium] › checkout.spec.ts › bKash Payment & SAP Order Push (410ms)",
+      "✓ [Chromium] › search.spec.ts › Algolia Voice & Category Filter (210ms)",
+      "🎉 54 passed in 3.1s across 4 workers",
     ],
   },
   {
@@ -57,16 +57,17 @@ const projects: Project[] = [
     tags: ["Playwright", "GitLab CI/CD", "Cross-Browser", "API Testing", "AWS Scaling QA"],
     brandIcons: [PlaywrightIcon, GitLabIcon],
     problem:
-      "Paragon Agro suffered from fragmented regional sites due to lack of multi-warehouse inventory support, and their legacy server crashed during traffic surges above 120 active users.",
+      "Paragon Agro suffered from fragmented regional sites due to lack of multi-warehouse inventory support in legacy architecture, and their legacy server crashed under traffic surges beyond 120 active users.",
     approach:
-      "Engineered automated E2E test suites covering multi-warehouse inventory selection, slot-based delivery scheduling, and one-page checkout across Web, Android, and iOS. Integrated automated Playwright regression runs into GitLab CI/CD.",
+      "Engineered automated E2E test suites covering multi-warehouse inventory selection, slot-based delivery scheduling, and one-page checkout across Web, Android, and iOS. Integrated automated Playwright regression runs into GitLab CI/CD with AWS Lambda/EventBridge scaling verification.",
     result:
-      "Successfully supported a 4X surge in active users post-launch with zero server downtime during peak sales, maintaining a 99.5% test pass rate across cross-browser grid.",
+      "Supported a 4X active user surge within 1 week of launch with zero server downtime during peak sales, establishing a 99.5% test pass rate across cross-browser grid and delivery app workflows.",
     testLogSample: [
       "▶ gitlab-runner exec docker test:e2e",
-      "✓ [Firefox] › order_tracking.spec.ts › Live Order Status (220ms)",
-      "✓ [WebKit] › payment.spec.ts › Credit Card Authorization (380ms)",
-      "🎉 28 passed in 1.9s across cross-browser grid",
+      "✓ [Firefox] › order_tracking.spec.ts › Slot Delivery & Live Status (220ms)",
+      "✓ [WebKit] › payment.spec.ts › One-Page Checkout Authorization (380ms)",
+      "✓ [Chromium] › warehouse.spec.ts › Multi-Warehouse Stock Allocation (190ms)",
+      "🎉 34 passed in 2.2s across cross-browser grid",
     ],
   },
 ];
