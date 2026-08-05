@@ -157,15 +157,67 @@ export default function ProjectsSection() {
                 </div>
 
                 {/* Tab Content */}
-                            ? "text-emerald-300"
-                            : "text-[hsl(var(--accent))]"
-                        }
-                      >
-                        {line}
-                      </p>
-                    ))}
-                  </div>
-                )}
+                <AnimatePresence mode="wait">
+                  {currentTab === "overview" ? (
+                    <motion.div
+                      key="overview"
+                      initial={shouldReduceMotion ? {} : { opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={shouldReduceMotion ? {} : { opacity: 0, y: -8 }}
+                      transition={{ duration: 0.2 }}
+                      className="grid sm:grid-cols-3 gap-6 mb-6"
+                    >
+                      <div className="space-y-1.5">
+                        <p className="text-xs font-bold uppercase tracking-wider text-rose-400 flex items-center gap-1">
+                          🔴 Problem
+                        </p>
+                        <p className="text-xs sm:text-sm text-[hsl(var(--muted-foreground))] leading-relaxed">
+                          {project.problem}
+                        </p>
+                      </div>
+                      <div className="space-y-1.5">
+                        <p className="text-xs font-bold uppercase tracking-wider text-sky-400 flex items-center gap-1">
+                          🔵 Approach
+                        </p>
+                        <p className="text-xs sm:text-sm text-[hsl(var(--muted-foreground))] leading-relaxed">
+                          {project.approach}
+                        </p>
+                      </div>
+                      <div className="space-y-1.5">
+                        <p className="text-xs font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1">
+                          🟢 Result
+                        </p>
+                        <p className="text-xs sm:text-sm text-[hsl(var(--muted-foreground))] leading-relaxed">
+                          {project.result}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="logs"
+                      initial={shouldReduceMotion ? {} : { opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={shouldReduceMotion ? {} : { opacity: 0, y: -8 }}
+                      transition={{ duration: 0.2 }}
+                      className="p-4 rounded-xl bg-[hsl(var(--background))] border border-[hsl(var(--card-border))] font-mono text-xs space-y-2 mb-6 text-left"
+                    >
+                      {project.testLogSample.map((line, idx) => (
+                        <p
+                          key={idx}
+                          className={
+                            line.startsWith("🎉")
+                              ? "text-emerald-400 font-bold mt-2"
+                              : line.startsWith("✓")
+                              ? "text-emerald-300"
+                              : "text-[hsl(var(--accent))]"
+                          }
+                        >
+                          {line}
+                        </p>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
                 {/* Tech Tags */}
                 <div className="flex flex-wrap gap-2">
