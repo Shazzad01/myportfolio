@@ -3,7 +3,7 @@
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { ExternalLink, Terminal, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
+import { Terminal, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
 import { PlaywrightIcon, JMeterIcon, GitHubActionsIcon, GitLabIcon } from "@/components/ui/SvgIcons";
 
 interface Project {
@@ -140,7 +140,7 @@ export default function ProjectsSection() {
                     </p>
                   </div>
 
-                  {/* Platform Pills & Case Study Link */}
+                  {/* Platform Pills */}
                   <div className="flex flex-wrap items-center gap-2">
                     {project.platforms.map((p) => (
                       <span
@@ -150,16 +150,6 @@ export default function ProjectsSection() {
                         {p}
                       </span>
                     ))}
-                    {project.caseStudyUrl && (
-                      <a
-                        href={project.caseStudyUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-[hsl(var(--primary)/0.15)] text-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))] hover:text-white transition-all glow-purple"
-                      >
-                        Official Case Study <ExternalLink size={12} />
-                      </a>
-                    )}
                   </div>
                 </div>
 
