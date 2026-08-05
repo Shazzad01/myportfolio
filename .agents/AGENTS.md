@@ -93,6 +93,8 @@ Theme:       next-themes (dark/light mode)
 - **Colors**: HSL-based palette. Dark mode surface: `hsl(220 20% 8%)`. Neon purple glow: `hsl(260 80% 65%)`. Cyan accent glow: `hsl(190 80% 55%)`.
 - **Typography**: Clear hierarchy — Outfit for headings, Inter for body. High contrast readability.
 - **Glassmorphism & Gradients**: Blurred backdrop panels (`backdrop-blur-xl`), animated mesh gradient orbs, glowing border highlights.
+- **Large Vector SVG Hero Artwork**: Interactive multi-node QA Pipeline SVG Illustration (Source Code → Playwright → JMeter → CI/CD → Release).
+- **Official Multi-Color Brand SVGs**: Official brand logos for Playwright, JMeter, Selenium, Postman, TypeScript, Python, Docker, GitHub Actions, GitLab, Jira.
 - **Interactive Widgets**: Live Playwright terminal code executor simulator, animated stats counter, project live log viewer.
 - **Animations**: Framer Motion spring physics, hover scale lifting, pulsing status dots, smooth section reveal triggers.
 - **Polish**: Pixel-perfect layout, cohesive shadow system, accessible focus rings, responsive mobile/tablet/desktop layouts.

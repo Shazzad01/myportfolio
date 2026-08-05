@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowDown, Download, ExternalLink, ShieldCheck, Zap, Sparkles } from "lucide-react";
 import TerminalWidget from "@/components/ui/TerminalWidget";
+import HeroIllustration from "@/components/ui/HeroIllustration";
 
 const GithubIcon = () => (
   <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
@@ -40,7 +41,7 @@ export default function HeroSection() {
       <div className="container-max px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
           {/* Left Column — Text & CTAs */}
-          <div className="lg:col-span-7 text-left">
+          <div className="lg:col-span-6 text-left">
             {/* Status Pill */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
@@ -79,13 +80,13 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-wrap items-center gap-4 mb-8 text-xs font-medium text-[hsl(var(--muted-foreground))]"
+              className="flex flex-wrap items-center gap-3 mb-8 text-xs font-medium text-[hsl(var(--muted-foreground))]"
             >
               <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg glass border border-[hsl(var(--card-border))]">
                 <ShieldCheck size={14} className="text-emerald-400" /> Automated Regression
               </span>
               <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg glass border border-[hsl(var(--card-border))]">
-                <Zap size={14} className="text-yellow-400" /> Performance Benchmarking
+                <Zap size={14} className="text-yellow-400" /> Load & Performance Testing
               </span>
             </motion.div>
 
@@ -139,14 +140,14 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Right Column — Interactive Code Terminal */}
+          {/* Right Column — Large Custom SVG Hero Illustration */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="lg:col-span-5 flex justify-center"
+            className="lg:col-span-6 flex flex-col items-center gap-6"
           >
-            <TerminalWidget />
+            <HeroIllustration />
           </motion.div>
         </div>
 
