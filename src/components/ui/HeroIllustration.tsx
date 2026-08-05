@@ -76,7 +76,7 @@ export default function HeroIllustration() {
                   2. Automated E2E & Load Testing
                 </p>
                 <p className="text-[11px] text-[hsl(var(--muted-foreground))]">
-                  Playwright TS + JMeter Engine
+                  Playwright + JMeter Engine
                 </p>
               </div>
             </div>

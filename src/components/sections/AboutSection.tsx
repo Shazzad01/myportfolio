@@ -43,7 +43,7 @@ function Zap(props: any) {
 const metrics = [
   { label: "Years Experience", value: "2+", sub: "Brain Station 23" },
   { label: "E-Commerce Users Tested", value: "1M+", sub: "Shwopno & Paragon" },
-  { label: "Automated Suite Coverage", value: "85%", sub: "Playwright TS" },
+  { label: "Automated Suite Coverage", value: "85%", sub: "Playwright" },
   { label: "Degree GPA", value: "3.59", sub: "BSc CSE (DIU)" },
 ];
 

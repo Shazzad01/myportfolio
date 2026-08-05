@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/SvgIcons";
 
 const techStack = [
-  { name: "Playwright TS", cat: "Automation Framework", icon: PlaywrightIcon, color: "#45BA4B" },
+  { name: "Playwright", cat: "Automation Framework", icon: PlaywrightIcon, color: "#45BA4B" },
   { name: "Apache JMeter", cat: "Performance & Load", icon: JMeterIcon, color: "#D22128" },
   { name: "Selenium", cat: "Cross-Browser Web", icon: SeleniumIcon, color: "#CF0A2C" },
   { name: "Postman & Newman", cat: "API Testing & Runner", icon: PostmanIcon, color: "#FF6C37" },

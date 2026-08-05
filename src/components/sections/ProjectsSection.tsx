@@ -13,7 +13,7 @@ const projects = [
     subtitle: "Bangladesh's Largest E-Commerce Platform",
     period: "Apr 2024 – Present",
     platforms: ["Web", "Android", "iOS"],
-    tags: ["Playwright TS", "GitHub Actions", "JMeter", "Regression", "CI/CD"],
+    tags: ["Playwright", "GitHub Actions", "JMeter", "Regression", "CI/CD"],
     brandIcons: [PlaywrightIcon, JMeterIcon, GitHubActionsIcon],
     problem:
       "Shwopno required enterprise-grade QA for high-concurrency traffic (1M+ active shoppers). Manual regression cycles caused release bottlenecks and high QA resource overhead.",

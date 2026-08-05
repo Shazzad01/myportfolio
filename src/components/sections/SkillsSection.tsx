@@ -35,7 +35,7 @@ const categories = [
 ];
 
 const skillItems = [
-  { name: "Playwright (TypeScript)", cat: "automation", level: "Expert", icon: PlaywrightIcon, desc: "End-to-end web testing & CI/CD pipeline integration" },
+  { name: "Playwright", cat: "automation", level: "Expert", icon: PlaywrightIcon, desc: "End-to-end web testing & CI/CD pipeline integration" },
   { name: "Selenium WebDriver", cat: "automation", level: "Advanced", icon: SeleniumIcon, desc: "Cross-browser regression suites & Java/TS scripts" },
   { name: "Appium Mobile", cat: "automation", level: "Advanced", icon: AppiumIcon, desc: "Mobile automation for Android & iOS native apps" },
   { name: "Postman & Newman", cat: "automation", level: "Expert", icon: PostmanIcon, desc: "API collection runs, assertions & automated CLI runs" },

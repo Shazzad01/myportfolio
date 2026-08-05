@@ -1,37 +1,68 @@
 import React from "react";
 
-// Official Playwright Logo (Green/Teal Dual Mask)
+// Official Playwright Logo (Two Green/Teal Masks)
 export function PlaywrightIcon({ className = "w-6 h-6" }: { className?: string }) {
   return (
     <svg viewBox="0 0 128 128" className={className} xmlns="http://www.w3.org/2000/svg">
-      <path d="M115.4 34.6C113.8 22.4 103.4 12.8 91 12.8C80.2 12.8 70.8 19.8 67.5 30.1C64.2 19.8 54.8 12.8 44 12.8C31.6 12.8 21.2 22.4 19.6 34.6C18.8 40.7 20 46.9 23 52.2L64 124L105 52.2C108 46.9 109.2 40.7 115.4 34.6Z" fill="#2EAD33" />
-      <path d="M108 32C106.8 21 97.4 12.8 86 12.8C76.2 12.8 67.8 19 64.8 28.2C61.8 19 53.4 12.8 43.6 12.8C32.2 12.8 22.8 21 21.6 32C20.9 37.5 22 43.1 24.7 47.9L64.8 118L104.9 47.9C107.6 43.1 108.7 37.5 108 32Z" fill="#45BA4B" />
-      <circle cx="44" cy="38" r="10" fill="#1C1E24" />
-      <circle cx="84" cy="38" r="10" fill="#1C1E24" />
-      <circle cx="46" cy="36" r="4" fill="#FFFFFF" />
-      <circle cx="86" cy="36" r="4" fill="#FFFFFF" />
+      {/* Back Mask */}
+      <path
+        d="M48 20C30.3 20 16 34.3 16 52C16 69.7 30.3 84 48 84C65.7 84 80 69.7 80 52C80 34.3 65.7 20 48 20Z"
+        fill="#2EAD33"
+      />
+      <circle cx="38" cy="48" r="6" fill="#1C1E24" />
+      <circle cx="60" cy="48" r="6" fill="#1C1E24" />
+      <circle cx="40" cy="46" r="2.5" fill="#FFFFFF" />
+      <circle cx="62" cy="46" r="2.5" fill="#FFFFFF" />
+
+      {/* Front Mask */}
+      <path
+        d="M80 44C62.3 44 48 58.3 48 76C48 93.7 62.3 108 80 108C97.7 108 112 93.7 112 76C112 58.3 97.7 44 80 44Z"
+        fill="#45BA4B"
+      />
+      <circle cx="70" cy="72" r="6" fill="#1C1E24" />
+      <circle cx="92" cy="72" r="6" fill="#1C1E24" />
+      <circle cx="72" cy="70" r="2.5" fill="#FFFFFF" />
+      <circle cx="94" cy="70" r="2.5" fill="#FFFFFF" />
     </svg>
   );
 }
 
-// Official JMeter Logo (Red Feather Gauge)
+// Official Apache JMeter Logo (Red Apache Feather & Speedometer)
 export function JMeterIcon({ className = "w-6 h-6" }: { className?: string }) {
   return (
     <svg viewBox="0 0 128 128" className={className} xmlns="http://www.w3.org/2000/svg">
-      <path d="M64 12C35.3 12 12 35.3 12 64C12 92.7 35.3 116 64 116C92.7 116 116 92.7 116 64C116 35.3 92.7 12 64 12ZM64 104C41.9 104 24 86.1 24 64C24 41.9 41.9 24 64 24C86.1 24 104 41.9 104 64C104 86.1 86.1 104 64 104Z" fill="#D22128" />
-      <path d="M64 36V64L84 76" stroke="#D22128" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M36 64H48" stroke="#D22128" strokeWidth="8" strokeLinecap="round" />
-      <path d="M80 64H92" stroke="#D22128" strokeWidth="8" strokeLinecap="round" />
+      <rect width="128" height="128" rx="28" fill="#D22128" fillOpacity="0.15" stroke="#D22128" strokeWidth="3" />
+      {/* Feather Flame Shape */}
+      <path
+        d="M64 16C64 16 88 40 88 64C88 88 64 112 64 112C64 112 40 88 40 64C40 40 64 16 64 16Z"
+        fill="#D22128"
+      />
+      <path
+        d="M64 36V72L80 84"
+        stroke="#FFFFFF"
+        strokeWidth="7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="64" cy="72" r="6" fill="#FFFFFF" />
     </svg>
   );
 }
 
-// Official Selenium Logo (Green Check Box)
+// Official Selenium Logo (Green Box with "Se" Text & Checkmark)
 export function SeleniumIcon({ className = "w-6 h-6" }: { className?: string }) {
   return (
     <svg viewBox="0 0 128 128" className={className} xmlns="http://www.w3.org/2000/svg">
-      <rect width="128" height="128" rx="28" fill="#43B02A" />
-      <path d="M36 64L56 84L92 44" stroke="white" strokeWidth="14" strokeLinecap="round" strokeLinejoin="round" />
+      <rect width="128" height="128" rx="24" fill="#43B02A" />
+      <path
+        d="M42 70C42 60 48 54 60 54C72 54 78 60 78 70C78 80 60 82 60 88H78"
+        stroke="white"
+        strokeWidth="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+      <path d="M86 44V88" stroke="white" strokeWidth="10" strokeLinecap="round" />
     </svg>
   );
 }
@@ -41,8 +72,8 @@ export function AppiumIcon({ className = "w-6 h-6" }: { className?: string }) {
   return (
     <svg viewBox="0 0 128 128" className={className} xmlns="http://www.w3.org/2000/svg">
       <rect width="128" height="128" rx="28" fill="#662D91" />
-      <path d="M40 38H88V90H40V38Z" stroke="white" strokeWidth="10" strokeLinejoin="round" />
-      <circle cx="64" cy="64" r="14" fill="#662D91" stroke="white" strokeWidth="8" />
+      <path d="M38 34H90V94H38V34Z" stroke="white" strokeWidth="8" strokeLinejoin="round" fill="none" />
+      <circle cx="64" cy="64" r="16" fill="#662D91" stroke="white" strokeWidth="8" />
     </svg>
   );
 }
@@ -52,12 +83,12 @@ export function PostmanIcon({ className = "w-6 h-6" }: { className?: string }) {
   return (
     <svg viewBox="0 0 128 128" className={className} xmlns="http://www.w3.org/2000/svg">
       <circle cx="64" cy="64" r="60" fill="#FF6C37" />
-      <path d="M38 64L90 40L68 90L58 68L38 64Z" fill="white" />
+      <path d="M36 64L92 38L70 92L58 68L36 64Z" fill="white" />
     </svg>
   );
 }
 
-// Official K6 Logo (Purple K6 Load Engine)
+// Official K6 Logo (Purple K6 Engine)
 export function K6Icon({ className = "w-6 h-6" }: { className?: string }) {
   return (
     <svg viewBox="0 0 128 128" className={className} xmlns="http://www.w3.org/2000/svg">
@@ -89,7 +120,7 @@ export function JavaScriptIcon({ className = "w-6 h-6" }: { className?: string }
   );
 }
 
-// Official Java Logo (Red Cup Java)
+// Official Java Logo (Blue Cup Java)
 export function JavaIcon({ className = "w-6 h-6" }: { className?: string }) {
   return (
     <svg viewBox="0 0 128 128" className={className} xmlns="http://www.w3.org/2000/svg">
