@@ -18,4 +18,6 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - **Primary Trigger**: Use Framer Motion's native `whileInView={{ opacity: 1, y: 0 }}` with `viewport={{ once: true, amount: 0.1 }}` directly on animated `<motion.div>` elements.
 - **Avoid Fragile Refs**: Avoid wrapping multi-element sections in a single `useInView(ref)` hook with negative margins (e.g. `margin: "-100px"`), which causes elements to remain hidden at `opacity: 0` on mobile viewports or dynamic height updates.
 
-
+### Framer Motion Filter & Tab Animation Rule
+- **Container-Level Transition**: For category filtering or tab-swapped grid layouts, **ALWAYS wrap the grid container in `<AnimatePresence mode="wait">`** and assign `key={activeFilter}` (or active tab ID) to the container `<motion.div>`.
+- **Prevent Grid Collisions**: NEVER use unmodeled `<AnimatePresence>` with `layout` on individual grid items during category filters, as parallel exit/enter states cause CSS grid height jumps and element collisions.
