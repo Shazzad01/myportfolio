@@ -14,3 +14,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - **Primary Action**: When the user provides a reference URL (e.g. case study, article, or documentation), **DO NOT automatically add a link button or UI tag** to the page unless explicitly requested.
 - **Data Enrichment**: Always fetch and read the URL content using `read_url_content`, extract key metrics, problem descriptions, technical solutions, and quantified results, and update the portfolio content directly with those real-world details.
 
+### Framer Motion Scroll Animation Rule
+- **Primary Trigger**: Use Framer Motion's native `whileInView={{ opacity: 1, y: 0 }}` with `viewport={{ once: true, amount: 0.1 }}` directly on animated `<motion.div>` elements.
+- **Avoid Fragile Refs**: Avoid wrapping multi-element sections in a single `useInView(ref)` hook with negative margins (e.g. `margin: "-100px"`), which causes elements to remain hidden at `opacity: 0` on mobile viewports or dynamic height updates.
+
+
