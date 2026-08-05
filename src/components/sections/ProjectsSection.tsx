@@ -10,17 +10,23 @@ const projects = [
   {
     id: "shwopno",
     title: "Shwopno.com",
-    subtitle: "Bangladesh's Largest E-Commerce Platform",
+    subtitle: "Bangladesh's Largest Retail Grocery & E-Commerce Platform (ACI Logistics)",
     period: "Apr 2024 – Present",
-    platforms: ["Web", "Android", "iOS"],
-    tags: ["Playwright", "GitHub Actions", "JMeter", "Regression", "CI/CD"],
+    platforms: ["Web App", "Flutter Mobile App", "Admin Portal", "Order & Delivery App"],
+    tags: ["Playwright", "GitHub Actions", "JMeter", "Regression", "CI/CD", "nopCommerce"],
     brandIcons: [PlaywrightIcon, JMeterIcon, GitHubActionsIcon],
+    caseStudyUrl: "https://www.nop-station.com/empowering-shwapno-a-journey-towards-digital-excellence-in-retail",
+    testimonial: {
+      quote: "They followed an agile approach, delivered milestones on time, and were highly responsive to our evolving needs.",
+      author: "Head of Growth & E-Commerce Platform Dev, ACI Logistics",
+      rating: "5.0 ★★★★★ (Clutch Verified)",
+    },
     problem:
-      "Shwopno required enterprise-grade QA for high-concurrency traffic (1M+ active shoppers). Manual regression cycles caused release bottlenecks and high QA resource overhead.",
+      "Shwopno required enterprise-grade QA for high-concurrency traffic (1M+ active shoppers). Manual regression cycles across Web, Storefront Mobile, Admin, Order Management, and Delivery apps caused release bottlenecks.",
     approach:
-      "Engineered an automated Playwright (TypeScript) test framework with parallel worker execution. Integrated tests directly into GitHub Actions CI/CD workflows, executing automated suite runs on every Pull Request. Performed load testing via JMeter to validate server throughput.",
+      "Engineered an automated Playwright (TypeScript) test framework covering end-to-end user journeys. Integrated tests directly into GitHub Actions CI/CD pipelines, executing automated regression runs on every Pull Request. Executed JMeter load testing to ensure zero-downtime server performance.",
     result:
-      "Cut release regression testing duration by over 60%. Achieved zero production downtime during high-volume sales campaigns.",
+      "Cut release regression testing duration by over 60%. Achieved zero production downtime during high-volume nationwide retail sales campaigns.",
     testLogSample: [
       "▶ npx playwright test --project=chromium",
       "✓ [Chromium] › cart.spec.ts › Add Item to Cart (180ms)",
@@ -118,8 +124,8 @@ export default function ProjectsSection() {
                     </p>
                   </div>
 
-                  {/* Platform Pills */}
-                  <div className="flex items-center gap-1.5">
+                  {/* Platform Pills & Case Study Link */}
+                  <div className="flex flex-wrap items-center gap-2">
                     {project.platforms.map((p) => (
                       <span
                         key={p}
@@ -128,8 +134,35 @@ export default function ProjectsSection() {
                         {p}
                       </span>
                     ))}
+                    {project.caseStudyUrl && (
+                      <a
+                        href={project.caseStudyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-[hsl(var(--primary)/0.15)] text-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))] hover:text-white transition-all glow-purple"
+                      >
+                        Official Case Study <ExternalLink size={12} />
+                      </a>
+                    )}
                   </div>
                 </div>
+
+                {/* Client Testimonial Quote (if present) */}
+                {project.testimonial && (
+                  <div className="mb-6 p-4 rounded-2xl bg-[hsl(var(--primary)/0.06)] border border-[hsl(var(--primary)/0.2)] text-left">
+                    <p className="text-xs sm:text-sm italic text-[hsl(var(--foreground))] font-medium mb-1.5">
+                      &ldquo;{project.testimonial.quote}&rdquo;
+                    </p>
+                    <div className="flex flex-wrap items-center justify-between text-[11px] text-[hsl(var(--muted-foreground))]">
+                      <span className="font-semibold text-[hsl(var(--primary))]">
+                        — {project.testimonial.author}
+                      </span>
+                      <span className="font-bold text-amber-400">
+                        {project.testimonial.rating}
+                      </span>
+                    </div>
+                  </div>
+                )}
 
                 {/* Tab Switcher */}
                 <div className="flex items-center gap-2 mb-6 border-b border-[hsl(var(--card-border))] pb-3">
