@@ -3,7 +3,7 @@
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { ExternalLink, Terminal, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
+import { Terminal, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
 import { PlaywrightIcon, JMeterIcon, GitHubActionsIcon, GitLabIcon } from "@/components/ui/SvgIcons";
 
 interface Project {
@@ -18,7 +18,6 @@ interface Project {
   approach: string;
   result: string;
   testLogSample: string[];
-  caseStudyUrl?: string;
   testimonial?: {
     quote: string;
     author: string;
@@ -48,30 +47,27 @@ const projects: Project[] = [
       "✓ [Chromium] › auth.spec.ts › OTP Authentication (290ms)",
       "🎉 42 passed in 2.8s across 4 workers",
     ],
-    caseStudyUrl: "https://shwopno.com",
   },
   {
     id: "paragon",
     title: "Paragon Food",
-    subtitle: "paragonfood.com.bd — Food Delivery Platform",
+    subtitle: "paragonfood.com.bd — Hyperlocal Food Retail & Grocery eCommerce Ecosystem",
     period: "Jul 2025 – Mar 2026",
-    platforms: ["Web", "Android", "iOS"],
-    tags: ["Playwright", "GitLab CI/CD", "Cross-Browser", "API Testing"],
+    platforms: ["Web App", "Storefront Mobile App", "Delivery Management App", "Multi-Warehouse Portal"],
+    tags: ["Playwright", "GitLab CI/CD", "Cross-Browser", "API Testing", "AWS Scaling QA"],
     brandIcons: [PlaywrightIcon, GitLabIcon],
     problem:
-      "A fast-growing food delivery app required multi-platform validation across Web, Chrome, Firefox, Safari, Android, and iOS to guarantee cart and payment gateway reliability.",
+      "Paragon Agro suffered from fragmented regional sites due to lack of multi-warehouse inventory support, and their legacy server crashed during traffic surges above 120 active users.",
     approach:
-      "Designed full regression packs covering product selection, order placement, real-time order tracking, and payment processing. Integrated test pipelines into GitLab CI/CD with automated test report artifacts.",
+      "Engineered automated E2E test suites covering multi-warehouse inventory selection, slot-based delivery scheduling, and one-page checkout across Web, Android, and iOS. Integrated automated Playwright regression runs into GitLab CI/CD.",
     result:
-      "Prevented payment checkout failures and established a 99.5% test pass rate across all target browser engines.",
+      "Successfully supported a 4X surge in active users post-launch with zero server downtime during peak sales, maintaining a 99.5% test pass rate across cross-browser grid.",
     testLogSample: [
       "▶ gitlab-runner exec docker test:e2e",
       "✓ [Firefox] › order_tracking.spec.ts › Live Order Status (220ms)",
       "✓ [WebKit] › payment.spec.ts › Credit Card Authorization (380ms)",
       "🎉 28 passed in 1.9s across cross-browser grid",
     ],
-    caseStudyUrl:
-      "https://www.nop-station.com/paragon-agro-modernizing-food-retail-through-hyperlocal-ecommerce-ecosystem",
   },
 ];
 
@@ -141,7 +137,7 @@ export default function ProjectsSection() {
                     </p>
                   </div>
 
-                  {/* Platform Pills & Case Study Link */}
+                  {/* Platform Pills */}
                   <div className="flex flex-wrap items-center gap-2">
                     {project.platforms.map((p) => (
                       <span
@@ -151,16 +147,6 @@ export default function ProjectsSection() {
                         {p}
                       </span>
                     ))}
-                    {project.caseStudyUrl && (
-                      <a
-                        href={project.caseStudyUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-[hsl(var(--primary)/0.15)] text-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))] hover:text-white transition-all glow-purple"
-                      >
-                        Case Study <ExternalLink size={12} />
-                      </a>
-                    )}
                   </div>
                 </div>
 
