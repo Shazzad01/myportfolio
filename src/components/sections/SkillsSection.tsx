@@ -113,9 +113,9 @@ export default function SkillsSection() {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeFilter}
-            initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
+            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={shouldReduceMotion ? false : { opacity: 0, y: -12 }}
+            exit={shouldReduceMotion ? undefined : { opacity: 0, y: -12 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
             className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 text-left"
           >
@@ -124,7 +124,7 @@ export default function SkillsSection() {
               return (
                 <motion.div
                   key={skill.name}
-                  initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
+                  initial={shouldReduceMotion ? undefined : { opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.18, delay: i * 0.03 }}
                   whileHover={shouldReduceMotion ? {} : { y: -4, scale: 1.01 }}
