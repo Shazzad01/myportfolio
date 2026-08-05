@@ -1,8 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Terminal, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
 import { PlaywrightIcon, JMeterIcon, GitHubActionsIcon, GitLabIcon } from "@/components/ui/SvgIcons";
 
@@ -73,8 +72,6 @@ const projects: Project[] = [
 ];
 
 export default function ProjectsSection() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
   const shouldReduceMotion = useReducedMotion();
   const [activeTab, setActiveTab] = useState<Record<string, "overview" | "logs">>({
     shwopno: "overview",
@@ -87,12 +84,13 @@ export default function ProjectsSection() {
 
   return (
     <section id="projects" className="section-padding bg-[hsl(var(--muted)/0.3)] relative">
-      <div className="container-max" ref={ref}>
+      <div className="container-max">
         {/* Section Header */}
         <motion.div
-          initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
-          animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
           <p className="text-xs font-bold text-[hsl(var(--primary))] tracking-widest uppercase mb-3 flex items-center justify-center gap-2">
@@ -108,9 +106,10 @@ export default function ProjectsSection() {
             return (
               <motion.div
                 key={project.id}
-                initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
-                animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: i * 0.15 }}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.5, delay: i * 0.12 }}
                 className="glass-card p-6 sm:p-8 rounded-3xl border border-[hsl(var(--card-border))]"
               >
                 {/* Top Banner */}
