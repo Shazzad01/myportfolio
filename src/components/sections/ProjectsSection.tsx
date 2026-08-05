@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { ExternalLink, Terminal, CheckCircle2, ShieldCheck } from "lucide-react";
+import { ExternalLink, Terminal, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
+import { PlaywrightIcon, JMeterIcon, GitHubActionsIcon, GitLabIcon } from "@/components/ui/SvgIcons";
 
 const projects = [
   {
@@ -13,6 +14,7 @@ const projects = [
     period: "Apr 2024 – Present",
     platforms: ["Web", "Android", "iOS"],
     tags: ["Playwright TS", "GitHub Actions", "JMeter", "Regression", "CI/CD"],
+    brandIcons: [PlaywrightIcon, JMeterIcon, GitHubActionsIcon],
     problem:
       "Shwopno required enterprise-grade QA for high-concurrency traffic (1M+ active shoppers). Manual regression cycles caused release bottlenecks and high QA resource overhead.",
     approach:
@@ -34,6 +36,7 @@ const projects = [
     period: "Jul 2025 – Mar 2026",
     platforms: ["Web", "Android", "iOS"],
     tags: ["Playwright", "GitLab CI/CD", "Cross-Browser", "API Testing"],
+    brandIcons: [PlaywrightIcon, GitLabIcon],
     problem:
       "A fast-growing food delivery app required multi-platform validation across Web, Chrome, Firefox, Safari, Android, and iOS to guarantee cart and payment gateway reliability.",
     approach:
@@ -71,7 +74,8 @@ export default function ProjectsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-xs font-bold text-[hsl(var(--primary))] tracking-widest uppercase mb-3">
+          <p className="text-xs font-bold text-[hsl(var(--primary))] tracking-widest uppercase mb-3 flex items-center justify-center gap-2">
+            <Sparkles size={14} className="text-[hsl(var(--accent))]" />
             Real-World Impact
           </p>
           <h2 className="font-heading text-4xl sm:text-5xl font-bold">Featured Projects</h2>
@@ -97,9 +101,17 @@ export default function ProjectsSection() {
                         {project.period}
                       </span>
                     </div>
-                    <h3 className="font-heading font-bold text-2xl sm:text-3xl text-[hsl(var(--foreground))]">
-                      {project.title}
-                    </h3>
+                    <div className="flex items-center gap-3">
+                      <h3 className="font-heading font-bold text-2xl sm:text-3xl text-[hsl(var(--foreground))]">
+                        {project.title}
+                      </h3>
+                      {/* SVG Brand Logos */}
+                      <div className="flex items-center gap-1.5 bg-[hsl(var(--muted)/0.6)] px-2.5 py-1 rounded-xl">
+                        {project.brandIcons.map((BrandIcon, idx) => (
+                          <BrandIcon key={idx} className="w-4 h-4" />
+                        ))}
+                      </div>
+                    </div>
                     <p className="text-xs sm:text-sm text-[hsl(var(--primary))] font-semibold mt-1">
                       {project.subtitle}
                     </p>
@@ -118,13 +130,13 @@ export default function ProjectsSection() {
                   </div>
                 </div>
 
-                {/* Tab Switcher (Overview vs Live Logs) */}
+                {/* Tab Switcher */}
                 <div className="flex items-center gap-2 mb-6 border-b border-[hsl(var(--card-border))] pb-3">
                   <button
                     onClick={() => toggleTab(project.id, "overview")}
                     className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                       currentTab === "overview"
-                        ? "bg-[hsl(var(--primary))] text-white"
+                        ? "bg-[hsl(var(--primary))] text-white shadow-lg glow-purple"
                         : "text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]"
                     }`}
                   >
@@ -134,7 +146,7 @@ export default function ProjectsSection() {
                     onClick={() => toggleTab(project.id, "logs")}
                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                       currentTab === "logs"
-                        ? "bg-[hsl(var(--primary))] text-white"
+                        ? "bg-[hsl(var(--primary))] text-white shadow-lg glow-purple"
                         : "text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]"
                     }`}
                   >
