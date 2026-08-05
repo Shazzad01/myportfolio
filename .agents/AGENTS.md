@@ -143,3 +143,12 @@ git push origin main → production deploy (on Vercel main branch)
 # Environment variables in Vercel dashboard, never committed
 # Custom domain configured with HTTPS auto-enabled
 ```
+
+---
+
+## GitHub & Remote Branch Management
+
+- **Full Remote Access**: You are authorized to update remote branches and interact with GitHub directly using `git` and `gh` commands.
+- **Direct Remote Sync (Mandatory)**: ALWAYS update and push changes to the remote repository (`origin main` or feature branch) immediately after completing any work, feature, bug fix, or project milestone.
+- **CLI Usage**: Use `gh` / `git` CLI workflows for repository management, remote sync, and deployment triggers without asking the user to perform manual git pushes.
+
