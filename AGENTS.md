@@ -21,3 +21,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 ### Framer Motion Filter & Tab Animation Rule
 - **Container-Level Transition**: For category filtering or tab-swapped grid layouts, **ALWAYS wrap the grid container in `<AnimatePresence mode="wait">`** and assign `key={activeFilter}` (or active tab ID) to the container `<motion.div>`.
 - **Prevent Grid Collisions**: NEVER use unmodeled `<AnimatePresence>` with `layout` on individual grid items during category filters, as parallel exit/enter states cause CSS grid height jumps and element collisions.
+
+### GitHub & Remote Branch Management
+- **Full Remote Access**: You are authorized to update remote branches and interact with GitHub directly using `git` and `gh` commands.
+- **Direct Remote Sync (Mandatory)**: ALWAYS update and push changes to the remote repository (`origin main` or feature branch) immediately after completing any work, feature, bug fix, or project milestone.
+- **CLI Usage**: Use `gh` / `git` CLI workflows for repository management, remote sync, and deployment triggers without asking the user to perform manual git pushes.
+
