@@ -64,8 +64,8 @@ export default function HeroIllustration() {
           >
             <div className="flex items-center gap-3">
               <div className="flex -space-x-2">
-                <div className="w-9 h-9 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center p-1.5 z-10">
-                  <PlaywrightIcon className="w-5 h-5" />
+                <div className="w-9 h-9 rounded-xl bg-[hsl(var(--muted)/0.8)] border border-[hsl(var(--card-border))] flex items-center justify-center p-1.5 z-10">
+                  <PlaywrightIcon className="w-6 h-6" />
                 </div>
                 <div className="w-9 h-9 rounded-xl bg-rose-500/15 border border-rose-500/30 flex items-center justify-center p-1.5">
                   <JMeterIcon className="w-5 h-5" />
