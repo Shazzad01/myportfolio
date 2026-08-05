@@ -1,8 +1,6 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
 import { ArrowDown, Download, ExternalLink, ShieldCheck, Zap, Sparkles } from "lucide-react";
 import HeroIllustration from "@/components/ui/HeroIllustration";
 import TerminalWidget from "@/components/ui/TerminalWidget";

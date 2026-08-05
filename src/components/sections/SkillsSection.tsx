@@ -1,8 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Sparkles } from "lucide-react";
 import {
   PlaywrightIcon,
@@ -58,8 +57,6 @@ const skillItems = [
 ];
 
 export default function SkillsSection() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
   const [activeFilter, setActiveFilter] = useState("all");
   const shouldReduceMotion = useReducedMotion();
 
@@ -70,12 +67,13 @@ export default function SkillsSection() {
 
   return (
     <section id="skills" className="section-padding bg-[hsl(var(--muted)/0.3)]">
-      <div className="container-max" ref={ref}>
+      <div className="container-max">
         {/* Section Header */}
         <motion.div
-          initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
-          animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
           <p className="text-xs font-bold text-[hsl(var(--primary))] tracking-widest uppercase mb-3 flex items-center justify-center gap-2">
@@ -87,9 +85,10 @@ export default function SkillsSection() {
 
         {/* Category Filter Bar */}
         <motion.div
-          initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
-          animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           className="flex flex-wrap items-center justify-center gap-2.5 mb-12"
         >
           {categories.map((cat) => {

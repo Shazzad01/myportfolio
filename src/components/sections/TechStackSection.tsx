@@ -1,8 +1,6 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
 import { Sparkles } from "lucide-react";
 import {
   PlaywrightIcon,
@@ -31,18 +29,17 @@ const techStack = [
 ];
 
 export default function TechStackSection() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
   const shouldReduceMotion = useReducedMotion();
 
   return (
     <section id="tech-stack" className="section-padding relative">
-      <div className="container-max text-center" ref={ref}>
+      <div className="container-max text-center">
         {/* Section Header */}
         <motion.div
-          initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
-          animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5 }}
           className="mb-14"
         >
           <p className="text-xs font-bold text-[hsl(var(--primary))] tracking-widest uppercase mb-3 flex items-center justify-center gap-2">
@@ -59,8 +56,9 @@ export default function TechStackSection() {
             return (
               <motion.div
                 key={tech.name}
-                initial={shouldReduceMotion ? {} : { opacity: 0, y: 25, scale: 0.95 }}
-                animate={inView || shouldReduceMotion ? { opacity: 1, y: 0, scale: 1 } : {}}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 25, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={
                   shouldReduceMotion
                     ? { duration: 0 }

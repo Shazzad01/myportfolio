@@ -1,22 +1,19 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
 import { Download, FileText, Sparkles } from "lucide-react";
 
 export default function ResumeSection() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
   const shouldReduceMotion = useReducedMotion();
 
   return (
     <section id="resume" className="section-padding bg-[hsl(var(--muted)/0.3)] relative">
-      <div className="container-max" ref={ref}>
+      <div className="container-max">
         <motion.div
-          initial={shouldReduceMotion ? {} : { opacity: 0, y: 30 }}
-          animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5 }}
           className="max-w-3xl mx-auto text-center"
         >
           <div className="glass-card rounded-3xl p-10 sm:p-14 border border-[hsl(var(--card-border))] glow-purple">

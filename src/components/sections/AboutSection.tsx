@@ -1,8 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Briefcase, MapPin, CheckCircle, Cpu, ShieldAlert, Sparkles, Zap } from "lucide-react";
 
 const personas = [
@@ -82,23 +81,18 @@ function AnimatedCounter({
 }
 
 export default function AboutSection() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
   const [activePersona, setActivePersona] = useState(personas[0]);
   const shouldReduceMotion = useReducedMotion();
 
-  const fadeUp = shouldReduceMotion
-    ? { initial: {}, animate: {} }
-    : { initial: { opacity: 0, y: 20 }, animate: inView ? { opacity: 1, y: 0 } : {} };
-
   return (
     <section id="about" className="section-padding relative">
-      <div className="container-max" ref={ref}>
+      <div className="container-max">
         {/* Section Header */}
         <motion.div
-          initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
-          animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
           <p className="text-xs font-bold text-[hsl(var(--primary))] tracking-widest uppercase mb-3 flex items-center justify-center gap-2">
@@ -113,8 +107,9 @@ export default function AboutSection() {
           {metrics.map((metric, i) => (
             <motion.div
               key={metric.label}
-              initial={shouldReduceMotion ? {} : { opacity: 0, y: 30, scale: 0.95 }}
-              animate={inView || shouldReduceMotion ? { opacity: 1, y: 0, scale: 1 } : {}}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 30, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={
                 shouldReduceMotion
                   ? { duration: 0 }
@@ -128,7 +123,7 @@ export default function AboutSection() {
                   target={metric.numericTarget}
                   suffix={metric.suffix}
                   decimals={metric.value.includes(".") ? 2 : 0}
-                  inView={inView}
+                  inView={true}
                   reducedMotion={shouldReduceMotion ?? false}
                 />
               </p>
@@ -144,9 +139,10 @@ export default function AboutSection() {
         <div className="grid lg:grid-cols-12 gap-12 items-start">
           {/* Text Story Column */}
           <motion.div
-            initial={shouldReduceMotion ? {} : { opacity: 0, x: -30 }}
-            animate={inView || shouldReduceMotion ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            initial={shouldReduceMotion ? false : { opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
             className="lg:col-span-6 space-y-5 text-left"
           >
             <h3 className="font-heading font-bold text-2xl sm:text-3xl leading-snug">
@@ -181,9 +177,10 @@ export default function AboutSection() {
 
           {/* Interactive Persona Card Column */}
           <motion.div
-            initial={shouldReduceMotion ? {} : { opacity: 0, x: 30 }}
-            animate={inView || shouldReduceMotion ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.3 }}
+            initial={shouldReduceMotion ? false : { opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-6 glass-card p-6 sm:p-8 rounded-3xl border border-[hsl(var(--card-border))]"
           >
             <p className="text-xs font-bold uppercase tracking-wider text-[hsl(var(--muted-foreground))] mb-4 text-left">

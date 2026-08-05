@@ -1,8 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Mail, MapPin, Send, CheckCircle2, Sparkles, AlertCircle } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -40,8 +39,6 @@ const LinkedinIcon = () => (
 );
 
 export default function ContactSection() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
   const shouldReduceMotion = useReducedMotion();
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
@@ -105,12 +102,13 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="section-padding relative">
-      <div className="container-max" ref={ref}>
+      <div className="container-max">
         {/* Section Header */}
         <motion.div
-          initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
-          animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
           <p className="text-xs font-bold text-[hsl(var(--primary))] tracking-widest uppercase mb-3 flex items-center justify-center gap-2">
@@ -123,8 +121,9 @@ export default function ContactSection() {
         <div className="grid lg:grid-cols-12 gap-10 max-w-5xl mx-auto text-left">
           {/* Contact Information */}
           <motion.div
-            initial={shouldReduceMotion ? {} : { opacity: 0, x: -30 }}
-            animate={inView || shouldReduceMotion ? { opacity: 1, x: 0 } : {}}
+            initial={shouldReduceMotion ? false : { opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="lg:col-span-5 space-y-4"
           >
@@ -172,8 +171,9 @@ export default function ContactSection() {
 
           {/* Form */}
           <motion.div
-            initial={shouldReduceMotion ? {} : { opacity: 0, x: 30 }}
-            animate={inView || shouldReduceMotion ? { opacity: 1, x: 0 } : {}}
+            initial={shouldReduceMotion ? false : { opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-7 glass-card p-6 sm:p-8 rounded-3xl border border-[hsl(var(--card-border))]"
           >

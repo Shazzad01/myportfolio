@@ -1,23 +1,20 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
 import { Award, GraduationCap, CheckCircle2, Sparkles } from "lucide-react";
 
 export default function CertificationsSection() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
   const shouldReduceMotion = useReducedMotion();
 
   return (
     <section id="certifications" className="section-padding relative">
-      <div className="container-max" ref={ref}>
+      <div className="container-max">
         {/* Section Header */}
         <motion.div
-          initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
-          animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
           <p className="text-xs font-bold text-[hsl(var(--primary))] tracking-widest uppercase mb-3 flex items-center justify-center gap-2">
@@ -32,8 +29,9 @@ export default function CertificationsSection() {
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto text-left">
           {/* Certification Card */}
           <motion.div
-            initial={shouldReduceMotion ? {} : { opacity: 0, y: 30 }}
-            animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={
               shouldReduceMotion
                 ? { duration: 0 }
@@ -70,8 +68,9 @@ export default function CertificationsSection() {
 
           {/* Education Card */}
           <motion.div
-            initial={shouldReduceMotion ? {} : { opacity: 0, y: 30 }}
-            animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={
               shouldReduceMotion
                 ? { duration: 0 }
