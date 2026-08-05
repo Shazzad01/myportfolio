@@ -3,7 +3,27 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Cpu, Zap, Shield, GitBranch, LayoutGrid, Code2 } from "lucide-react";
+import { Sparkles } from "lucide-react";
+import {
+  PlaywrightIcon,
+  SeleniumIcon,
+  AppiumIcon,
+  PostmanIcon,
+  JMeterIcon,
+  K6Icon,
+  TypeScriptIcon,
+  JavaScriptIcon,
+  JavaIcon,
+  PythonIcon,
+  Html5Icon,
+  Css3Icon,
+  GitHubActionsIcon,
+  GitLabIcon,
+  DockerIcon,
+  JiraIcon,
+  TrelloIcon,
+  AzureBoardsIcon,
+} from "@/components/ui/SvgIcons";
 
 const categories = [
   { id: "all", label: "All Skills" },
@@ -15,26 +35,26 @@ const categories = [
 ];
 
 const skillItems = [
-  { name: "Playwright (TypeScript)", cat: "automation", level: "Expert", icon: Cpu, desc: "End-to-end web testing & CI/CD pipeline integration" },
-  { name: "Selenium WebDriver", cat: "automation", level: "Advanced", icon: Cpu, desc: "Cross-browser regression suites & Java/TS scripts" },
-  { name: "Appium", cat: "automation", level: "Advanced", icon: Cpu, desc: "Mobile automation for Android & iOS native apps" },
-  { name: "Postman & Newman", cat: "automation", level: "Expert", icon: Cpu, desc: "API collection runs, assertions & automated CLI runs" },
+  { name: "Playwright (TypeScript)", cat: "automation", level: "Expert", icon: PlaywrightIcon, desc: "End-to-end web testing & CI/CD pipeline integration" },
+  { name: "Selenium WebDriver", cat: "automation", level: "Advanced", icon: SeleniumIcon, desc: "Cross-browser regression suites & Java/TS scripts" },
+  { name: "Appium Mobile", cat: "automation", level: "Advanced", icon: AppiumIcon, desc: "Mobile automation for Android & iOS native apps" },
+  { name: "Postman & Newman", cat: "automation", level: "Expert", icon: PostmanIcon, desc: "API collection runs, assertions & automated CLI runs" },
   
-  { name: "Apache JMeter", cat: "performance", level: "Expert", icon: Zap, desc: "Concurrent load testing, thread groups, latency reports" },
-  { name: "BlazeMeter", cat: "performance", level: "Advanced", icon: Zap, desc: "Cloud performance runs & distributed load testing" },
-  { name: "K6", cat: "performance", level: "Intermediate", icon: Zap, desc: "Developer-centric load testing scripts in JS" },
+  { name: "Apache JMeter", cat: "performance", level: "Expert", icon: JMeterIcon, desc: "Concurrent load testing, thread groups, latency reports" },
+  { name: "K6 Load Engine", cat: "performance", level: "Intermediate", icon: K6Icon, desc: "Developer-centric load testing scripts in JS" },
 
-  { name: "Test Case & Plan Design", cat: "manual", level: "Expert", icon: Shield, desc: "Requirement traceability matrices & functional specs" },
-  { name: "UAT & Client Escrow", cat: "manual", level: "Expert", icon: Shield, desc: "Client-facing acceptance runs & UAT sign-offs" },
-  { name: "Defect Root Cause Analysis", cat: "manual", level: "Expert", icon: Shield, desc: "Jira/Trello bug triaging & regression packs" },
+  { name: "Test Case & Plan Design", cat: "manual", level: "Expert", icon: JiraIcon, desc: "Requirement traceability matrices & functional specs" },
+  { name: "UAT & Client Escrow", cat: "manual", level: "Expert", icon: TrelloIcon, desc: "Client-facing acceptance runs & UAT sign-offs" },
+  { name: "Azure Defect Triaging", cat: "manual", level: "Advanced", icon: AzureBoardsIcon, desc: "Jira/Trello bug triaging & regression packs" },
 
-  { name: "GitHub Actions", cat: "cicd", level: "Expert", icon: GitBranch, desc: "Automated test workflows triggered on Pull Requests" },
-  { name: "GitLab CI/CD", cat: "cicd", level: "Advanced", icon: GitBranch, desc: "Pipeline YAML configuration & artifact reporting" },
-  { name: "Docker", cat: "cicd", level: "Intermediate", icon: GitBranch, desc: "Containerized Selenium grid & test execution" },
+  { name: "GitHub Actions", cat: "cicd", level: "Expert", icon: GitHubActionsIcon, desc: "Automated test workflows triggered on Pull Requests" },
+  { name: "GitLab CI/CD", cat: "cicd", level: "Advanced", icon: GitLabIcon, desc: "Pipeline YAML configuration & artifact reporting" },
+  { name: "Docker Grid", cat: "cicd", level: "Intermediate", icon: DockerIcon, desc: "Containerized Selenium grid & test execution" },
 
-  { name: "TypeScript / JavaScript", cat: "web", level: "Expert", icon: Code2, desc: "ES6+, async/await, custom automation utilities" },
-  { name: "Java", cat: "web", level: "Advanced", icon: Code2, desc: "Object-oriented test framework architectures" },
-  { name: "HTML5 & CSS3", cat: "web", level: "Advanced", icon: Code2, desc: "DOM element locators, XPath, CSS selectors" },
+  { name: "TypeScript", cat: "web", level: "Expert", icon: TypeScriptIcon, desc: "ES6+, async/await, custom automation utilities" },
+  { name: "JavaScript", cat: "web", level: "Expert", icon: JavaScriptIcon, desc: "Modern ES6+ frontend and Node.js testing" },
+  { name: "Java", cat: "web", level: "Advanced", icon: JavaIcon, desc: "Object-oriented test framework architectures" },
+  { name: "HTML5 & CSS3", cat: "web", level: "Advanced", icon: Html5Icon, desc: "DOM element locators, XPath, CSS selectors" },
 ];
 
 export default function SkillsSection() {
@@ -57,10 +77,11 @@ export default function SkillsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <p className="text-xs font-bold text-[hsl(var(--primary))] tracking-widest uppercase mb-3">
+          <p className="text-xs font-bold text-[hsl(var(--primary))] tracking-widest uppercase mb-3 flex items-center justify-center gap-2">
+            <Sparkles size={14} className="text-[hsl(var(--accent))]" />
             Core Toolkit & Mastery
           </p>
-          <h2 className="font-heading text-4xl sm:text-5xl font-bold">Skills & Technologies</h2>
+          <h2 className="font-heading text-4xl sm:text-5xl font-bold">Skills & Frameworks</h2>
         </motion.div>
 
         {/* Category Filter Bar */}
@@ -89,7 +110,7 @@ export default function SkillsSection() {
         <motion.div layout className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 text-left">
           <AnimatePresence>
             {filteredSkills.map((skill) => {
-              const Icon = skill.icon;
+              const BrandIcon = skill.icon;
               return (
                 <motion.div
                   layout
@@ -102,8 +123,8 @@ export default function SkillsSection() {
                 >
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <div className="w-9 h-9 rounded-xl bg-[hsl(var(--primary)/0.1)] flex items-center justify-center text-[hsl(var(--primary))]">
-                        <Icon size={18} />
+                      <div className="w-10 h-10 rounded-xl bg-[hsl(var(--muted)/0.7)] p-2 flex items-center justify-center border border-[hsl(var(--card-border))] shadow-sm">
+                        <BrandIcon className="w-6 h-6" />
                       </div>
                       <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[hsl(var(--primary)/0.15)] text-[hsl(var(--primary))]">
                         {skill.level}
