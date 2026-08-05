@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, Download, ExternalLink } from "lucide-react";
+import { ArrowDown, Download, ExternalLink, ShieldCheck, Zap, Sparkles } from "lucide-react";
+import TerminalWidget from "@/components/ui/TerminalWidget";
 
 const GithubIcon = () => (
   <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
@@ -19,132 +20,149 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden"
     >
-      {/* Animated background gradient orbs */}
+      {/* Background Animated Orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-[hsl(var(--primary)/0.15)] rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-[hsl(var(--accent)/0.12)] rounded-full blur-3xl animate-pulse [animation-delay:1s]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[hsl(var(--primary)/0.05)] rounded-full blur-3xl" />
+        <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-[hsl(var(--primary)/0.18)] rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] bg-[hsl(var(--accent)/0.15)] rounded-full blur-[120px] animate-pulse [animation-delay:1.5s]" />
       </div>
 
-      {/* Grid pattern overlay */}
+      {/* Grid Pattern */}
       <div
-        className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
+        className="absolute inset-0 opacity-[0.04] dark:opacity-[0.06]"
         style={{
           backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
+          backgroundSize: "40px 40px",
         }}
       />
 
-      <div className="container-max px-4 sm:px-6 lg:px-8 py-32 text-center relative z-10">
-        {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-[hsl(var(--primary)/0.3)] text-sm font-medium text-[hsl(var(--primary))] mb-8"
-        >
-          <span className="w-2 h-2 rounded-full bg-[hsl(var(--success))] animate-pulse" />
-          Available for opportunities
-        </motion.div>
+      <div className="container-max px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-12 gap-12 items-center">
+          {/* Left Column — Text & CTAs */}
+          <div className="lg:col-span-7 text-left">
+            {/* Status Pill */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass border border-[hsl(var(--primary)/0.3)] text-xs font-semibold text-[hsl(var(--primary))] mb-6"
+            >
+              <Sparkles size={13} className="text-[hsl(var(--accent))]" />
+              <span>Brain Station 23 · SQA Automation Engineer</span>
+            </motion.div>
 
-        {/* Name */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="font-heading text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-4"
-        >
-          Muhammad{" "}
-          <span className="text-gradient">Shazzad</span>{" "}
-          Mia
-        </motion.h1>
+            {/* Headline */}
+            <motion.h1
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6"
+            >
+              Building <span className="text-gradient">Zero-Defect</span> Quality Systems.
+            </motion.h1>
 
-        {/* Title */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="font-heading text-2xl sm:text-3xl font-semibold text-[hsl(var(--muted-foreground))] mb-6"
-        >
-          SQA Automation Engineer
-        </motion.p>
+            {/* Tagline */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-base sm:text-lg text-[hsl(var(--muted-foreground))] leading-relaxed mb-8 max-w-xl"
+            >
+              Hi, I&apos;m <strong className="text-[hsl(var(--foreground))]">Muhammad Shazzad Mia</strong>.
+              I engineer automated test suites in <span className="text-[hsl(var(--primary))] font-semibold">Playwright</span> &{" "}
+              <span className="text-[hsl(var(--accent))] font-semibold">JMeter</span> to eliminate production risks before release.
+            </motion.p>
 
-        {/* Tagline */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-lg sm:text-xl text-[hsl(var(--muted-foreground))] max-w-2xl mx-auto mb-10 leading-relaxed"
-        >
-          I don&apos;t just find bugs — I build systems that{" "}
-          <span className="text-[hsl(var(--primary))] font-semibold">prevent them</span>.
-          Playwright · JMeter · CI/CD · 2+ years at Brain Station 23.
-        </motion.p>
+            {/* Key feature pills */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex flex-wrap items-center gap-4 mb-8 text-xs font-medium text-[hsl(var(--muted-foreground))]"
+            >
+              <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg glass border border-[hsl(var(--card-border))]">
+                <ShieldCheck size={14} className="text-emerald-400" /> Automated Regression
+              </span>
+              <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg glass border border-[hsl(var(--card-border))]">
+                <Zap size={14} className="text-yellow-400" /> Performance Benchmarking
+              </span>
+            </motion.div>
 
-        {/* CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-wrap items-center justify-center gap-4 mb-12"
-        >
-          <a
-            href="#projects"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[hsl(var(--primary))] text-white font-semibold hover:bg-[hsl(var(--primary-glow))] transition-all duration-200 glow hover:scale-105"
+            {/* Action Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-wrap items-center gap-4 mb-10"
+            >
+              <a
+                href="#projects"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] text-white font-bold text-sm shadow-lg glow-purple hover:scale-105 transition-all duration-300"
+              >
+                Explore Projects <ExternalLink size={16} />
+              </a>
+              <a
+                href="/resume.pdf"
+                download
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl glass border border-[hsl(var(--card-border))] font-semibold text-sm hover:border-[hsl(var(--primary)/0.5)] hover:scale-105 transition-all duration-300"
+              >
+                Download Resume <Download size={16} />
+              </a>
+            </motion.div>
+
+            {/* Social Links */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="flex items-center gap-3"
+            >
+              <a
+                href="https://github.com/Shazzad01"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="p-3 rounded-xl glass border border-[hsl(var(--card-border))] text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))] hover:border-[hsl(var(--primary)/0.4)] transition-all duration-200 hover:scale-110"
+              >
+                <GithubIcon />
+              </a>
+              <a
+                href="https://linkedin.com/in/md-shazzad-mia"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="p-3 rounded-xl glass border border-[hsl(var(--card-border))] text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))] hover:border-[hsl(var(--primary)/0.4)] transition-all duration-200 hover:scale-110"
+              >
+                <LinkedinIcon />
+              </a>
+            </motion.div>
+          </div>
+
+          {/* Right Column — Interactive Code Terminal */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="lg:col-span-5 flex justify-center"
           >
-            View Projects <ExternalLink size={16} />
-          </a>
-          <a
-            href="/resume.pdf"
-            download
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl glass border border-[hsl(var(--card-border))] font-semibold hover:border-[hsl(var(--primary)/0.5)] transition-all duration-200 hover:scale-105"
-          >
-            Download Resume <Download size={16} />
-          </a>
-        </motion.div>
+            <TerminalWidget />
+          </motion.div>
+        </div>
 
-        {/* Social links */}
+        {/* Scroll Cue */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="flex items-center justify-center gap-4 mb-16"
+          transition={{ delay: 0.9 }}
+          className="mt-16 flex flex-col items-center gap-2 text-[hsl(var(--muted-foreground))]"
         >
-          <a
-            href="https://github.com/Shazzad01"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            className="p-3 rounded-xl glass border border-[hsl(var(--card-border))] text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))] hover:border-[hsl(var(--primary)/0.4)] transition-all duration-200 hover:scale-110"
-          >
-            <GithubIcon />
-          </a>
-          <a
-            href="https://linkedin.com/in/md-shazzad-mia"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="p-3 rounded-xl glass border border-[hsl(var(--card-border))] text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))] hover:border-[hsl(var(--primary)/0.4)] transition-all duration-200 hover:scale-110"
-          >
-            <LinkedinIcon />
-          </a>
-        </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          className="flex flex-col items-center gap-2 text-[hsl(var(--muted-foreground))]"
-        >
-          <span className="text-xs font-medium tracking-widest uppercase">Scroll down</span>
+          <span className="text-[10px] font-bold tracking-widest uppercase">Scroll To Explore</span>
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           >
-            <ArrowDown size={16} />
+            <ArrowDown size={14} />
           </motion.div>
         </motion.div>
       </div>

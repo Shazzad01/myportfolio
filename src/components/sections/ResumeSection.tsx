@@ -3,14 +3,14 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Download, FileText } from "lucide-react";
+import { Download, FileText, Sparkles } from "lucide-react";
 
 export default function ResumeSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="resume" className="section-padding bg-[hsl(var(--muted)/0.4)]">
+    <section id="resume" className="section-padding bg-[hsl(var(--muted)/0.3)] relative">
       <div className="container-max" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -18,21 +18,20 @@ export default function ResumeSection() {
           transition={{ duration: 0.6 }}
           className="max-w-3xl mx-auto text-center"
         >
-          <div className="glass rounded-3xl p-12 border border-[hsl(var(--card-border))]">
-            {/* Icon */}
-            <div className="w-20 h-20 rounded-2xl bg-[hsl(var(--primary)/0.1)] border border-[hsl(var(--primary)/0.2)] flex items-center justify-center mx-auto mb-8">
-              <FileText size={36} className="text-[hsl(var(--primary))]" />
+          <div className="glass-card rounded-3xl p-10 sm:p-14 border border-[hsl(var(--card-border))] glow-purple">
+            <div className="w-16 h-16 rounded-2xl bg-[hsl(var(--primary)/0.15)] border border-[hsl(var(--primary)/0.3)] flex items-center justify-center mx-auto mb-6 text-[hsl(var(--primary))]">
+              <FileText size={32} />
             </div>
 
-            <p className="text-sm font-semibold text-[hsl(var(--primary))] tracking-widest uppercase mb-4">
-              My Resume
+            <p className="text-xs font-bold text-[hsl(var(--primary))] tracking-widest uppercase mb-3 flex items-center justify-center gap-1.5">
+              <Sparkles size={14} className="text-[hsl(var(--accent))]" />
+              Official Curriculum Vitae
             </p>
-            <h2 className="font-heading text-4xl sm:text-5xl font-bold mb-6">
-              Want the full picture?
+            <h2 className="font-heading text-3xl sm:text-4xl font-bold mb-4">
+              Download My Complete Resume
             </h2>
-            <p className="text-lg text-[hsl(var(--muted-foreground))] leading-relaxed mb-10 max-w-xl mx-auto">
-              Download my resume for a complete overview of my experience, skills, projects,
-              and certifications as an SQA Automation Engineer at Brain Station 23.
+            <p className="text-sm sm:text-base text-[hsl(var(--muted-foreground))] leading-relaxed mb-8 max-w-xl mx-auto">
+              Get the PDF copy detailing my SQA experience at Brain Station 23, automated testing projects, performance benchmarks, and core skills.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
@@ -40,19 +39,19 @@ export default function ResumeSection() {
                 href="/resume.pdf"
                 download
                 id="resume-download-btn"
-                className="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-[hsl(var(--primary))] text-white font-bold text-lg hover:bg-[hsl(var(--primary-glow))] transition-all duration-200 glow hover:scale-105"
+                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] text-white font-bold text-sm hover:scale-105 transition-all duration-300 shadow-lg glow-purple"
               >
-                <Download size={22} />
-                Download Resume
+                <Download size={18} />
+                Download Resume (PDF)
               </a>
               <a
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-4 rounded-xl glass border border-[hsl(var(--card-border))] font-bold text-lg hover:border-[hsl(var(--primary)/0.5)] transition-all duration-200 hover:scale-105"
+                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl glass border border-[hsl(var(--card-border))] font-semibold text-sm hover:border-[hsl(var(--primary)/0.5)] hover:scale-105 transition-all duration-300"
               >
-                <FileText size={22} />
-                View Online
+                <FileText size={18} />
+                View PDF Online
               </a>
             </div>
           </div>

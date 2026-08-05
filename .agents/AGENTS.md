@@ -88,13 +88,14 @@ Theme:       next-themes (dark/light mode)
 
 ---
 
-## Design Standards
+## Design Standards — Ultra-Modern Premium Tier
 
-- **Colors**: HSL-based palette, never generic defaults. Dark mode primary surface: `hsl(220 20% 8%)`. Accent: vibrant but purposeful.
-- **Typography**: Clear hierarchy — `text-5xl` hero, `text-3xl` section heads, `text-base` body, always readable
-- **Spacing**: Generous padding (`py-20`+), intentional whitespace, nothing cramped
-- **Animations**: Respect `prefers-reduced-motion`. Entrance animations on scroll, hover lift/glow effects, smooth page transitions
-- **Polish**: Pixel-perfect, consistent border radii, cohesive shadow system, no misaligned elements
+- **Colors**: HSL-based palette. Dark mode surface: `hsl(220 20% 8%)`. Neon purple glow: `hsl(260 80% 65%)`. Cyan accent glow: `hsl(190 80% 55%)`.
+- **Typography**: Clear hierarchy — Outfit for headings, Inter for body. High contrast readability.
+- **Glassmorphism & Gradients**: Blurred backdrop panels (`backdrop-blur-xl`), animated mesh gradient orbs, glowing border highlights.
+- **Interactive Widgets**: Live Playwright terminal code executor simulator, animated stats counter, project live log viewer.
+- **Animations**: Framer Motion spring physics, hover scale lifting, pulsing status dots, smooth section reveal triggers.
+- **Polish**: Pixel-perfect layout, cohesive shadow system, accessible focus rings, responsive mobile/tablet/desktop layouts.
 
 ---
 

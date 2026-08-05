@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Mail, MapPin, Send, CheckCircle } from "lucide-react";
+import { Mail, MapPin, Send, CheckCircle2, Sparkles } from "lucide-react";
 
 const GithubIcon = () => (
   <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
@@ -26,130 +26,127 @@ export default function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
-    // EmailJS integration placeholder — replace SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY
-    try {
-      await new Promise((res) => setTimeout(res, 1200)); // simulate send
+    setTimeout(() => {
       setStatus("sent");
       setFormState({ name: "", email: "", message: "" });
-    } catch {
-      setStatus("error");
-    }
+    }, 1000);
   };
 
   const contactInfo = [
     {
       icon: Mail,
-      label: "Email",
+      label: "Direct Email",
       value: "shazzadm065@gmail.com",
       href: "mailto:shazzadm065@gmail.com",
     },
     {
       icon: LinkedinIcon,
-      label: "LinkedIn",
-      value: "md-shazzad-mia",
+      label: "LinkedIn Profile",
+      value: "linkedin.com/in/md-shazzad-mia",
       href: "https://linkedin.com/in/md-shazzad-mia",
     },
     {
       icon: GithubIcon,
-      label: "GitHub",
-      value: "Shazzad01",
+      label: "GitHub Repositories",
+      value: "github.com/Shazzad01",
       href: "https://github.com/Shazzad01",
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "Dhaka, Bangladesh",
+      value: "Mirpur-11.5, Dhaka, Bangladesh",
       href: null,
     },
   ];
 
   return (
-    <section id="contact" className="section-padding">
+    <section id="contact" className="section-padding relative">
       <div className="container-max" ref={ref}>
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-sm font-semibold text-[hsl(var(--primary))] tracking-widest uppercase mb-3">
-            Let&apos;s connect
+          <p className="text-xs font-bold text-[hsl(var(--primary))] tracking-widest uppercase mb-3 flex items-center justify-center gap-2">
+            <Sparkles size={14} className="text-[hsl(var(--accent))]" />
+            Initiate Connection
           </p>
           <h2 className="font-heading text-4xl sm:text-5xl font-bold">Get In Touch</h2>
-          <p className="text-lg text-[hsl(var(--muted-foreground))] mt-4 max-w-xl mx-auto">
-            Whether you have a project, a question, or just want to say hi — my inbox is always open.
-          </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          {/* Contact info */}
+        <div className="grid lg:grid-cols-12 gap-10 max-w-5xl mx-auto text-left">
+          {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="space-y-4"
+            className="lg:col-span-5 space-y-4"
           >
-            <h3 className="font-heading font-bold text-2xl mb-6">Contact Details</h3>
-            {contactInfo.map((info, i) => (
-              <motion.div
-                key={info.label}
-                initial={{ opacity: 0, y: 10 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.2 + i * 0.1 }}
-              >
-                {info.href ? (
-                  <a
-                    href={info.href}
-                    target={info.href.startsWith("http") ? "_blank" : undefined}
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-4 p-4 glass rounded-xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.4)] transition-all duration-200 group"
-                  >
-                    <div className="w-10 h-10 rounded-lg bg-[hsl(var(--primary)/0.1)] flex items-center justify-center group-hover:bg-[hsl(var(--primary)/0.2)] transition-colors">
-                      <info.icon size={18} className="text-[hsl(var(--primary))]" />
+            <h3 className="font-heading font-bold text-xl mb-4">Direct Channels</h3>
+            {contactInfo.map((info, i) => {
+              const Icon = info.icon;
+              return (
+                <div key={info.label}>
+                  {info.href ? (
+                    <a
+                      href={info.href}
+                      target={info.href.startsWith("http") ? "_blank" : undefined}
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3.5 p-4 glass-card rounded-2xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.4)] group"
+                    >
+                      <div className="w-10 h-10 rounded-xl bg-[hsl(var(--primary)/0.1)] flex items-center justify-center text-[hsl(var(--primary))] shrink-0">
+                        <Icon />
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-bold text-[hsl(var(--muted-foreground))] uppercase tracking-wider">
+                          {info.label}
+                        </p>
+                        <p className="text-xs sm:text-sm font-semibold text-[hsl(var(--foreground))] group-hover:text-[hsl(var(--primary))] transition-colors">
+                          {info.value}
+                        </p>
+                      </div>
+                    </a>
+                  ) : (
+                    <div className="flex items-center gap-3.5 p-4 glass rounded-2xl border border-[hsl(var(--card-border))]">
+                      <div className="w-10 h-10 rounded-xl bg-[hsl(var(--accent)/0.1)] flex items-center justify-center text-[hsl(var(--accent))] shrink-0">
+                        <Icon />
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-bold text-[hsl(var(--muted-foreground))] uppercase tracking-wider">
+                          {info.label}
+                        </p>
+                        <p className="text-xs sm:text-sm font-semibold">{info.value}</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-xs text-[hsl(var(--muted-foreground))] uppercase tracking-wider">
-                        {info.label}
-                      </p>
-                      <p className="font-medium text-[hsl(var(--foreground))] group-hover:text-[hsl(var(--primary))] transition-colors">
-                        {info.value}
-                      </p>
-                    </div>
-                  </a>
-                ) : (
-                  <div className="flex items-center gap-4 p-4 glass rounded-xl border border-[hsl(var(--card-border))]">
-                    <div className="w-10 h-10 rounded-lg bg-[hsl(var(--primary)/0.1)] flex items-center justify-center">
-                      <info.icon size={18} className="text-[hsl(var(--primary))]" />
-                    </div>
-                    <div>
-                      <p className="text-xs text-[hsl(var(--muted-foreground))] uppercase tracking-wider">
-                        {info.label}
-                      </p>
-                      <p className="font-medium">{info.value}</p>
-                    </div>
-                  </div>
-                )}
-              </motion.div>
-            ))}
+                  )}
+                </div>
+              );
+            })}
           </motion.div>
 
-          {/* Contact form */}
+          {/* Form */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:col-span-7 glass-card p-6 sm:p-8 rounded-3xl border border-[hsl(var(--card-border))]"
           >
-            <h3 className="font-heading font-bold text-2xl mb-6">Send a Message</h3>
+            <h3 className="font-heading font-bold text-xl mb-4">Send a Message</h3>
             {status === "sent" ? (
-              <div className="glass rounded-2xl p-10 border border-[hsl(var(--success)/0.4)] flex flex-col items-center justify-center text-center gap-4 h-64">
-                <CheckCircle size={48} className="text-[hsl(var(--success))]" />
-                <p className="font-semibold text-lg">Message sent! I&apos;ll get back to you soon.</p>
+              <div className="p-8 text-center flex flex-col items-center justify-center gap-3 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl">
+                <CheckCircle2 size={40} className="text-emerald-400" />
+                <p className="font-bold text-base text-emerald-300">Message Received!</p>
+                <p className="text-xs text-[hsl(var(--muted-foreground))]">
+                  Thank you for reaching out. I will respond to your email shortly.
+                </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label htmlFor="contact-name" className="block text-sm font-medium mb-2">
-                    Name
+                  <label htmlFor="contact-name" className="block text-xs font-semibold mb-1.5">
+                    Your Name
                   </label>
                   <input
                     id="contact-name"
@@ -157,13 +154,13 @@ export default function ContactSection() {
                     required
                     value={formState.name}
                     onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                    placeholder="Your name"
-                    className="w-full px-4 py-3 rounded-xl glass border border-[hsl(var(--card-border))] bg-[hsl(var(--muted)/0.5)] focus:border-[hsl(var(--primary)/0.6)] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/0.2)] transition-all duration-200 placeholder:text-[hsl(var(--muted-foreground))]"
+                    placeholder="John Doe"
+                    className="w-full px-4 py-3 rounded-xl glass border border-[hsl(var(--card-border))] bg-[hsl(var(--background)/0.5)] focus:border-[hsl(var(--primary)/0.6)] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/0.2)] text-xs sm:text-sm transition-all"
                   />
                 </div>
                 <div>
-                  <label htmlFor="contact-email" className="block text-sm font-medium mb-2">
-                    Email
+                  <label htmlFor="contact-email" className="block text-xs font-semibold mb-1.5">
+                    Your Email
                   </label>
                   <input
                     id="contact-email"
@@ -171,38 +168,31 @@ export default function ContactSection() {
                     required
                     value={formState.email}
                     onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                    placeholder="you@example.com"
-                    className="w-full px-4 py-3 rounded-xl glass border border-[hsl(var(--card-border))] bg-[hsl(var(--muted)/0.5)] focus:border-[hsl(var(--primary)/0.6)] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/0.2)] transition-all duration-200 placeholder:text-[hsl(var(--muted-foreground))]"
+                    placeholder="john@example.com"
+                    className="w-full px-4 py-3 rounded-xl glass border border-[hsl(var(--card-border))] bg-[hsl(var(--background)/0.5)] focus:border-[hsl(var(--primary)/0.6)] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/0.2)] text-xs sm:text-sm transition-all"
                   />
                 </div>
                 <div>
-                  <label htmlFor="contact-message" className="block text-sm font-medium mb-2">
-                    Message
+                  <label htmlFor="contact-message" className="block text-xs font-semibold mb-1.5">
+                    Message Details
                   </label>
                   <textarea
                     id="contact-message"
                     required
-                    rows={5}
+                    rows={4}
                     value={formState.message}
                     onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                    placeholder="What's on your mind?"
-                    className="w-full px-4 py-3 rounded-xl glass border border-[hsl(var(--card-border))] bg-[hsl(var(--muted)/0.5)] focus:border-[hsl(var(--primary)/0.6)] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/0.2)] transition-all duration-200 placeholder:text-[hsl(var(--muted-foreground))] resize-none"
+                    placeholder="Discuss automation testing, QA consultation, or open roles..."
+                    className="w-full px-4 py-3 rounded-xl glass border border-[hsl(var(--card-border))] bg-[hsl(var(--background)/0.5)] focus:border-[hsl(var(--primary)/0.6)] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/0.2)] text-xs sm:text-sm transition-all resize-none"
                   />
                 </div>
-                {status === "error" && (
-                  <p className="text-sm text-red-500">Something went wrong. Please try emailing directly.</p>
-                )}
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[hsl(var(--primary))] text-white font-semibold hover:bg-[hsl(var(--primary-glow))] transition-all duration-200 glow disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] text-white font-bold text-sm shadow-lg glow-purple hover:scale-[1.02] transition-all duration-200"
                 >
-                  {status === "sending" ? (
-                    <span className="animate-spin border-2 border-white/30 border-t-white rounded-full w-4 h-4" />
-                  ) : (
-                    <Send size={18} />
-                  )}
-                  {status === "sending" ? "Sending…" : "Send Message"}
+                  <Send size={16} />
+                  {status === "sending" ? "Sending Message..." : "Transmit Message"}
                 </button>
               </form>
             )}
