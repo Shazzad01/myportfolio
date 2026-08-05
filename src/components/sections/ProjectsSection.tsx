@@ -6,7 +6,27 @@ import { useRef, useState } from "react";
 import { ExternalLink, Terminal, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
 import { PlaywrightIcon, JMeterIcon, GitHubActionsIcon, GitLabIcon } from "@/components/ui/SvgIcons";
 
-const projects = [
+interface Project {
+  id: string;
+  title: string;
+  subtitle: string;
+  period: string;
+  platforms: string[];
+  tags: string[];
+  brandIcons: React.ComponentType<{ className?: string }>[];
+  problem: string;
+  approach: string;
+  result: string;
+  testLogSample: string[];
+  caseStudyUrl?: string;
+  testimonial?: {
+    quote: string;
+    author: string;
+    rating: string;
+  };
+}
+
+const projects: Project[] = [
   {
     id: "shwopno",
     title: "Shwopno.com",
@@ -28,6 +48,7 @@ const projects = [
       "✓ [Chromium] › auth.spec.ts › OTP Authentication (290ms)",
       "🎉 42 passed in 2.8s across 4 workers",
     ],
+    caseStudyUrl: "https://shwopno.com",
   },
   {
     id: "paragon",
@@ -49,6 +70,7 @@ const projects = [
       "✓ [WebKit] › payment.spec.ts › Credit Card Authorization (380ms)",
       "🎉 28 passed in 1.9s across cross-browser grid",
     ],
+    caseStudyUrl: "https://paragonfood.com.bd",
   },
 ];
 
