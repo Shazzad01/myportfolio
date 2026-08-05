@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Sparkles } from "lucide-react";
@@ -61,6 +61,7 @@ export default function SkillsSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const [activeFilter, setActiveFilter] = useState("all");
+  const shouldReduceMotion = useReducedMotion();
 
   const filteredSkills =
     activeFilter === "all"
@@ -72,8 +73,8 @@ export default function SkillsSection() {
       <div className="container-max" ref={ref}>
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+          animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
@@ -86,8 +87,8 @@ export default function SkillsSection() {
 
         {/* Category Filter Bar */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+          animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
           className="flex flex-wrap items-center justify-center gap-2 mb-12"
         >
@@ -115,9 +116,9 @@ export default function SkillsSection() {
                 <motion.div
                   layout
                   key={skill.name}
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={shouldReduceMotion ? {} : { opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
+                  exit={shouldReduceMotion ? {} : { opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.3 }}
                   className="glass-card p-5 rounded-2xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.4)] flex flex-col justify-between"
                 >

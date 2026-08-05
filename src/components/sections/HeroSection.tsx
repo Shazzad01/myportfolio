@@ -1,9 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 import { ArrowDown, Download, ExternalLink, ShieldCheck, Zap, Sparkles } from "lucide-react";
-import TerminalWidget from "@/components/ui/TerminalWidget";
 import HeroIllustration from "@/components/ui/HeroIllustration";
+import TerminalWidget from "@/components/ui/TerminalWidget";
 
 const GithubIcon = () => (
   <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
@@ -18,6 +20,17 @@ const LinkedinIcon = () => (
 );
 
 export default function HeroSection() {
+  const shouldReduceMotion = useReducedMotion();
+
+  const anim = (delay = 0) =>
+    shouldReduceMotion
+      ? {}
+      : {
+          initial: { opacity: 0, y: 20 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.6, delay },
+        };
+
   return (
     <section
       id="hero"
@@ -43,21 +56,14 @@ export default function HeroSection() {
           {/* Left Column — Text & CTAs */}
           <div className="lg:col-span-6 text-left">
             {/* Status Pill */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass border border-[hsl(var(--primary)/0.3)] text-xs font-semibold text-[hsl(var(--primary))] mb-6"
-            >
+            <motion.div {...anim(0)} className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass border border-[hsl(var(--primary)/0.3)] text-xs font-semibold text-[hsl(var(--primary))] mb-6">
               <Sparkles size={13} className="text-[hsl(var(--accent))]" />
               <span>Brain Station 23 · SQA Automation Engineer</span>
             </motion.div>
 
             {/* Headline */}
             <motion.h1
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              {...anim(0.1)}
               className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6"
             >
               Building <span className="text-gradient">Zero-Defect</span> Quality Systems.
@@ -65,36 +71,30 @@ export default function HeroSection() {
 
             {/* Tagline */}
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              {...anim(0.2)}
               className="text-base sm:text-lg text-[hsl(var(--muted-foreground))] leading-relaxed mb-8 max-w-xl"
             >
               Hi, I&apos;m <strong className="text-[hsl(var(--foreground))]">Muhammad Shazzad Mia</strong>.
-              I engineer automated test suites in <span className="text-[hsl(var(--primary))] font-semibold">Playwright</span> &{" "}
-              <span className="text-[hsl(var(--accent))] font-semibold">JMeter</span> to eliminate production risks before release.
+              I engineer automated test suites in <span className="text-[hsl(var(--primary))] font-semibold">Playwright</span>{" "}
+              &amp; <span className="text-[hsl(var(--accent))] font-semibold">JMeter</span> to eliminate production risks before release.
             </motion.p>
 
             {/* Key feature pills */}
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              {...anim(0.3)}
               className="flex flex-wrap items-center gap-3 mb-8 text-xs font-medium text-[hsl(var(--muted-foreground))]"
             >
               <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg glass border border-[hsl(var(--card-border))]">
                 <ShieldCheck size={14} className="text-emerald-400" /> Automated Regression
               </span>
               <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg glass border border-[hsl(var(--card-border))]">
-                <Zap size={14} className="text-yellow-400" /> Load & Performance Testing
+                <Zap size={14} className="text-yellow-400" /> Load &amp; Performance Testing
               </span>
             </motion.div>
 
             {/* Action Buttons */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              {...anim(0.4)}
               className="flex flex-wrap items-center gap-4 mb-10"
             >
               <a
@@ -114,9 +114,7 @@ export default function HeroSection() {
 
             {/* Social Links */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+              {...anim(0.5)}
               className="flex items-center gap-3"
             >
               <a
@@ -140,27 +138,28 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Right Column — Large Custom SVG Hero Illustration */}
+          {/* Right Column — Pipeline Illustration + Terminal */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 30 }}
+            initial={shouldReduceMotion ? {} : { opacity: 0, scale: 0.95, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
             className="lg:col-span-6 flex flex-col items-center gap-6"
           >
             <HeroIllustration />
+            <TerminalWidget />
           </motion.div>
         </div>
 
         {/* Scroll Cue */}
         <motion.div
-          initial={{ opacity: 0 }}
+          initial={shouldReduceMotion ? {} : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9 }}
           className="mt-16 flex flex-col items-center gap-2 text-[hsl(var(--muted-foreground))]"
         >
           <span className="text-[10px] font-bold tracking-widest uppercase">Scroll To Explore</span>
           <motion.div
-            animate={{ y: [0, 8, 0] }}
+            animate={shouldReduceMotion ? {} : { y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           >
             <ArrowDown size={14} />

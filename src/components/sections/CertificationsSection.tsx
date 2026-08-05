@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Award, GraduationCap, CheckCircle2, Sparkles } from "lucide-react";
@@ -8,14 +8,15 @@ import { Award, GraduationCap, CheckCircle2, Sparkles } from "lucide-react";
 export default function CertificationsSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <section id="certifications" className="section-padding relative">
       <div className="container-max" ref={ref}>
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+          animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
@@ -31,9 +32,8 @@ export default function CertificationsSection() {
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto text-left">
           {/* Certification Card */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            initial={shouldReduceMotion ? {} : { opacity: 0, y: 30 }}
+            animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
             className="glass-card p-8 rounded-3xl border border-[hsl(var(--card-border))] flex flex-col justify-between"
           >
             <div>
@@ -64,9 +64,8 @@ export default function CertificationsSection() {
 
           {/* Education Card */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            initial={shouldReduceMotion ? {} : { opacity: 0, y: 30 }}
+            animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
             className="glass-card p-8 rounded-3xl border border-[hsl(var(--card-border))] flex flex-col justify-between"
           >
             <div>

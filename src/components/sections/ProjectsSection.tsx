@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { ExternalLink, Terminal, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
@@ -55,6 +55,7 @@ const projects = [
 export default function ProjectsSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const shouldReduceMotion = useReducedMotion();
   const [activeTab, setActiveTab] = useState<Record<string, "overview" | "logs">>({
     shwopno: "overview",
     paragon: "overview",
@@ -69,8 +70,8 @@ export default function ProjectsSection() {
       <div className="container-max" ref={ref}>
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+          animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
@@ -87,8 +88,8 @@ export default function ProjectsSection() {
             return (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 40 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
+                initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
+                animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: i * 0.15 }}
                 className="glass-card p-6 sm:p-8 rounded-3xl border border-[hsl(var(--card-border))]"
               >

@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { Briefcase, Target, GraduationCap, MapPin, CheckCircle, Cpu, ShieldAlert, Sparkles } from "lucide-react";
+import { useRef, useState, useEffect } from "react";
+import { Briefcase, MapPin, CheckCircle, Cpu, ShieldAlert, Sparkles, Zap } from "lucide-react";
 
 const personas = [
   {
@@ -32,33 +32,72 @@ const personas = [
   },
 ];
 
-function Zap(props: any) {
+const metrics = [
+  { label: "Years Experience", value: "2+", numericTarget: 2, suffix: "+", sub: "Brain Station 23" },
+  { label: "E-Commerce Users Tested", value: "1M+", numericTarget: 1, suffix: "M+", sub: "Shwopno & Paragon" },
+  { label: "Automated Suite Coverage", value: "85%", numericTarget: 85, suffix: "%", sub: "Playwright" },
+  { label: "Degree GPA", value: "3.59", numericTarget: 3.59, suffix: "", sub: "BSc CSE (DIU)" },
+];
+
+function AnimatedCounter({
+  target,
+  suffix,
+  decimals = 0,
+  inView,
+  reducedMotion,
+}: {
+  target: number;
+  suffix: string;
+  decimals?: number;
+  inView: boolean;
+  reducedMotion: boolean;
+}) {
+  const [count, setCount] = useState(reducedMotion ? target : 0);
+
+  useEffect(() => {
+    if (!inView || reducedMotion) {
+      setCount(target);
+      return;
+    }
+    const duration = 1800;
+    const steps = 60;
+    const increment = target / steps;
+    let current = 0;
+    let step = 0;
+    const timer = setInterval(() => {
+      step++;
+      current = Math.min(increment * step, target);
+      setCount(parseFloat(current.toFixed(decimals)));
+      if (step >= steps) clearInterval(timer);
+    }, duration / steps);
+    return () => clearInterval(timer);
+  }, [inView, target, decimals, reducedMotion]);
+
   return (
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-    </svg>
+    <span>
+      {decimals > 0 ? count.toFixed(decimals) : Math.floor(count)}
+      {suffix}
+    </span>
   );
 }
-
-const metrics = [
-  { label: "Years Experience", value: "2+", sub: "Brain Station 23" },
-  { label: "E-Commerce Users Tested", value: "1M+", sub: "Shwopno & Paragon" },
-  { label: "Automated Suite Coverage", value: "85%", sub: "Playwright" },
-  { label: "Degree GPA", value: "3.59", sub: "BSc CSE (DIU)" },
-];
 
 export default function AboutSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const [activePersona, setActivePersona] = useState(personas[0]);
+  const shouldReduceMotion = useReducedMotion();
+
+  const fadeUp = shouldReduceMotion
+    ? { initial: {}, animate: {} }
+    : { initial: { opacity: 0, y: 20 }, animate: inView ? { opacity: 1, y: 0 } : {} };
 
   return (
     <section id="about" className="section-padding relative">
       <div className="container-max" ref={ref}>
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+          animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
@@ -69,20 +108,26 @@ export default function AboutSection() {
           <h2 className="font-heading text-4xl sm:text-5xl font-bold">About Me</h2>
         </motion.div>
 
-        {/* Metric Cards Row */}
+        {/* Animated Metric Cards Row */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 30 }}
+          animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
         >
-          {metrics.map((metric, i) => (
+          {metrics.map((metric) => (
             <div
               key={metric.label}
               className="glass-card p-6 rounded-2xl text-center border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.4)]"
             >
               <p className="font-heading text-3xl sm:text-4xl font-bold text-gradient mb-1">
-                {metric.value}
+                <AnimatedCounter
+                  target={metric.numericTarget}
+                  suffix={metric.suffix}
+                  decimals={metric.value.includes(".") ? 2 : 0}
+                  inView={inView}
+                  reducedMotion={shouldReduceMotion ?? false}
+                />
               </p>
               <p className="text-xs font-semibold text-[hsl(var(--foreground))] mb-0.5">
                 {metric.label}
@@ -96,8 +141,8 @@ export default function AboutSection() {
         <div className="grid lg:grid-cols-12 gap-12 items-start">
           {/* Text Story Column */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+            initial={shouldReduceMotion ? {} : { opacity: 0, x: -30 }}
+            animate={inView || shouldReduceMotion ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="lg:col-span-6 space-y-5 text-left"
           >
@@ -106,10 +151,13 @@ export default function AboutSection() {
             </h3>
             <p className="text-sm sm:text-base leading-relaxed text-[hsl(var(--muted-foreground))]">
               As an <strong className="text-[hsl(var(--foreground))]">SQA Engineer II at Brain Station 23</strong>,
-              I safeguard high-scale applications including Bangladesh&apos;s leading e-commerce platforms.
+              I safeguard high-scale applications including Bangladesh&apos;s leading e-commerce platforms serving over 1 million active users.
             </p>
             <p className="text-sm sm:text-base leading-relaxed text-[hsl(var(--muted-foreground))]">
               I introduced an <span className="text-[hsl(var(--accent))] font-semibold">AI-assisted bug resolution workflow</span> using GitHub Issues and GitHub Copilot Agent — accelerating developer remediation speed and shortening the bug-to-merge cycle.
+            </p>
+            <p className="text-sm sm:text-base leading-relaxed text-[hsl(var(--muted-foreground))]">
+              My philosophy: quality is not a gate at the end of a sprint — it&apos;s engineered in from the first commit. Every test I write is an automated guardian running in CI so the team ships with confidence.
             </p>
 
             <div className="pt-4 flex flex-wrap gap-3">
@@ -130,8 +178,8 @@ export default function AboutSection() {
 
           {/* Interactive Persona Card Column */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+            initial={shouldReduceMotion ? {} : { opacity: 0, x: 30 }}
+            animate={inView || shouldReduceMotion ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.3 }}
             className="lg:col-span-6 glass-card p-6 sm:p-8 rounded-3xl border border-[hsl(var(--card-border))]"
           >
@@ -164,7 +212,7 @@ export default function AboutSection() {
             {/* Active Persona Details */}
             <motion.div
               key={activePersona.id}
-              initial={{ opacity: 0, y: 10 }}
+              initial={shouldReduceMotion ? {} : { opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
               className="text-left space-y-3 p-5 rounded-2xl bg-[hsl(var(--muted)/0.5)] border border-[hsl(var(--card-border))]"

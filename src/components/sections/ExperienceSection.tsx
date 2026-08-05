@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Briefcase, Calendar, ChevronRight, Sparkles } from "lucide-react";
@@ -49,14 +49,15 @@ const experiences = [
 export default function ExperienceSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <section id="experience" className="section-padding relative">
       <div className="container-max" ref={ref}>
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+          animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
@@ -78,8 +79,8 @@ export default function ExperienceSection() {
               return (
                 <motion.div
                   key={exp.title + exp.period}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  initial={shouldReduceMotion ? {} : { opacity: 0, y: 30 }}
+                  animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: i * 0.15 }}
                   className={`relative flex flex-col ${
                     isEven ? "sm:flex-row-reverse" : "sm:flex-row"

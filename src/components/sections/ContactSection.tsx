@@ -1,9 +1,31 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Mail, MapPin, Send, CheckCircle2, Sparkles } from "lucide-react";
+import { Mail, MapPin, Send, CheckCircle2, Sparkles, AlertCircle } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import emailjs from "@emailjs/browser";
+
+// -------------------------------------------------------------------
+// EmailJS config — fill in your credentials from emailjs.com dashboard
+// Service ID   → from Email Services tab
+// Template ID  → from Email Templates tab
+// Public Key   → from Account → API Keys
+// -------------------------------------------------------------------
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ?? "YOUR_SERVICE_ID";
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? "YOUR_TEMPLATE_ID";
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ?? "YOUR_PUBLIC_KEY";
+
+const contactSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  message: z.string().min(20, "Message must be at least 20 characters"),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
 
 const GithubIcon = () => (
   <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
@@ -20,16 +42,38 @@ const LinkedinIcon = () => (
 export default function ContactSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
-  const [formState, setFormState] = useState({ name: "", email: "", message: "" });
+  const shouldReduceMotion = useReducedMotion();
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+  });
+
+  const onSubmit = async (data: ContactFormData) => {
     setStatus("sending");
-    setTimeout(() => {
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: data.name,
+          from_email: data.email,
+          message: data.message,
+          to_name: "Shazzad",
+        },
+        EMAILJS_PUBLIC_KEY
+      );
       setStatus("sent");
-      setFormState({ name: "", email: "", message: "" });
-    }, 1000);
+      reset();
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      setStatus("error");
+    }
   };
 
   const contactInfo = [
@@ -64,8 +108,8 @@ export default function ContactSection() {
       <div className="container-max" ref={ref}>
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+          animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
@@ -79,13 +123,13 @@ export default function ContactSection() {
         <div className="grid lg:grid-cols-12 gap-10 max-w-5xl mx-auto text-left">
           {/* Contact Information */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+            initial={shouldReduceMotion ? {} : { opacity: 0, x: -30 }}
+            animate={inView || shouldReduceMotion ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="lg:col-span-5 space-y-4"
           >
             <h3 className="font-heading font-bold text-xl mb-4">Direct Channels</h3>
-            {contactInfo.map((info, i) => {
+            {contactInfo.map((info) => {
               const Icon = info.icon;
               return (
                 <div key={info.label}>
@@ -128,12 +172,13 @@ export default function ContactSection() {
 
           {/* Form */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+            initial={shouldReduceMotion ? {} : { opacity: 0, x: 30 }}
+            animate={inView || shouldReduceMotion ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-7 glass-card p-6 sm:p-8 rounded-3xl border border-[hsl(var(--card-border))]"
           >
             <h3 className="font-heading font-bold text-xl mb-4">Send a Message</h3>
+
             {status === "sent" ? (
               <div className="p-8 text-center flex flex-col items-center justify-center gap-3 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl">
                 <CheckCircle2 size={40} className="text-emerald-400" />
@@ -141,9 +186,22 @@ export default function ContactSection() {
                 <p className="text-xs text-[hsl(var(--muted-foreground))]">
                   Thank you for reaching out. I will respond to your email shortly.
                 </p>
+                <button
+                  onClick={() => setStatus("idle")}
+                  className="mt-2 text-xs font-semibold text-[hsl(var(--primary))] hover:underline"
+                >
+                  Send another message
+                </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
+                {status === "error" && (
+                  <div className="flex items-center gap-2 p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs">
+                    <AlertCircle size={14} className="shrink-0" />
+                    <span>Failed to send. Please email me directly at <strong>shazzadm065@gmail.com</strong></span>
+                  </div>
+                )}
+
                 <div>
                   <label htmlFor="contact-name" className="block text-xs font-semibold mb-1.5">
                     Your Name
@@ -151,13 +209,17 @@ export default function ContactSection() {
                   <input
                     id="contact-name"
                     type="text"
-                    required
-                    value={formState.name}
-                    onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                    {...register("name")}
                     placeholder="John Doe"
                     className="w-full px-4 py-3 rounded-xl glass border border-[hsl(var(--card-border))] bg-[hsl(var(--background)/0.5)] focus:border-[hsl(var(--primary)/0.6)] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/0.2)] text-xs sm:text-sm transition-all"
                   />
+                  {errors.name && (
+                    <p className="mt-1 text-[11px] text-rose-400 flex items-center gap-1">
+                      <AlertCircle size={11} /> {errors.name.message}
+                    </p>
+                  )}
                 </div>
+
                 <div>
                   <label htmlFor="contact-email" className="block text-xs font-semibold mb-1.5">
                     Your Email
@@ -165,34 +227,42 @@ export default function ContactSection() {
                   <input
                     id="contact-email"
                     type="email"
-                    required
-                    value={formState.email}
-                    onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                    {...register("email")}
                     placeholder="john@example.com"
                     className="w-full px-4 py-3 rounded-xl glass border border-[hsl(var(--card-border))] bg-[hsl(var(--background)/0.5)] focus:border-[hsl(var(--primary)/0.6)] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/0.2)] text-xs sm:text-sm transition-all"
                   />
+                  {errors.email && (
+                    <p className="mt-1 text-[11px] text-rose-400 flex items-center gap-1">
+                      <AlertCircle size={11} /> {errors.email.message}
+                    </p>
+                  )}
                 </div>
+
                 <div>
                   <label htmlFor="contact-message" className="block text-xs font-semibold mb-1.5">
                     Message Details
                   </label>
                   <textarea
                     id="contact-message"
-                    required
                     rows={4}
-                    value={formState.message}
-                    onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                    {...register("message")}
                     placeholder="Discuss automation testing, QA consultation, or open roles..."
                     className="w-full px-4 py-3 rounded-xl glass border border-[hsl(var(--card-border))] bg-[hsl(var(--background)/0.5)] focus:border-[hsl(var(--primary)/0.6)] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/0.2)] text-xs sm:text-sm transition-all resize-none"
                   />
+                  {errors.message && (
+                    <p className="mt-1 text-[11px] text-rose-400 flex items-center gap-1">
+                      <AlertCircle size={11} /> {errors.message.message}
+                    </p>
+                  )}
                 </div>
+
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] text-white font-bold text-sm shadow-lg glow-purple hover:scale-[1.02] transition-all duration-200"
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] text-white font-bold text-sm shadow-lg glow-purple hover:scale-[1.02] transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed disabled:scale-100"
                 >
                   <Send size={16} />
-                  {status === "sending" ? "Sending Message..." : "Transmit Message"}
+                  {status === "sending" ? "Sending Message..." : "Send Message"}
                 </button>
               </form>
             )}

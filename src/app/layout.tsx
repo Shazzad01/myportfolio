@@ -18,6 +18,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://shazzad.dev"),
   title: "Muhammad Shazzad Mia | SQA Automation Engineer",
   description:
     "SQA Engineer II at Brain Station 23, specializing in Playwright automation, JMeter performance testing, and CI/CD integration. 2+ years building reliable software quality systems.",
@@ -34,6 +35,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Muhammad Shazzad Mia" }],
   creator: "Muhammad Shazzad Mia",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -71,6 +75,51 @@ export const metadata: Metadata = {
   },
 };
 
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Muhammad Shazzad Mia",
+  jobTitle: "SQA Automation Engineer",
+  worksFor: {
+    "@type": "Organization",
+    name: "Brain Station 23",
+  },
+  url: "https://shazzad.dev",
+  email: "shazzadm065@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Dhaka",
+    addressCountry: "BD",
+  },
+  sameAs: [
+    "https://github.com/Shazzad01",
+    "https://linkedin.com/in/md-shazzad-mia",
+  ],
+  knowsAbout: [
+    "Playwright",
+    "Selenium",
+    "Apache JMeter",
+    "Software Quality Assurance",
+    "Test Automation",
+    "CI/CD",
+    "TypeScript",
+    "GitHub Actions",
+  ],
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  url: "https://shazzad.dev",
+  name: "Muhammad Shazzad Mia Portfolio",
+  description:
+    "Portfolio of Muhammad Shazzad Mia, SQA Automation Engineer at Brain Station 23.",
+  author: {
+    "@type": "Person",
+    name: "Muhammad Shazzad Mia",
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -78,6 +127,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${outfit.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+      </head>
       <body className="font-sans">
         <ThemeProvider>
           <Navbar />

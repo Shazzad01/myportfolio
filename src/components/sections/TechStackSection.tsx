@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Sparkles } from "lucide-react";
@@ -33,14 +33,15 @@ const techStack = [
 export default function TechStackSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <section id="tech-stack" className="section-padding relative">
       <div className="container-max text-center" ref={ref}>
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+          animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="mb-14"
         >
@@ -58,8 +59,8 @@ export default function TechStackSection() {
             return (
               <motion.div
                 key={tech.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
+                initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+                animate={inView || shouldReduceMotion ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
                 className="glass-card p-5 rounded-2xl border border-[hsl(var(--card-border))] flex flex-col items-center justify-center gap-3 text-center group cursor-pointer"
               >

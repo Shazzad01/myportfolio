@@ -131,6 +131,28 @@ export default function Navbar() {
                   Download Resume
                 </a>
               </li>
+              <li className="flex items-center gap-3 pt-2 border-t border-[hsl(var(--card-border))]">
+                <a
+                  href="https://github.com/Shazzad01"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                  className="flex items-center gap-1.5 text-xs text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))] transition-colors"
+                >
+                  <GithubIcon />
+                  GitHub
+                </a>
+                <a
+                  href="https://linkedin.com/in/md-shazzad-mia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="flex items-center gap-1.5 text-xs text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))] transition-colors"
+                >
+                  <LinkedinIcon />
+                  LinkedIn
+                </a>
+              </li>
             </ul>
           </motion.div>
         )}
