@@ -2,18 +2,12 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
-import { Mail, MapPin, Send, CheckCircle2, Sparkles, AlertCircle } from "lucide-react";
+import { Mail, MapPin, Send, CheckCircle2, Sparkles, AlertCircle, Copy, Check } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import emailjs from "@emailjs/browser";
 
-// -------------------------------------------------------------------
-// EmailJS config — fill in your credentials from emailjs.com dashboard
-// Service ID   → from Email Services tab
-// Template ID  → from Email Templates tab
-// Public Key   → from Account → API Keys
-// -------------------------------------------------------------------
 const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ?? "YOUR_SERVICE_ID";
 const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? "YOUR_TEMPLATE_ID";
 const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ?? "YOUR_PUBLIC_KEY";
@@ -38,18 +32,45 @@ const LinkedinIcon = () => (
   </svg>
 );
 
+const quickIntents = [
+  {
+    label: "💼 Discuss Open Role",
+    text: "Hi Shazzad, we have an exciting SQA / SDET opening and would love to discuss your experience in Playwright, JMeter, and CI/CD automation.",
+  },
+  {
+    label: "⚡ QA Consultation",
+    text: "Hi Shazzad, we are looking for guidance on setting up an automated testing framework and reducing our release regression cycle.",
+  },
+  {
+    label: "🔍 Automation Review",
+    text: "Hi Shazzad, I would love to get your thoughts on our test automation architecture and CI/CD quality gates.",
+  },
+  {
+    label: "🤝 General Networking",
+    text: "Hi Shazzad, impressed by your portfolio and quality engineering work! Would love to connect.",
+  },
+];
+
 export default function ContactSection() {
   const shouldReduceMotion = useReducedMotion();
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [emailCopied, setEmailCopied] = useState(false);
+  const [selectedIntent, setSelectedIntent] = useState<string | null>(null);
 
   const {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
   });
+
+  const handleIntentClick = (intent: { label: string; text: string }) => {
+    setSelectedIntent(intent.label);
+    setValue("message", intent.text, { shouldValidate: true });
+  };
 
   const onSubmit = async (data: ContactFormData) => {
     setStatus("sending");
@@ -67,6 +88,7 @@ export default function ContactSection() {
       );
       setStatus("sent");
       reset();
+      setSelectedIntent(null);
     } catch (err) {
       console.error("EmailJS error:", err);
       setStatus("error");
@@ -79,24 +101,28 @@ export default function ContactSection() {
       label: "Direct Email",
       value: "shazzadm065@gmail.com",
       href: "mailto:shazzadm065@gmail.com",
+      isEmail: true,
     },
     {
       icon: LinkedinIcon,
       label: "LinkedIn Profile",
       value: "linkedin.com/in/md-shazzad-mia",
       href: "https://linkedin.com/in/md-shazzad-mia",
+      isEmail: false,
     },
     {
       icon: GithubIcon,
       label: "GitHub Repositories",
       value: "github.com/Shazzad01",
       href: "https://github.com/Shazzad01",
+      isEmail: false,
     },
     {
       icon: MapPin,
       label: "Location",
       value: "Mirpur-11.5, Dhaka, Bangladesh",
       href: null,
+      isEmail: false,
     },
   ];
 
@@ -119,7 +145,7 @@ export default function ContactSection() {
         </motion.div>
 
         <div className="grid lg:grid-cols-12 gap-10 max-w-5xl mx-auto text-left">
-          {/* Contact Information */}
+          {/* Contact Information Channels */}
           <motion.div
             initial={shouldReduceMotion ? false : { opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -137,19 +163,42 @@ export default function ContactSection() {
                       href={info.href}
                       target={info.href.startsWith("http") ? "_blank" : undefined}
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3.5 p-4 glass-card rounded-2xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.4)] group"
+                      className="flex items-center justify-between p-4 glass-card rounded-2xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.4)] group"
                     >
-                      <div className="w-10 h-10 rounded-xl bg-[hsl(var(--primary)/0.1)] flex items-center justify-center text-[hsl(var(--primary))] shrink-0">
-                        <Icon />
+                      <div className="flex items-center gap-3.5">
+                        <div className="w-10 h-10 rounded-xl bg-[hsl(var(--primary)/0.1)] flex items-center justify-center text-[hsl(var(--primary))] shrink-0">
+                          <Icon />
+                        </div>
+                        <div>
+                          <p className="text-[10px] font-bold text-[hsl(var(--muted-foreground))] uppercase tracking-wider">
+                            {info.label}
+                          </p>
+                          <p className="text-xs sm:text-sm font-semibold text-[hsl(var(--foreground))] group-hover:text-[hsl(var(--primary))] transition-colors">
+                            {info.value}
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <p className="text-[10px] font-bold text-[hsl(var(--muted-foreground))] uppercase tracking-wider">
-                          {info.label}
-                        </p>
-                        <p className="text-xs sm:text-sm font-semibold text-[hsl(var(--foreground))] group-hover:text-[hsl(var(--primary))] transition-colors">
-                          {info.value}
-                        </p>
-                      </div>
+
+                      {info.isEmail && (
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            navigator.clipboard.writeText("shazzadm065@gmail.com");
+                            setEmailCopied(true);
+                            setTimeout(() => setEmailCopied(false), 2000);
+                          }}
+                          className="p-2 rounded-lg glass border border-[hsl(var(--card-border))] hover:bg-[hsl(var(--muted))] text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))] transition-all"
+                          title="Copy Email to Clipboard"
+                        >
+                          {emailCopied ? (
+                            <Check size={14} className="text-emerald-400" />
+                          ) : (
+                            <Copy size={14} />
+                          )}
+                        </button>
+                      )}
                     </a>
                   ) : (
                     <div className="flex items-center gap-3.5 p-4 glass rounded-2xl border border-[hsl(var(--card-border))]">
@@ -201,6 +250,29 @@ export default function ContactSection() {
                     <span>Failed to send. Please email me directly at <strong>shazzadm065@gmail.com</strong></span>
                   </div>
                 )}
+
+                {/* Quick Message Intent Pills */}
+                <div>
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-[hsl(var(--muted-foreground))] mb-2">
+                    Quick Topic Intent
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 mb-2">
+                    {quickIntents.map((item) => (
+                      <button
+                        key={item.label}
+                        type="button"
+                        onClick={() => handleIntentClick(item)}
+                        className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${
+                          selectedIntent === item.label
+                            ? "bg-[hsl(var(--primary))] text-white shadow-sm glow-purple"
+                            : "glass border border-[hsl(var(--card-border))] text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]"
+                        }`}
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
 
                 <div>
                   <label htmlFor="contact-name" className="block text-xs font-semibold mb-1.5">

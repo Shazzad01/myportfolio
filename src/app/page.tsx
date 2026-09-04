@@ -1,5 +1,6 @@
 import HeroSection from "@/components/sections/HeroSection";
 import AboutSection from "@/components/sections/AboutSection";
+import QaMethodologySection from "@/components/sections/QaMethodologySection";
 import SkillsSection from "@/components/sections/SkillsSection";
 import ExperienceSection from "@/components/sections/ExperienceSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
@@ -13,6 +14,7 @@ export default function Home() {
     <>
       <HeroSection />
       <AboutSection />
+      <QaMethodologySection />
       <SkillsSection />
       <ExperienceSection />
       <ProjectsSection />

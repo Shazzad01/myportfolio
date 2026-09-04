@@ -33,7 +33,7 @@ const personas = [
 
 const metrics = [
   { label: "Years Experience", value: "2+", numericTarget: 2, suffix: "+", sub: "Brain Station 23" },
-  { label: "E-Commerce Users Tested", value: "1M+", numericTarget: 1, suffix: "M+", sub: "Shwopno & Paragon" },
+  { label: "E-Commerce Users Tested", value: "1M+", numericTarget: 1, suffix: "M+", sub: "Shwapno & Paragon" },
   { label: "Automated Suite Coverage", value: "85%", numericTarget: 85, suffix: "%", sub: "Playwright" },
   { label: "Degree GPA", value: "3.59", numericTarget: 3.59, suffix: "", sub: "BSc CSE (DIU)" },
 ];

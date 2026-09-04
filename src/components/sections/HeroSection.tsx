@@ -54,17 +54,18 @@ export default function HeroSection() {
           {/* Left Column — Text & CTAs */}
           <div className="lg:col-span-6 text-left">
             {/* Status Pill */}
-            <motion.div {...anim(0)} className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass border border-[hsl(var(--primary)/0.3)] text-xs font-semibold text-[hsl(var(--primary))] mb-6">
+            <motion.div {...anim(0)} className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass border border-[hsl(var(--primary)/0.4)] text-xs font-semibold text-[hsl(var(--primary))] mb-6 shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <Sparkles size={13} className="text-[hsl(var(--accent))]" />
-              <span>Brain Station 23 · SQA Automation Engineer</span>
+              <span>Brain Station 23 · SQA Engineer II</span>
             </motion.div>
 
             {/* Headline */}
             <motion.h1
               {...anim(0.1)}
-              className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6"
+              className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6"
             >
-              Building <span className="text-gradient">Zero-Defect</span> Quality Systems.
+              Building <span className="text-shimmer">Zero-Defect</span> Quality Systems.
             </motion.h1>
 
             {/* Tagline */}
@@ -80,13 +81,16 @@ export default function HeroSection() {
             {/* Key feature pills */}
             <motion.div
               {...anim(0.3)}
-              className="flex flex-wrap items-center gap-3 mb-8 text-xs font-medium text-[hsl(var(--muted-foreground))]"
+              className="flex flex-wrap items-center gap-2.5 mb-8 text-xs font-medium text-[hsl(var(--muted-foreground))]"
             >
               <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg glass border border-[hsl(var(--card-border))]">
                 <ShieldCheck size={14} className="text-emerald-400" /> Automated Regression
               </span>
               <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg glass border border-[hsl(var(--card-border))]">
                 <Zap size={14} className="text-yellow-400" /> Load &amp; Performance Testing
+              </span>
+              <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg glass border border-[hsl(var(--card-border))]">
+                <Sparkles size={14} className="text-sky-400" /> CI/CD Shift-Left Guard
               </span>
             </motion.div>
 

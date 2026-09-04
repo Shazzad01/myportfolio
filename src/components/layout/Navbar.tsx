@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Moon, Sun, Menu, X, Command } from "lucide-react";
 
 const GithubIcon = () => (
   <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
@@ -21,10 +21,10 @@ import { cn } from "@/lib/utils";
 
 const navLinks = [
   { label: "About", href: "#about" },
+  { label: "Methodology", href: "#methodology" },
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
-  { label: "Certifications", href: "#certifications" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -70,6 +70,16 @@ export default function Navbar() {
 
         {/* Actions */}
         <div className="flex items-center gap-3">
+          {/* Command Palette Quick Trigger */}
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent("open-command-palette"))}
+            className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg glass border border-[hsl(var(--card-border))] text-xs text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] hover:border-[hsl(var(--primary)/0.4)] transition-all"
+            title="Open Command Palette (Ctrl+K)"
+          >
+            <Command size={13} className="text-[hsl(var(--primary))]" />
+            <span className="font-mono text-[11px]">⌘K</span>
+          </button>
+
           {/* Theme Toggle */}
           {mounted && (
             <motion.button

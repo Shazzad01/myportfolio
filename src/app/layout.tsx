@@ -3,6 +3,8 @@ import { Inter, Outfit } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import ScrollProgress from "@/components/ui/ScrollProgress";
+import CommandPalette from "@/components/ui/CommandPalette";
 import "./globals.css";
 
 const inter = Inter({
@@ -139,6 +141,8 @@ export default function RootLayout({
       </head>
       <body className="font-sans">
         <ThemeProvider>
+          <ScrollProgress />
+          <CommandPalette />
           <Navbar />
           <main>{children}</main>
           <Footer />
