@@ -70,6 +70,12 @@ export default function Navbar() {
 
         {/* Actions */}
         <div className="flex items-center gap-3">
+          {/* Status Badge matching approved UI */}
+          <div className="hidden lg:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>Available for SDET Roles</span>
+          </div>
+
           {/* Command Palette Quick Trigger */}
           <button
             onClick={() => window.dispatchEvent(new CustomEvent("open-command-palette"))}
@@ -101,7 +107,7 @@ export default function Navbar() {
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
             href="/resume.pdf"
             download
-            className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[hsl(var(--primary))] text-white text-sm font-semibold glow"
+            className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-xl btn-violet-glow text-white text-xs font-bold"
           >
             Resume
           </motion.a>

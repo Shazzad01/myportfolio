@@ -9,6 +9,8 @@ const experiences = [
     company: "Brain Station 23",
     period: "Jan 2026 – Present",
     badge: "Current Role",
+    releaseBranch: "release/v2.4-enterprise",
+    techPills: ["Playwright TS", "AI Bug Agent", "Client UAT", "CI/CD Gate"],
     highlights: [
       "Led requirement reviews and website analysis to identify testability risks early, aligning test coverage with business expectations.",
       "Designed and maintained a Playwright (TypeScript) automation framework, significantly improving regression coverage and cutting manual testing effort per release.",
@@ -23,6 +25,8 @@ const experiences = [
     company: "Brain Station 23",
     period: "Jan 2025 – Dec 2025",
     badge: "Full-Time",
+    releaseBranch: "release/v1.8-automation",
+    techPills: ["Playwright TS", "JMeter Load Test", "Jira", "Trello"],
     highlights: [
       "Designed and executed comprehensive test cases covering functional, regression, and usability scenarios for web and mobile.",
       "Contributed to the Playwright (TypeScript) automation suite — converting repetitive regression flows to automated scripts.",
@@ -36,6 +40,8 @@ const experiences = [
     company: "Brain Station 23",
     period: "Apr 2024 – Dec 2024",
     badge: "Full-Time",
+    releaseBranch: "release/v1.0-genesis",
+    techPills: ["Functional Testing", "Test Plans", "Agile QA"],
     highlights: [
       "Executed functional and regression testing for web and mobile applications.",
       "Prepared test plans and quality reports for stakeholder review.",
@@ -62,7 +68,7 @@ export default function ExperienceSection() {
             <Sparkles size={14} className="text-[hsl(var(--accent))]" />
             Career Evolution
           </p>
-          <h2 className="font-heading text-4xl sm:text-5xl font-bold">Work Experience</h2>
+          <h2 className="font-heading text-4xl sm:text-5xl font-bold">Work Experience &amp; Git Tree</h2>
         </motion.div>
 
         {/* Timeline Container */}
@@ -100,10 +106,15 @@ export default function ExperienceSection() {
                       transition={{ duration: 0.2 }}
                       className="glass-card p-6 sm:p-7 rounded-3xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.5)] transition-colors duration-200"
                     >
-                      <div className="flex items-center justify-between gap-2 mb-2">
-                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[hsl(var(--primary)/0.15)] text-[hsl(var(--primary))]">
-                          {exp.badge}
-                        </span>
+                      <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <div className="flex items-center gap-2">
+                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[hsl(var(--primary)/0.15)] text-[hsl(var(--primary))]">
+                            {exp.badge}
+                          </span>
+                          <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#050811] text-cyan-400 border border-cyan-500/20">
+                            {exp.releaseBranch}
+                          </span>
+                        </div>
                         <span className="text-xs text-[hsl(var(--muted-foreground))] flex items-center gap-1">
                           <Calendar size={12} />
                           {exp.period}
@@ -113,10 +124,22 @@ export default function ExperienceSection() {
                       <h3 className="font-heading font-bold text-xl text-[hsl(var(--foreground))]">
                         {exp.title}
                       </h3>
-                      <p className="text-sm font-semibold text-[hsl(var(--accent))] mb-4 flex items-center gap-1.5">
+                      <p className="text-sm font-semibold text-[hsl(var(--accent))] mb-3 flex items-center gap-1.5">
                         <Briefcase size={14} />
                         {exp.company}
                       </p>
+
+                      {/* Tech stack pills */}
+                      <div className="flex flex-wrap gap-1.5 mb-4">
+                        {exp.techPills.map((pill) => (
+                          <span
+                            key={pill}
+                            className="px-2 py-0.5 rounded-md text-[10px] font-mono font-medium bg-[hsl(var(--muted))] text-[hsl(var(--muted-foreground))]"
+                          >
+                            {pill}
+                          </span>
+                        ))}
+                      </div>
 
                       <ul className="space-y-2.5">
                         {exp.highlights.map((h, index) => (

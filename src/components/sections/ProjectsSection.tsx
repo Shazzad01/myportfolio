@@ -2,8 +2,32 @@
 
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useState } from "react";
-import { Terminal, CheckCircle2, ShieldCheck, Sparkles, Layers, ArrowRight, Zap, TrendingUp } from "lucide-react";
-import { PlaywrightIcon, JMeterIcon, GitHubActionsIcon, GitLabIcon } from "@/components/ui/SvgIcons";
+import {
+  Terminal,
+  CheckCircle2,
+  ShieldCheck,
+  Sparkles,
+  Layers,
+  ArrowRight,
+  Zap,
+  TrendingUp,
+  Smartphone,
+  Activity,
+  Server,
+  Cpu,
+} from "lucide-react";
+import {
+  PlaywrightIcon,
+  JMeterIcon,
+  GitHubActionsIcon,
+  GitLabIcon,
+  K6Icon,
+  PostmanIcon,
+  SeleniumIcon,
+  TypeScriptIcon,
+  PythonIcon,
+  DockerIcon,
+} from "@/components/ui/SvgIcons";
 
 interface ArchitectureStep {
   step: string;
@@ -127,9 +151,268 @@ export default function ProjectsSection() {
             <Sparkles size={14} className="text-[hsl(var(--accent))]" />
             Real-World Impact & Case Studies
           </p>
-          <h2 className="font-heading text-4xl sm:text-5xl font-bold">Featured Projects</h2>
+          <h2 className="font-heading text-4xl sm:text-5xl font-bold">Featured Projects &amp; QA Lab</h2>
         </motion.div>
 
+        {/* Bento-Grid Interactive QA Lab & Benchmarks (Approved UI Showcase) */}
+        <motion.div
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.6 }}
+          className="grid lg:grid-cols-12 gap-6 mb-16 text-left"
+        >
+          {/* Card 1: Fintech Core Banking E2E Framework */}
+          <div className="lg:col-span-6 glass-card p-6 rounded-3xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.5)] transition-all flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between gap-3 mb-4">
+                <div className="flex items-center gap-2">
+                  <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-[hsl(var(--primary)/0.15)] text-[hsl(var(--primary))] border border-[hsl(var(--primary)/0.3)]">
+                    E2E
+                  </span>
+                  <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-[hsl(var(--muted))] text-[hsl(var(--muted-foreground))]">
+                    Fintech &amp; Retail
+                  </span>
+                </div>
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">
+                  <PlaywrightIcon className="w-4 h-4" />
+                  <span>Playwright Suite</span>
+                </div>
+              </div>
+
+              <h3 className="font-heading font-bold text-2xl text-[hsl(var(--foreground))] mb-2">
+                Fintech Core Banking E2E Framework
+              </h3>
+              <p className="text-xs sm:text-sm text-[hsl(var(--muted-foreground))] mb-4">
+                Automated multi-tenant test pipeline verifying real-time payment gateways, SAP S/4HANA sync, and escrow transactions.
+              </p>
+
+              <div className="flex items-center gap-3 mb-4">
+                <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[hsl(var(--primary)/0.1)] text-[hsl(var(--primary))] border border-[hsl(var(--primary)/0.3)]">
+                  400+ Test Cases / 0 Flakiness
+                </span>
+                <span className="text-xs font-mono text-emerald-400 flex items-center gap-1">
+                  <CheckCircle2 size={13} /> 100% Assertion Pass
+                </span>
+              </div>
+            </div>
+
+            {/* Simulated Test Execution Output */}
+            <div className="bg-[#050811] rounded-2xl p-3.5 border border-white/5 font-mono text-[11px] text-slate-300 space-y-1">
+              <div className="flex items-center justify-between text-[10px] text-slate-500 border-b border-white/5 pb-1 mb-1">
+                <span>[TEST-WORKER-01] ACTIVE</span>
+                <span className="text-emerald-400 font-bold">PASSED</span>
+              </div>
+              <p className="text-slate-400">
+                <span className="text-slate-500">[08:28:33.196]</span> › auth: session hydration &amp; bKash escrow verified <span className="text-emerald-400 font-bold">(124ms)</span>
+              </p>
+              <p className="text-slate-400">
+                <span className="text-slate-500">[08:28:33.338]</span> › inventory: SAP S/4HANA stock lock confirmed <span className="text-emerald-400 font-bold">(190ms)</span>
+              </p>
+              <p className="text-slate-400">
+                <span className="text-slate-500">[08:28:33.353]</span> › checkout: zero-downtime payment authorization <span className="text-emerald-400 font-bold">(310ms)</span>
+              </p>
+            </div>
+          </div>
+
+          {/* Card 2: API Stress & Performance Benchmark */}
+          <div className="lg:col-span-6 glass-card p-6 rounded-3xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--accent)/0.5)] transition-all flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between gap-3 mb-4">
+                <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-violet-500/15 text-violet-400 border border-violet-500/30">
+                  Performance Lab
+                </span>
+                <div className="flex items-center gap-2">
+                  <div className="p-1.5 rounded-lg bg-[hsl(var(--muted))] border border-[hsl(var(--card-border))]">
+                    <JMeterIcon className="w-4 h-4" />
+                  </div>
+                  <div className="p-1.5 rounded-lg bg-[hsl(var(--muted))] border border-[hsl(var(--card-border))]">
+                    <K6Icon className="w-4 h-4" />
+                  </div>
+                  <div className="p-1.5 rounded-lg bg-[hsl(var(--muted))] border border-[hsl(var(--card-border))]">
+                    <PostmanIcon className="w-4 h-4" />
+                  </div>
+                </div>
+              </div>
+
+              <h3 className="font-heading font-bold text-2xl text-[hsl(var(--foreground))] mb-2">
+                API Stress &amp; Performance Benchmark
+              </h3>
+              <p className="text-xs sm:text-sm text-[hsl(var(--muted-foreground))] mb-4">
+                High-concurrency virtual user simulation benchmarking p95 latency thresholds under traffic spikes.
+              </p>
+
+              {/* Latency telemetry stats */}
+              <div className="grid grid-cols-3 gap-2 mb-4">
+                <div className="p-2.5 rounded-xl bg-[hsl(var(--background)/0.7)] border border-[hsl(var(--card-border))]">
+                  <p className="text-[10px] text-[hsl(var(--muted-foreground))] uppercase font-mono">Response Avg</p>
+                  <p className="font-heading font-bold text-base sm:text-lg text-emerald-400">15.27 ms</p>
+                </div>
+                <div className="p-2.5 rounded-xl bg-[hsl(var(--background)/0.7)] border border-[hsl(var(--card-border))]">
+                  <p className="text-[10px] text-[hsl(var(--muted-foreground))] uppercase font-mono">Throughput</p>
+                  <p className="font-heading font-bold text-base sm:text-lg text-[hsl(var(--primary))]">1,240 rps</p>
+                </div>
+                <div className="p-2.5 rounded-xl bg-[hsl(var(--background)/0.7)] border border-[hsl(var(--card-border))]">
+                  <p className="text-[10px] text-[hsl(var(--muted-foreground))] uppercase font-mono">Error Rate</p>
+                  <p className="font-heading font-bold text-base sm:text-lg text-emerald-400">0.00%</p>
+                </div>
+              </div>
+            </div>
+
+            {/* SVG Latency Wave Curve */}
+            <div className="relative h-20 w-full rounded-2xl bg-[#050811] p-2 border border-white/5 overflow-hidden flex items-end">
+              <svg className="w-full h-16" viewBox="0 0 400 80" preserveAspectRatio="none" fill="none">
+                <defs>
+                  <linearGradient id="latency-gradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#00F0FF" stopOpacity="0.3" />
+                    <stop offset="100%" stopColor="#00F0FF" stopOpacity="0.0" />
+                  </linearGradient>
+                  <linearGradient id="latency-line" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stopColor="#7928CA" />
+                    <stop offset="50%" stopColor="#00F0FF" />
+                    <stop offset="100%" stopColor="#00E599" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M0,50 Q40,25 80,45 T160,30 T240,55 T320,20 T400,35 L400,80 L0,80 Z"
+                  fill="url(#latency-gradient)"
+                />
+                <path
+                  d="M0,50 Q40,25 80,45 T160,30 T240,55 T320,20 T400,35"
+                  stroke="url(#latency-line)"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                />
+              </svg>
+              <div className="absolute top-2 right-3 text-[10px] font-mono text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">
+                ● Live Latency Trend
+              </div>
+            </div>
+          </div>
+
+          {/* Card 3: Mobile Automation Test Matrix */}
+          <div className="lg:col-span-6 glass-card p-6 rounded-3xl border border-[hsl(var(--card-border))] hover:border-emerald-500/40 transition-all flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between gap-3 mb-4">
+                <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                  Mobile Matrix
+                </span>
+                <span className="text-xs font-mono text-[hsl(var(--muted-foreground))]">
+                  Cross-Platform Grid
+                </span>
+              </div>
+
+              <h3 className="font-heading font-bold text-2xl text-[hsl(var(--foreground))] mb-2">
+                Mobile Automation Test Matrix
+              </h3>
+              <p className="text-xs sm:text-sm text-[hsl(var(--muted-foreground))] mb-4">
+                Appium automated device runs validating gestures, offline caching, and biometric sign-in across Android &amp; iOS.
+              </p>
+
+              {/* Device Test Rows */}
+              <div className="space-y-2 mb-4">
+                <div className="flex items-center justify-between p-3 rounded-xl bg-[hsl(var(--background)/0.8)] border border-[hsl(var(--card-border))]">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-emerald-500/15 flex items-center justify-center text-emerald-400">
+                      <Smartphone size={18} />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-[hsl(var(--foreground))]">Google Pixel 6 · Android 14</p>
+                      <p className="text-[10px] text-[hsl(var(--muted-foreground))]">Appium UIAutomator2 · 84 flows</p>
+                    </div>
+                  </div>
+                  <span className="px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                    ✓ 100% Passed
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between p-3 rounded-xl bg-[hsl(var(--background)/0.8)] border border-[hsl(var(--card-border))]">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-indigo-500/15 flex items-center justify-center text-indigo-400">
+                      <Smartphone size={18} />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-[hsl(var(--foreground))]">Apple iPhone 13 Pro · iOS 17</p>
+                      <p className="text-[10px] text-[hsl(var(--muted-foreground))]">Appium XCUITest · 84 flows</p>
+                    </div>
+                  </div>
+                  <span className="px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                    ✓ 100% Passed
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between text-[11px] text-[hsl(var(--muted-foreground))] pt-2 border-t border-[hsl(var(--card-border))]">
+              <span>Framework: Appium + TypeScript</span>
+              <span className="text-emerald-400 font-bold">Parallel Device Cloud</span>
+            </div>
+          </div>
+
+          {/* Card 4: Universal Brand Tech Badges Ecosystem */}
+          <div className="lg:col-span-6 glass-card p-6 rounded-3xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.5)] transition-all flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between gap-3 mb-4">
+                <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-sky-500/15 text-sky-400 border border-sky-500/30">
+                  Verified Ecosystem
+                </span>
+                <span className="text-xs font-mono text-[hsl(var(--muted-foreground))]">
+                  8 Core Technologies
+                </span>
+              </div>
+
+              <h3 className="font-heading font-bold text-2xl text-[hsl(var(--foreground))] mb-2">
+                Official Brand Badges &amp; Tools
+              </h3>
+              <p className="text-xs sm:text-sm text-[hsl(var(--muted-foreground))] mb-4">
+                Official vector tooling powering enterprise quality assurance, continuous testing, and release certification.
+              </p>
+
+              {/* 8 Official Brand Icons Grid */}
+              <div className="grid grid-cols-4 gap-3 mb-4">
+                <div className="p-3 rounded-2xl bg-[hsl(var(--background)/0.8)] border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.5)] flex flex-col items-center gap-1.5 transition-all group">
+                  <PlaywrightIcon className="w-7 h-7 group-hover:scale-110 transition-transform" />
+                  <span className="text-[10px] font-semibold text-[hsl(var(--foreground))]">Playwright</span>
+                </div>
+                <div className="p-3 rounded-2xl bg-[hsl(var(--background)/0.8)] border border-[hsl(var(--card-border))] hover:border-emerald-500/50 flex flex-col items-center gap-1.5 transition-all group">
+                  <SeleniumIcon className="w-7 h-7 group-hover:scale-110 transition-transform" />
+                  <span className="text-[10px] font-semibold text-[hsl(var(--foreground))]">Selenium</span>
+                </div>
+                <div className="p-3 rounded-2xl bg-[hsl(var(--background)/0.8)] border border-[hsl(var(--card-border))] hover:border-rose-500/50 flex flex-col items-center gap-1.5 transition-all group">
+                  <JMeterIcon className="w-7 h-7 group-hover:scale-110 transition-transform" />
+                  <span className="text-[10px] font-semibold text-[hsl(var(--foreground))]">JMeter</span>
+                </div>
+                <div className="p-3 rounded-2xl bg-[hsl(var(--background)/0.8)] border border-[hsl(var(--card-border))] hover:border-violet-500/50 flex flex-col items-center gap-1.5 transition-all group">
+                  <K6Icon className="w-7 h-7 group-hover:scale-110 transition-transform" />
+                  <span className="text-[10px] font-semibold text-[hsl(var(--foreground))]">K6</span>
+                </div>
+                <div className="p-3 rounded-2xl bg-[hsl(var(--background)/0.8)] border border-[hsl(var(--card-border))] hover:border-orange-500/50 flex flex-col items-center gap-1.5 transition-all group">
+                  <PostmanIcon className="w-7 h-7 group-hover:scale-110 transition-transform" />
+                  <span className="text-[10px] font-semibold text-[hsl(var(--foreground))]">Postman</span>
+                </div>
+                <div className="p-3 rounded-2xl bg-[hsl(var(--background)/0.8)] border border-[hsl(var(--card-border))] hover:border-blue-500/50 flex flex-col items-center gap-1.5 transition-all group">
+                  <TypeScriptIcon className="w-7 h-7 group-hover:scale-110 transition-transform" />
+                  <span className="text-[10px] font-semibold text-[hsl(var(--foreground))]">TypeScript</span>
+                </div>
+                <div className="p-3 rounded-2xl bg-[hsl(var(--background)/0.8)] border border-[hsl(var(--card-border))] hover:border-amber-500/50 flex flex-col items-center gap-1.5 transition-all group">
+                  <PythonIcon className="w-7 h-7 group-hover:scale-110 transition-transform" />
+                  <span className="text-[10px] font-semibold text-[hsl(var(--foreground))]">Python</span>
+                </div>
+                <div className="p-3 rounded-2xl bg-[hsl(var(--background)/0.8)] border border-[hsl(var(--card-border))] hover:border-sky-500/50 flex flex-col items-center gap-1.5 transition-all group">
+                  <DockerIcon className="w-7 h-7 group-hover:scale-110 transition-transform" />
+                  <span className="text-[10px] font-semibold text-[hsl(var(--foreground))]">Docker</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between text-[11px] text-[hsl(var(--muted-foreground))] pt-2 border-t border-[hsl(var(--card-border))]">
+              <span>Universal SVG Brand Compliance</span>
+              <span className="text-[hsl(var(--primary))] font-bold">100% Vector</span>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Deep-Dive Case Studies */}
         <div className="space-y-12 text-left">
           {projects.map((project, i) => {
             const currentTab = activeTab[project.id] || "overview";

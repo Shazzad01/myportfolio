@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, Download, ExternalLink, ShieldCheck, Zap, Sparkles } from "lucide-react";
+import { useState } from "react";
+import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
+import { ArrowDown, Download, ExternalLink, ShieldCheck, Zap, Sparkles, Terminal, GitBranch } from "lucide-react";
 import HeroIllustration from "@/components/ui/HeroIllustration";
 import TerminalWidget from "@/components/ui/TerminalWidget";
 
@@ -19,6 +20,7 @@ const LinkedinIcon = () => (
 
 export default function HeroSection() {
   const shouldReduceMotion = useReducedMotion();
+  const [activeConsoleTab, setActiveConsoleTab] = useState<"terminal" | "pipeline">("terminal");
 
   const anim = (delay = 0) =>
     shouldReduceMotion
@@ -36,25 +38,28 @@ export default function HeroSection() {
     >
       {/* Background Animated Orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-[hsl(var(--primary)/0.18)] rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] bg-[hsl(var(--accent)/0.15)] rounded-full blur-[120px] animate-pulse [animation-delay:1.5s]" />
+        <div className="absolute top-1/4 -left-32 w-[550px] h-[550px] bg-[hsl(var(--primary)/0.15)] rounded-full blur-[140px] animate-pulse" />
+        <div className="absolute bottom-1/4 -right-32 w-[550px] h-[550px] bg-[hsl(var(--accent)/0.15)] rounded-full blur-[140px] animate-pulse [animation-delay:1.5s]" />
       </div>
 
       {/* Grid Pattern */}
       <div
-        className="absolute inset-0 opacity-[0.04] dark:opacity-[0.06]"
+        className="absolute inset-0 opacity-[0.03] dark:opacity-[0.06]"
         style={{
           backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
-          backgroundSize: "40px 40px",
+          backgroundSize: "44px 44px",
         }}
       />
 
       <div className="container-max px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
-          {/* Left Column — Text & CTAs */}
+          {/* Left Column — Text, CTAs & HUD */}
           <div className="lg:col-span-6 text-left">
             {/* Status Pill */}
-            <motion.div {...anim(0)} className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass border border-[hsl(var(--primary)/0.4)] text-xs font-semibold text-[hsl(var(--primary))] mb-6 shadow-sm">
+            <motion.div
+              {...anim(0)}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass border border-[hsl(var(--primary)/0.4)] text-xs font-semibold text-[hsl(var(--primary))] mb-6 shadow-sm"
+            >
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <Sparkles size={13} className="text-[hsl(var(--accent))]" />
               <span>Brain Station 23 · SQA Engineer II</span>
@@ -63,9 +68,9 @@ export default function HeroSection() {
             {/* Headline */}
             <motion.h1
               {...anim(0.1)}
-              className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6"
+              className="font-heading text-4xl sm:text-5xl lg:text-[54px] font-black tracking-tight leading-[1.08] mb-6"
             >
-              Building <span className="text-shimmer">Zero-Defect</span> Quality Systems.
+              Architecting <span className="text-shimmer">Flawless Releases</span> Through Autonomous Test Engineering
             </motion.h1>
 
             {/* Tagline */}
@@ -74,7 +79,7 @@ export default function HeroSection() {
               className="text-base sm:text-lg text-[hsl(var(--muted-foreground))] leading-relaxed mb-8 max-w-xl"
             >
               Hi, I&apos;m <strong className="text-[hsl(var(--foreground))]">Muhammad Shazzad Mia</strong>.
-              I engineer automated test suites in <span className="text-[hsl(var(--primary))] font-semibold">Playwright</span>{" "}
+              I engineer high-concurrency automated test suites in <span className="text-[hsl(var(--primary))] font-semibold">Playwright</span>{" "}
               &amp; <span className="text-[hsl(var(--accent))] font-semibold">JMeter</span> to eliminate production risks before release.
             </motion.p>
 
@@ -97,16 +102,16 @@ export default function HeroSection() {
             {/* Action Buttons */}
             <motion.div
               {...anim(0.4)}
-              className="flex flex-wrap items-center gap-4 mb-10"
+              className="flex flex-wrap items-center gap-4 mb-8"
             >
               <motion.a
                 whileHover={shouldReduceMotion ? {} : { scale: 1.04, y: -2 }}
                 whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 href="#projects"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] text-white font-bold text-sm shadow-lg glow-purple"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl btn-cyan-glow font-bold text-sm"
               >
-                Explore Projects <ExternalLink size={16} />
+                Explore Frameworks <ExternalLink size={16} />
               </motion.a>
               <motion.a
                 whileHover={shouldReduceMotion ? {} : { scale: 1.04, y: -2 }}
@@ -114,15 +119,34 @@ export default function HeroSection() {
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 href="/resume.pdf"
                 download
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl glass border border-[hsl(var(--card-border))] font-semibold text-sm hover:border-[hsl(var(--primary)/0.5)]"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl btn-violet-glow font-bold text-sm"
               >
                 Download Resume <Download size={16} />
               </motion.a>
             </motion.div>
 
-            {/* Social Links */}
+            {/* Bento-Grid Metrics HUD Bar */}
             <motion.div
               {...anim(0.5)}
+              className="grid grid-cols-3 gap-3 max-w-lg mb-8"
+            >
+              <div className="hud-card text-left p-3.5 sm:p-4">
+                <p className="text-xl sm:text-2xl font-extrabold text-[hsl(var(--foreground))] font-heading">99.4%</p>
+                <p className="text-[11px] text-[hsl(var(--muted-foreground))] font-medium">Test Coverage</p>
+              </div>
+              <div className="hud-card text-left p-3.5 sm:p-4">
+                <p className="text-xl sm:text-2xl font-extrabold text-[hsl(var(--foreground))] font-heading">45k+</p>
+                <p className="text-[11px] text-[hsl(var(--muted-foreground))] font-medium">E2E Tests Executed</p>
+              </div>
+              <div className="hud-card text-left p-3.5 sm:p-4">
+                <p className="text-xl sm:text-2xl font-extrabold text-[hsl(var(--foreground))] font-heading">65%</p>
+                <p className="text-[11px] text-[hsl(var(--muted-foreground))] font-medium">CI Cycle Reduction</p>
+              </div>
+            </motion.div>
+
+            {/* Social Links */}
+            <motion.div
+              {...anim(0.6)}
               className="flex items-center gap-3"
             >
               <motion.a
@@ -152,15 +176,65 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Right Column — Pipeline Illustration + Terminal */}
+          {/* Right Column — Command Center Console with Interactive Tabs */}
           <motion.div
             initial={shouldReduceMotion ? {} : { opacity: 0, scale: 0.95, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="lg:col-span-6 flex flex-col items-center gap-6"
+            className="lg:col-span-6 flex flex-col items-center gap-4"
           >
-            <HeroIllustration />
-            <TerminalWidget />
+            {/* Console View Switcher */}
+            <div className="flex items-center gap-2 p-1.5 rounded-2xl glass border border-[hsl(var(--card-border))] shadow-sm w-full max-w-lg justify-between">
+              <button
+                onClick={() => setActiveConsoleTab("terminal")}
+                className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+                  activeConsoleTab === "terminal"
+                    ? "bg-[hsl(var(--primary))] text-[#06080f] shadow-md"
+                    : "text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]"
+                }`}
+              >
+                <Terminal size={14} />
+                <span>Live Test Terminal</span>
+              </button>
+              <button
+                onClick={() => setActiveConsoleTab("pipeline")}
+                className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+                  activeConsoleTab === "pipeline"
+                    ? "bg-[hsl(var(--primary))] text-[#06080f] shadow-md"
+                    : "text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]"
+                }`}
+              >
+                <GitBranch size={14} />
+                <span>E2E CI/CD Pipeline</span>
+              </button>
+            </div>
+
+            {/* Display Active View */}
+            <div className="w-full max-w-lg">
+              <AnimatePresence mode="wait">
+                {activeConsoleTab === "terminal" ? (
+                  <motion.div
+                    key="terminal-view"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <TerminalWidget />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="pipeline-view"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <HeroIllustration />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </motion.div>
         </div>
 
