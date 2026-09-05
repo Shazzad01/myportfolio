@@ -1,27 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="gold">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ultra-Premium UI/UX Design System — Muhammad Shazzad Mia</title>
+  <title>Rich & Premium SQA Architecture Showcase — Muhammad Shazzad Mia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #06080d;
-      --surface-glass: rgba(14, 20, 32, 0.7);
-      --surface-card: rgba(18, 26, 42, 0.6);
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-glow: rgba(18, 235, 244, 0.35);
-      --cyan: #12ebf4;
-      --cyan-glow: rgba(18, 235, 244, 0.25);
-      --violet: #a05cf4;
-      --violet-glow: rgba(160, 92, 244, 0.25);
-      --emerald: #10b981;
-      --emerald-glow: rgba(16, 185, 129, 0.25);
+    /* Theme 1: Obsidian & Champagne Gold (Default - Ultra Luxury Tier) */
+    :root, [data-theme="gold"] {
+      --bg: #07070a;
+      --surface-glass: rgba(18, 19, 26, 0.78);
+      --surface-card: rgba(24, 25, 36, 0.65);
+      --border-subtle: rgba(245, 158, 11, 0.12);
+      --border-hover: rgba(245, 158, 11, 0.4);
+      --primary: #f59e0b;
+      --primary-glow: rgba(245, 158, 11, 0.22);
+      --primary-light: #fbbf24;
+      --secondary: #d97706;
+      --accent: #fef3c7;
+      --pass: #10b981;
       --text: #f8fafc;
-      --text-muted: #64748b;
+      --text-muted: #94a3b8;
+      --badge-bg: rgba(245, 158, 11, 0.08);
+      --gradient-title: linear-gradient(135deg, #ffffff 40%, #fef3c7 70%, #f59e0b 100%);
+      --bg-ambient-1: rgba(245, 158, 11, 0.06);
+      --bg-ambient-2: rgba(217, 119, 6, 0.05);
+    }
+
+    /* Theme 2: Deep Royal Cobalt & Electric Indigo (Linear / Raycast High-Tech Pro) */
+    [data-theme="cobalt"] {
+      --bg: #060813;
+      --surface-glass: rgba(13, 18, 36, 0.8);
+      --surface-card: rgba(19, 26, 52, 0.65);
+      --border-subtle: rgba(59, 130, 246, 0.15);
+      --border-hover: rgba(59, 130, 246, 0.45);
+      --primary: #3b82f6;
+      --primary-glow: rgba(59, 130, 246, 0.25);
+      --primary-light: #60a5fa;
+      --secondary: #6366f1;
+      --accent: #dbeafe;
+      --pass: #10b981;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --badge-bg: rgba(59, 130, 246, 0.08);
+      --gradient-title: linear-gradient(135deg, #ffffff 40%, #dbeafe 70%, #3b82f6 100%);
+      --bg-ambient-1: rgba(59, 130, 246, 0.08);
+      --bg-ambient-2: rgba(99, 102, 241, 0.06);
+    }
+
+    /* Theme 3: Onyx & Cyber Emerald (Deep Jade & Dark Titanium) */
+    [data-theme="emerald"] {
+      --bg: #050807;
+      --surface-glass: rgba(11, 22, 18, 0.8);
+      --surface-card: rgba(15, 32, 26, 0.65);
+      --border-subtle: rgba(16, 185, 129, 0.15);
+      --border-hover: rgba(16, 185, 129, 0.45);
+      --primary: #10b981;
+      --primary-glow: rgba(16, 185, 129, 0.25);
+      --primary-light: #34d399;
+      --secondary: #059669;
+      --accent: #d1fae5;
+      --pass: #10b981;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --badge-bg: rgba(16, 185, 129, 0.08);
+      --gradient-title: linear-gradient(135deg, #ffffff 40%, #d1fae5 70%, #10b981 100%);
+      --bg-ambient-1: rgba(16, 185, 129, 0.07);
+      --bg-ambient-2: rgba(5, 150, 105, 0.05);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,14 +80,13 @@
       min-height: 100vh;
       overflow-x: hidden;
       padding-bottom: 120px;
-      /* Futuristic background grid & ambient light */
+      transition: background-color 0.4s ease;
       background-image: 
-        radial-gradient(circle at 15% 15%, rgba(18, 235, 244, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 85% 30%, rgba(160, 92, 244, 0.08) 0%, transparent 45%),
-        radial-gradient(circle at 50% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+        radial-gradient(circle at 20% 15%, var(--bg-ambient-1) 0%, transparent 45%),
+        radial-gradient(circle at 80% 30%, var(--bg-ambient-2) 0%, transparent 50%),
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
     }
 
     .container {
@@ -49,24 +95,77 @@
       padding: 0 24px;
     }
 
-    /* Top Floating Glass Island Navigation */
+    /* Top Switcher Bar */
+    .palette-switcher-bar {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 10px 20px;
+      margin: 20px auto 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      max-width: 900px;
+    }
+    .switcher-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .palette-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .p-btn {
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .p-btn:hover, .p-btn.active {
+      color: #fff;
+      border-color: var(--primary);
+      background: var(--badge-bg);
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+    .swatch {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    /* Floating Island Nav */
     .top-bar {
       position: sticky;
-      top: 20px;
+      top: 15px;
       z-index: 100;
       margin-bottom: 40px;
     }
     .island-nav {
       background: var(--surface-glass);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
       border: 1px solid var(--border-subtle);
       border-radius: 9999px;
       padding: 10px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.12);
     }
     .brand-group {
       display: flex;
@@ -74,18 +173,18 @@
       gap: 12px;
     }
     .brand-logo {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, var(--cyan), var(--violet));
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Outfit', sans-serif;
       font-weight: 900;
       font-size: 14px;
-      color: #000;
-      box-shadow: 0 0 15px var(--cyan-glow);
+      color: #07070a;
+      box-shadow: 0 0 20px var(--primary-glow);
     }
     .brand-text {
       font-family: 'Outfit', sans-serif;
@@ -96,16 +195,17 @@
     .brand-role {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
-      color: var(--cyan);
-      background: rgba(18, 235, 244, 0.08);
-      padding: 2px 8px;
-      border-radius: 4px;
-      border: 1px solid rgba(18, 235, 244, 0.2);
+      color: var(--primary);
+      background: var(--badge-bg);
+      padding: 3px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border-subtle);
+      font-weight: 600;
     }
     .tab-pills {
       display: flex;
       gap: 6px;
-      background: rgba(0, 0, 0, 0.3);
+      background: rgba(0, 0, 0, 0.4);
       padding: 4px;
       border-radius: 999px;
       border: 1px solid rgba(255, 255, 255, 0.05);
@@ -115,30 +215,29 @@
       font-size: 13px;
       font-weight: 600;
       border-radius: 999px;
-      cursor: pointer;
       color: var(--text-muted);
-      transition: all 0.25s ease;
       text-decoration: none;
+      transition: all 0.25s ease;
     }
     .tab-pill.active {
-      background: linear-gradient(135deg, rgba(18, 235, 244, 0.15), rgba(160, 92, 244, 0.15));
-      border: 1px solid rgba(18, 235, 244, 0.4);
+      background: var(--badge-bg);
+      border: 1px solid var(--primary);
       color: #fff;
-      box-shadow: 0 0 15px rgba(18, 235, 244, 0.2);
+      box-shadow: 0 0 15px var(--primary-glow);
     }
 
-    /* Section Headers */
+    /* Section Tag */
     .section-tag {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
-      color: var(--cyan);
-      letter-spacing: 0.1em;
+      color: var(--primary);
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
     .section-tag::before {
       content: '';
@@ -146,17 +245,17 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: var(--cyan);
-      box-shadow: 0 0 8px var(--cyan);
+      background: var(--primary);
+      box-shadow: 0 0 10px var(--primary);
     }
 
-    /* Interactive Hero Cockpit */
+    /* Hero Cockpit */
     .hero-cockpit {
       display: grid;
       grid-template-columns: 1fr 1.3fr;
-      gap: 32px;
+      gap: 36px;
       align-items: center;
-      margin-top: 30px;
+      margin-top: 20px;
       margin-bottom: 70px;
     }
     @media (max-width: 1024px) {
@@ -167,29 +266,32 @@
       font-family: 'Outfit', sans-serif;
       font-size: 48px;
       font-weight: 800;
-      line-height: 1.1;
+      line-height: 1.12;
       letter-spacing: -0.03em;
       margin-bottom: 16px;
-      background: linear-gradient(135deg, #ffffff 40%, rgba(255, 255, 255, 0.7) 70%, var(--cyan) 100%);
+      background: var(--gradient-title);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .hero-metrics-strip {
       display: flex;
-      gap: 16px;
-      margin-top: 24px;
-      margin-bottom: 28px;
+      gap: 14px;
+      margin: 26px 0;
     }
     .metric-bubble {
       flex: 1;
       background: var(--surface-card);
       border: 1px solid var(--border-subtle);
       border-radius: 14px;
-      padding: 14px 18px;
-      backdrop-filter: blur(12px);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      padding: 16px;
+      backdrop-filter: blur(16px);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
       position: relative;
       overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+    .metric-bubble:hover {
+      border-color: var(--border-hover);
     }
     .metric-bubble::after {
       content: '';
@@ -198,11 +300,11 @@
       left: 0;
       right: 0;
       height: 2px;
-      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
     }
     .metric-val {
       font-family: 'Outfit', sans-serif;
-      font-size: 28px;
+      font-size: 30px;
       font-weight: 800;
       color: #fff;
       display: flex;
@@ -210,107 +312,98 @@
       gap: 4px;
     }
     .metric-val span {
-      font-size: 14px;
-      color: var(--cyan);
+      font-size: 15px;
+      color: var(--primary);
     }
     .metric-lbl {
       font-size: 11px;
       font-family: 'JetBrains Mono', monospace;
       color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
       margin-top: 4px;
     }
 
-    /* Primary CTAs */
+    /* Rich CTAs */
     .cta-row {
       display: flex;
       gap: 14px;
     }
-    .btn-glow {
-      background: linear-gradient(135deg, var(--cyan), #0bbcd6);
-      color: #04080e;
+    .btn-primary-rich {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #07070a;
       font-weight: 700;
       font-size: 14px;
-      padding: 12px 26px;
+      padding: 13px 28px;
       border-radius: 10px;
       border: none;
       cursor: pointer;
-      box-shadow: 0 0 25px var(--cyan-glow);
+      box-shadow: 0 4px 25px var(--primary-glow);
       display: flex;
       align-items: center;
       gap: 8px;
       transition: all 0.25s ease;
     }
-    .btn-glow:hover {
-      box-shadow: 0 0 35px rgba(18, 235, 244, 0.6);
+    .btn-primary-rich:hover {
+      box-shadow: 0 6px 35px var(--primary-glow);
       transform: translateY(-2px);
     }
-    .btn-glass {
-      background: rgba(255, 255, 255, 0.04);
+    .btn-glass-rich {
+      background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--border-subtle);
       color: #fff;
       font-weight: 600;
       font-size: 14px;
-      padding: 12px 24px;
+      padding: 13px 26px;
       border-radius: 10px;
       cursor: pointer;
+      text-decoration: none;
       display: flex;
       align-items: center;
       gap: 8px;
       transition: all 0.25s ease;
     }
-    .btn-glass:hover {
+    .btn-glass-rich:hover {
       background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.2);
+      border-color: var(--border-hover);
     }
 
-    /* Live Interactive Terminal Simulator */
+    /* Terminal Simulator */
     .terminal-window {
-      background: rgba(10, 14, 22, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 16px;
+      background: rgba(12, 13, 18, 0.9);
+      border: 1px solid var(--border-subtle);
+      border-radius: 18px;
       overflow: hidden;
-      backdrop-filter: blur(24px);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(18, 235, 244, 0.1);
-      position: relative;
+      backdrop-filter: blur(28px);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), 0 0 35px var(--primary-glow);
+      transition: border-color 0.4s ease;
     }
     .terminal-top {
-      padding: 12px 18px;
+      padding: 14px 20px;
       background: rgba(255, 255, 255, 0.02);
       border-bottom: 1px solid var(--border-subtle);
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .terminal-dots {
-      display: flex;
-      gap: 6px;
-    }
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
+    .terminal-dots { display: flex; gap: 7px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
     .dot-red { background: #ef4444; }
     .dot-yellow { background: #eab308; }
-    .dot-green { background: #22c55e; }
+    .dot-green { background: #10b981; }
     .terminal-title {
       font-family: 'JetBrains Mono', monospace;
       font-size: 12px;
       color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
     .terminal-runner-btn {
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid rgba(16, 185, 129, 0.4);
-      color: #34d399;
+      background: var(--badge-bg);
+      border: 1px solid var(--border-subtle);
+      color: var(--primary-light);
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       font-weight: 700;
-      padding: 4px 10px;
+      padding: 5px 12px;
       border-radius: 6px;
       cursor: pointer;
       display: flex;
@@ -319,23 +412,23 @@
       transition: all 0.2s;
     }
     .terminal-runner-btn:hover {
-      background: rgba(16, 185, 129, 0.3);
-      box-shadow: 0 0 15px var(--emerald-glow);
+      border-color: var(--primary);
+      box-shadow: 0 0 15px var(--primary-glow);
     }
     .terminal-body {
-      padding: 18px 22px;
+      padding: 20px 24px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 12.5px;
       line-height: 1.7;
     }
-    .code-comment { color: #475569; }
-    .code-keyword { color: var(--violet); }
-    .code-func { color: var(--cyan); }
+    .code-comment { color: #52525b; }
+    .code-keyword { color: var(--primary); }
+    .code-func { color: #60a5fa; }
     .code-str { color: #34d399; }
     
     .terminal-logs {
       margin-top: 14px;
-      padding-top: 12px;
+      padding-top: 14px;
       border-top: 1px dashed rgba(255, 255, 255, 0.08);
       font-size: 11.5px;
     }
@@ -343,34 +436,31 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 4px;
+      margin-bottom: 5px;
     }
     .badge-pass {
-      background: rgba(16, 185, 129, 0.2);
+      background: rgba(16, 185, 129, 0.15);
       color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.4);
-      padding: 1px 6px;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      padding: 1px 7px;
       border-radius: 4px;
       font-size: 10px;
       font-weight: 700;
     }
 
-    /* Live Animated Pipeline SVG */
+    /* Quality Pipeline Circuit */
     .pipeline-container {
       background: var(--surface-card);
       border: 1px solid var(--border-subtle);
       border-radius: 18px;
       padding: 24px;
       margin-bottom: 70px;
-      position: relative;
-      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     }
     .pipeline-nodes {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: relative;
-      z-index: 2;
       flex-wrap: wrap;
       gap: 12px;
     }
@@ -378,21 +468,21 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      background: rgba(12, 18, 28, 0.9);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(10, 11, 16, 0.95);
+      border: 1px solid var(--border-subtle);
       padding: 10px 18px;
       border-radius: 12px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 12px;
       font-weight: 600;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
     }
     .pipe-node.active {
-      border-color: var(--cyan);
-      box-shadow: 0 0 20px var(--cyan-glow);
+      border-color: var(--primary);
+      box-shadow: 0 0 20px var(--primary-glow);
     }
     .pipe-arrow {
-      color: var(--cyan);
+      color: var(--primary);
       font-size: 16px;
       animation: pulse 1.5s infinite alternate;
     }
@@ -401,7 +491,7 @@
       100% { opacity: 1; transform: translateX(2px); }
     }
 
-    /* Bento Grid (Zero Paragraphs) */
+    /* Bento Grid */
     .bento-grid {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
@@ -415,42 +505,20 @@
       padding: 24px;
       backdrop-filter: blur(16px);
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-      position: relative;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .bento-card:hover {
-      border-color: rgba(18, 235, 244, 0.35);
+      border-color: var(--border-hover);
       transform: translateY(-3px);
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 25px rgba(18, 235, 244, 0.1);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 25px var(--primary-glow);
     }
     .bento-col-8 { grid-column: span 8; }
     .bento-col-4 { grid-column: span 4; }
-    .bento-col-6 { grid-column: span 6; }
     @media (max-width: 1024px) {
-      .bento-col-8, .bento-col-4, .bento-col-6 { grid-column: span 12; }
+      .bento-col-8, .bento-col-4 { grid-column: span 12; }
     }
 
-    /* Holographic ISTQB Badge Card */
-    .holo-badge-card {
-      background: linear-gradient(135deg, rgba(20, 30, 48, 0.7), rgba(36, 59, 85, 0.4));
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .holo-icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #f59e0b, #ec4899, var(--cyan));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
-    }
-
-    /* Interactive 30-Day Heatmap */
+    /* Heatmap Grid */
     .heatmap-grid {
       display: grid;
       grid-template-columns: repeat(15, 1fr);
@@ -460,12 +528,12 @@
     .heat-cell {
       height: 18px;
       border-radius: 4px;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.04);
       transition: all 0.2s;
     }
-    .heat-cell.l1 { background: rgba(16, 185, 129, 0.2); }
-    .heat-cell.l2 { background: rgba(16, 185, 129, 0.45); }
-    .heat-cell.l3 { background: rgba(16, 185, 129, 0.75); box-shadow: 0 0 8px var(--emerald-glow); }
+    .heat-cell.l1 { background: rgba(245, 158, 11, 0.2); }
+    .heat-cell.l2 { background: rgba(245, 158, 11, 0.45); }
+    .heat-cell.l3 { background: rgba(245, 158, 11, 0.85); box-shadow: 0 0 8px var(--primary-glow); }
     .heat-cell:hover { transform: scale(1.3); z-index: 10; border: 1px solid #fff; }
 
     /* Official Brand Icons Grid */
@@ -476,7 +544,7 @@
       margin-top: 20px;
     }
     .brand-tile {
-      background: rgba(12, 18, 28, 0.7);
+      background: rgba(14, 16, 22, 0.8);
       border: 1px solid var(--border-subtle);
       border-radius: 14px;
       padding: 16px;
@@ -487,8 +555,8 @@
       transition: all 0.25s ease;
     }
     .brand-tile:hover {
-      border-color: var(--cyan);
-      box-shadow: 0 0 20px var(--cyan-glow);
+      border-color: var(--primary);
+      box-shadow: 0 0 20px var(--primary-glow);
       transform: translateY(-3px);
     }
     .brand-tile svg {
@@ -502,16 +570,16 @@
       color: #cbd5e1;
     }
 
-    /* Footer / Sticky Trigger */
+    /* Approval Banner */
     .footer-bar {
       margin-top: 60px;
       text-align: center;
     }
     .approve-banner {
-      background: linear-gradient(135deg, rgba(18, 235, 244, 0.1), rgba(160, 92, 244, 0.1));
-      border: 1px solid rgba(18, 235, 244, 0.3);
+      background: linear-gradient(135deg, var(--badge-bg), rgba(255, 255, 255, 0.02));
+      border: 1px solid var(--border-hover);
       border-radius: 20px;
-      padding: 24px;
+      padding: 24px 32px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -519,6 +587,7 @@
       margin: 0 auto;
       flex-wrap: wrap;
       gap: 16px;
+      box-shadow: 0 0 40px var(--primary-glow);
     }
   </style>
 </head>
@@ -526,6 +595,24 @@
 
   <div class="container">
     
+    <!-- Real-time Palette Switcher -->
+    <div class="palette-switcher-bar">
+      <div class="switcher-label">
+        <span>👑 SELECT RICH PALETTE:</span>
+      </div>
+      <div class="palette-btns">
+        <button class="p-btn active" id="btn-gold" onclick="setPalette('gold')">
+          <span class="swatch" style="background: #f59e0b;"></span> Obsidian & Champagne Gold
+        </button>
+        <button class="p-btn" id="btn-cobalt" onclick="setPalette('cobalt')">
+          <span class="swatch" style="background: #3b82f6;"></span> Royal Cobalt & Indigo
+        </button>
+        <button class="p-btn" id="btn-emerald" onclick="setPalette('emerald')">
+          <span class="swatch" style="background: #10b981;"></span> Onyx & Cyber Jade
+        </button>
+      </div>
+    </div>
+
     <!-- Top Floating Glass Island -->
     <div class="top-bar">
       <div class="island-nav">
@@ -543,10 +630,10 @@
       </div>
     </div>
 
-    <!-- 01: HERO COCKPIT (Zero Fluff, Maximum Visual Energy) -->
+    <!-- 01: HERO COCKPIT -->
     <section id="hero" class="hero-cockpit">
       <div class="hero-identity">
-        <div class="section-tag">Zero-Fluff // 100% Precision</div>
+        <div class="section-tag">Zero-Fluff // Enterprise Quality</div>
         <h1>Architecting Resilient Automation</h1>
         <p style="color: var(--text-muted); font-size: 16px; line-height: 1.5;">Playwright · Distributed JMeter Load Engine · Containerized CI/CD Quality Gates</p>
         
@@ -566,8 +653,8 @@
         </div>
 
         <div class="cta-row">
-          <button class="btn-glow" onclick="simulateTest()">▶ Run Test Suite</button>
-          <a href="/public/resume.pdf" class="btn-glass" download>↓ Download CV</a>
+          <button class="btn-primary-rich" onclick="simulateTest()">▶ Run Test Suite</button>
+          <a href="/public/resume.pdf" class="btn-glass-rich" download>↓ Download CV</a>
         </div>
       </div>
 
@@ -593,17 +680,17 @@
             <div class="log-line">
               <span class="badge-pass">PASS</span>
               <span style="color: #cbd5e1;">[chromium] › checkout.spec.ts:12:5 › Zero-Flake Order Workflow</span>
-              <span style="color: var(--cyan); margin-left: auto;">(1.2s)</span>
+              <span style="color: var(--primary-light); margin-left: auto;">(1.2s)</span>
             </div>
             <div class="log-line">
               <span class="badge-pass">PASS</span>
               <span style="color: #cbd5e1;">[firefox]  › checkout.spec.ts:12:5 › Zero-Flake Order Workflow</span>
-              <span style="color: var(--cyan); margin-left: auto;">(1.4s)</span>
+              <span style="color: var(--primary-light); margin-left: auto;">(1.4s)</span>
             </div>
             <div class="log-line">
               <span class="badge-pass">PASS</span>
               <span style="color: #cbd5e1;">[webkit]   › checkout.spec.ts:12:5 › Zero-Flake Order Workflow</span>
-              <span style="color: var(--cyan); margin-left: auto;">(1.1s)</span>
+              <span style="color: var(--primary-light); margin-left: auto;">(1.1s)</span>
             </div>
             <div style="color: #34d399; font-weight: 700; margin-top: 8px;">
               ✔ 48 passed, 0 failed, 0 flaky (3.7s)
@@ -618,11 +705,11 @@
       <div class="section-tag" style="margin-bottom: 16px;">Automated Quality Stream // Multi-Node Architecture</div>
       <div class="pipeline-nodes">
         <div class="pipe-node active">
-          <span style="color: var(--cyan);">●</span> Git Push
+          <span style="color: var(--primary);">●</span> Git Push
         </div>
         <div class="pipe-arrow">───►</div>
         <div class="pipe-node active">
-          <span style="color: var(--cyan);">●</span> Lint & TypeCheck
+          <span style="color: var(--primary);">●</span> Lint & TypeCheck
         </div>
         <div class="pipe-arrow">───►</div>
         <div class="pipe-node active">
@@ -630,51 +717,51 @@
         </div>
         <div class="pipe-arrow">───►</div>
         <div class="pipe-node active">
-          <span style="color: #f59e0b;">●</span> JMeter 1,200 RPS
+          <span style="color: var(--primary);">●</span> JMeter 1,200 RPS
         </div>
         <div class="pipe-arrow">───►</div>
-        <div class="pipe-node active" style="border-color: #34d399; box-shadow: 0 0 20px var(--emerald-glow);">
+        <div class="pipe-node active" style="border-color: #34d399; box-shadow: 0 0 20px rgba(16,185,129,0.3);">
           <span style="color: #34d399;">✔</span> 0-Defect Release
         </div>
       </div>
     </section>
 
-    <!-- 03: THE TELEMETRY BENTO GRID (Zero Paragraphs) -->
+    <!-- 03: THE TELEMETRY BENTO GRID -->
     <section id="bento" class="bento-grid">
       <!-- Cell 1: Experience -->
       <div class="bento-card bento-col-8">
         <div class="section-tag">Role & Impact</div>
         <h2 style="font-family: 'Outfit'; font-size: 26px; font-weight: 800; margin-bottom: 6px;">Brain Station 23</h2>
-        <p style="font-family: 'JetBrains Mono'; font-size: 13px; color: var(--cyan); margin-bottom: 16px;">SQA Engineer II · Automation Lead (2023 – Present)</p>
+        <p style="font-family: 'JetBrains Mono'; font-size: 13px; color: var(--primary); margin-bottom: 16px;">SQA Engineer II · Automation Lead (2023 – Present)</p>
         
         <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-          <div style="background: rgba(255,255,255,0.04); border: 1px solid var(--border-subtle); padding: 8px 14px; border-radius: 8px; font-size: 12px; font-family: 'JetBrains Mono';">
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); padding: 8px 14px; border-radius: 8px; font-size: 12px; font-family: 'JetBrains Mono';">
             <span style="color: #34d399; font-weight: 700;">+85%</span> Regression Automation
           </div>
-          <div style="background: rgba(255,255,255,0.04); border: 1px solid var(--border-subtle); padding: 8px 14px; border-radius: 8px; font-size: 12px; font-family: 'JetBrains Mono';">
-            <span style="color: var(--cyan); font-weight: 700;">-60%</span> Release Cycle Time
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); padding: 8px 14px; border-radius: 8px; font-size: 12px; font-family: 'JetBrains Mono';">
+            <span style="color: var(--primary); font-weight: 700;">-60%</span> Release Cycle Time
           </div>
-          <div style="background: rgba(255,255,255,0.04); border: 1px solid var(--border-subtle); padding: 8px 14px; border-radius: 8px; font-size: 12px; font-family: 'JetBrains Mono';">
-            <span style="color: var(--violet); font-weight: 700;">Zero</span> Critical Prod Escapes
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); padding: 8px 14px; border-radius: 8px; font-size: 12px; font-family: 'JetBrains Mono';">
+            <span style="color: #60a5fa; font-weight: 700;">Zero</span> Critical Prod Escapes
           </div>
         </div>
       </div>
 
       <!-- Cell 2: ISTQB Holographic Badge -->
-      <div class="bento-card bento-col-4 holo-badge-card">
+      <div class="bento-card bento-col-4" style="display: flex; align-items: center; justify-content: space-between;">
         <div>
           <div class="section-tag">Credential</div>
           <div style="font-family: 'Outfit'; font-size: 20px; font-weight: 800;">ISTQB CTFL</div>
           <div style="font-family: 'JetBrains Mono'; font-size: 11px; color: var(--text-muted); margin-top: 4px;">Certified Tester Foundation</div>
         </div>
-        <div class="holo-icon">★</div>
+        <div style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #07070a; font-weight: bold; box-shadow: 0 0 20px var(--primary-glow);">★</div>
       </div>
 
       <!-- Cell 3: 30-Day Automated Run Telemetry -->
       <div class="bento-card bento-col-8">
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <div class="section-tag">30-Day CI/CD Test Activity</div>
-          <span style="font-family: 'JetBrains Mono'; font-size: 11px; color: #34d399;">1,420 Passing Runs</span>
+          <span style="font-family: 'JetBrains Mono'; font-size: 11px; color: var(--primary-light);">1,420 Passing Runs</span>
         </div>
         <div class="heatmap-grid">
           <div class="heat-cell l3"></div><div class="heat-cell l2"></div><div class="heat-cell l3"></div>
@@ -694,14 +781,14 @@
       <div class="bento-card bento-col-4">
         <div class="section-tag">Base Location</div>
         <div style="font-family: 'Outfit'; font-size: 20px; font-weight: 800;">Dhaka, BD (GMT+6)</div>
-        <div style="font-family: 'JetBrains Mono'; font-size: 11px; color: #34d399; margin-top: 6px; display: flex; align-items: center; gap: 6px;">
-          <span style="width: 8px; height: 8px; border-radius: 50%; background: #34d399; box-shadow: 0 0 8px #34d399;"></span>
+        <div style="font-family: 'JetBrains Mono'; font-size: 11px; color: var(--primary-light); margin-top: 6px; display: flex; align-items: center; gap: 6px;">
+          <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--primary); box-shadow: 0 0 8px var(--primary);"></span>
           Available for Global Remote
         </div>
       </div>
     </section>
 
-    <!-- 04: OFFICIAL MULTI-COLOR BRAND SVG ARSENAL -->
+    <!-- 04: OFFICIAL BRAND SVGS -->
     <section id="brands" style="margin-bottom: 70px;">
       <div class="section-tag">Official Brand Grid // Production Tooling</div>
       <h2 style="font-family: 'Outfit'; font-size: 28px; font-weight: 800; margin-bottom: 20px;">Technical Stack</h2>
@@ -787,19 +874,25 @@
     <div class="footer-bar">
       <div class="approve-banner">
         <div style="text-align: left;">
-          <div style="font-family: 'Outfit'; font-size: 20px; font-weight: 800; color: #fff;">Ultra-Premium Concept Approved?</div>
-          <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Zero walls of text · High-tech telemetry cockpit · Interactive test runner · Living pipeline art</div>
+          <div style="font-family: 'Outfit'; font-size: 20px; font-weight: 800; color: #fff;">Rich & Premium Concept Approved?</div>
+          <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Select your preferred rich palette above &bull; Reply Approve to begin rebuilding!</div>
         </div>
-        <button class="btn-glow" onclick="alert('Reply Approve in the chat to start rebuilding!')">Approve & Start Rebuild →</button>
+        <button class="btn-primary-rich" onclick="alert('Reply Approve in the chat to start rebuilding!')">Approve & Start Rebuild →</button>
       </div>
     </div>
 
   </div>
 
   <script>
+    function setPalette(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      document.querySelectorAll('.p-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById('btn-' + theme).classList.add('active');
+    }
+
     function simulateTest() {
       const logBox = document.getElementById('terminal-log-output');
-      logBox.innerHTML = '<div style="color: var(--cyan);">● Launching Playwright Chromium Headless Cluster...</div>';
+      logBox.innerHTML = '<div style="color: var(--primary-light);">● Launching Playwright Chromium Headless Cluster...</div>';
       
       setTimeout(() => {
         logBox.innerHTML += '<div class="log-line"><span class="badge-pass">RUNS</span> [worker 1] Running checkout.spec.ts...</div>';
