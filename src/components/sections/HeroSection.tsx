@@ -3,6 +3,8 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Download, Sparkles, ArrowRight, GitBranch } from "lucide-react";
 import TerminalWidget from "@/components/ui/TerminalWidget";
+import DecryptedText from "@/components/ui/DecryptedText";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 
 export default function HeroSection() {
   const shouldReduceMotion = useReducedMotion();
@@ -36,11 +38,17 @@ export default function HeroSection() {
             {/* Status Pill */}
             <motion.div
               {...anim(0)}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#f59e0b]/10 border border-[#f59e0b]/30 text-xs font-semibold text-[#f59e0b] mb-5 shadow-[0_0_15px_rgba(245,158,11,0.15)]"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#f59e0b]/10 border border-[#f59e0b]/30 text-xs font-semibold text-[#f59e0b] mb-5 shadow-[0_0_15px_rgba(245,158,11,0.15)] group"
             >
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <Sparkles size={12} className="text-[#fbbf24]" />
-              <span>Brain Station 23 · SQA Engineer II</span>
+              <DecryptedText
+                text="Brain Station 23 · SQA Engineer II"
+                speed={20}
+                animateOn="view"
+                className="text-[#f59e0b]"
+                encryptedClassName="text-[#fbbf24] font-mono opacity-80"
+              />
             </motion.div>
 
             {/* Headline */}
@@ -56,7 +64,14 @@ export default function HeroSection() {
               {...anim(0.2)}
               className="text-sm sm:text-base text-slate-600 dark:text-slate-400 font-mono leading-relaxed mb-6"
             >
-              Playwright (TypeScript) · Apache JMeter (15k VUs) · CI/CD Gates @ Brain Station 23
+              <DecryptedText
+                text="Playwright (TypeScript) · Apache JMeter (15k VUs) · CI/CD Gates @ Brain Station 23"
+                speed={18}
+                maxIterations={8}
+                animateOn="view"
+                className="text-slate-600 dark:text-slate-400"
+                encryptedClassName="text-[#f59e0b] font-mono opacity-90"
+              />
             </motion.p>
 
             {/* 3 Real Verified Metric Bubbles from Master Profile */}
@@ -64,32 +79,44 @@ export default function HeroSection() {
               {...anim(0.25)}
               className="grid grid-cols-3 gap-3 my-6"
             >
-              <div className="glass-card rounded-xl p-3 text-center border-t-2 border-t-[#f59e0b]">
+              <SpotlightCard
+                size={200}
+                spotlightColor="rgba(245, 158, 11, 0.18)"
+                className="glass-card rounded-xl p-3 text-center border-t-2 border-t-[#f59e0b] transition-all hover:shadow-[0_0_20px_rgba(245,158,11,0.15)]"
+              >
                 <div className="font-heading text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
                   99.4<span className="text-xs text-[#f59e0b] ml-0.5">%</span>
                 </div>
                 <div className="font-mono text-[10px] text-slate-600 dark:text-slate-400 font-semibold uppercase tracking-wider mt-1">
                   Platform Uptime
                 </div>
-              </div>
+              </SpotlightCard>
 
-              <div className="glass-card rounded-xl p-3 text-center border-t-2 border-t-[#f59e0b]">
+              <SpotlightCard
+                size={200}
+                spotlightColor="rgba(245, 158, 11, 0.18)"
+                className="glass-card rounded-xl p-3 text-center border-t-2 border-t-[#f59e0b] transition-all hover:shadow-[0_0_20px_rgba(245,158,11,0.15)]"
+              >
                 <div className="font-heading text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
                   15k<span className="text-xs text-[#f59e0b] ml-0.5">+</span>
                 </div>
                 <div className="font-mono text-[10px] text-slate-600 dark:text-slate-400 font-semibold uppercase tracking-wider mt-1">
                   VUs Stress Tested
                 </div>
-              </div>
+              </SpotlightCard>
 
-              <div className="glass-card rounded-xl p-3 text-center border-t-2 border-t-[#f59e0b]">
+              <SpotlightCard
+                size={200}
+                spotlightColor="rgba(245, 158, 11, 0.18)"
+                className="glass-card rounded-xl p-3 text-center border-t-2 border-t-[#f59e0b] transition-all hover:shadow-[0_0_20px_rgba(245,158,11,0.15)]"
+              >
                 <div className="font-heading text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
                   75<span className="text-xs text-[#f59e0b] ml-0.5">%</span>
                 </div>
                 <div className="font-mono text-[10px] text-slate-600 dark:text-slate-400 font-semibold uppercase tracking-wider mt-1">
                   Runtime Cut (14h→3.5h)
                 </div>
-              </div>
+              </SpotlightCard>
             </motion.div>
 
             {/* CTAs */}

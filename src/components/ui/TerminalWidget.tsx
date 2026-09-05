@@ -11,6 +11,7 @@ import {
   Flame,
   Zap,
 } from "lucide-react";
+import DecryptedText from "@/components/ui/DecryptedText";
 
 interface TestSuite {
   id: string;
@@ -161,13 +162,27 @@ export default function TerminalWidget() {
           <span className="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block" />
           <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80 inline-block" />
           <span className="w-2.5 h-2.5 rounded-full bg-green-500/80 inline-block" />
-          <span className="ml-1 text-white font-medium flex items-center gap-1">
+          <span className="ml-1 text-white font-medium flex items-center gap-1.5">
             <Terminal size={12} className="text-[#f59e0b]" />
-            {currentSuite.file}
+            <DecryptedText
+              key={currentSuite.file}
+              text={currentSuite.file}
+              speed={15}
+              animateOn="mount"
+              className="text-white font-mono"
+              encryptedClassName="text-[#fbbf24] font-mono opacity-80"
+            />
           </span>
         </div>
-        <span className="text-[#f59e0b] font-medium hidden sm:inline">
-          {currentSuite.framework}
+        <span className="text-[#f59e0b] font-medium hidden sm:inline font-mono">
+          <DecryptedText
+            key={currentSuite.framework}
+            text={currentSuite.framework}
+            speed={15}
+            animateOn="mount"
+            className="text-[#f59e0b]"
+            encryptedClassName="text-amber-400 font-mono opacity-80"
+          />
         </span>
       </div>
 

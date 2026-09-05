@@ -2,6 +2,8 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { Briefcase, Calendar, ChevronRight, Sparkles } from "lucide-react";
+import SpotlightCard from "@/components/ui/SpotlightCard";
+import DecryptedText from "@/components/ui/DecryptedText";
 
 const experiences = [
   {
@@ -66,7 +68,13 @@ export default function ExperienceSection() {
         >
           <p className="text-xs font-bold text-[hsl(var(--primary))] tracking-widest uppercase mb-3 flex items-center justify-center gap-2">
             <Sparkles size={14} className="text-[hsl(var(--accent))]" />
-            Career Evolution
+            <DecryptedText
+              text="Career Evolution & Verified Milestones"
+              speed={20}
+              animateOn="view"
+              className="text-[hsl(var(--primary))]"
+              encryptedClassName="text-[#fbbf24] font-mono opacity-80"
+            />
           </p>
           <h2 className="font-heading text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white">Work Experience &amp; Git Tree</h2>
         </motion.div>
@@ -104,54 +112,59 @@ export default function ExperienceSection() {
                     <motion.div
                       whileHover={shouldReduceMotion ? {} : { y: -4 }}
                       transition={{ duration: 0.2 }}
-                      className="glass-card p-6 sm:p-7 rounded-3xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.5)] transition-colors duration-200"
                     >
-                      <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                        <div className="flex items-center gap-2">
-                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[hsl(var(--primary)/0.15)] text-[hsl(var(--primary))]">
-                            {exp.badge}
-                          </span>
-                          <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-amber-500/10 dark:bg-[#07070a] text-amber-700 dark:text-[#fbbf24] border border-[#f59e0b]/30 font-semibold">
-                            {exp.releaseBranch}
+                      <SpotlightCard
+                        size={350}
+                        spotlightColor="rgba(245, 158, 11, 0.14)"
+                        className="glass-card p-6 sm:p-7 rounded-3xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.5)] transition-colors duration-200"
+                      >
+                        <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                          <div className="flex items-center gap-2">
+                            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[hsl(var(--primary)/0.15)] text-[hsl(var(--primary))]">
+                              {exp.badge}
+                            </span>
+                            <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-amber-500/10 dark:bg-[#07070a] text-amber-700 dark:text-[#fbbf24] border border-[#f59e0b]/30 font-semibold">
+                              {exp.releaseBranch}
+                            </span>
+                          </div>
+                          <span className="text-xs text-slate-600 dark:text-slate-400 flex items-center gap-1">
+                            <Calendar size={12} />
+                            {exp.period}
                           </span>
                         </div>
-                        <span className="text-xs text-slate-600 dark:text-slate-400 flex items-center gap-1">
-                          <Calendar size={12} />
-                          {exp.period}
-                        </span>
-                      </div>
 
-                      <h3 className="font-heading font-bold text-xl text-slate-900 dark:text-white">
-                        {exp.title}
-                      </h3>
-                      <p className="text-sm font-semibold text-amber-700 dark:text-[#fbbf24] mb-3 flex items-center gap-1.5">
-                        <Briefcase size={14} />
-                        {exp.company}
-                      </p>
+                        <h3 className="font-heading font-bold text-xl text-slate-900 dark:text-white">
+                          {exp.title}
+                        </h3>
+                        <p className="text-sm font-semibold text-amber-700 dark:text-[#fbbf24] mb-3 flex items-center gap-1.5">
+                          <Briefcase size={14} />
+                          {exp.company}
+                        </p>
 
-                      {/* Tech stack pills */}
-                      <div className="flex flex-wrap gap-1.5 mb-4">
-                        {exp.techPills.map((pill) => (
-                          <span
-                            key={pill}
-                            className="px-2 py-0.5 rounded-md text-[10px] font-mono font-medium bg-black/5 dark:bg-white/10 text-slate-700 dark:text-slate-300"
-                          >
-                            {pill}
-                          </span>
-                        ))}
-                      </div>
+                        {/* Tech stack pills */}
+                        <div className="flex flex-wrap gap-1.5 mb-4">
+                          {exp.techPills.map((pill) => (
+                            <span
+                              key={pill}
+                              className="px-2 py-0.5 rounded-md text-[10px] font-mono font-medium bg-black/5 dark:bg-white/10 text-slate-700 dark:text-slate-300"
+                            >
+                              {pill}
+                            </span>
+                          ))}
+                        </div>
 
-                      <ul className="space-y-2.5">
-                        {exp.highlights.map((h, index) => (
-                          <li
-                            key={index}
-                            className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed"
-                          >
-                            <ChevronRight size={14} className="text-amber-600 dark:text-[#f59e0b] shrink-0 mt-0.5" />
-                            <span>{h}</span>
-                          </li>
-                        ))}
-                      </ul>
+                        <ul className="space-y-2.5">
+                          {exp.highlights.map((h, index) => (
+                            <li
+                              key={index}
+                              className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed"
+                            >
+                              <ChevronRight size={14} className="text-amber-600 dark:text-[#f59e0b] shrink-0 mt-0.5" />
+                              <span>{h}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </SpotlightCard>
                     </motion.div>
                   </div>
                 </motion.div>

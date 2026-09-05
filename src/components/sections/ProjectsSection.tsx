@@ -28,6 +28,8 @@ import {
   PythonIcon,
   DockerIcon,
 } from "@/components/ui/SvgIcons";
+import SpotlightCard from "@/components/ui/SpotlightCard";
+import DecryptedText from "@/components/ui/DecryptedText";
 
 interface ArchitectureStep {
   step: string;
@@ -149,7 +151,13 @@ export default function ProjectsSection() {
         >
           <p className="text-xs font-bold text-[hsl(var(--primary))] tracking-widest uppercase mb-3 flex items-center justify-center gap-2">
             <Sparkles size={14} className="text-[hsl(var(--accent))]" />
-            Real-World Impact & Case Studies
+            <DecryptedText
+              text="Real-World Impact & Case Studies"
+              speed={22}
+              animateOn="view"
+              className="text-[hsl(var(--primary))]"
+              encryptedClassName="text-[#fbbf24] font-mono opacity-80"
+            />
           </p>
           <h2 className="font-heading text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white">Featured Projects &amp; QA Lab</h2>
         </motion.div>
@@ -163,7 +171,11 @@ export default function ProjectsSection() {
           className="grid lg:grid-cols-12 gap-6 mb-16 text-left"
         >
           {/* Card 1: Enterprise E-Commerce Automation (Shwopno.com) */}
-          <div className="lg:col-span-6 glass-card p-6 rounded-3xl border border-slate-200 dark:border-white/10 hover:border-[#f59e0b]/50 transition-all flex flex-col justify-between">
+          <SpotlightCard
+            size={380}
+            spotlightColor="rgba(245, 158, 11, 0.16)"
+            className="lg:col-span-6 glass-card p-6 rounded-3xl border border-slate-200 dark:border-white/10 hover:border-[#f59e0b]/50 transition-all flex flex-col justify-between"
+          >
             <div>
               <div className="flex items-center justify-between gap-3 mb-4">
                 <div className="flex items-center gap-2">
@@ -213,10 +225,14 @@ export default function ProjectsSection() {
                 <span className="text-slate-500">[08:28:33.353]</span> › checkout: zero-downtime order authorization <span className="text-emerald-400 font-bold">(310ms)</span>
               </p>
             </div>
-          </div>
+          </SpotlightCard>
 
           {/* Card 2: Apache JMeter High-Concurrency Performance Lab */}
-          <div className="lg:col-span-6 glass-card p-6 rounded-3xl border border-slate-200 dark:border-white/10 hover:border-[#f59e0b]/50 transition-all flex flex-col justify-between">
+          <SpotlightCard
+            size={380}
+            spotlightColor="rgba(245, 158, 11, 0.16)"
+            className="lg:col-span-6 glass-card p-6 rounded-3xl border border-slate-200 dark:border-white/10 hover:border-[#f59e0b]/50 transition-all flex flex-col justify-between"
+          >
             <div>
               <div className="flex items-center justify-between gap-3 mb-4">
                 <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-500/15 text-amber-700 dark:text-amber-400 border border-amber-500/30">
@@ -288,10 +304,14 @@ export default function ProjectsSection() {
                 ● 8 Bottlenecks Isolated
               </div>
             </div>
-          </div>
+          </SpotlightCard>
 
           {/* Card 3: Mobile & Cross-Browser Validation Matrix */}
-          <div className="lg:col-span-6 glass-card p-6 rounded-3xl border border-slate-200 dark:border-white/10 hover:border-emerald-500/40 transition-all flex flex-col justify-between">
+          <SpotlightCard
+            size={380}
+            spotlightColor="rgba(16, 185, 129, 0.16)"
+            className="lg:col-span-6 glass-card p-6 rounded-3xl border border-slate-200 dark:border-white/10 hover:border-emerald-500/40 transition-all flex flex-col justify-between"
+          >
             <div>
               <div className="flex items-center justify-between gap-3 mb-4">
                 <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30">
@@ -347,10 +367,14 @@ export default function ProjectsSection() {
               <span>Framework: Appium + Playwright</span>
               <span className="text-emerald-600 dark:text-emerald-400 font-bold">12+ Environments</span>
             </div>
-          </div>
+          </SpotlightCard>
 
           {/* Card 4: Universal Brand Tech Badges Ecosystem */}
-          <div className="lg:col-span-6 glass-card p-6 rounded-3xl border border-slate-200 dark:border-white/10 hover:border-[#f59e0b]/50 transition-all flex flex-col justify-between">
+          <SpotlightCard
+            size={380}
+            spotlightColor="rgba(245, 158, 11, 0.16)"
+            className="lg:col-span-6 glass-card p-6 rounded-3xl border border-slate-200 dark:border-white/10 hover:border-[#f59e0b]/50 transition-all flex flex-col justify-between"
+          >
             <div>
               <div className="flex items-center justify-between gap-3 mb-4">
                 <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-sky-500/15 text-sky-700 dark:text-sky-400 border border-sky-500/30">
@@ -409,7 +433,7 @@ export default function ProjectsSection() {
               <span>Universal SVG Brand Compliance</span>
               <span className="text-amber-700 dark:text-[#f59e0b] font-bold">100% Vector</span>
             </div>
-          </div>
+          </SpotlightCard>
         </motion.div>
 
         {/* Deep-Dive Case Studies */}
@@ -423,8 +447,12 @@ export default function ProjectsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.5, delay: i * 0.12 }}
-                className="glass-card p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-white/10 hover:border-[#f59e0b]/40 transition-all"
               >
+                <SpotlightCard
+                  size={550}
+                  spotlightColor="rgba(245, 158, 11, 0.14)"
+                  className="glass-card p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-white/10 hover:border-[#f59e0b]/40 transition-all"
+                >
                 {/* Top Banner */}
                 <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
                   <div>
@@ -622,6 +650,7 @@ export default function ProjectsSection() {
                     </span>
                   ))}
                 </div>
+                </SpotlightCard>
               </motion.div>
             );
           })}
