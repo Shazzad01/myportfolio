@@ -37,12 +37,12 @@ const stages: MethodologyStage[] = [
     summary:
       "Reviewing user stories and business logic before developers write code — identifying ambiguous acceptance criteria, testability bottlenecks, and critical edge cases upfront.",
     details: [
-      "Requirements traceability matrix mapping features to user personas",
-      "Gherkin BDD scenario drafting for clear developer alignment",
-      "Edge-case discovery & payment failure state modeling",
+      "Requirements traceability matrix (RTM) standardizing testing throughput by 25%",
+      "Boundary value analysis & equivalence partitioning for edge-case coverage",
+      "Payment gateway failure state and real-time inventory drift modeling",
     ],
-    metrics: "Eliminates ~40% of defect risks before first pull request",
-    tools: ["Jira Software", "Confluence", "Miro", "Figma Specs"],
+    metrics: "350+ structured test scenarios authored with 98.5% defect catch rate",
+    tools: ["Jira Software", "RTM Standards", "Agile / Scrum", "Confluence"],
   },
   {
     id: "automation",
@@ -51,14 +51,14 @@ const stages: MethodologyStage[] = [
     badge: "CI/CD Pull Request Gate",
     icon: Cpu,
     summary:
-      "Engineering resilient Playwright TypeScript frameworks with page object models (POM), robust locator strategies, and parallel execution across Chromium, Firefox, and WebKit.",
+      "Engineering resilient Playwright (TypeScript) frameworks with Page Object Models (POM), robust locator strategies, and parallel execution across Chromium, Firefox, and WebKit.",
     details: [
       "Headless cross-browser execution on GitHub Actions & GitLab CI",
-      "Hyperlocal stock locking & one-page checkout flow coverage",
-      "Auto-retry logic with trace and video recording on failures",
+      "80+ automated smoke checks executed per pull request (60% manual cut)",
+      "Multi-branch stock sync & bKash/Nagad one-page checkout coverage",
     ],
-    metrics: "Reduces regression cycle time by 60% per sprint release",
-    tools: ["Playwright", "TypeScript", "Selenium", "Docker"],
+    metrics: "80%+ automated coverage across 120+ flows (14h to 3.5h runtime cut)",
+    tools: ["Playwright", "TypeScript", "GitHub Actions", "GitLab CI"],
   },
   {
     id: "performance",
@@ -67,14 +67,14 @@ const stages: MethodologyStage[] = [
     badge: "Scalability Assurance",
     icon: Flame,
     summary:
-      "Simulating thousands of concurrent virtual shoppers in Apache JMeter to identify server bottlenecks, database connection pool saturation, and API latency spikes.",
+      "Simulating 15,000+ concurrent virtual users in Apache JMeter at 10,000+ RPM to benchmark response latency and isolate microservices bottlenecks under national sales traffic.",
     details: [
-      "Thread group scaling up to 5,000 concurrent virtual users",
-      "p95 and p99 response time profiling across critical APIs",
-      "Server resource telemetry under extreme retail flash sales",
+      "Thread group scaling to 15,000+ concurrent virtual users (10,000+ RPM)",
+      "p95 response latency benchmarked under 1.8 seconds during peak shopping",
+      "Server resource telemetry isolating 8 critical API latency bottlenecks",
     ],
-    metrics: "Maintains p95 latency under 200ms at 5X traffic surges",
-    tools: ["Apache JMeter", "Postman / Newman", "K6", "AWS CloudWatch"],
+    metrics: "15,000+ VUs stress-tested · p95 < 1.8s · 8 bottlenecks eliminated",
+    tools: ["Apache JMeter", "Postman / Newman", "K6", "AWS Telemetry"],
   },
   {
     id: "quality-gate",
@@ -83,14 +83,14 @@ const stages: MethodologyStage[] = [
     badge: "Zero-Defect Sign-off",
     icon: ShieldCheck,
     summary:
-      "Owning end-to-end quality governance: triaging defects with AI-assisted GitHub Copilot workflows, coordinating UAT sign-offs, and ensuring zero-downtime production launches.",
+      "Owning end-to-end quality governance: triaging defects with AI-assisted GitHub Copilot workflows (35% faster turnaround), leading enterprise UAT demos, and securing 100% on-time release sign-offs.",
     details: [
-      "AI-assisted issue triaging with GitHub Copilot Agent for rapid fixes",
-      "Structured client UAT runs with verified test execution reports",
-      "Post-release smoke tests and live telemetry health monitoring",
+      "AI-assisted triage with GitHub Copilot Agent auto-generating bug scripts (35% faster)",
+      "Enterprise UAT sign-offs with business analysts across 40+ Agile sprints",
+      "Post-release smoke verification maintaining zero critical production outages",
     ],
-    metrics: "Achieved 99.9% production release reliability across 1M+ users",
-    tools: ["GitHub Copilot", "Allure Reports", "Azure Boards", "Slack Hooks"],
+    metrics: "99.4% platform uptime across 15+ major releases · 100% on-time sign-offs",
+    tools: ["GitHub Copilot", "GitHub Actions", "GitLab CI", "Jira Software"],
   },
 ];
 

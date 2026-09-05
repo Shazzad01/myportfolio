@@ -117,9 +117,9 @@ export default function HeroIllustration() {
         {/* Footer Metrics */}
         <div className="mt-5 pt-3 border-t border-[hsl(var(--card-border))] flex items-center justify-between text-[11px] text-[hsl(var(--muted-foreground))] font-sans font-medium">
           <span className="flex items-center gap-1">
-            <Server size={12} className="text-[hsl(var(--accent))]" /> Zero Production Downtime
+            <Server size={12} className="text-[hsl(var(--accent))]" /> Zero Critical Outages
           </span>
-          <span className="text-emerald-400 font-semibold">99.9% Quality Score</span>
+          <span className="text-emerald-400 font-semibold">99.4% Platform Uptime</span>
         </div>
       </div>
     </div>

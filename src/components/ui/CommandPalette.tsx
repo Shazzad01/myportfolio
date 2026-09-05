@@ -106,7 +106,7 @@ export default function CommandPalette() {
     },
     {
       id: "nav-projects",
-      label: "Featured Projects (Shwapno, Paragon)",
+      label: "Featured Projects (Shwopno, Paragon)",
       category: "Navigation",
       icon: FolderGit2,
       action: () => navigateTo("#projects"),

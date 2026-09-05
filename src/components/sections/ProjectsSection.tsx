@@ -60,67 +60,67 @@ interface Project {
 
 const projects: Project[] = [
   {
-    id: "shwapno",
-    title: "Shwapno.com",
-    subtitle: "shwapno.com — Retail Supermarket & Hyperlocal E-Commerce Ecosystem (ACI Logistics)",
+    id: "shwopno",
+    title: "Shwopno.com",
+    subtitle: "shwopno.com — Enterprise E-Commerce Platform (ACI Logistics)",
     period: "Apr 2024 – Present",
-    platforms: ["Storefront Web", "Flutter Mobile App", "SAP S/4HANA ERP", "Order & Delivery System"],
-    tags: ["Playwright", "GitHub Actions", "JMeter", "nexCommerce", "Algolia Search", "CI/CD"],
+    platforms: ["Storefront Web", "Android App", "iOS App", "Order & Delivery System"],
+    tags: ["Playwright", "GitHub Actions", "Apache JMeter", "TypeScript", "bKash / Nagad", "CI/CD"],
     brandIcons: [PlaywrightIcon, JMeterIcon, GitHubActionsIcon],
     problem:
-      "Legacy SaaS platform struggled to handle massive national retail traffic and lacked real-time hyperlocal inventory visibility across nationwide stores, leading to checkout drop-offs and operational bottlenecks.",
+      "Legacy retail infrastructure struggled with high-concurrency traffic spikes during national shopping festivals and lacked real-time multi-branch inventory synchronization, causing checkout errors.",
     approach:
-      "Engineered an automated Playwright (TypeScript) E2E test framework covering complex SAP S/4HANA inventory sync, Algolia search flows, and one-page checkout across Web and Mobile. Integrated automated regression runs into GitHub Actions CI/CD and executed JMeter high-concurrency load testing.",
+      "Architected a modular Playwright (TypeScript) test automation framework with Page Object Model (POM) and executed Apache JMeter high-concurrency load testing (10,000+ RPM). Integrated automated regression suites into GitHub Actions CI/CD.",
     result:
-      "Supported a 5X active user expansion (100k to 500k active users) with zero downtime during peak retail sales campaigns, cutting release regression testing duration by over 60%.",
+      "Maintained 99.4% platform uptime with zero critical production outages across 15+ major releases, supporting 500,000+ monthly active customers and cutting regression runtime from 14h to 3.5h (75% reduction).",
     impactComparison: {
-      before: "45 min manual release regression · Frequent checkout drop-offs during retail campaigns",
-      after: "3.1 min automated CI/CD suite · 500,000 active users sustained with zero downtime",
+      before: "14 hours manual regression · Checkout bottlenecks during flash sales",
+      after: "3.5 hours automated suite (75% cut) · 500,000+ active customers with 99.4% uptime",
     },
     architecture: [
-      { step: "1. Storefront & App", detail: "Next.js Web + Flutter Mobile App UIs" },
-      { step: "2. Playwright Grid", detail: "4 Parallel Workers in GitHub Actions CI/CD" },
-      { step: "3. Enterprise Sync", detail: "SAP S/4HANA Real-Time Stock & Algolia Search" },
-      { step: "4. Release Gate", detail: "Zero-Downtime bKash One-Page Checkout" },
+      { step: "1. Storefront & Apps", detail: "Next.js Web + Android & iOS Mobile Apps" },
+      { step: "2. Playwright Grid", detail: "Parallel Workers in GitHub Actions CI/CD" },
+      { step: "3. Real-Time Sync", detail: "Multi-branch Inventory Sync & Algolia Search" },
+      { step: "4. Release Gate", detail: "Zero-Downtime bKash/Nagad Checkout Authorization" },
     ],
     testLogSample: [
       "▶ npx playwright test --project=chromium",
-      "✓ [Chromium] › cart.spec.ts › Add Item & Hyperlocal Inventory Sync (180ms)",
-      "✓ [Chromium] › checkout.spec.ts › bKash Payment & SAP Order Push (410ms)",
-      "✓ [Chromium] › search.spec.ts › Algolia Voice & Category Filter (210ms)",
-      "🎉 54 passed in 3.1s across 4 workers (Zero flakiness)",
+      "✓ [Chromium] › cart.spec.ts › Add Item & Multi-Branch Stock Sync (180ms)",
+      "✓ [Chromium] › checkout.spec.ts › bKash Payment & Order Confirmation (410ms)",
+      "✓ [Chromium] › search.spec.ts › High-Concurrency Product Filtering (210ms)",
+      "🎉 80+ smoke checks passed in 3.1s across parallel workers (Zero flakiness)",
     ],
   },
   {
     id: "paragon",
     title: "Paragon Food",
-    subtitle: "paragonfood.com.bd — Hyperlocal Food Retail & Grocery eCommerce Ecosystem",
+    subtitle: "paragonfood.com.bd — Food & FMCG E-Commerce Platform",
     period: "Jul 2025 – Mar 2026",
-    platforms: ["Web App", "Storefront Mobile App", "Delivery Management App", "Multi-Warehouse Portal"],
-    tags: ["Playwright", "GitLab CI/CD", "Cross-Browser", "API Testing", "AWS Scaling QA"],
-    brandIcons: [PlaywrightIcon, GitLabIcon],
+    platforms: ["Web App", "Storefront Mobile App", "Delivery Logistics", "Multi-Warehouse Portal"],
+    tags: ["Playwright", "GitLab CI/CD", "Postman / Newman", "Cross-Browser", "API Testing"],
+    brandIcons: [PlaywrightIcon, GitLabIcon, PostmanIcon],
     problem:
-      "Paragon Agro suffered from fragmented regional sites due to lack of multi-warehouse inventory support in legacy architecture, and their legacy server crashed under traffic surges beyond 120 active users.",
+      "Manual validation of dynamic discount codes, multi-warehouse stock allocations, and express delivery slots took 6 hours per release, creating release bottlenecks and potential checkout discrepancies.",
     approach:
-      "Engineered automated E2E test suites covering multi-warehouse inventory selection, slot-based delivery scheduling, and one-page checkout across Web, Android, and iOS. Integrated automated Playwright regression runs into GitLab CI/CD with AWS Lambda/EventBridge scaling verification.",
+      "Engineered end-to-end Playwright automation test suites and comprehensive Postman/Newman API validation integrated into GitLab CI/CD pipelines, validating cross-platform workflows across Web, Android, iOS, Chrome, and Firefox.",
     result:
-      "Supported a 4X active user surge within 1 week of launch with zero server downtime during peak sales, establishing a 99.5% test pass rate across cross-browser grid and delivery app workflows.",
+      "Accelerated release validation cycles from 6 hours to 90 minutes (75% faster), maintaining a 99% bug-free release standard and zero downtime across major delivery surges.",
     impactComparison: {
-      before: "Server crashed beyond 120 concurrent users · Regional stock sync drift across warehouses",
-      after: "4X active user surge handled smoothly · 99.5% test pass rate across cross-browser grid",
+      before: "6-hour manual release verification · Disjointed API & warehouse slot validation",
+      after: "90-minute automated GitLab CI pipeline (75% faster) · 99% bug-free release standard",
     },
     architecture: [
-      { step: "1. Multi-Warehouse Portal", detail: "Web Storefront + Driver Delivery Fleet App" },
+      { step: "1. Storefront & Fleet", detail: "Web Storefront + Driver Delivery Logistics App" },
       { step: "2. GitLab Runner CI", detail: "Dockerized Containerized Cross-Browser Grid" },
-      { step: "3. Cloud API Verification", detail: "AWS Lambda & EventBridge Scaling Automation" },
-      { step: "4. UAT Sign-Off", detail: "Slot-based Dispatch & 99.5% Passing Threshold" },
+      { step: "3. API Verification", detail: "Postman / Newman Automated Contract Assertions" },
+      { step: "4. UAT Sign-Off", detail: "Slot-based Dispatch & 99% Bug-Free Standard" },
     ],
     testLogSample: [
       "▶ gitlab-runner exec docker test:e2e",
       "✓ [Firefox] › order_tracking.spec.ts › Slot Delivery & Live Status (220ms)",
       "✓ [WebKit] › payment.spec.ts › One-Page Checkout Authorization (380ms)",
       "✓ [Chromium] › warehouse.spec.ts › Multi-Warehouse Stock Allocation (190ms)",
-      "🎉 34 passed in 2.2s across cross-browser grid (100% assertions satisfied)",
+      "🎉 All contract & regression assertions passed in 90s (99% bug-free standard)",
     ],
   },
 ];
@@ -128,7 +128,7 @@ const projects: Project[] = [
 export default function ProjectsSection() {
   const shouldReduceMotion = useReducedMotion();
   const [activeTab, setActiveTab] = useState<Record<string, "overview" | "arch" | "logs">>({
-    shwapno: "overview",
+    shwopno: "overview",
     paragon: "overview",
   });
 
@@ -162,37 +162,37 @@ export default function ProjectsSection() {
           transition={{ duration: 0.6 }}
           className="grid lg:grid-cols-12 gap-6 mb-16 text-left"
         >
-          {/* Card 1: Fintech Core Banking E2E Framework */}
+          {/* Card 1: Enterprise E-Commerce Automation (Shwopno.com) */}
           <div className="lg:col-span-6 glass-card p-6 rounded-3xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.5)] transition-all flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between gap-3 mb-4">
                 <div className="flex items-center gap-2">
                   <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-[hsl(var(--primary)/0.15)] text-[hsl(var(--primary))] border border-[hsl(var(--primary)/0.3)]">
-                    E2E
+                    E2E Pipeline
                   </span>
                   <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-[hsl(var(--muted))] text-[hsl(var(--muted-foreground))]">
-                    Fintech &amp; Retail
+                    Shwopno.com
                   </span>
                 </div>
                 <div className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">
                   <PlaywrightIcon className="w-4 h-4" />
-                  <span>Playwright Suite</span>
+                  <span>Playwright POM</span>
                 </div>
               </div>
 
               <h3 className="font-heading font-bold text-2xl text-[hsl(var(--foreground))] mb-2">
-                Fintech Core Banking E2E Framework
+                Enterprise E-Commerce Automation
               </h3>
               <p className="text-xs sm:text-sm text-[hsl(var(--muted-foreground))] mb-4">
-                Automated multi-tenant test pipeline verifying real-time payment gateways, SAP S/4HANA sync, and escrow transactions.
+                Modular Playwright (TypeScript) test framework covering bKash/Nagad checkout, real-time inventory sync, and dynamic discounts.
               </p>
 
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex flex-wrap items-center gap-2.5 mb-4">
                 <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[hsl(var(--primary)/0.1)] text-[hsl(var(--primary))] border border-[hsl(var(--primary)/0.3)]">
-                  400+ Test Cases / 0 Flakiness
+                  80%+ Coverage (120+ Workflows)
                 </span>
                 <span className="text-xs font-mono text-emerald-400 flex items-center gap-1">
-                  <CheckCircle2 size={13} /> 100% Assertion Pass
+                  <CheckCircle2 size={13} /> 98.5% Defect Catch Rate
                 </span>
               </div>
             </div>
@@ -204,22 +204,22 @@ export default function ProjectsSection() {
                 <span className="text-emerald-400 font-bold">PASSED</span>
               </div>
               <p className="text-slate-400">
-                <span className="text-slate-500">[08:28:33.196]</span> › auth: session hydration &amp; bKash escrow verified <span className="text-emerald-400 font-bold">(124ms)</span>
+                <span className="text-slate-500">[08:28:33.196]</span> › auth: session hydration &amp; bKash gateway verified <span className="text-emerald-400 font-bold">(124ms)</span>
               </p>
               <p className="text-slate-400">
-                <span className="text-slate-500">[08:28:33.338]</span> › inventory: SAP S/4HANA stock lock confirmed <span className="text-emerald-400 font-bold">(190ms)</span>
+                <span className="text-slate-500">[08:28:33.338]</span> › inventory: multi-branch stock allocation confirmed <span className="text-emerald-400 font-bold">(190ms)</span>
               </p>
               <p className="text-slate-400">
-                <span className="text-slate-500">[08:28:33.353]</span> › checkout: zero-downtime payment authorization <span className="text-emerald-400 font-bold">(310ms)</span>
+                <span className="text-slate-500">[08:28:33.353]</span> › checkout: zero-downtime order authorization <span className="text-emerald-400 font-bold">(310ms)</span>
               </p>
             </div>
           </div>
 
-          {/* Card 2: API Stress & Performance Benchmark */}
+          {/* Card 2: Apache JMeter High-Concurrency Performance Lab */}
           <div className="lg:col-span-6 glass-card p-6 rounded-3xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--accent)/0.5)] transition-all flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between gap-3 mb-4">
-                <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-violet-500/15 text-violet-400 border border-violet-500/30">
+                <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-500/15 text-amber-400 border border-amber-500/30">
                   Performance Lab
                 </span>
                 <div className="flex items-center gap-2">
@@ -227,34 +227,34 @@ export default function ProjectsSection() {
                     <JMeterIcon className="w-4 h-4" />
                   </div>
                   <div className="p-1.5 rounded-lg bg-[hsl(var(--muted))] border border-[hsl(var(--card-border))]">
-                    <K6Icon className="w-4 h-4" />
+                    <PostmanIcon className="w-4 h-4" />
                   </div>
                   <div className="p-1.5 rounded-lg bg-[hsl(var(--muted))] border border-[hsl(var(--card-border))]">
-                    <PostmanIcon className="w-4 h-4" />
+                    <K6Icon className="w-4 h-4" />
                   </div>
                 </div>
               </div>
 
               <h3 className="font-heading font-bold text-2xl text-[hsl(var(--foreground))] mb-2">
-                API Stress &amp; Performance Benchmark
+                Apache JMeter Stress Lab
               </h3>
               <p className="text-xs sm:text-sm text-[hsl(var(--muted-foreground))] mb-4">
-                High-concurrency virtual user simulation benchmarking p95 latency thresholds under traffic spikes.
+                Simulating 15,000+ concurrent virtual users to benchmark response times and isolate API latency bottlenecks under peak shopping campaigns.
               </p>
 
               {/* Latency telemetry stats */}
               <div className="grid grid-cols-3 gap-2 mb-4">
                 <div className="p-2.5 rounded-xl bg-[hsl(var(--background)/0.7)] border border-[hsl(var(--card-border))]">
-                  <p className="text-[10px] text-[hsl(var(--muted-foreground))] uppercase font-mono">Response Avg</p>
-                  <p className="font-heading font-bold text-base sm:text-lg text-emerald-400">15.27 ms</p>
+                  <p className="text-[10px] text-[hsl(var(--muted-foreground))] uppercase font-mono">Max Concurrency</p>
+                  <p className="font-heading font-bold text-base sm:text-lg text-[#f59e0b]">15,000+ VUs</p>
                 </div>
                 <div className="p-2.5 rounded-xl bg-[hsl(var(--background)/0.7)] border border-[hsl(var(--card-border))]">
                   <p className="text-[10px] text-[hsl(var(--muted-foreground))] uppercase font-mono">Throughput</p>
-                  <p className="font-heading font-bold text-base sm:text-lg text-[hsl(var(--primary))]">1,240 rps</p>
+                  <p className="font-heading font-bold text-base sm:text-lg text-emerald-400">10,000+ RPM</p>
                 </div>
                 <div className="p-2.5 rounded-xl bg-[hsl(var(--background)/0.7)] border border-[hsl(var(--card-border))]">
-                  <p className="text-[10px] text-[hsl(var(--muted-foreground))] uppercase font-mono">Error Rate</p>
-                  <p className="font-heading font-bold text-base sm:text-lg text-emerald-400">0.00%</p>
+                  <p className="text-[10px] text-[hsl(var(--muted-foreground))] uppercase font-mono">p95 Latency</p>
+                  <p className="font-heading font-bold text-base sm:text-lg text-emerald-400">&lt; 1.8s</p>
                 </div>
               </div>
             </div>
@@ -285,28 +285,28 @@ export default function ProjectsSection() {
                 />
               </svg>
               <div className="absolute top-2 right-3 text-[10px] font-mono text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">
-                ● Live Latency Trend
+                ● 8 Bottlenecks Isolated
               </div>
             </div>
           </div>
 
-          {/* Card 3: Mobile Automation Test Matrix */}
+          {/* Card 3: Mobile & Cross-Browser Validation Matrix */}
           <div className="lg:col-span-6 glass-card p-6 rounded-3xl border border-[hsl(var(--card-border))] hover:border-emerald-500/40 transition-all flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between gap-3 mb-4">
                 <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
-                  Mobile Matrix
+                  Cross-Platform Grid
                 </span>
                 <span className="text-xs font-mono text-[hsl(var(--muted-foreground))]">
-                  Cross-Platform Grid
+                  12+ Device &amp; Browser Configs
                 </span>
               </div>
 
               <h3 className="font-heading font-bold text-2xl text-[hsl(var(--foreground))] mb-2">
-                Mobile Automation Test Matrix
+                Mobile &amp; Cross-Browser Matrix
               </h3>
               <p className="text-xs sm:text-sm text-[hsl(var(--muted-foreground))] mb-4">
-                Appium automated device runs validating gestures, offline caching, and biometric sign-in across Android &amp; iOS.
+                Rigorous testing across Android, iOS, Chrome, and Firefox validating responsive UI rendering, gesture interactions, and payment flows.
               </p>
 
               {/* Device Test Rows */}
@@ -317,12 +317,12 @@ export default function ProjectsSection() {
                       <Smartphone size={18} />
                     </div>
                     <div>
-                      <p className="text-xs font-bold text-[hsl(var(--foreground))]">Google Pixel 6 · Android 14</p>
-                      <p className="text-[10px] text-[hsl(var(--muted-foreground))]">Appium UIAutomator2 · 84 flows</p>
+                      <p className="text-xs font-bold text-[hsl(var(--foreground))]">Android Storefront &amp; Logistics Apps</p>
+                      <p className="text-[10px] text-[hsl(var(--muted-foreground))]">Appium + Playwright Mobile Chrome Grid</p>
                     </div>
                   </div>
                   <span className="px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-                    ✓ 100% Passed
+                    ✓ Verified
                   </span>
                 </div>
 
@@ -332,20 +332,20 @@ export default function ProjectsSection() {
                       <Smartphone size={18} />
                     </div>
                     <div>
-                      <p className="text-xs font-bold text-[hsl(var(--foreground))]">Apple iPhone 13 Pro · iOS 17</p>
-                      <p className="text-[10px] text-[hsl(var(--muted-foreground))]">Appium XCUITest · 84 flows</p>
+                      <p className="text-xs font-bold text-[hsl(var(--foreground))]">iOS Storefront &amp; Delivery Apps</p>
+                      <p className="text-[10px] text-[hsl(var(--muted-foreground))]">Appium XCUITest + Mobile Safari</p>
                     </div>
                   </div>
                   <span className="px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-                    ✓ 100% Passed
+                    ✓ Verified
                   </span>
                 </div>
               </div>
             </div>
 
             <div className="flex items-center justify-between text-[11px] text-[hsl(var(--muted-foreground))] pt-2 border-t border-[hsl(var(--card-border))]">
-              <span>Framework: Appium + TypeScript</span>
-              <span className="text-emerald-400 font-bold">Parallel Device Cloud</span>
+              <span>Framework: Appium + Playwright</span>
+              <span className="text-emerald-400 font-bold">12+ Environments</span>
             </div>
           </div>
 

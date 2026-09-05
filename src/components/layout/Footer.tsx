@@ -38,7 +38,7 @@ export default function Footer() {
       <div className="container-max px-4 sm:px-6 lg:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
         <div className="flex flex-col items-center sm:items-start gap-1">
           <span className="font-heading font-bold text-lg text-white">
-            Muhammad Shazzad Mia <span className="text-[#f59e0b]">// SQA Architect</span>
+            Muhammad Shazzad Mia <span className="text-[#f59e0b]">// SQA Engineer II</span>
           </span>
           <p className="text-xs text-slate-400">
             Brain Station 23 · Dhaka, Bangladesh

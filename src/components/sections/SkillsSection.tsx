@@ -38,7 +38,7 @@ const skillItems = [
   { name: "Appium Mobile", cat: "automation", level: "88%", icon: AppiumIcon, tag: "iOS & Android" },
   { name: "Postman & Newman", cat: "automation", level: "95%", icon: PostmanIcon, tag: "API Verification" },
   
-  { name: "Apache JMeter", cat: "performance", level: "94%", icon: JMeterIcon, tag: "5k VUs Engine" },
+  { name: "Apache JMeter", cat: "performance", level: "94%", icon: JMeterIcon, tag: "15k VUs Engine" },
   { name: "K6 Load Engine", cat: "performance", level: "85%", icon: K6Icon, tag: "Cloud Stress" },
 
   { name: "GitHub Actions", cat: "cicd", level: "92%", icon: GitHubActionsIcon, tag: "Matrix CI/CD" },
@@ -167,7 +167,7 @@ export default function SkillsSection() {
 
               <div>
                 <div className="flex justify-between text-xs font-mono mb-1">
-                  <span className="text-white">Load & Stress (JMeter 5k VUs)</span>
+                  <span className="text-white">Load & Stress (JMeter 15k VUs)</span>
                   <span className="text-[#f59e0b] font-bold">92%</span>
                 </div>
                 <div className="w-full h-2 rounded-full bg-white/5 overflow-hidden">
@@ -197,8 +197,8 @@ export default function SkillsSection() {
             </div>
 
             <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-400">
-              <span>ISTQB Certified Tester</span>
-              <span className="text-emerald-400 font-bold">100% Quality Focus</span>
+              <span>Brain Station 23 SQA II</span>
+              <span className="text-emerald-400 font-bold">100% Release Sign-off</span>
             </div>
           </div>
 

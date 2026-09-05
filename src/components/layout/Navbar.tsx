@@ -49,7 +49,7 @@ export default function Navbar() {
               Muhammad Shazzad Mia
             </span>
             <span className="font-mono text-[10px] text-[#f59e0b] tracking-wider mt-0.5 uppercase">
-              SQA Architect
+              SQA Engineer II
             </span>
           </div>
         </Link>
@@ -78,7 +78,7 @@ export default function Navbar() {
 
           {/* Quick Resume CTA */}
           <a
-            href="/public/resume.pdf"
+            href="/resume.pdf"
             download
             className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full btn-gold-glow text-xs"
           >
@@ -144,7 +144,7 @@ export default function Navbar() {
             </ul>
             <div className="mt-4 pt-4 border-t border-white/10 flex justify-between items-center">
               <a
-                href="/public/resume.pdf"
+                href="/resume.pdf"
                 download
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-xl btn-gold-glow text-xs"
               >

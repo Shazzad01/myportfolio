@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { Download, Sparkles, Terminal as TerminalIcon, GitBranch, ArrowRight, Play } from "lucide-react";
+import { Download, Sparkles, ArrowRight, GitBranch } from "lucide-react";
 import TerminalWidget from "@/components/ui/TerminalWidget";
 
 export default function HeroSection() {
@@ -32,7 +31,7 @@ export default function HeroSection() {
         {/* Main Cockpit Grid */}
         <div className="grid lg:grid-cols-12 gap-10 items-center">
           
-          {/* Left Column — 0-Fluff Headline & Telemetry */}
+          {/* Left Column — 100% Ground Truth Telemetry */}
           <div className="lg:col-span-6 text-left">
             {/* Status Pill */}
             <motion.div
@@ -52,43 +51,43 @@ export default function HeroSection() {
               Architecting <span className="text-shimmer">Resilient Automation</span> & Quality Systems
             </motion.h1>
 
-            {/* 1-Line Pure Stack Summary */}
+            {/* 1-Line Real Stack Summary */}
             <motion.p
               {...anim(0.2)}
               className="text-sm sm:text-base text-slate-400 font-mono leading-relaxed mb-6"
             >
-              Playwright · Distributed JMeter Load Engine · Containerized CI/CD Gates
+              Playwright (TypeScript) · Apache JMeter (15k VUs) · CI/CD Gates @ Brain Station 23
             </motion.p>
 
-            {/* 3 Beveled Metric Bubbles */}
+            {/* 3 Real Verified Metric Bubbles from Master Profile */}
             <motion.div
               {...anim(0.25)}
               className="grid grid-cols-3 gap-3 my-6"
             >
               <div className="glass-card rounded-xl p-3 text-center border-t-2 border-t-[#f59e0b]">
                 <div className="font-heading text-2xl sm:text-3xl font-black text-white">
-                  99.8<span className="text-xs text-[#f59e0b] ml-0.5">%</span>
+                  99.4<span className="text-xs text-[#f59e0b] ml-0.5">%</span>
                 </div>
                 <div className="font-mono text-[10px] text-slate-400 uppercase tracking-wider mt-1">
-                  Pass Rate
+                  Platform Uptime
                 </div>
               </div>
 
               <div className="glass-card rounded-xl p-3 text-center border-t-2 border-t-[#f59e0b]">
                 <div className="font-heading text-2xl sm:text-3xl font-black text-white">
-                  300<span className="text-xs text-[#f59e0b] ml-0.5">+</span>
+                  15k<span className="text-xs text-[#f59e0b] ml-0.5">+</span>
                 </div>
                 <div className="font-mono text-[10px] text-slate-400 uppercase tracking-wider mt-1">
-                  Test Suites
+                  VUs Stress Tested
                 </div>
               </div>
 
               <div className="glass-card rounded-xl p-3 text-center border-t-2 border-t-[#f59e0b]">
                 <div className="font-heading text-2xl sm:text-3xl font-black text-white">
-                  4<span className="text-xs text-[#f59e0b] ml-0.5">x</span>
+                  75<span className="text-xs text-[#f59e0b] ml-0.5">%</span>
                 </div>
                 <div className="font-mono text-[10px] text-slate-400 uppercase tracking-wider mt-1">
-                  Deploy Speed
+                  Runtime Cut (14h→3.5h)
                 </div>
               </div>
             </motion.div>
@@ -107,7 +106,7 @@ export default function HeroSection() {
               </a>
 
               <a
-                href="/public/resume.pdf"
+                href="/resume.pdf"
                 download
                 className="btn-glass-rich px-5 py-3 rounded-xl text-sm font-semibold flex items-center gap-2"
               >
@@ -146,12 +145,12 @@ export default function HeroSection() {
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
             <div className="bg-[#07070a]/90 border border-white/10 rounded-xl p-3 flex items-center gap-2.5">
               <span className="w-2.5 h-2.5 rounded-full bg-[#f59e0b]" />
-              <div className="font-mono text-xs font-semibold text-white">1. Git Push</div>
+              <div className="font-mono text-xs font-semibold text-white">1. Git Push (PR)</div>
             </div>
 
             <div className="bg-[#07070a]/90 border border-white/10 rounded-xl p-3 flex items-center gap-2.5">
               <span className="w-2.5 h-2.5 rounded-full bg-[#f59e0b]" />
-              <div className="font-mono text-xs font-semibold text-white">2. Lint & Typings</div>
+              <div className="font-mono text-xs font-semibold text-white">2. 80+ Smoke Checks</div>
             </div>
 
             <div className="bg-[#07070a]/90 border border-[#10b981]/40 shadow-[0_0_15px_rgba(16,185,129,0.15)] rounded-xl p-3 flex items-center gap-2.5">
@@ -161,7 +160,7 @@ export default function HeroSection() {
 
             <div className="bg-[#07070a]/90 border border-white/10 rounded-xl p-3 flex items-center gap-2.5">
               <span className="w-2.5 h-2.5 rounded-full bg-[#f59e0b]" />
-              <div className="font-mono text-xs font-semibold text-white">4. JMeter 1.2k RPS</div>
+              <div className="font-mono text-xs font-semibold text-white">4. JMeter 15k Stress</div>
             </div>
 
             <div className="bg-[#07070a]/90 border border-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.25)] rounded-xl p-3 flex items-center gap-2.5 col-span-2 sm:col-span-1">

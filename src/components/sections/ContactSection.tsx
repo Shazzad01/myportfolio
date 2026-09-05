@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
-import { Mail, MapPin, Send, CheckCircle2, Sparkles, AlertCircle, Copy, Check } from "lucide-react";
+import { Mail, MapPin, Send, CheckCircle2, Sparkles, AlertCircle, Copy, Check, Phone } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -102,6 +102,13 @@ export default function ContactSection() {
       value: "shazzadm065@gmail.com",
       href: "mailto:shazzadm065@gmail.com",
       isEmail: true,
+    },
+    {
+      icon: Phone,
+      label: "Phone / WhatsApp",
+      value: "+8801621864789",
+      href: "tel:+8801621864789",
+      isEmail: false,
     },
     {
       icon: LinkedinIcon,

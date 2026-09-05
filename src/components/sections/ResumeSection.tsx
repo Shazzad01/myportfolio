@@ -29,14 +29,14 @@ export default function ResumeSection() {
               Download Complete Resume
             </h2>
             <p className="text-sm sm:text-base text-slate-400 leading-relaxed mb-8 max-w-xl mx-auto">
-              Get the PDF copy detailing SQA engineering at Brain Station 23, automated test suites, performance metrics, and ISTQB certification.
+              Get the PDF copy detailing SQA engineering at Brain Station 23, automated test suites, JMeter performance benchmarks, and B.Sc. in CSE.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               <motion.a
                 whileHover={shouldReduceMotion ? {} : { scale: 1.03, y: -2 }}
                 whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
-                href="/public/resume.pdf"
+                href="/resume.pdf"
                 download
                 id="resume-download-btn"
                 className="btn-gold-glow inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl font-bold text-sm"
@@ -47,7 +47,7 @@ export default function ResumeSection() {
               <motion.a
                 whileHover={shouldReduceMotion ? {} : { scale: 1.03, y: -2 }}
                 whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
-                href="/public/resume.pdf"
+                href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-glass-rich inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl text-sm font-semibold"
