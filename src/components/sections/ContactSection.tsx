@@ -264,7 +264,7 @@ export default function ContactSection() {
                         onClick={() => handleIntentClick(item)}
                         className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${
                           selectedIntent === item.label
-                            ? "bg-[hsl(var(--primary))] text-white shadow-sm glow-purple"
+                            ? "bg-[#f59e0b] text-[#07070a] font-bold shadow-sm shadow-[0_0_12px_rgba(245,158,11,0.4)]"
                             : "glass border border-[hsl(var(--card-border))] text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]"
                         }`}
                       >
@@ -328,13 +328,13 @@ export default function ContactSection() {
                   )}
                 </div>
 
-                <motion.button
+                  <motion.button
                   whileHover={shouldReduceMotion || status === "sending" ? {} : { scale: 1.02, y: -1 }}
                   whileTap={shouldReduceMotion || status === "sending" ? {} : { scale: 0.98 }}
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
                   type="submit"
                   disabled={status === "sending"}
-                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] text-white font-bold text-sm shadow-lg glow-purple disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl btn-gold-glow font-bold text-sm disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                   <Send size={16} />
                   {status === "sending" ? "Sending Message..." : "Send Message"}

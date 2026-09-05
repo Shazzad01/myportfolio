@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useState } from "react";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Cpu, Target } from "lucide-react";
 import {
   PlaywrightIcon,
   SeleniumIcon,
@@ -25,132 +25,185 @@ import {
 } from "@/components/ui/SvgIcons";
 
 const categories = [
-  { id: "all", label: "All Skills" },
-  { id: "automation", label: "Automation" },
-  { id: "performance", label: "Performance" },
-  { id: "manual", label: "Manual QA" },
-  { id: "cicd", label: "CI/CD & DevOps" },
-  { id: "web", label: "Languages & Web" },
+  { id: "all", label: "All Arsenal" },
+  { id: "automation", label: "E2E & Mobile" },
+  { id: "performance", label: "Load & Stress" },
+  { id: "cicd", label: "CI/CD & Cloud" },
+  { id: "languages", label: "Languages" },
 ];
 
 const skillItems = [
-  { name: "Playwright", cat: "automation", level: "Expert", icon: PlaywrightIcon, desc: "End-to-end web testing & CI/CD pipeline integration" },
-  { name: "Selenium WebDriver", cat: "automation", level: "Advanced", icon: SeleniumIcon, desc: "Cross-browser regression suites & Java/TS scripts" },
-  { name: "Appium Mobile", cat: "automation", level: "Advanced", icon: AppiumIcon, desc: "Mobile automation for Android & iOS native apps" },
-  { name: "Postman & Newman", cat: "automation", level: "Expert", icon: PostmanIcon, desc: "API collection runs, assertions & automated CLI runs" },
+  { name: "Playwright", cat: "automation", level: "98%", icon: PlaywrightIcon, tag: "E2E Automation" },
+  { name: "Selenium", cat: "automation", level: "92%", icon: SeleniumIcon, tag: "Cross-Browser" },
+  { name: "Appium Mobile", cat: "automation", level: "88%", icon: AppiumIcon, tag: "iOS & Android" },
+  { name: "Postman & Newman", cat: "automation", level: "95%", icon: PostmanIcon, tag: "API Verification" },
   
-  { name: "Apache JMeter", cat: "performance", level: "Expert", icon: JMeterIcon, desc: "Concurrent load testing, thread groups, latency reports" },
-  { name: "K6 Load Engine", cat: "performance", level: "Intermediate", icon: K6Icon, desc: "Developer-centric load testing scripts in JS" },
+  { name: "Apache JMeter", cat: "performance", level: "94%", icon: JMeterIcon, tag: "5k VUs Engine" },
+  { name: "K6 Load Engine", cat: "performance", level: "85%", icon: K6Icon, tag: "Cloud Stress" },
 
-  { name: "Test Case & Plan Design", cat: "manual", level: "Expert", icon: JiraIcon, desc: "Requirement traceability matrices & functional specs" },
-  { name: "UAT & Client Escrow", cat: "manual", level: "Expert", icon: TrelloIcon, desc: "Client-facing acceptance runs & UAT sign-offs" },
-  { name: "Azure Defect Triaging", cat: "manual", level: "Advanced", icon: AzureBoardsIcon, desc: "Jira/Trello bug triaging & regression packs" },
+  { name: "GitHub Actions", cat: "cicd", level: "92%", icon: GitHubActionsIcon, tag: "Matrix CI/CD" },
+  { name: "GitLab CI/CD", cat: "cicd", level: "88%", icon: GitLabIcon, tag: "Runner Pipeline" },
+  { name: "Docker Grid", cat: "cicd", level: "86%", icon: DockerIcon, tag: "Containerization" },
 
-  { name: "GitHub Actions", cat: "cicd", level: "Expert", icon: GitHubActionsIcon, desc: "Automated test workflows triggered on Pull Requests" },
-  { name: "GitLab CI/CD", cat: "cicd", level: "Advanced", icon: GitLabIcon, desc: "Pipeline YAML configuration & artifact reporting" },
-  { name: "Docker Grid", cat: "cicd", level: "Intermediate", icon: DockerIcon, desc: "Containerized Selenium grid & test execution" },
-
-  { name: "TypeScript", cat: "web", level: "Expert", icon: TypeScriptIcon, desc: "ES6+, async/await, custom automation utilities" },
-  { name: "JavaScript", cat: "web", level: "Expert", icon: JavaScriptIcon, desc: "Modern ES6+ frontend and Node.js testing" },
-  { name: "Java", cat: "web", level: "Advanced", icon: JavaIcon, desc: "Object-oriented test framework architectures" },
-  { name: "HTML5 & CSS3", cat: "web", level: "Advanced", icon: Html5Icon, desc: "DOM element locators, XPath, CSS selectors" },
+  { name: "TypeScript", cat: "languages", level: "95%", icon: TypeScriptIcon, tag: "Core Automation" },
+  { name: "Python", cat: "languages", level: "88%", icon: PythonIcon, tag: "PyTest Scripts" },
+  { name: "JavaScript", cat: "languages", level: "94%", icon: JavaScriptIcon, tag: "Node Runtime" },
+  { name: "Java", cat: "languages", level: "85%", icon: JavaIcon, tag: "OOP Test Frameworks" },
 ];
 
 export default function SkillsSection() {
   const [activeFilter, setActiveFilter] = useState("all");
   const shouldReduceMotion = useReducedMotion();
 
-  const filteredSkills =
+  const filtered =
     activeFilter === "all"
       ? skillItems
       : skillItems.filter((item) => item.cat === activeFilter);
 
   return (
-    <section id="skills" className="section-padding bg-[hsl(var(--muted)/0.3)]">
+    <section id="skills" className="section-padding relative">
       <div className="container-max">
+        
         {/* Section Header */}
-        <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
-        >
-          <p className="text-xs font-bold text-[hsl(var(--primary))] tracking-widest uppercase mb-3 flex items-center justify-center gap-2">
-            <Sparkles size={14} className="text-[hsl(var(--accent))]" />
-            Core Toolkit & Mastery
-          </p>
-          <h2 className="font-heading text-4xl sm:text-5xl font-bold">Skills & Frameworks</h2>
-        </motion.div>
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-white/10">
+          <div>
+            <div className="font-mono text-xs font-bold text-[#f59e0b] uppercase tracking-widest flex items-center gap-2 mb-2">
+              <Cpu size={13} />
+              Production Arsenal // Official Brand SVGs
+            </div>
+            <h2 className="font-heading text-3xl sm:text-4xl font-black text-white tracking-tight">
+              Technical <span className="text-gradient">Arsenal & Radar</span>
+            </h2>
+          </div>
 
-        {/* Category Filter Bar */}
-        <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="flex flex-wrap items-center justify-center gap-2.5 mb-12"
-        >
-          {categories.map((cat) => {
-            const isActive = activeFilter === cat.id;
-            return (
+          {/* Category Filter Pills */}
+          <div className="flex flex-wrap gap-1.5 mt-4 sm:mt-0 bg-black/40 p-1.5 rounded-full border border-white/10">
+            {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveFilter(cat.id)}
-                className={`px-5 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-300 ${
-                  isActive
-                    ? "bg-[hsl(var(--primary))] text-white shadow-lg glow-purple scale-105"
-                    : "glass text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] hover:border-[hsl(var(--primary)/0.4)]"
+                className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-medium transition-all ${
+                  activeFilter === cat.id
+                    ? "bg-[#f59e0b] text-[#07070a] font-bold shadow-[0_0_15px_rgba(245,158,11,0.4)]"
+                    : "text-slate-400 hover:text-white hover:bg-white/5"
                 }`}
               >
                 {cat.label}
               </button>
-            );
-          })}
-        </motion.div>
+            ))}
+          </div>
+        </div>
 
-        {/* Skills Cards Grid */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeFilter}
-            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={shouldReduceMotion ? undefined : { opacity: 0, y: -12 }}
-            transition={{ duration: 0.22, ease: "easeOut" }}
-            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 text-left"
-          >
-            {filteredSkills.map((skill, i) => {
-              const BrandIcon = skill.icon;
-              return (
-                <motion.div
-                  key={skill.name}
-                  initial={shouldReduceMotion ? undefined : { opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.18, delay: i * 0.03 }}
-                  whileHover={shouldReduceMotion ? {} : { y: -4, scale: 1.01 }}
-                  className="glass-card p-5 rounded-2xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.4)] flex flex-col justify-between transition-colors duration-200"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="w-10 h-10 rounded-xl bg-[hsl(var(--muted)/0.7)] p-2 flex items-center justify-center border border-[hsl(var(--card-border))] shadow-sm">
-                        <BrandIcon className="w-6 h-6" />
+        {/* Arsenal & Competency Radar Grid */}
+        <div className="grid lg:grid-cols-12 gap-8 items-start">
+          
+          {/* Brand Grid (8 Cols) */}
+          <div className="lg:col-span-8">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeFilter}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25 }}
+                className="grid grid-cols-2 sm:grid-cols-3 gap-3.5"
+              >
+                {filtered.map((skill) => {
+                  const SvgIcon = skill.icon;
+                  return (
+                    <motion.div
+                      key={skill.name}
+                      whileHover={{ scale: 1.02, y: -2 }}
+                      className="glass-card rounded-xl p-4 flex items-center gap-3.5 border border-white/10 hover:border-[#f59e0b]/40 transition-all group"
+                    >
+                      <div className="w-10 h-10 rounded-lg bg-black/50 p-2 border border-white/10 flex items-center justify-center shrink-0 group-hover:border-[#f59e0b]/40 group-hover:shadow-[0_0_15px_rgba(245,158,11,0.2)] transition-all">
+                        <SvgIcon className="w-full h-full" />
                       </div>
-                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[hsl(var(--primary)/0.15)] text-[hsl(var(--primary))]">
+                      <div className="min-w-0 flex-1">
+                        <div className="font-heading font-bold text-sm text-white truncate">
+                          {skill.name}
+                        </div>
+                        <div className="font-mono text-[10px] text-slate-400 truncate">
+                          {skill.tag}
+                        </div>
+                      </div>
+                      <div className="font-mono text-xs font-bold text-[#f59e0b]">
                         {skill.level}
-                      </span>
-                    </div>
-                    <h3 className="font-heading font-bold text-base mb-1 text-[hsl(var(--foreground))]">
-                      {skill.name}
-                    </h3>
-                    <p className="text-xs text-[hsl(var(--muted-foreground))] leading-relaxed">
-                      {skill.desc}
-                    </p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </AnimatePresence>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Competency Radar Breakdown (4 Cols) */}
+          <div className="lg:col-span-4 glass-card rounded-2xl p-6 border border-[#f59e0b]/20">
+            <div className="font-mono text-xs font-bold text-[#f59e0b] uppercase tracking-widest flex items-center gap-2 mb-4">
+              <Target size={13} />
+              Competency Radar
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <div className="flex justify-between text-xs font-mono mb-1">
+                  <span className="text-white">UI Automation (Playwright/Selenium)</span>
+                  <span className="text-[#f59e0b] font-bold">98%</span>
+                </div>
+                <div className="w-full h-2 rounded-full bg-white/5 overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] rounded-full" style={{ width: "98%" }} />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between text-xs font-mono mb-1">
+                  <span className="text-white">API Testing & Contracts (Postman)</span>
+                  <span className="text-[#f59e0b] font-bold">95%</span>
+                </div>
+                <div className="w-full h-2 rounded-full bg-white/5 overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] rounded-full" style={{ width: "95%" }} />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between text-xs font-mono mb-1">
+                  <span className="text-white">Load & Stress (JMeter 5k VUs)</span>
+                  <span className="text-[#f59e0b] font-bold">92%</span>
+                </div>
+                <div className="w-full h-2 rounded-full bg-white/5 overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] rounded-full" style={{ width: "92%" }} />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between text-xs font-mono mb-1">
+                  <span className="text-white">CI/CD Quality Gates (GH Actions)</span>
+                  <span className="text-[#f59e0b] font-bold">90%</span>
+                </div>
+                <div className="w-full h-2 rounded-full bg-white/5 overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] rounded-full" style={{ width: "90%" }} />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between text-xs font-mono mb-1">
+                  <span className="text-white">Core Scripting (TS, Python, Java)</span>
+                  <span className="text-[#f59e0b] font-bold">94%</span>
+                </div>
+                <div className="w-full h-2 rounded-full bg-white/5 overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] rounded-full" style={{ width: "94%" }} />
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-400">
+              <span>ISTQB Certified Tester</span>
+              <span className="text-emerald-400 font-bold">100% Quality Focus</span>
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </section>
   );

@@ -131,8 +131,8 @@ export default function QaMethodologySection() {
                 onClick={() => setActiveStageId(stage.id)}
                 className={`p-5 rounded-2xl text-left border transition-all ${
                   isActive
-                    ? "bg-[hsl(var(--card))] border-[hsl(var(--primary))] shadow-xl glow-purple scale-[1.02]"
-                    : "glass border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.4)]"
+                    ? "bg-[hsl(var(--card))] border-[#f59e0b] shadow-xl shadow-[0_0_20px_rgba(245,158,11,0.25)] scale-[1.02]"
+                    : "glass border-[hsl(var(--card-border))] hover:border-[#f59e0b]/40"
                 }`}
               >
                 <div className="flex items-center justify-between mb-3">

@@ -7,7 +7,7 @@ export default function ResumeSection() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section id="resume" className="section-padding bg-[hsl(var(--muted)/0.3)] relative">
+    <section id="resume" className="section-padding relative">
       <div className="container-max">
         <motion.div
           initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
@@ -16,45 +16,43 @@ export default function ResumeSection() {
           transition={{ duration: 0.5 }}
           className="max-w-3xl mx-auto text-center"
         >
-          <div className="glass-card rounded-3xl p-10 sm:p-14 border border-[hsl(var(--card-border))] glow-purple">
-            <div className="w-16 h-16 rounded-2xl bg-[hsl(var(--primary)/0.15)] border border-[hsl(var(--primary)/0.3)] flex items-center justify-center mx-auto mb-6 text-[hsl(var(--primary))]">
+          <div className="glass-card rounded-3xl p-10 sm:p-14 border border-[#f59e0b]/25 shadow-[0_25px_60px_rgba(0,0,0,0.8),0_0_35px_rgba(245,158,11,0.15)]">
+            <div className="w-16 h-16 rounded-2xl bg-[#f59e0b]/15 border border-[#f59e0b]/30 flex items-center justify-center mx-auto mb-6 text-[#f59e0b] shadow-[0_0_20px_rgba(245,158,11,0.25)]">
               <FileText size={32} />
             </div>
 
-            <p className="text-xs font-bold text-[hsl(var(--primary))] tracking-widest uppercase mb-3 flex items-center justify-center gap-1.5">
-              <Sparkles size={14} className="text-[hsl(var(--accent))]" />
+            <p className="text-xs font-bold text-[#f59e0b] tracking-widest uppercase mb-3 flex items-center justify-center gap-1.5 font-mono">
+              <Sparkles size={14} className="text-[#fbbf24]" />
               Official Curriculum Vitae
             </p>
-            <h2 className="font-heading text-3xl sm:text-4xl font-bold mb-4">
-              Download My Complete Resume
+            <h2 className="font-heading text-3xl sm:text-4xl font-black text-white mb-4">
+              Download Complete Resume
             </h2>
-            <p className="text-sm sm:text-base text-[hsl(var(--muted-foreground))] leading-relaxed mb-8 max-w-xl mx-auto">
-              Get the PDF copy detailing my SQA experience at Brain Station 23, automated testing projects, performance benchmarks, and core skills.
+            <p className="text-sm sm:text-base text-slate-400 leading-relaxed mb-8 max-w-xl mx-auto">
+              Get the PDF copy detailing SQA engineering at Brain Station 23, automated test suites, performance metrics, and ISTQB certification.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               <motion.a
-                whileHover={shouldReduceMotion ? {} : { scale: 1.05, y: -2 }}
-                whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                href="/resume.pdf"
+                whileHover={shouldReduceMotion ? {} : { scale: 1.03, y: -2 }}
+                whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
+                href="/public/resume.pdf"
                 download
                 id="resume-download-btn"
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] text-white font-bold text-sm shadow-lg glow-purple"
+                className="btn-gold-glow inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl font-bold text-sm"
               >
-                <Download size={18} />
+                <Download size={17} />
                 Download Resume (PDF)
               </motion.a>
               <motion.a
-                whileHover={shouldReduceMotion ? {} : { scale: 1.05, y: -2 }}
-                whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                href="/resume.pdf"
+                whileHover={shouldReduceMotion ? {} : { scale: 1.03, y: -2 }}
+                whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
+                href="/public/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl glass border border-[hsl(var(--card-border))] font-semibold text-sm hover:border-[hsl(var(--primary)/0.5)]"
+                className="btn-glass-rich inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl text-sm font-semibold"
               >
-                <FileText size={18} />
+                <FileText size={17} />
                 View PDF Online
               </motion.a>
             </div>

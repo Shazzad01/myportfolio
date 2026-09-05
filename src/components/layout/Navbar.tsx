@@ -3,28 +3,16 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { Moon, Sun, Menu, X, Command } from "lucide-react";
-
-const GithubIcon = () => (
-  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
-    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
-  </svg>
-);
-
-const LinkedinIcon = () => (
-  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
-    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-  </svg>
-);
+import { Moon, Sun, Menu, X, Command, Download } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Methodology", href: "#methodology" },
-  { label: "Skills", href: "#skills" },
+  { label: "Cockpit", href: "#hero" },
+  { label: "Telemetry", href: "#about" },
+  { label: "Arsenal", href: "#skills" },
   { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
+  { label: "Frameworks", href: "#projects" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -42,25 +30,37 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled ? "glass shadow-lg shadow-black/10" : "bg-transparent"
-      )}
-    >
-      <nav className="container-max flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
-        {/* Logo */}
-        <Link href="#hero" className="font-heading font-bold text-xl text-gradient">
-          Shazzad<span className="text-[hsl(var(--accent))]">.</span>
+    <header className="fixed top-3 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 transition-all duration-300">
+      <nav
+        className={cn(
+          "max-w-6xl mx-auto flex items-center justify-between h-16 px-5 rounded-full transition-all duration-300",
+          scrolled
+            ? "glass shadow-2xl shadow-black/80 border border-[#f59e0b]/20"
+            : "bg-[#0c0e14]/80 backdrop-blur-xl border border-white/10"
+        )}
+      >
+        {/* Brand Group */}
+        <Link href="#hero" className="flex items-center gap-3 group">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#f59e0b] to-[#d97706] flex items-center justify-center font-heading font-black text-xs text-[#07070a] shadow-[0_0_15px_rgba(245,158,11,0.35)] group-hover:scale-105 transition-transform">
+            MSM
+          </div>
+          <div className="flex flex-col">
+            <span className="font-heading font-bold text-sm text-white tracking-tight leading-none">
+              Muhammad Shazzad Mia
+            </span>
+            <span className="font-mono text-[10px] text-[#f59e0b] tracking-wider mt-0.5 uppercase">
+              SQA Architect
+            </span>
+          </div>
         </Link>
 
-        {/* Desktop Nav */}
-        <ul className="hidden md:flex items-center gap-8">
+        {/* Desktop Nav Links */}
+        <ul className="hidden md:flex items-center gap-1 bg-black/40 p-1.5 rounded-full border border-white/5">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="text-sm font-medium text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] transition-colors duration-200 hover:text-[hsl(var(--primary))]"
+                className="px-3.5 py-1.5 rounded-full text-xs font-medium text-slate-400 hover:text-white hover:bg-white/5 transition-all"
               >
                 {link.label}
               </Link>
@@ -69,21 +69,31 @@ export default function Navbar() {
         </ul>
 
         {/* Actions */}
-        <div className="flex items-center gap-3">
-          {/* Status Badge matching approved UI */}
-          <div className="hidden lg:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Status Badge */}
+          <div className="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[11px] font-semibold">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span>Available for SDET Roles</span>
           </div>
 
-          {/* Command Palette Quick Trigger */}
+          {/* Quick Resume CTA */}
+          <a
+            href="/public/resume.pdf"
+            download
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full btn-gold-glow text-xs"
+          >
+            <Download size={13} />
+            <span>CV</span>
+          </a>
+
+          {/* Command Palette */}
           <button
             onClick={() => window.dispatchEvent(new CustomEvent("open-command-palette"))}
-            className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg glass border border-[hsl(var(--card-border))] text-xs text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] hover:border-[hsl(var(--primary)/0.4)] transition-all"
+            className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs text-slate-400 hover:text-white hover:border-[#f59e0b]/40 transition-all"
             title="Open Command Palette (Ctrl+K)"
           >
-            <Command size={13} className="text-[hsl(var(--primary))]" />
-            <span className="font-mono text-[11px]">⌘K</span>
+            <Command size={13} className="text-[#f59e0b]" />
+            <span className="font-mono text-[10px]">⌘K</span>
           </button>
 
           {/* Theme Toggle */}
@@ -91,91 +101,57 @@ export default function Navbar() {
             <motion.button
               whileHover={{ scale: 1.1, rotate: 15 }}
               whileTap={{ scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 400, damping: 25 }}
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               aria-label="Toggle theme"
-              className="p-2 rounded-lg text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] hover:bg-[hsl(var(--muted))] transition-colors duration-200"
+              className="p-2 rounded-full text-slate-400 hover:text-white hover:bg-white/5 transition-colors"
             >
-              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+              {theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
             </motion.button>
           )}
 
-          {/* Resume CTA */}
-          <motion.a
-            whileHover={{ scale: 1.05, y: -1 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 400, damping: 25 }}
-            href="/resume.pdf"
-            download
-            className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-xl btn-violet-glow text-white text-xs font-bold"
-          >
-            Resume
-          </motion.a>
-
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
-            className="md:hidden p-2 rounded-lg text-[hsl(var(--muted-foreground))] hover:bg-[hsl(var(--muted))] transition-all"
+            aria-label="Toggle mobile menu"
+            className="p-2 rounded-lg md:hidden text-slate-300 hover:text-white"
           >
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass border-t border-[hsl(var(--card-border))]"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="md:hidden max-w-6xl mx-auto mt-2 p-4 rounded-2xl glass border border-[#f59e0b]/20 shadow-2xl"
           >
-            <ul className="flex flex-col py-4 px-6 gap-4">
+            <ul className="flex flex-col gap-2">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className="block text-sm font-medium text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))] transition-colors"
+                    className="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5"
                   >
                     {link.label}
                   </Link>
                 </li>
               ))}
-              <li>
-                <a
-                  href="/resume.pdf"
-                  download
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[hsl(var(--primary))] text-white text-sm font-semibold"
-                >
-                  Download Resume
-                </a>
-              </li>
-              <li className="flex items-center gap-3 pt-2 border-t border-[hsl(var(--card-border))]">
-                <a
-                  href="https://github.com/Shazzad01"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub"
-                  className="flex items-center gap-1.5 text-xs text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))] transition-colors"
-                >
-                  <GithubIcon />
-                  GitHub
-                </a>
-                <a
-                  href="https://linkedin.com/in/md-shazzad-mia"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                  className="flex items-center gap-1.5 text-xs text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))] transition-colors"
-                >
-                  <LinkedinIcon />
-                  LinkedIn
-                </a>
-              </li>
             </ul>
+            <div className="mt-4 pt-4 border-t border-white/10 flex justify-between items-center">
+              <a
+                href="/public/resume.pdf"
+                download
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl btn-gold-glow text-xs"
+              >
+                <Download size={14} />
+                <span>Download Resume</span>
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

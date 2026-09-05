@@ -264,13 +264,13 @@ export default function ProjectsSection() {
               <svg className="w-full h-16" viewBox="0 0 400 80" preserveAspectRatio="none" fill="none">
                 <defs>
                   <linearGradient id="latency-gradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#00F0FF" stopOpacity="0.3" />
-                    <stop offset="100%" stopColor="#00F0FF" stopOpacity="0.0" />
+                    <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.3" />
+                    <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.0" />
                   </linearGradient>
                   <linearGradient id="latency-line" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stopColor="#7928CA" />
-                    <stop offset="50%" stopColor="#00F0FF" />
-                    <stop offset="100%" stopColor="#00E599" />
+                    <stop offset="0%" stopColor="#d97706" />
+                    <stop offset="50%" stopColor="#f59e0b" />
+                    <stop offset="100%" stopColor="#10b981" />
                   </linearGradient>
                 </defs>
                 <path
@@ -489,8 +489,8 @@ export default function ProjectsSection() {
                     onClick={() => toggleTab(project.id, "overview")}
                     className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                       currentTab === "overview"
-                        ? "bg-[hsl(var(--primary))] text-white shadow-md glow-purple"
-                        : "text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]"
+                        ? "bg-[#f59e0b] text-[#07070a] font-bold shadow-[0_0_15px_rgba(245,158,11,0.4)]"
+                        : "text-slate-400 hover:text-white"
                     }`}
                   >
                     Case Study
@@ -499,8 +499,8 @@ export default function ProjectsSection() {
                     onClick={() => toggleTab(project.id, "arch")}
                     className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                       currentTab === "arch"
-                        ? "bg-[hsl(var(--primary))] text-white shadow-md glow-purple"
-                        : "text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]"
+                        ? "bg-[#f59e0b] text-[#07070a] font-bold shadow-[0_0_15px_rgba(245,158,11,0.4)]"
+                        : "text-slate-400 hover:text-white"
                     }`}
                   >
                     <Layers size={13} />
@@ -510,8 +510,8 @@ export default function ProjectsSection() {
                     onClick={() => toggleTab(project.id, "logs")}
                     className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                       currentTab === "logs"
-                        ? "bg-[hsl(var(--primary))] text-white shadow-md glow-purple"
-                        : "text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]"
+                        ? "bg-[#f59e0b] text-[#07070a] font-bold shadow-[0_0_15px_rgba(245,158,11,0.4)]"
+                        : "text-slate-400 hover:text-white"
                     }`}
                   >
                     <Terminal size={13} />

@@ -95,7 +95,7 @@ export default function ExperienceSection() {
                   } items-center`}
                 >
                   {/* Timeline Pulse Node */}
-                  <div className="absolute left-4 sm:left-1/2 -translate-x-1/2 top-6 w-5 h-5 rounded-full bg-[hsl(var(--background))] border-2 border-[hsl(var(--primary))] flex items-center justify-center z-10 shadow-lg glow-purple">
+                  <div className="absolute left-4 sm:left-1/2 -translate-x-1/2 top-6 w-5 h-5 rounded-full bg-[hsl(var(--background))] border-2 border-[hsl(var(--primary))] flex items-center justify-center z-10 shadow-[0_0_15px_rgba(245,158,11,0.4)]">
                     <div className="w-2 h-2 rounded-full bg-[hsl(var(--primary))] animate-pulse" />
                   </div>
 
@@ -111,7 +111,7 @@ export default function ExperienceSection() {
                           <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[hsl(var(--primary)/0.15)] text-[hsl(var(--primary))]">
                             {exp.badge}
                           </span>
-                          <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#050811] text-cyan-400 border border-cyan-500/20">
+                          <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#07070a] text-[#fbbf24] border border-[#f59e0b]/30">
                             {exp.releaseBranch}
                           </span>
                         </div>

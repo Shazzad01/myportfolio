@@ -34,14 +34,14 @@ const socialLinks = [
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="border-t border-[hsl(var(--card-border))] bg-[hsl(var(--muted)/0.5)]">
+    <footer className="border-t border-white/10 bg-[#07070a]/90">
       <div className="container-max px-4 sm:px-6 lg:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
         <div className="flex flex-col items-center sm:items-start gap-1">
-          <span className="font-heading font-bold text-lg text-gradient">
-            Shazzad<span className="text-[hsl(var(--accent))]">.</span>
+          <span className="font-heading font-bold text-lg text-white">
+            Muhammad Shazzad Mia <span className="text-[#f59e0b]">// SQA Architect</span>
           </span>
-          <p className="text-xs text-[hsl(var(--muted-foreground))]">
-            SQA Automation Engineer · Dhaka, Bangladesh
+          <p className="text-xs text-slate-400">
+            Brain Station 23 · Dhaka, Bangladesh
           </p>
         </div>
 
@@ -53,15 +53,15 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="p-2 rounded-lg text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))] hover:bg-[hsl(var(--muted))] transition-all duration-200"
+              className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-400 hover:text-[#f59e0b] hover:border-[#f59e0b]/40 hover:bg-[#f59e0b]/10 transition-all duration-200"
             >
               <Icon />
             </a>
           ))}
         </div>
 
-        <p className="text-xs text-[hsl(var(--muted-foreground))] flex items-center gap-1">
-          © {year} Made with <Heart size={12} className="text-red-500 fill-red-500" /> by Shazzad
+        <p className="text-xs text-slate-400 flex items-center gap-1 font-mono">
+          © {year} Built for Zero-Flake Quality
         </p>
       </div>
     </footer>
