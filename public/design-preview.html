@@ -3,225 +3,165 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UI/UX Design Showcase — 30% Text / 70% Visual</title>
+  <title>Ultra-Minimal Design Showcase — Pure Visual Telemetry</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@700;800&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0c1017;
-      --card-bg: #141a24;
-      --border: rgba(255, 255, 255, 0.1);
+      --bg: #07090e;
+      --card-bg: #0d121c;
+      --border: rgba(255, 255, 255, 0.08);
       --cyan: #12ebf4;
       --violet: #a05cf4;
       --text: #f8fafc;
-      --muted: #94a3b8;
+      --muted: #64748b;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background-color: var(--bg);
       color: var(--text);
       font-family: 'Inter', sans-serif;
-      padding: 40px 20px 100px;
-      line-height: 1.6;
+      padding: 30px 20px 80px;
     }
     .container {
-      max-width: 1200px;
+      max-width: 1300px;
       margin: 0 auto;
     }
     header {
-      text-align: center;
-      margin-bottom: 50px;
-    }
-    .badge {
-      display: inline-flex;
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 8px;
-      background: rgba(18, 235, 244, 0.1);
-      border: 1px solid rgba(18, 235, 244, 0.3);
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .brand {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .brand span {
       color: var(--cyan);
-      padding: 6px 16px;
-      border-radius: 9999px;
-      font-size: 13px;
+    }
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      padding: 5px 12px;
+      background: rgba(18, 235, 244, 0.08);
+      border: 1px solid rgba(18, 235, 244, 0.25);
+      border-radius: 999px;
+      color: var(--cyan);
       font-weight: 600;
       letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
     }
-    .badge::before {
-      content: '';
-      width: 8px;
-      height: 8px;
-      background: var(--cyan);
-      border-radius: 50%;
-      box-shadow: 0 0 10px var(--cyan);
-    }
-    h1 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 42px;
-      font-weight: 800;
-      background: linear-gradient(135deg, #ffffff 30%, var(--cyan) 70%, var(--violet) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 12px;
-    }
-    .subtitle {
-      color: var(--muted);
-      font-size: 18px;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .ratio-bar {
-      display: flex;
-      max-width: 500px;
-      margin: 24px auto 0;
-      height: 10px;
-      border-radius: 999px;
-      overflow: hidden;
-      background: #1e293b;
-    }
-    .ratio-text {
-      width: 30%;
-      background: var(--violet);
-    }
-    .ratio-visual {
-      width: 70%;
-      background: var(--cyan);
-      box-shadow: 0 0 15px var(--cyan);
-    }
-    .ratio-legend {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      font-size: 13px;
-      margin-top: 10px;
-      color: var(--muted);
-    }
-    .ratio-legend span {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .dot-violet { width: 8px; height: 8px; border-radius: 50%; background: var(--violet); }
-    .dot-cyan { width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); }
-
-    /* Showcase Cards */
-    .showcase-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 60px;
-      margin-top: 40px;
-    }
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      transition: border-color 0.3s ease;
-    }
-    .card:hover {
-      border-color: rgba(18, 235, 244, 0.4);
-    }
-    .card-header {
-      padding: 24px 30px;
-      border-bottom: 1px solid var(--border);
+    
+    /* Strict Zero-Fluff Rule Banner */
+    .rule-banner {
+      background: rgba(160, 92, 244, 0.06);
+      border: 1px solid rgba(160, 92, 244, 0.2);
+      border-radius: 12px;
+      padding: 14px 20px;
+      margin-bottom: 35px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 16px;
-      background: rgba(255, 255, 255, 0.02);
-    }
-    .card-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: 24px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
       gap: 12px;
+      font-size: 13px;
     }
-    .card-tag {
-      font-size: 12px;
-      font-family: 'JetBrains Mono', monospace;
-      padding: 4px 10px;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+    .rule-banner strong {
       color: var(--cyan);
     }
-    .image-wrapper {
-      position: relative;
-      background: #06090e;
+    .rule-pills {
+      display: flex;
+      gap: 8px;
+    }
+    .pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      padding: 3px 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+      color: #cbd5e1;
+    }
+
+    /* Gallery Items */
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .mockup-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+    .mockup-card:hover {
+      border-color: rgba(18, 235, 244, 0.35);
+    }
+    .mockup-header {
+      padding: 14px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.02);
       border-bottom: 1px solid var(--border);
     }
-    .image-wrapper img {
-      width: 100%;
-      height: auto;
-      display: block;
-      transition: transform 0.4s ease;
-    }
-    .card-body {
-      padding: 24px 30px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-    .feature-item {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 16px;
-      border-radius: 12px;
-    }
-    .feature-title {
-      font-size: 14px;
+    .mockup-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
       font-weight: 600;
-      color: var(--cyan);
-      margin-bottom: 6px;
+      color: #e2e8f0;
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    .feature-desc {
-      font-size: 13px;
+    .mockup-stats {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
       color: var(--muted);
-      line-height: 1.5;
+      display: flex;
+      gap: 15px;
     }
-    .nav-actions {
+    .mockup-stats span b {
+      color: var(--cyan);
+    }
+    .mockup-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: #000;
+    }
+    
+    /* Action Bar */
+    .action-bar {
+      margin-top: 50px;
       display: flex;
       justify-content: center;
       gap: 16px;
-      margin-top: 60px;
     }
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 28px;
-      border-radius: 12px;
+      padding: 12px 28px;
+      border-radius: 10px;
       font-weight: 600;
-      font-size: 15px;
-      cursor: pointer;
+      font-size: 14px;
       text-decoration: none;
+      cursor: pointer;
       transition: all 0.2s ease;
     }
-    .btn-primary {
+    .btn-approve {
       background: var(--cyan);
-      color: #000;
-      box-shadow: 0 0 20px rgba(18, 235, 244, 0.3);
+      color: #07090e;
+      box-shadow: 0 0 25px rgba(18, 235, 244, 0.35);
     }
-    .btn-primary:hover {
-      box-shadow: 0 0 30px rgba(18, 235, 244, 0.6);
-      transform: translateY(-2px);
-    }
-    .btn-glass {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #fff;
-    }
-    .btn-glass:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.3);
+    .btn-approve:hover {
+      box-shadow: 0 0 35px rgba(18, 235, 244, 0.6);
       transform: translateY(-2px);
     }
   </style>
@@ -229,108 +169,62 @@
 <body>
   <div class="container">
     <header>
-      <div class="badge">Visual Design System Review</div>
-      <h1>UI/UX Redesign Showcase</h1>
-      <p class="subtitle">Enforcing the <strong>30% Concise Text / 70% High-Impact Visual & Interactive</strong> Architecture for Muhammad Shazzad Mia.</p>
-      
-      <div class="ratio-bar">
-        <div class="ratio-text"></div>
-        <div class="ratio-visual"></div>
-      </div>
-      <div class="ratio-legend">
-        <span><div class="dot-violet"></div> 30% Concise Content</span>
-        <span><div class="dot-cyan"></div> 70% Visual Telemetry & Automation Art</span>
-      </div>
+      <div class="brand">MUHAMMAD SHAZZAD MIA <span>// SQA ARCHITECT</span></div>
+      <div class="tag">ZERO-FLUFF • PURE VISUAL TELEMETRY</div>
     </header>
 
-    <div class="showcase-grid">
-      
-      <!-- Section 1: Hero -->
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">
-            <span>01</span> Hero Section & Primary Navigation
-          </div>
-          <div class="card-tag">70% VISUAL DOMINANCE</div>
-        </div>
-        <div class="image-wrapper">
-          <img src="/design-mockups/hero-mockup.jpg" alt="Hero Section Design Mockup">
-        </div>
-        <div class="card-body">
-          <div class="feature-item">
-            <div class="feature-title">⚡ Interactive QA Terminal Simulator</div>
-            <div class="feature-desc">Live typing effect of a Playwright test runner executing tests, green checkmarks, real-time logs, and animated status pulses.</div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-title">🔄 Multi-Node Pipeline Graph</div>
-            <div class="feature-desc">Vector animated circuit stream flowing from Source Code → Playwright E2E → JMeter Load → GitHub Actions → Production.</div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-title">📊 Visual Circular KPI Rings</div>
-            <div class="feature-desc">Replaces bullet points with circular SVG gauges: 99.8% Pass Rate, 300+ Test Suites, 4x Deployment Speed.</div>
+    <div class="rule-banner">
+      <div><strong>New Layout Rule:</strong> Strictly 1-line headlines, zero paragraphs. 100% metrics, official logos, and live interactive runners.</div>
+      <div class="rule-pills">
+        <span class="pill">NO ESSAYS</span>
+        <span class="pill">METRICS ONLY</span>
+        <span class="pill">INTERACTIVE CODE</span>
+        <span class="pill">PIPELINE ART</span>
+      </div>
+    </div>
+
+    <div class="gallery">
+
+      <!-- Hero Section -->
+      <div class="mockup-card">
+        <div class="mockup-header">
+          <div class="mockup-label">01 // HERO & LIVE TERMINAL SIMULATOR</div>
+          <div class="mockup-stats">
+            <span>Visual: <b>85%</b></span>
+            <span>Text: <b>15% (Title + Metrics Only)</b></span>
           </div>
         </div>
+        <img class="mockup-img" src="/design-mockups/hero-mockup.jpg" alt="Hero Section Mockup">
       </div>
 
-      <!-- Section 2: Projects & Experience -->
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">
-            <span>02</span> Featured Projects & Experience Timeline
-          </div>
-          <div class="card-tag">FRAMEWORK TELEMETRY CARDS</div>
-        </div>
-        <div class="image-wrapper">
-          <img src="/design-mockups/projects-mockup.jpg" alt="Projects and Experience Design Mockup">
-        </div>
-        <div class="card-body">
-          <div class="feature-item">
-            <div class="feature-title">🛠️ Problem-Approach-Impact Architecture</div>
-            <div class="feature-desc">Glassmorphic cards with live health tags (● Passing | 99.8% Coverage), official tech badges, and direct action triggers.</div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-title">📈 Metric Telemetry Chips</div>
-            <div class="feature-desc">Visual KPI chips (+85% Efficiency, 1200+ RPS, Zero Flakiness) replace text paragraphs for 5-second recruiter scanning.</div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-title">⏱️ Circuit-Board Work Timeline</div>
-            <div class="feature-desc">Vertical glowing subway/circuit nodes highlighting engineering leadership at Brain Station 23 with glowing pulse dots.</div>
+      <!-- Projects & Experience -->
+      <div class="mockup-card">
+        <div class="mockup-header">
+          <div class="mockup-label">02 // TELEMETRY FRAMEWORK CARDS & WORK TIMELINE</div>
+          <div class="mockup-stats">
+            <span>Visual: <b>80%</b></span>
+            <span>Text: <b>20% (Metrics + Tags Only)</b></span>
           </div>
         </div>
+        <img class="mockup-img" src="/design-mockups/projects-mockup.jpg" alt="Projects & Experience Mockup">
       </div>
 
-      <!-- Section 3: Skills & Radar -->
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">
-            <span>03</span> Technical Arsenal & Competency Radar
-          </div>
-          <div class="card-tag">85% INTERACTIVE VISUALS</div>
-        </div>
-        <div class="image-wrapper">
-          <img src="/design-mockups/skills-mockup.jpg" alt="Technical Arsenal Design Mockup">
-        </div>
-        <div class="card-body">
-          <div class="feature-item">
-            <div class="feature-title">🎨 Universal Multi-Color SVG Grid</div>
-            <div class="feature-desc">Official brand logos for Playwright, Selenium, JMeter, Postman, K6, TypeScript, Python, Docker, and Kubernetes in glass tiles.</div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-title">🕸️ Interactive Competency Radar</div>
-            <div class="feature-desc">Dynamic 5-axis polygon chart graphing proficiency across UI, API, Performance, Cloud CI/CD, and Scripting.</div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-title">🏷️ Category Pill Navigation</div>
-            <div class="feature-desc">Instant tab transitions with Framer Motion spring physics and zero layout jump.</div>
+      <!-- Skills & Competency Radar -->
+      <div class="mockup-card">
+        <div class="mockup-header">
+          <div class="mockup-label">03 // OFFICIAL BRAND SVG LOGOS & 5-AXIS RADAR</div>
+          <div class="mockup-stats">
+            <span>Visual: <b>90%</b></span>
+            <span>Text: <b>10% (Tool Names Only)</b></span>
           </div>
         </div>
+        <img class="mockup-img" src="/design-mockups/skills-mockup.jpg" alt="Skills & Tech Matrix Mockup">
       </div>
 
     </div>
 
-    <div class="nav-actions">
-      <a href="http://localhost:3000/" class="btn btn-glass">← Back to Current Site</a>
-      <a href="javascript:alert('Reply Approve in chat to start rebuilding!')" class="btn btn-primary">Ready to Rebuild Portfolio ✓</a>
+    <div class="action-bar">
+      <a href="javascript:alert('Reply Approve in the chat to start rebuilding!')" class="btn btn-approve">Approve & Start Rebuilding Portfolio →</a>
     </div>
   </div>
 </body>
