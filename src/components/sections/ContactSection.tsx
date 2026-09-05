@@ -2,23 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
-import { Mail, MapPin, Send, CheckCircle2, Sparkles, AlertCircle, Copy, Check, Phone } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import emailjs from "@emailjs/browser";
-
-const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ?? "YOUR_SERVICE_ID";
-const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? "YOUR_TEMPLATE_ID";
-const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ?? "YOUR_PUBLIC_KEY";
-
-const contactSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  message: z.string().min(20, "Message must be at least 20 characters"),
-});
-
-type ContactFormData = z.infer<typeof contactSchema>;
+import { Mail, MapPin, Sparkles, Copy, Check, Phone, ArrowUpRight } from "lucide-react";
 
 const GithubIcon = () => (
   <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
@@ -32,104 +16,78 @@ const LinkedinIcon = () => (
   </svg>
 );
 
-const quickIntents = [
-  {
-    label: "💼 Discuss Open Role",
-    text: "Hi Shazzad, we have an exciting SQA / SDET opening and would love to discuss your experience in Playwright, JMeter, and CI/CD automation.",
-  },
-  {
-    label: "⚡ QA Consultation",
-    text: "Hi Shazzad, we are looking for guidance on setting up an automated testing framework and reducing our release regression cycle.",
-  },
-  {
-    label: "🔍 Automation Review",
-    text: "Hi Shazzad, I would love to get your thoughts on our test automation architecture and CI/CD quality gates.",
-  },
-  {
-    label: "🤝 General Networking",
-    text: "Hi Shazzad, impressed by your portfolio and quality engineering work! Would love to connect.",
-  },
-];
-
 export default function ContactSection() {
   const shouldReduceMotion = useReducedMotion();
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [emailCopied, setEmailCopied] = useState(false);
-  const [selectedIntent, setSelectedIntent] = useState<string | null>(null);
+  const [phoneCopied, setPhoneCopied] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    setValue,
-    formState: { errors },
-  } = useForm<ContactFormData>({
-    resolver: zodResolver(contactSchema),
-  });
-
-  const handleIntentClick = (intent: { label: string; text: string }) => {
-    setSelectedIntent(intent.label);
-    setValue("message", intent.text, { shouldValidate: true });
-  };
-
-  const onSubmit = async (data: ContactFormData) => {
-    setStatus("sending");
-    try {
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        {
-          from_name: data.name,
-          from_email: data.email,
-          message: data.message,
-          to_name: "Shazzad",
-        },
-        EMAILJS_PUBLIC_KEY
-      );
-      setStatus("sent");
-      reset();
-      setSelectedIntent(null);
-    } catch (err) {
-      console.error("EmailJS error:", err);
-      setStatus("error");
+  const copyToClipboard = (text: string, type: "email" | "phone", e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigator.clipboard.writeText(text);
+    if (type === "email") {
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    } else {
+      setPhoneCopied(true);
+      setTimeout(() => setPhoneCopied(false), 2000);
     }
   };
 
-  const contactInfo = [
+  const contactChannels = [
     {
       icon: Mail,
       label: "Direct Email",
       value: "shazzadm065@gmail.com",
+      description: "Primary channel for inquiries, job opportunities & test consulting",
       href: "mailto:shazzadm065@gmail.com",
-      isEmail: true,
+      actionText: "Send Email",
+      isCopyable: true,
+      copyType: "email" as const,
+      isCopied: emailCopied,
+      highlight: true,
     },
     {
       icon: Phone,
       label: "Phone / WhatsApp",
       value: "+8801621864789",
+      description: "Direct mobile & WhatsApp line for urgent discussions",
       href: "tel:+8801621864789",
-      isEmail: false,
+      actionText: "Call / WhatsApp",
+      isCopyable: true,
+      copyType: "phone" as const,
+      isCopied: phoneCopied,
+      highlight: false,
     },
     {
       icon: LinkedinIcon,
       label: "LinkedIn Profile",
       value: "linkedin.com/in/md-shazzad-mia",
+      description: "Connect professionally and review endorsements & career milestones",
       href: "https://linkedin.com/in/md-shazzad-mia",
-      isEmail: false,
+      actionText: "Open LinkedIn",
+      isCopyable: false,
+      highlight: false,
     },
     {
       icon: GithubIcon,
       label: "GitHub Repositories",
       value: "github.com/Shazzad01",
+      description: "Explore open-source test frameworks, POM scripts & automation tools",
       href: "https://github.com/Shazzad01",
-      isEmail: false,
+      actionText: "View Repositories",
+      isCopyable: false,
+      highlight: false,
     },
     {
       icon: MapPin,
-      label: "Location",
+      label: "Current Base",
       value: "Mirpur-11.5, Dhaka, Bangladesh",
+      description: "GMT+6 Timezone · Open to Remote, Hybrid & Onsite Roles Globally",
       href: null,
-      isEmail: false,
+      actionText: "Available for SDET Roles",
+      isCopyable: false,
+      highlight: false,
     },
   ];
 
@@ -142,213 +100,97 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center mb-14"
         >
           <p className="text-xs font-bold text-amber-700 dark:text-[#fbbf24] tracking-widest uppercase mb-3 flex items-center justify-center gap-2">
             <Sparkles size={14} className="text-amber-600 dark:text-amber-400" />
             Initiate Connection
           </p>
-          <h2 className="font-heading text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white">Get In Touch</h2>
+          <h2 className="font-heading text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white">
+            Get In Touch
+          </h2>
+          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 mt-3 max-w-xl mx-auto leading-relaxed">
+            Interested in discussing test automation frameworks, SDET opportunities, or high-concurrency JMeter performance benchmarks? Reach out directly.
+          </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-12 gap-10 max-w-5xl mx-auto text-left">
-          {/* Contact Information Channels */}
-          <motion.div
-            initial={shouldReduceMotion ? false : { opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="lg:col-span-5 space-y-4"
-          >
-            <h3 className="font-heading font-bold text-xl text-slate-900 dark:text-white mb-4">Direct Channels</h3>
-            {contactInfo.map((info) => {
-              const Icon = info.icon;
-              return (
-                <div key={info.label}>
-                  {info.href ? (
-                    <a
-                      href={info.href}
-                      target={info.href.startsWith("http") ? "_blank" : undefined}
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-between p-4 glass-card rounded-2xl border border-slate-200 dark:border-white/10 hover:border-[#f59e0b]/50 group"
-                    >
-                      <div className="flex items-center gap-3.5">
-                        <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-700 dark:text-[#fbbf24] shrink-0">
-                          <Icon />
-                        </div>
-                        <div>
-                          <p className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                            {info.label}
-                          </p>
-                          <p className="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-[#f59e0b] transition-colors">
-                            {info.value}
-                          </p>
-                        </div>
-                      </div>
+        {/* Centered Direct Communication Cards Grid */}
+        <div className="max-w-4xl mx-auto grid sm:grid-cols-2 gap-4 text-left">
+          {contactChannels.map((channel, idx) => {
+            const Icon = channel.icon;
+            const isFullWidth = channel.highlight;
 
-                      {info.isEmail && (
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            navigator.clipboard.writeText("shazzadm065@gmail.com");
-                            setEmailCopied(true);
-                            setTimeout(() => setEmailCopied(false), 2000);
-                          }}
-                          className="p-2 rounded-lg bg-black/5 dark:bg-white/10 border border-slate-200 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/20 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all"
-                          title="Copy Email to Clipboard"
-                        >
-                          {emailCopied ? (
-                            <Check size={14} className="text-emerald-500" />
-                          ) : (
-                            <Copy size={14} />
-                          )}
-                        </button>
-                      )}
-                    </a>
-                  ) : (
-                    <div className="flex items-center gap-3.5 p-4 glass-card rounded-2xl border border-slate-200 dark:border-white/10">
-                      <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-700 dark:text-[#fbbf24] shrink-0">
+            return (
+              <motion.div
+                key={channel.label}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.4, delay: idx * 0.08 }}
+                whileHover={shouldReduceMotion ? {} : { y: -3 }}
+                className={`${
+                  isFullWidth ? "sm:col-span-2" : "col-span-1"
+                } glass-card p-5 sm:p-6 rounded-3xl border border-slate-200 dark:border-white/10 hover:border-[#f59e0b]/50 transition-all flex flex-col justify-between group`}
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-3 mb-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-700 dark:text-[#fbbf24] shrink-0 group-hover:scale-105 transition-transform">
                         <Icon />
                       </div>
                       <div>
-                        <p className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                          {info.label}
-                        </p>
-                        <p className="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white">{info.value}</p>
+                        <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                          {channel.label}
+                        </span>
+                        <h3 className="text-base sm:text-lg font-heading font-bold text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-[#fbbf24] transition-colors">
+                          {channel.value}
+                        </h3>
                       </div>
                     </div>
-                  )}
+
+                    {/* Copy Button if copyable */}
+                    {channel.isCopyable && (
+                      <button
+                        type="button"
+                        onClick={(e) => copyToClipboard(channel.value, channel.copyType!, e)}
+                        className="p-2.5 rounded-xl bg-black/5 dark:bg-white/10 border border-slate-200 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/20 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all shrink-0"
+                        title={`Copy ${channel.label}`}
+                      >
+                        {channel.isCopied ? (
+                          <Check size={15} className="text-emerald-500" />
+                        ) : (
+                          <Copy size={15} />
+                        )}
+                      </button>
+                    )}
+                  </div>
+
+                  <p className="text-xs text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                    {channel.description}
+                  </p>
                 </div>
-              );
-            })}
-          </motion.div>
 
-          {/* Form */}
-          <motion.div
-            initial={shouldReduceMotion ? false : { opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-7 glass-card p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-white/10"
-          >
-            <h3 className="font-heading font-bold text-xl text-slate-900 dark:text-white mb-4">Send a Message</h3>
-
-            {status === "sent" ? (
-              <div className="p-8 text-center flex flex-col items-center justify-center gap-3 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl">
-                <CheckCircle2 size={40} className="text-emerald-500" />
-                <p className="font-bold text-base text-emerald-800 dark:text-emerald-300">Message Received!</p>
-                <p className="text-xs text-slate-600 dark:text-slate-400">
-                  Thank you for reaching out. I will respond to your email shortly.
-                </p>
-                <button
-                  onClick={() => setStatus("idle")}
-                  className="mt-2 text-xs font-semibold text-amber-600 dark:text-[#f59e0b] hover:underline"
-                >
-                  Send another message
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
-                {status === "error" && (
-                  <div className="flex items-center gap-2 p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 text-xs">
-                    <AlertCircle size={14} className="shrink-0" />
-                    <span>Failed to send. Please email me directly at <strong>shazzadm065@gmail.com</strong></span>
+                {channel.href ? (
+                  <a
+                    href={channel.href}
+                    target={channel.href.startsWith("http") ? "_blank" : undefined}
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-between pt-3 border-t border-slate-200/80 dark:border-white/10 text-xs font-semibold text-amber-700 dark:text-[#fbbf24] hover:text-amber-800 dark:hover:text-[#f59e0b] group/link"
+                  >
+                    <span>{channel.actionText}</span>
+                    <ArrowUpRight size={14} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                  </a>
+                ) : (
+                  <div className="pt-3 border-t border-slate-200/80 dark:border-white/10 flex items-center justify-between text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+                    <span className="flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                      {channel.actionText}
+                    </span>
                   </div>
                 )}
-
-                {/* Quick Message Intent Pills */}
-                <div>
-                  <p className="text-[11px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">
-                    Quick Topic Intent
-                  </p>
-                  <div className="flex flex-wrap gap-1.5 mb-2">
-                    {quickIntents.map((item) => (
-                      <button
-                        key={item.label}
-                        type="button"
-                        onClick={() => handleIntentClick(item)}
-                        className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${
-                          selectedIntent === item.label
-                            ? "bg-[#f59e0b] text-slate-950 font-bold shadow-sm shadow-[0_0_12px_rgba(245,158,11,0.4)]"
-                            : "bg-black/5 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
-                        }`}
-                      >
-                        {item.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="contact-name" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
-                    Your Name
-                  </label>
-                  <input
-                    id="contact-name"
-                    type="text"
-                    {...register("name")}
-                    placeholder="John Doe"
-                    className="w-full px-4 py-3 rounded-xl bg-white dark:bg-[#07070a]/80 border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:border-[#f59e0b] focus:outline-none focus:ring-2 focus:ring-[#f59e0b]/20 text-xs sm:text-sm transition-all"
-                  />
-                  {errors.name && (
-                    <p className="mt-1 text-[11px] text-rose-500 flex items-center gap-1">
-                      <AlertCircle size={11} /> {errors.name.message}
-                    </p>
-                  )}
-                </div>
-
-                <div>
-                  <label htmlFor="contact-email" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
-                    Your Email
-                  </label>
-                  <input
-                    id="contact-email"
-                    type="email"
-                    {...register("email")}
-                    placeholder="john@example.com"
-                    className="w-full px-4 py-3 rounded-xl bg-white dark:bg-[#07070a]/80 border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:border-[#f59e0b] focus:outline-none focus:ring-2 focus:ring-[#f59e0b]/20 text-xs sm:text-sm transition-all"
-                  />
-                  {errors.email && (
-                    <p className="mt-1 text-[11px] text-rose-500 flex items-center gap-1">
-                      <AlertCircle size={11} /> {errors.email.message}
-                    </p>
-                  )}
-                </div>
-
-                <div>
-                  <label htmlFor="contact-message" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
-                    Message Details
-                  </label>
-                  <textarea
-                    id="contact-message"
-                    rows={4}
-                    {...register("message")}
-                    placeholder="Discuss automation testing, QA consultation, or open roles..."
-                    className="w-full px-4 py-3 rounded-xl bg-white dark:bg-[#07070a]/80 border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:border-[#f59e0b] focus:outline-none focus:ring-2 focus:ring-[#f59e0b]/20 text-xs sm:text-sm transition-all resize-none"
-                  />
-                  {errors.message && (
-                    <p className="mt-1 text-[11px] text-rose-500 flex items-center gap-1">
-                      <AlertCircle size={11} /> {errors.message.message}
-                    </p>
-                  )}
-                </div>
-
-                  <motion.button
-                  whileHover={shouldReduceMotion || status === "sending" ? {} : { scale: 1.02, y: -1 }}
-                  whileTap={shouldReduceMotion || status === "sending" ? {} : { scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                  type="submit"
-                  disabled={status === "sending"}
-                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl btn-gold-glow font-bold text-sm disabled:opacity-70 disabled:cursor-not-allowed"
-                >
-                  <Send size={16} />
-                  {status === "sending" ? "Sending Message..." : "Send Message"}
-                </motion.button>
-              </form>
-            )}
-          </motion.div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
