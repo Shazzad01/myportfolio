@@ -53,10 +53,10 @@ Always build or maintain the portfolio with these sections in this exact order:
 | 3 | **Skills** | Automation tools & frameworks: Selenium, Cypress, Playwright, Appium, Python, JS/TS, CI/CD |
 | 4 | **Work Experience** | Vertical timeline, company → role → key achievements with impact metrics |
 | 5 | **Featured Projects** | Automation frameworks built, test suites, CI/CD integrations — problem → approach → result |
-| 6 | **Certifications** | ISTQB and tool/platform certifications with badge-style display |
+| 6 | **Certifications** | Strictly verified certifications from master profile (Batch 16 SQA, 7-Dimension Audit). NEVER hallucinate ISTQB. |
 | 7 | **Tech Stack** | Animated icon grid — languages, tools, frameworks, platforms |
 | 8 | **Resume** | Prominent download CTA; PDF served from `/public/resume.pdf` |
-| 9 | **Contact** | Form (name, email, message) powered by EmailJS or Resend; with validation |
+| 9 | **Contact** | Direct Communication Hub: One-click copyable Email, Phone/WhatsApp, LinkedIn, GitHub, and Location badge. No form inputs. |
 | 10 | **Social Links** | LinkedIn + GitHub — visible in sticky nav AND footer |
 | 11 | **Blog** *(optional)* | QA insights, automation tips; MDX-powered if included |
 
@@ -78,7 +78,7 @@ Styling:     Tailwind CSS + tailwind-merge + clsx
 Animation:   Framer Motion (components) + GSAP ScrollTrigger (scroll effects)
 Icons:       Lucide React
 Fonts:       Google Fonts — Inter (body) + Outfit (headings)
-Email:       EmailJS or Resend
+Contact:     Direct mailto link + clipboard copy (no form)
 Deployment:  Vercel (with GitHub CI/CD)
 SEO:         next/metadata API + next-sitemap
 Images:      next/image (WebP, optimized)
@@ -89,13 +89,17 @@ Theme:       next-themes (dark/light mode)
 
 ## Design Standards — Ultra-Modern Premium Tier
 
-- **Colors**: HSL-based palette. Dark mode surface: `hsl(220 20% 8%)`. Neon purple glow: `hsl(260 80% 65%)`. Cyan accent glow: `hsl(190 80% 55%)`.
-- **Typography**: Clear hierarchy — Outfit for headings, Inter for body. High contrast readability.
-- **Glassmorphism & Gradients**: Blurred backdrop panels (`backdrop-blur-xl`), animated mesh gradient orbs, glowing border highlights.
+- **Colors**: Velvet Obsidian (`#07070a` / `hsl(240 18% 3%)`) & Rich Champagne Gold (`#f59e0b` / `#fbbf24`) in Dark Mode; Champagne Ivory (`#faf8f5`) with deep contrast slate (`#0f172a`) in Light Mode.
+- **70/30 Visual-First Ratio**: 70% interactive visuals (terminal simulators, SVG pipeline flows, latency curves, metric badges) and 30% concise text. Zero walls of prose.
+- **Tailwind CSS v4 Dark Mode Engine Invariant**: When using class-based dark mode (`next-themes`), ALWAYS declare `@custom-variant dark (&:where(.dark, .dark *));` at the top of `globals.css` immediately after `@import "tailwindcss";` to ensure `dark:*` utilities trigger on all operating systems regardless of OS preferences.
+- **Strict Ground-Truth Data Invariant**: NEVER extrapolate or hallucinate unprovided certifications, roles, or metrics. Strictly adhere to `master_career_profile.md` or ask the user before writing code.
+- **Typography**: Clear hierarchy — Outfit for headings, Inter for body. High contrast readability in both dark and light modes.
+- **Glassmorphism & Gradients**: Smoked glass panels in dark mode (`backdrop-blur-xl`), alabaster ivory glass in light mode, with glowing amber border highlights.
 - **Official Multi-Color Brand SVGs**: Official brand logos for Playwright, JMeter, Selenium, Appium, Postman, K6, TypeScript, JavaScript, Java, Python, HTML5, CSS3, Docker, GitHub Actions, GitLab, Jira, Trello, Azure Boards.
 - **Universal SVG Coverage**: Every tech tool across Skills, Tech Stack, Projects, and Experience sections MUST use its official multi-color brand SVG logo.
 - **Large Vector SVG Hero Artwork**: Interactive multi-node QA Pipeline SVG Illustration (Source Code → Playwright → JMeter → CI/CD → Release).
-- **Interactive Widgets**: Live Playwright terminal code executor simulator, animated stats counter, project live log viewer.
+- **Interactive Widgets**: Live Playwright terminal code executor simulator (`TerminalWidget`), animated stats counter, project live log viewer.
+- **Direct Communication Hub**: Provide one-click copyable buttons and direct links for Email, Phone/WhatsApp, LinkedIn, and GitHub instead of unmaintained contact forms.
 - **Animations**: Framer Motion spring physics, hover scale lifting, pulsing status dots, smooth section reveal triggers.
 - **Polish**: Pixel-perfect layout, cohesive shadow system, accessible focus rings, responsive mobile/tablet/desktop layouts.
 
