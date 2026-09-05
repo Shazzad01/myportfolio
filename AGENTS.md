@@ -43,4 +43,12 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - **70/30 Visual Balance**: Technical portfolios must prioritize 70% interactive visual telemetry (Playwright terminal simulator, SVG pipeline flows, latency curves, metric chips) and 30% concise text. Avoid dense walls of prose.
 - **Direct Contact Hub**: Feature clean, one-click copyable communication channels (Email, Phone/WhatsApp, LinkedIn, GitHub, Location status) instead of unmaintained message forms.
 
+### Windows PowerShell Command Chaining Invariant
+- **PowerShell Syntax**: When chaining multiple shell commands in Windows PowerShell, **ALWAYS use `;` instead of `&&`** (e.g. `git add ...; git commit -m "..."`) to prevent PowerShell statement separator syntax errors.
 
+### Safe TypeScript Verification Under Active Dev Server
+- **Dev-Safe Typechecking**: While `next dev` is actively running, verify TypeScript integrity using `npx tsc --noEmit`. Avoid running full `next build` concurrently to prevent Windows file lock conflicts (`EPERM` on `.next/diagnostics`).
+
+### Zero-Bloat Component Extraction Pattern
+- **Selective Extraction**: When leveraging external UI component libraries (e.g. React Bits, Magic UI, Aceternity), extract and adapt standalone TS-TW (TypeScript + Tailwind) primitives directly into `@/components/ui/` rather than adding unnecessary npm package bloat.
+- **Theme & Motion Compliance**: Ensure every extracted component natively binds to our theme variables and explicitly honors `useReducedMotion()`.
