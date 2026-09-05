@@ -144,11 +144,11 @@ export default function ContactSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <p className="text-xs font-bold text-[hsl(var(--primary))] tracking-widest uppercase mb-3 flex items-center justify-center gap-2">
-            <Sparkles size={14} className="text-[hsl(var(--accent))]" />
+          <p className="text-xs font-bold text-amber-700 dark:text-[#fbbf24] tracking-widest uppercase mb-3 flex items-center justify-center gap-2">
+            <Sparkles size={14} className="text-amber-600 dark:text-amber-400" />
             Initiate Connection
           </p>
-          <h2 className="font-heading text-4xl sm:text-5xl font-bold">Get In Touch</h2>
+          <h2 className="font-heading text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white">Get In Touch</h2>
         </motion.div>
 
         <div className="grid lg:grid-cols-12 gap-10 max-w-5xl mx-auto text-left">
@@ -160,7 +160,7 @@ export default function ContactSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="lg:col-span-5 space-y-4"
           >
-            <h3 className="font-heading font-bold text-xl mb-4">Direct Channels</h3>
+            <h3 className="font-heading font-bold text-xl text-slate-900 dark:text-white mb-4">Direct Channels</h3>
             {contactInfo.map((info) => {
               const Icon = info.icon;
               return (
@@ -170,17 +170,17 @@ export default function ContactSection() {
                       href={info.href}
                       target={info.href.startsWith("http") ? "_blank" : undefined}
                       rel="noopener noreferrer"
-                      className="flex items-center justify-between p-4 glass-card rounded-2xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.4)] group"
+                      className="flex items-center justify-between p-4 glass-card rounded-2xl border border-slate-200 dark:border-white/10 hover:border-[#f59e0b]/50 group"
                     >
                       <div className="flex items-center gap-3.5">
-                        <div className="w-10 h-10 rounded-xl bg-[hsl(var(--primary)/0.1)] flex items-center justify-center text-[hsl(var(--primary))] shrink-0">
+                        <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-700 dark:text-[#fbbf24] shrink-0">
                           <Icon />
                         </div>
                         <div>
-                          <p className="text-[10px] font-bold text-[hsl(var(--muted-foreground))] uppercase tracking-wider">
+                          <p className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                             {info.label}
                           </p>
-                          <p className="text-xs sm:text-sm font-semibold text-[hsl(var(--foreground))] group-hover:text-[hsl(var(--primary))] transition-colors">
+                          <p className="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-[#f59e0b] transition-colors">
                             {info.value}
                           </p>
                         </div>
@@ -196,11 +196,11 @@ export default function ContactSection() {
                             setEmailCopied(true);
                             setTimeout(() => setEmailCopied(false), 2000);
                           }}
-                          className="p-2 rounded-lg glass border border-[hsl(var(--card-border))] hover:bg-[hsl(var(--muted))] text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))] transition-all"
+                          className="p-2 rounded-lg bg-black/5 dark:bg-white/10 border border-slate-200 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/20 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all"
                           title="Copy Email to Clipboard"
                         >
                           {emailCopied ? (
-                            <Check size={14} className="text-emerald-400" />
+                            <Check size={14} className="text-emerald-500" />
                           ) : (
                             <Copy size={14} />
                           )}
@@ -208,15 +208,15 @@ export default function ContactSection() {
                       )}
                     </a>
                   ) : (
-                    <div className="flex items-center gap-3.5 p-4 glass rounded-2xl border border-[hsl(var(--card-border))]">
-                      <div className="w-10 h-10 rounded-xl bg-[hsl(var(--accent)/0.1)] flex items-center justify-center text-[hsl(var(--accent))] shrink-0">
+                    <div className="flex items-center gap-3.5 p-4 glass-card rounded-2xl border border-slate-200 dark:border-white/10">
+                      <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-700 dark:text-[#fbbf24] shrink-0">
                         <Icon />
                       </div>
                       <div>
-                        <p className="text-[10px] font-bold text-[hsl(var(--muted-foreground))] uppercase tracking-wider">
+                        <p className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                           {info.label}
                         </p>
-                        <p className="text-xs sm:text-sm font-semibold">{info.value}</p>
+                        <p className="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white">{info.value}</p>
                       </div>
                     </div>
                   )}
@@ -231,20 +231,20 @@ export default function ContactSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-7 glass-card p-6 sm:p-8 rounded-3xl border border-[hsl(var(--card-border))]"
+            className="lg:col-span-7 glass-card p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-white/10"
           >
-            <h3 className="font-heading font-bold text-xl mb-4">Send a Message</h3>
+            <h3 className="font-heading font-bold text-xl text-slate-900 dark:text-white mb-4">Send a Message</h3>
 
             {status === "sent" ? (
               <div className="p-8 text-center flex flex-col items-center justify-center gap-3 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl">
-                <CheckCircle2 size={40} className="text-emerald-400" />
-                <p className="font-bold text-base text-emerald-300">Message Received!</p>
-                <p className="text-xs text-[hsl(var(--muted-foreground))]">
+                <CheckCircle2 size={40} className="text-emerald-500" />
+                <p className="font-bold text-base text-emerald-800 dark:text-emerald-300">Message Received!</p>
+                <p className="text-xs text-slate-600 dark:text-slate-400">
                   Thank you for reaching out. I will respond to your email shortly.
                 </p>
                 <button
                   onClick={() => setStatus("idle")}
-                  className="mt-2 text-xs font-semibold text-[hsl(var(--primary))] hover:underline"
+                  className="mt-2 text-xs font-semibold text-amber-600 dark:text-[#f59e0b] hover:underline"
                 >
                   Send another message
                 </button>
@@ -252,7 +252,7 @@ export default function ContactSection() {
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
                 {status === "error" && (
-                  <div className="flex items-center gap-2 p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs">
+                  <div className="flex items-center gap-2 p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 text-xs">
                     <AlertCircle size={14} className="shrink-0" />
                     <span>Failed to send. Please email me directly at <strong>shazzadm065@gmail.com</strong></span>
                   </div>
@@ -260,7 +260,7 @@ export default function ContactSection() {
 
                 {/* Quick Message Intent Pills */}
                 <div>
-                  <p className="text-[11px] font-bold uppercase tracking-wider text-[hsl(var(--muted-foreground))] mb-2">
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">
                     Quick Topic Intent
                   </p>
                   <div className="flex flex-wrap gap-1.5 mb-2">
@@ -271,8 +271,8 @@ export default function ContactSection() {
                         onClick={() => handleIntentClick(item)}
                         className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${
                           selectedIntent === item.label
-                            ? "bg-[#f59e0b] text-[#07070a] font-bold shadow-sm shadow-[0_0_12px_rgba(245,158,11,0.4)]"
-                            : "glass border border-[hsl(var(--card-border))] text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]"
+                            ? "bg-[#f59e0b] text-slate-950 font-bold shadow-sm shadow-[0_0_12px_rgba(245,158,11,0.4)]"
+                            : "bg-black/5 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
                         }`}
                       >
                         {item.label}
@@ -282,7 +282,7 @@ export default function ContactSection() {
                 </div>
 
                 <div>
-                  <label htmlFor="contact-name" className="block text-xs font-semibold mb-1.5">
+                  <label htmlFor="contact-name" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
                     Your Name
                   </label>
                   <input
@@ -290,17 +290,17 @@ export default function ContactSection() {
                     type="text"
                     {...register("name")}
                     placeholder="John Doe"
-                    className="w-full px-4 py-3 rounded-xl glass border border-[hsl(var(--card-border))] bg-[hsl(var(--background)/0.5)] focus:border-[hsl(var(--primary)/0.6)] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/0.2)] text-xs sm:text-sm transition-all"
+                    className="w-full px-4 py-3 rounded-xl bg-white dark:bg-[#07070a]/80 border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:border-[#f59e0b] focus:outline-none focus:ring-2 focus:ring-[#f59e0b]/20 text-xs sm:text-sm transition-all"
                   />
                   {errors.name && (
-                    <p className="mt-1 text-[11px] text-rose-400 flex items-center gap-1">
+                    <p className="mt-1 text-[11px] text-rose-500 flex items-center gap-1">
                       <AlertCircle size={11} /> {errors.name.message}
                     </p>
                   )}
                 </div>
 
                 <div>
-                  <label htmlFor="contact-email" className="block text-xs font-semibold mb-1.5">
+                  <label htmlFor="contact-email" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
                     Your Email
                   </label>
                   <input
@@ -308,17 +308,17 @@ export default function ContactSection() {
                     type="email"
                     {...register("email")}
                     placeholder="john@example.com"
-                    className="w-full px-4 py-3 rounded-xl glass border border-[hsl(var(--card-border))] bg-[hsl(var(--background)/0.5)] focus:border-[hsl(var(--primary)/0.6)] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/0.2)] text-xs sm:text-sm transition-all"
+                    className="w-full px-4 py-3 rounded-xl bg-white dark:bg-[#07070a]/80 border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:border-[#f59e0b] focus:outline-none focus:ring-2 focus:ring-[#f59e0b]/20 text-xs sm:text-sm transition-all"
                   />
                   {errors.email && (
-                    <p className="mt-1 text-[11px] text-rose-400 flex items-center gap-1">
+                    <p className="mt-1 text-[11px] text-rose-500 flex items-center gap-1">
                       <AlertCircle size={11} /> {errors.email.message}
                     </p>
                   )}
                 </div>
 
                 <div>
-                  <label htmlFor="contact-message" className="block text-xs font-semibold mb-1.5">
+                  <label htmlFor="contact-message" className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
                     Message Details
                   </label>
                   <textarea
@@ -326,10 +326,10 @@ export default function ContactSection() {
                     rows={4}
                     {...register("message")}
                     placeholder="Discuss automation testing, QA consultation, or open roles..."
-                    className="w-full px-4 py-3 rounded-xl glass border border-[hsl(var(--card-border))] bg-[hsl(var(--background)/0.5)] focus:border-[hsl(var(--primary)/0.6)] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary)/0.2)] text-xs sm:text-sm transition-all resize-none"
+                    className="w-full px-4 py-3 rounded-xl bg-white dark:bg-[#07070a]/80 border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:border-[#f59e0b] focus:outline-none focus:ring-2 focus:ring-[#f59e0b]/20 text-xs sm:text-sm transition-all resize-none"
                   />
                   {errors.message && (
-                    <p className="mt-1 text-[11px] text-rose-400 flex items-center gap-1">
+                    <p className="mt-1 text-[11px] text-rose-500 flex items-center gap-1">
                       <AlertCircle size={11} /> {errors.message.message}
                     </p>
                   )}

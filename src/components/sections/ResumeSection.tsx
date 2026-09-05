@@ -25,10 +25,10 @@ export default function ResumeSection() {
               <Sparkles size={14} className="text-[#fbbf24]" />
               Official Curriculum Vitae
             </p>
-            <h2 className="font-heading text-3xl sm:text-4xl font-black text-white mb-4">
+            <h2 className="font-heading text-3xl sm:text-4xl font-black text-slate-900 dark:text-white mb-4">
               Download Complete Resume
             </h2>
-            <p className="text-sm sm:text-base text-slate-400 leading-relaxed mb-8 max-w-xl mx-auto">
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed mb-8 max-w-xl mx-auto">
               Get the PDF copy detailing SQA engineering at Brain Station 23, automated test suites, JMeter performance benchmarks, and B.Sc. in CSE.
             </p>
 

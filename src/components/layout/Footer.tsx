@@ -34,13 +34,13 @@ const socialLinks = [
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="border-t border-white/10 bg-[#07070a]/90">
+    <footer className="border-t border-slate-200 dark:border-white/10 bg-slate-50/95 dark:bg-[#07070a]/90 transition-colors">
       <div className="container-max px-4 sm:px-6 lg:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
         <div className="flex flex-col items-center sm:items-start gap-1">
-          <span className="font-heading font-bold text-lg text-white">
-            Muhammad Shazzad Mia <span className="text-[#f59e0b]">// SQA Engineer II</span>
+          <span className="font-heading font-bold text-lg text-slate-900 dark:text-white">
+            Muhammad Shazzad Mia <span className="text-amber-600 dark:text-[#f59e0b]">// SQA Engineer II</span>
           </span>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-600 dark:text-slate-400">
             Brain Station 23 · Dhaka, Bangladesh
           </p>
         </div>
@@ -53,14 +53,14 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-400 hover:text-[#f59e0b] hover:border-[#f59e0b]/40 hover:bg-[#f59e0b]/10 transition-all duration-200"
+              className="p-2.5 rounded-xl bg-black/5 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-400 hover:text-amber-600 dark:hover:text-[#f59e0b] hover:border-[#f59e0b]/40 hover:bg-[#f59e0b]/10 transition-all duration-200"
             >
               <Icon />
             </a>
           ))}
         </div>
 
-        <p className="text-xs text-slate-400 flex items-center gap-1 font-mono">
+        <p className="text-xs text-slate-600 dark:text-slate-400 flex items-center gap-1 font-mono">
           © {year} Built for Zero-Flake Quality
         </p>
       </div>

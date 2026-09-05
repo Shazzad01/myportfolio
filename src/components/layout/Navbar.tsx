@@ -35,8 +35,8 @@ export default function Navbar() {
         className={cn(
           "max-w-6xl mx-auto flex items-center justify-between h-16 px-5 rounded-full transition-all duration-300",
           scrolled
-            ? "glass shadow-2xl shadow-black/80 border border-[#f59e0b]/20"
-            : "bg-[#0c0e14]/80 backdrop-blur-xl border border-white/10"
+            ? "glass shadow-xl shadow-black/5 dark:shadow-black/80 border border-[#f59e0b]/25"
+            : "bg-white/90 dark:bg-[#0c0e14]/85 backdrop-blur-xl border border-black/5 dark:border-white/10 shadow-lg shadow-black/5 dark:shadow-none"
         )}
       >
         {/* Brand Group */}
@@ -45,22 +45,22 @@ export default function Navbar() {
             MSM
           </div>
           <div className="flex flex-col">
-            <span className="font-heading font-bold text-sm text-white tracking-tight leading-none">
+            <span className="font-heading font-bold text-sm text-slate-900 dark:text-white tracking-tight leading-none">
               Muhammad Shazzad Mia
             </span>
-            <span className="font-mono text-[10px] text-[#f59e0b] tracking-wider mt-0.5 uppercase">
+            <span className="font-mono text-[10px] text-[#f59e0b] font-bold tracking-wider mt-0.5 uppercase">
               SQA Engineer II
             </span>
           </div>
         </Link>
 
         {/* Desktop Nav Links */}
-        <ul className="hidden md:flex items-center gap-1 bg-black/40 p-1.5 rounded-full border border-white/5">
+        <ul className="hidden md:flex items-center gap-1 bg-black/5 dark:bg-black/40 p-1.5 rounded-full border border-black/5 dark:border-white/5">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="px-3.5 py-1.5 rounded-full text-xs font-medium text-slate-400 hover:text-white hover:bg-white/5 transition-all"
+                className="px-3.5 py-1.5 rounded-full text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-black/5 dark:text-slate-400 dark:hover:text-white dark:hover:bg-white/5 transition-all"
               >
                 {link.label}
               </Link>
@@ -71,8 +71,8 @@ export default function Navbar() {
         {/* Actions */}
         <div className="flex items-center gap-2 sm:gap-3">
           {/* Status Badge */}
-          <div className="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[11px] font-semibold">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-[11px] font-semibold">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span>Available for SDET Roles</span>
           </div>
 
@@ -89,7 +89,7 @@ export default function Navbar() {
           {/* Command Palette */}
           <button
             onClick={() => window.dispatchEvent(new CustomEvent("open-command-palette"))}
-            className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs text-slate-400 hover:text-white hover:border-[#f59e0b]/40 transition-all"
+            className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-[#f59e0b]/40 transition-all"
             title="Open Command Palette (Ctrl+K)"
           >
             <Command size={13} className="text-[#f59e0b]" />
@@ -103,7 +103,7 @@ export default function Navbar() {
               whileTap={{ scale: 0.9 }}
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               aria-label="Toggle theme"
-              className="p-2 rounded-full text-slate-400 hover:text-white hover:bg-white/5 transition-colors"
+              className="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
             >
               {theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
             </motion.button>
@@ -113,7 +113,7 @@ export default function Navbar() {
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle mobile menu"
-            className="p-2 rounded-lg md:hidden text-slate-300 hover:text-white"
+            className="p-2 rounded-lg md:hidden text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
           >
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -135,14 +135,14 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5"
+                    className="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5"
                   >
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
-            <div className="mt-4 pt-4 border-t border-white/10 flex justify-between items-center">
+            <div className="mt-4 pt-4 border-t border-black/10 dark:border-white/10 flex justify-between items-center">
               <a
                 href="/resume.pdf"
                 download

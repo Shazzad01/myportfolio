@@ -9,17 +9,17 @@ export default function AboutSection() {
       <div className="container-max">
         
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 pb-4 border-b border-white/10">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 pb-4 border-b border-black/10 dark:border-white/10">
           <div>
             <div className="font-mono text-xs font-bold text-[#f59e0b] uppercase tracking-widest flex items-center gap-2 mb-2">
               <span className="w-2 h-2 rounded-full bg-[#f59e0b] shadow-[0_0_8px_#f59e0b]" />
               Telemetry Grid // Verified Career Metrics
             </div>
-            <h2 className="font-heading text-3xl sm:text-4xl font-black text-white tracking-tight">
-              Engineering <span className="text-gradient">Core & Impact</span>
+            <h2 className="font-heading text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
+              Engineering <span className="text-gradient">Core &amp; Impact</span>
             </h2>
           </div>
-          <span className="font-mono text-xs text-slate-400 mt-2 sm:mt-0">
+          <span className="font-mono text-xs text-slate-600 dark:text-slate-400 font-semibold mt-2 sm:mt-0">
             Brain Station 23 · SQA Engineer II
           </span>
         </div>
@@ -37,26 +37,26 @@ export default function AboutSection() {
               <Briefcase size={13} />
               Enterprise Automation Role
             </div>
-            <h3 className="font-heading text-2xl sm:text-3xl font-black text-white mt-1">
+            <h3 className="font-heading text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mt-1">
               Brain Station 23
             </h3>
-            <p className="font-mono text-xs text-[#fbbf24] mt-0.5 mb-5">
+            <p className="font-mono text-xs text-amber-600 dark:text-[#fbbf24] font-semibold mt-0.5 mb-5">
               SQA Engineer II · Automation Lead (Apr 2024 – Present)
             </p>
 
             {/* Verified Metric Chips from Master Profile */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <div className="bg-[#07070a]/90 border border-white/10 rounded-xl p-3">
-                <div className="font-heading text-xl font-bold text-emerald-400">80%+</div>
-                <div className="font-mono text-[11px] text-slate-400 mt-0.5">Automated Coverage (120+ Flows)</div>
+              <div className="bg-white/90 dark:bg-[#07070a]/90 border border-slate-200 dark:border-white/10 shadow-sm rounded-xl p-3">
+                <div className="font-heading text-xl font-bold text-emerald-600 dark:text-emerald-400">80%+</div>
+                <div className="font-mono text-[11px] text-slate-600 dark:text-slate-400 font-semibold mt-0.5">Automated Coverage (120+ Flows)</div>
               </div>
-              <div className="bg-[#07070a]/90 border border-white/10 rounded-xl p-3">
-                <div className="font-heading text-xl font-bold text-[#f59e0b]">75%</div>
-                <div className="font-mono text-[11px] text-slate-400 mt-0.5">Runtime Cut (14h → 3.5h)</div>
+              <div className="bg-white/90 dark:bg-[#07070a]/90 border border-slate-200 dark:border-white/10 shadow-sm rounded-xl p-3">
+                <div className="font-heading text-xl font-bold text-[#d97706] dark:text-[#f59e0b]">75%</div>
+                <div className="font-mono text-[11px] text-slate-600 dark:text-slate-400 font-semibold mt-0.5">Runtime Cut (14h → 3.5h)</div>
               </div>
-              <div className="bg-[#07070a]/90 border border-white/10 rounded-xl p-3">
-                <div className="font-heading text-xl font-bold text-blue-400">99.4%</div>
-                <div className="font-mono text-[11px] text-slate-400 mt-0.5">Uptime (15+ Major Releases)</div>
+              <div className="bg-white/90 dark:bg-[#07070a]/90 border border-slate-200 dark:border-white/10 shadow-sm rounded-xl p-3">
+                <div className="font-heading text-xl font-bold text-blue-600 dark:text-blue-400">99.4%</div>
+                <div className="font-mono text-[11px] text-slate-600 dark:text-slate-400 font-semibold mt-0.5">Uptime (15+ Major Releases)</div>
               </div>
             </div>
           </motion.div>
@@ -65,26 +65,26 @@ export default function AboutSection() {
           <motion.div
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
-            className="col-span-12 lg:col-span-4 glass-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden bg-gradient-to-br from-[#12131c] to-[#181a26]"
+            className="col-span-12 lg:col-span-4 glass-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden bg-gradient-to-br from-white to-amber-50/60 dark:from-[#12131c] dark:to-[#181a26]"
           >
             <div>
               <div className="font-mono text-[11px] font-bold text-[#f59e0b] uppercase tracking-widest mb-1 flex items-center gap-2">
                 <GraduationCap size={13} />
                 Engineering Degree
               </div>
-              <h3 className="font-heading text-2xl font-black text-white mt-1">
+              <h3 className="font-heading text-2xl font-black text-slate-900 dark:text-white mt-1">
                 BSc in CSE
               </h3>
-              <p className="font-mono text-xs text-slate-400 mt-0.5">
+              <p className="font-mono text-xs text-slate-600 dark:text-slate-400 mt-0.5 font-medium">
                 Daffodil International University (2023)
               </p>
-              <div className="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-mono font-bold">
+              <div className="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 text-xs font-mono font-bold">
                 CGPA 3.59 / 4.00
               </div>
             </div>
 
-            <div className="mt-6 flex items-center justify-between pt-4 border-t border-white/10">
-              <span className="font-mono text-[10px] text-slate-400">
+            <div className="mt-6 flex items-center justify-between pt-4 border-t border-black/10 dark:border-white/10">
+              <span className="font-mono text-[10px] text-slate-600 dark:text-slate-400 font-semibold">
                 IT Training BD SQA Certified
               </span>
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#f59e0b] to-[#d97706] flex items-center justify-center font-bold text-base text-[#07070a] shadow-[0_0_20px_rgba(245,158,11,0.4)]">
@@ -104,8 +104,8 @@ export default function AboutSection() {
                 <Activity size={13} />
                 Continuous Integration (CI/CD) Gates
               </div>
-              <span className="font-mono text-xs text-emerald-400 font-semibold">
-                80+ Smoke Checks / PR · GitHub Actions & GitLab CI
+              <span className="font-mono text-xs text-emerald-600 dark:text-emerald-400 font-semibold">
+                80+ Smoke Checks / PR · GitHub Actions &amp; GitLab CI
               </span>
             </div>
 
@@ -142,17 +142,17 @@ export default function AboutSection() {
                 <MapPin size={13} />
                 Base Location
               </div>
-              <h3 className="font-heading text-lg font-bold text-white mt-1">
+              <h3 className="font-heading text-lg font-bold text-slate-900 dark:text-white mt-1">
                 Mirpur-11.5, Dhaka, BD
               </h3>
-              <p className="font-mono text-xs text-slate-400 mt-0.5">
+              <p className="font-mono text-xs text-slate-600 dark:text-slate-400 mt-0.5">
                 GMT+6 Timezone
               </p>
             </div>
 
-            <div className="mt-4 pt-4 border-t border-white/10 flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
-              <span className="font-mono text-xs text-emerald-400 font-semibold">
+            <div className="mt-4 pt-4 border-t border-black/10 dark:border-white/10 flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_#34d399]" />
+              <span className="font-mono text-xs text-emerald-600 dark:text-emerald-400 font-semibold">
                 Available for Remote / SDET Roles
               </span>
             </div>

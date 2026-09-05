@@ -151,7 +151,7 @@ export default function ProjectsSection() {
             <Sparkles size={14} className="text-[hsl(var(--accent))]" />
             Real-World Impact & Case Studies
           </p>
-          <h2 className="font-heading text-4xl sm:text-5xl font-bold">Featured Projects &amp; QA Lab</h2>
+          <h2 className="font-heading text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white">Featured Projects &amp; QA Lab</h2>
         </motion.div>
 
         {/* Bento-Grid Interactive QA Lab & Benchmarks (Approved UI Showcase) */}
@@ -163,35 +163,35 @@ export default function ProjectsSection() {
           className="grid lg:grid-cols-12 gap-6 mb-16 text-left"
         >
           {/* Card 1: Enterprise E-Commerce Automation (Shwopno.com) */}
-          <div className="lg:col-span-6 glass-card p-6 rounded-3xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.5)] transition-all flex flex-col justify-between">
+          <div className="lg:col-span-6 glass-card p-6 rounded-3xl border border-slate-200 dark:border-white/10 hover:border-[#f59e0b]/50 transition-all flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between gap-3 mb-4">
                 <div className="flex items-center gap-2">
-                  <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-[hsl(var(--primary)/0.15)] text-[hsl(var(--primary))] border border-[hsl(var(--primary)/0.3)]">
+                  <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-500/15 text-amber-800 dark:text-[#fbbf24] border border-amber-500/30">
                     E2E Pipeline
                   </span>
-                  <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-[hsl(var(--muted))] text-[hsl(var(--muted-foreground))]">
+                  <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-black/5 dark:bg-white/10 text-slate-700 dark:text-slate-300">
                     Shwopno.com
                   </span>
                 </div>
-                <div className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs font-semibold">
                   <PlaywrightIcon className="w-4 h-4" />
                   <span>Playwright POM</span>
                 </div>
               </div>
 
-              <h3 className="font-heading font-bold text-2xl text-[hsl(var(--foreground))] mb-2">
+              <h3 className="font-heading font-bold text-2xl text-slate-900 dark:text-white mb-2">
                 Enterprise E-Commerce Automation
               </h3>
-              <p className="text-xs sm:text-sm text-[hsl(var(--muted-foreground))] mb-4">
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-4">
                 Modular Playwright (TypeScript) test framework covering bKash/Nagad checkout, real-time inventory sync, and dynamic discounts.
               </p>
 
               <div className="flex flex-wrap items-center gap-2.5 mb-4">
-                <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[hsl(var(--primary)/0.1)] text-[hsl(var(--primary))] border border-[hsl(var(--primary)/0.3)]">
+                <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-500/10 text-amber-800 dark:text-[#fbbf24] border border-amber-500/30">
                   80%+ Coverage (120+ Workflows)
                 </span>
-                <span className="text-xs font-mono text-emerald-400 flex items-center gap-1">
+                <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
                   <CheckCircle2 size={13} /> 98.5% Defect Catch Rate
                 </span>
               </div>
@@ -216,45 +216,45 @@ export default function ProjectsSection() {
           </div>
 
           {/* Card 2: Apache JMeter High-Concurrency Performance Lab */}
-          <div className="lg:col-span-6 glass-card p-6 rounded-3xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--accent)/0.5)] transition-all flex flex-col justify-between">
+          <div className="lg:col-span-6 glass-card p-6 rounded-3xl border border-slate-200 dark:border-white/10 hover:border-[#f59e0b]/50 transition-all flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between gap-3 mb-4">
-                <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-500/15 text-amber-400 border border-amber-500/30">
+                <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-500/15 text-amber-700 dark:text-amber-400 border border-amber-500/30">
                   Performance Lab
                 </span>
                 <div className="flex items-center gap-2">
-                  <div className="p-1.5 rounded-lg bg-[hsl(var(--muted))] border border-[hsl(var(--card-border))]">
+                  <div className="p-1.5 rounded-lg bg-black/5 dark:bg-white/10 border border-slate-200 dark:border-white/10">
                     <JMeterIcon className="w-4 h-4" />
                   </div>
-                  <div className="p-1.5 rounded-lg bg-[hsl(var(--muted))] border border-[hsl(var(--card-border))]">
+                  <div className="p-1.5 rounded-lg bg-black/5 dark:bg-white/10 border border-slate-200 dark:border-white/10">
                     <PostmanIcon className="w-4 h-4" />
                   </div>
-                  <div className="p-1.5 rounded-lg bg-[hsl(var(--muted))] border border-[hsl(var(--card-border))]">
+                  <div className="p-1.5 rounded-lg bg-black/5 dark:bg-white/10 border border-slate-200 dark:border-white/10">
                     <K6Icon className="w-4 h-4" />
                   </div>
                 </div>
               </div>
 
-              <h3 className="font-heading font-bold text-2xl text-[hsl(var(--foreground))] mb-2">
+              <h3 className="font-heading font-bold text-2xl text-slate-900 dark:text-white mb-2">
                 Apache JMeter Stress Lab
               </h3>
-              <p className="text-xs sm:text-sm text-[hsl(var(--muted-foreground))] mb-4">
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-4">
                 Simulating 15,000+ concurrent virtual users to benchmark response times and isolate API latency bottlenecks under peak shopping campaigns.
               </p>
 
               {/* Latency telemetry stats */}
               <div className="grid grid-cols-3 gap-2 mb-4">
-                <div className="p-2.5 rounded-xl bg-[hsl(var(--background)/0.7)] border border-[hsl(var(--card-border))]">
-                  <p className="text-[10px] text-[hsl(var(--muted-foreground))] uppercase font-mono">Max Concurrency</p>
-                  <p className="font-heading font-bold text-base sm:text-lg text-[#f59e0b]">15,000+ VUs</p>
+                <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-[#07070a]/80 border border-slate-200 dark:border-white/10">
+                  <p className="text-[10px] text-slate-600 dark:text-slate-400 uppercase font-mono">Max Concurrency</p>
+                  <p className="font-heading font-bold text-base sm:text-lg text-amber-700 dark:text-[#f59e0b]">15,000+ VUs</p>
                 </div>
-                <div className="p-2.5 rounded-xl bg-[hsl(var(--background)/0.7)] border border-[hsl(var(--card-border))]">
-                  <p className="text-[10px] text-[hsl(var(--muted-foreground))] uppercase font-mono">Throughput</p>
-                  <p className="font-heading font-bold text-base sm:text-lg text-emerald-400">10,000+ RPM</p>
+                <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-[#07070a]/80 border border-slate-200 dark:border-white/10">
+                  <p className="text-[10px] text-slate-600 dark:text-slate-400 uppercase font-mono">Throughput</p>
+                  <p className="font-heading font-bold text-base sm:text-lg text-emerald-600 dark:text-emerald-400">10,000+ RPM</p>
                 </div>
-                <div className="p-2.5 rounded-xl bg-[hsl(var(--background)/0.7)] border border-[hsl(var(--card-border))]">
-                  <p className="text-[10px] text-[hsl(var(--muted-foreground))] uppercase font-mono">p95 Latency</p>
-                  <p className="font-heading font-bold text-base sm:text-lg text-emerald-400">&lt; 1.8s</p>
+                <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-[#07070a]/80 border border-slate-200 dark:border-white/10">
+                  <p className="text-[10px] text-slate-600 dark:text-slate-400 uppercase font-mono">p95 Latency</p>
+                  <p className="font-heading font-bold text-base sm:text-lg text-emerald-600 dark:text-emerald-400">&lt; 1.8s</p>
                 </div>
               </div>
             </div>
@@ -291,123 +291,123 @@ export default function ProjectsSection() {
           </div>
 
           {/* Card 3: Mobile & Cross-Browser Validation Matrix */}
-          <div className="lg:col-span-6 glass-card p-6 rounded-3xl border border-[hsl(var(--card-border))] hover:border-emerald-500/40 transition-all flex flex-col justify-between">
+          <div className="lg:col-span-6 glass-card p-6 rounded-3xl border border-slate-200 dark:border-white/10 hover:border-emerald-500/40 transition-all flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between gap-3 mb-4">
-                <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30">
                   Cross-Platform Grid
                 </span>
-                <span className="text-xs font-mono text-[hsl(var(--muted-foreground))]">
+                <span className="text-xs font-mono text-slate-600 dark:text-slate-400">
                   12+ Device &amp; Browser Configs
                 </span>
               </div>
 
-              <h3 className="font-heading font-bold text-2xl text-[hsl(var(--foreground))] mb-2">
+              <h3 className="font-heading font-bold text-2xl text-slate-900 dark:text-white mb-2">
                 Mobile &amp; Cross-Browser Matrix
               </h3>
-              <p className="text-xs sm:text-sm text-[hsl(var(--muted-foreground))] mb-4">
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-4">
                 Rigorous testing across Android, iOS, Chrome, and Firefox validating responsive UI rendering, gesture interactions, and payment flows.
               </p>
 
               {/* Device Test Rows */}
               <div className="space-y-2 mb-4">
-                <div className="flex items-center justify-between p-3 rounded-xl bg-[hsl(var(--background)/0.8)] border border-[hsl(var(--card-border))]">
+                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-[#07070a]/80 border border-slate-200 dark:border-white/10">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-emerald-500/15 flex items-center justify-center text-emerald-400">
+                    <div className="w-8 h-8 rounded-lg bg-emerald-500/15 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
                       <Smartphone size={18} />
                     </div>
                     <div>
-                      <p className="text-xs font-bold text-[hsl(var(--foreground))]">Android Storefront &amp; Logistics Apps</p>
-                      <p className="text-[10px] text-[hsl(var(--muted-foreground))]">Appium + Playwright Mobile Chrome Grid</p>
+                      <p className="text-xs font-bold text-slate-900 dark:text-white">Android Storefront &amp; Logistics Apps</p>
+                      <p className="text-[10px] text-slate-600 dark:text-slate-400">Appium + Playwright Mobile Chrome Grid</p>
                     </div>
                   </div>
-                  <span className="px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                  <span className="px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30">
                     ✓ Verified
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between p-3 rounded-xl bg-[hsl(var(--background)/0.8)] border border-[hsl(var(--card-border))]">
+                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-[#07070a]/80 border border-slate-200 dark:border-white/10">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-indigo-500/15 flex items-center justify-center text-indigo-400">
+                    <div className="w-8 h-8 rounded-lg bg-indigo-500/15 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
                       <Smartphone size={18} />
                     </div>
                     <div>
-                      <p className="text-xs font-bold text-[hsl(var(--foreground))]">iOS Storefront &amp; Delivery Apps</p>
-                      <p className="text-[10px] text-[hsl(var(--muted-foreground))]">Appium XCUITest + Mobile Safari</p>
+                      <p className="text-xs font-bold text-slate-900 dark:text-white">iOS Storefront &amp; Delivery Apps</p>
+                      <p className="text-[10px] text-slate-600 dark:text-slate-400">Appium XCUITest + Mobile Safari</p>
                     </div>
                   </div>
-                  <span className="px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                  <span className="px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30">
                     ✓ Verified
                   </span>
                 </div>
               </div>
             </div>
 
-            <div className="flex items-center justify-between text-[11px] text-[hsl(var(--muted-foreground))] pt-2 border-t border-[hsl(var(--card-border))]">
+            <div className="flex items-center justify-between text-[11px] text-slate-600 dark:text-slate-400 pt-2 border-t border-slate-200 dark:border-white/10">
               <span>Framework: Appium + Playwright</span>
-              <span className="text-emerald-400 font-bold">12+ Environments</span>
+              <span className="text-emerald-600 dark:text-emerald-400 font-bold">12+ Environments</span>
             </div>
           </div>
 
           {/* Card 4: Universal Brand Tech Badges Ecosystem */}
-          <div className="lg:col-span-6 glass-card p-6 rounded-3xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.5)] transition-all flex flex-col justify-between">
+          <div className="lg:col-span-6 glass-card p-6 rounded-3xl border border-slate-200 dark:border-white/10 hover:border-[#f59e0b]/50 transition-all flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between gap-3 mb-4">
-                <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-sky-500/15 text-sky-400 border border-sky-500/30">
+                <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-sky-500/15 text-sky-700 dark:text-sky-400 border border-sky-500/30">
                   Verified Ecosystem
                 </span>
-                <span className="text-xs font-mono text-[hsl(var(--muted-foreground))]">
+                <span className="text-xs font-mono text-slate-600 dark:text-slate-400">
                   8 Core Technologies
                 </span>
               </div>
 
-              <h3 className="font-heading font-bold text-2xl text-[hsl(var(--foreground))] mb-2">
+              <h3 className="font-heading font-bold text-2xl text-slate-900 dark:text-white mb-2">
                 Official Brand Badges &amp; Tools
               </h3>
-              <p className="text-xs sm:text-sm text-[hsl(var(--muted-foreground))] mb-4">
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-4">
                 Official vector tooling powering enterprise quality assurance, continuous testing, and release certification.
               </p>
 
               {/* 8 Official Brand Icons Grid */}
               <div className="grid grid-cols-4 gap-3 mb-4">
-                <div className="p-3 rounded-2xl bg-[hsl(var(--background)/0.8)] border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.5)] flex flex-col items-center gap-1.5 transition-all group">
+                <div className="p-3 rounded-2xl bg-slate-50 dark:bg-[#07070a]/80 border border-slate-200 dark:border-white/10 hover:border-[#f59e0b]/50 flex flex-col items-center gap-1.5 transition-all group">
                   <PlaywrightIcon className="w-7 h-7 group-hover:scale-110 transition-transform" />
-                  <span className="text-[10px] font-semibold text-[hsl(var(--foreground))]">Playwright</span>
+                  <span className="text-[10px] font-semibold text-slate-900 dark:text-white">Playwright</span>
                 </div>
-                <div className="p-3 rounded-2xl bg-[hsl(var(--background)/0.8)] border border-[hsl(var(--card-border))] hover:border-emerald-500/50 flex flex-col items-center gap-1.5 transition-all group">
+                <div className="p-3 rounded-2xl bg-slate-50 dark:bg-[#07070a]/80 border border-slate-200 dark:border-white/10 hover:border-emerald-500/50 flex flex-col items-center gap-1.5 transition-all group">
                   <SeleniumIcon className="w-7 h-7 group-hover:scale-110 transition-transform" />
-                  <span className="text-[10px] font-semibold text-[hsl(var(--foreground))]">Selenium</span>
+                  <span className="text-[10px] font-semibold text-slate-900 dark:text-white">Selenium</span>
                 </div>
-                <div className="p-3 rounded-2xl bg-[hsl(var(--background)/0.8)] border border-[hsl(var(--card-border))] hover:border-rose-500/50 flex flex-col items-center gap-1.5 transition-all group">
+                <div className="p-3 rounded-2xl bg-slate-50 dark:bg-[#07070a]/80 border border-slate-200 dark:border-white/10 hover:border-rose-500/50 flex flex-col items-center gap-1.5 transition-all group">
                   <JMeterIcon className="w-7 h-7 group-hover:scale-110 transition-transform" />
-                  <span className="text-[10px] font-semibold text-[hsl(var(--foreground))]">JMeter</span>
+                  <span className="text-[10px] font-semibold text-slate-900 dark:text-white">JMeter</span>
                 </div>
-                <div className="p-3 rounded-2xl bg-[hsl(var(--background)/0.8)] border border-[hsl(var(--card-border))] hover:border-violet-500/50 flex flex-col items-center gap-1.5 transition-all group">
+                <div className="p-3 rounded-2xl bg-slate-50 dark:bg-[#07070a]/80 border border-slate-200 dark:border-white/10 hover:border-violet-500/50 flex flex-col items-center gap-1.5 transition-all group">
                   <K6Icon className="w-7 h-7 group-hover:scale-110 transition-transform" />
-                  <span className="text-[10px] font-semibold text-[hsl(var(--foreground))]">K6</span>
+                  <span className="text-[10px] font-semibold text-slate-900 dark:text-white">K6</span>
                 </div>
-                <div className="p-3 rounded-2xl bg-[hsl(var(--background)/0.8)] border border-[hsl(var(--card-border))] hover:border-orange-500/50 flex flex-col items-center gap-1.5 transition-all group">
+                <div className="p-3 rounded-2xl bg-slate-50 dark:bg-[#07070a]/80 border border-slate-200 dark:border-white/10 hover:border-orange-500/50 flex flex-col items-center gap-1.5 transition-all group">
                   <PostmanIcon className="w-7 h-7 group-hover:scale-110 transition-transform" />
-                  <span className="text-[10px] font-semibold text-[hsl(var(--foreground))]">Postman</span>
+                  <span className="text-[10px] font-semibold text-slate-900 dark:text-white">Postman</span>
                 </div>
-                <div className="p-3 rounded-2xl bg-[hsl(var(--background)/0.8)] border border-[hsl(var(--card-border))] hover:border-blue-500/50 flex flex-col items-center gap-1.5 transition-all group">
+                <div className="p-3 rounded-2xl bg-slate-50 dark:bg-[#07070a]/80 border border-slate-200 dark:border-white/10 hover:border-blue-500/50 flex flex-col items-center gap-1.5 transition-all group">
                   <TypeScriptIcon className="w-7 h-7 group-hover:scale-110 transition-transform" />
-                  <span className="text-[10px] font-semibold text-[hsl(var(--foreground))]">TypeScript</span>
+                  <span className="text-[10px] font-semibold text-slate-900 dark:text-white">TypeScript</span>
                 </div>
-                <div className="p-3 rounded-2xl bg-[hsl(var(--background)/0.8)] border border-[hsl(var(--card-border))] hover:border-amber-500/50 flex flex-col items-center gap-1.5 transition-all group">
+                <div className="p-3 rounded-2xl bg-slate-50 dark:bg-[#07070a]/80 border border-slate-200 dark:border-white/10 hover:border-amber-500/50 flex flex-col items-center gap-1.5 transition-all group">
                   <PythonIcon className="w-7 h-7 group-hover:scale-110 transition-transform" />
-                  <span className="text-[10px] font-semibold text-[hsl(var(--foreground))]">Python</span>
+                  <span className="text-[10px] font-semibold text-slate-900 dark:text-white">Python</span>
                 </div>
-                <div className="p-3 rounded-2xl bg-[hsl(var(--background)/0.8)] border border-[hsl(var(--card-border))] hover:border-sky-500/50 flex flex-col items-center gap-1.5 transition-all group">
+                <div className="p-3 rounded-2xl bg-slate-50 dark:bg-[#07070a]/80 border border-slate-200 dark:border-white/10 hover:border-sky-500/50 flex flex-col items-center gap-1.5 transition-all group">
                   <DockerIcon className="w-7 h-7 group-hover:scale-110 transition-transform" />
-                  <span className="text-[10px] font-semibold text-[hsl(var(--foreground))]">Docker</span>
+                  <span className="text-[10px] font-semibold text-slate-900 dark:text-white">Docker</span>
                 </div>
               </div>
             </div>
 
-            <div className="flex items-center justify-between text-[11px] text-[hsl(var(--muted-foreground))] pt-2 border-t border-[hsl(var(--card-border))]">
+            <div className="flex items-center justify-between text-[11px] text-slate-600 dark:text-slate-400 pt-2 border-t border-slate-200 dark:border-white/10">
               <span>Universal SVG Brand Compliance</span>
-              <span className="text-[hsl(var(--primary))] font-bold">100% Vector</span>
+              <span className="text-amber-700 dark:text-[#f59e0b] font-bold">100% Vector</span>
             </div>
           </div>
         </motion.div>
@@ -423,29 +423,29 @@ export default function ProjectsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.5, delay: i * 0.12 }}
-                className="glass-card p-6 sm:p-8 rounded-3xl border border-[hsl(var(--card-border))] hover:border-[hsl(var(--primary)/0.4)] transition-all"
+                className="glass-card p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-white/10 hover:border-[#f59e0b]/40 transition-all"
               >
                 {/* Top Banner */}
                 <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
                   <div>
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-                      <span className="text-[11px] font-bold text-[hsl(var(--muted-foreground))] uppercase tracking-wider">
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                      <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                         {project.period}
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <h3 className="font-heading font-bold text-2xl sm:text-3xl text-[hsl(var(--foreground))]">
+                      <h3 className="font-heading font-bold text-2xl sm:text-3xl text-slate-900 dark:text-white">
                         {project.title}
                       </h3>
                       {/* SVG Brand Logos */}
-                      <div className="flex items-center gap-1.5 bg-[hsl(var(--muted)/0.8)] px-2.5 py-1 rounded-xl border border-[hsl(var(--card-border))]">
+                      <div className="flex items-center gap-1.5 bg-black/5 dark:bg-white/10 px-2.5 py-1 rounded-xl border border-slate-200 dark:border-white/10">
                         {project.brandIcons.map((BrandIcon, idx) => (
                           <BrandIcon key={idx} className="w-4 h-4" />
                         ))}
                       </div>
                     </div>
-                    <p className="text-xs sm:text-sm text-[hsl(var(--primary))] font-semibold mt-1">
+                    <p className="text-xs sm:text-sm text-amber-700 dark:text-[#fbbf24] font-semibold mt-1">
                       {project.subtitle}
                     </p>
                   </div>
@@ -455,7 +455,7 @@ export default function ProjectsSection() {
                     {project.platforms.map((p) => (
                       <span
                         key={p}
-                        className="px-2.5 py-1 rounded-lg text-xs font-medium bg-[hsl(var(--muted))] text-[hsl(var(--muted-foreground))]"
+                        className="px-2.5 py-1 rounded-lg text-xs font-medium bg-black/5 dark:bg-white/10 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10"
                       >
                         {p}
                       </span>
@@ -464,33 +464,33 @@ export default function ProjectsSection() {
                 </div>
 
                 {/* Before vs After Impact Metric Pill Card */}
-                <div className="grid sm:grid-cols-2 gap-3 mb-6 p-4 rounded-2xl bg-[hsl(var(--background)/0.6)] border border-[hsl(var(--card-border))]">
+                <div className="grid sm:grid-cols-2 gap-3 mb-6 p-4 rounded-2xl bg-slate-50/90 dark:bg-[#07070a]/90 border border-slate-200 dark:border-white/10">
                   <div className="flex items-start gap-2.5 text-xs">
-                    <span className="px-2 py-0.5 rounded bg-rose-500/10 text-rose-400 font-bold shrink-0 text-[10px] uppercase">
+                    <span className="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 font-bold shrink-0 text-[10px] uppercase">
                       Before
                     </span>
-                    <span className="text-[hsl(var(--muted-foreground))] leading-relaxed">
+                    <span className="text-slate-600 dark:text-slate-400 leading-relaxed">
                       {project.impactComparison.before}
                     </span>
                   </div>
                   <div className="flex items-start gap-2.5 text-xs">
-                    <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-bold shrink-0 text-[10px] uppercase">
+                    <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold shrink-0 text-[10px] uppercase">
                       After QA
                     </span>
-                    <span className="text-[hsl(var(--foreground))] font-medium leading-relaxed">
+                    <span className="text-slate-900 dark:text-white font-medium leading-relaxed">
                       {project.impactComparison.after}
                     </span>
                   </div>
                 </div>
 
                 {/* Tab Switcher */}
-                <div className="flex items-center gap-2 mb-6 border-b border-[hsl(var(--card-border))] pb-3">
+                <div className="flex items-center gap-2 mb-6 border-b border-slate-200 dark:border-white/10 pb-3">
                   <button
                     onClick={() => toggleTab(project.id, "overview")}
                     className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                       currentTab === "overview"
-                        ? "bg-[#f59e0b] text-[#07070a] font-bold shadow-[0_0_15px_rgba(245,158,11,0.4)]"
-                        : "text-slate-400 hover:text-white"
+                        ? "bg-[#f59e0b] text-slate-950 font-bold shadow-[0_0_15px_rgba(245,158,11,0.4)]"
+                        : "text-slate-600 hover:text-slate-900 hover:bg-black/5 dark:text-slate-400 dark:hover:text-white dark:hover:bg-white/5"
                     }`}
                   >
                     Case Study
@@ -499,19 +499,19 @@ export default function ProjectsSection() {
                     onClick={() => toggleTab(project.id, "arch")}
                     className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                       currentTab === "arch"
-                        ? "bg-[#f59e0b] text-[#07070a] font-bold shadow-[0_0_15px_rgba(245,158,11,0.4)]"
-                        : "text-slate-400 hover:text-white"
+                        ? "bg-[#f59e0b] text-slate-950 font-bold shadow-[0_0_15px_rgba(245,158,11,0.4)]"
+                        : "text-slate-600 hover:text-slate-900 hover:bg-black/5 dark:text-slate-400 dark:hover:text-white dark:hover:bg-white/5"
                     }`}
                   >
                     <Layers size={13} />
-                    Architecture & Pipeline
+                    Architecture &amp; Pipeline
                   </button>
                   <button
                     onClick={() => toggleTab(project.id, "logs")}
                     className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                       currentTab === "logs"
-                        ? "bg-[#f59e0b] text-[#07070a] font-bold shadow-[0_0_15px_rgba(245,158,11,0.4)]"
-                        : "text-slate-400 hover:text-white"
+                        ? "bg-[#f59e0b] text-slate-950 font-bold shadow-[0_0_15px_rgba(245,158,11,0.4)]"
+                        : "text-slate-600 hover:text-slate-900 hover:bg-black/5 dark:text-slate-400 dark:hover:text-white dark:hover:bg-white/5"
                     }`}
                   >
                     <Terminal size={13} />
@@ -531,26 +531,26 @@ export default function ProjectsSection() {
                       className="grid sm:grid-cols-3 gap-6 mb-6"
                     >
                       <div className="space-y-1.5">
-                        <p className="text-xs font-bold uppercase tracking-wider text-rose-400 flex items-center gap-1">
+                        <p className="text-xs font-bold uppercase tracking-wider text-rose-500 dark:text-rose-400 flex items-center gap-1">
                           🔴 Problem
                         </p>
-                        <p className="text-xs sm:text-sm text-[hsl(var(--muted-foreground))] leading-relaxed">
+                        <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
                           {project.problem}
                         </p>
                       </div>
                       <div className="space-y-1.5">
-                        <p className="text-xs font-bold uppercase tracking-wider text-sky-400 flex items-center gap-1">
+                        <p className="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 flex items-center gap-1">
                           🔵 Approach
                         </p>
-                        <p className="text-xs sm:text-sm text-[hsl(var(--muted-foreground))] leading-relaxed">
+                        <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
                           {project.approach}
                         </p>
                       </div>
                       <div className="space-y-1.5">
-                        <p className="text-xs font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1">
+                        <p className="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
                           🟢 Result
                         </p>
-                        <p className="text-xs sm:text-sm text-[hsl(var(--muted-foreground))] leading-relaxed">
+                        <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
                           {project.result}
                         </p>
                       </div>
@@ -569,13 +569,13 @@ export default function ProjectsSection() {
                       {project.architecture.map((arch, aIdx) => (
                         <div
                           key={aIdx}
-                          className="p-3.5 rounded-xl bg-[hsl(var(--background)/0.8)] border border-[hsl(var(--card-border))] flex flex-col justify-between"
+                          className="p-3.5 rounded-xl bg-slate-50/90 dark:bg-[#07070a]/90 border border-slate-200 dark:border-white/10 flex flex-col justify-between"
                         >
                           <div>
-                            <p className="text-[11px] font-bold text-[hsl(var(--primary))] mb-1">
+                            <p className="text-[11px] font-bold text-amber-700 dark:text-[#fbbf24] mb-1">
                               {arch.step}
                             </p>
-                            <p className="text-xs text-[hsl(var(--muted-foreground))] leading-relaxed">
+                            <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
                               {arch.detail}
                             </p>
                           </div>
@@ -591,7 +591,7 @@ export default function ProjectsSection() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={shouldReduceMotion ? {} : { opacity: 0, y: -8 }}
                       transition={{ duration: 0.2 }}
-                      className="p-4 rounded-xl bg-[hsl(var(--background))] border border-[hsl(var(--card-border))] font-mono text-xs space-y-2 mb-6 text-left"
+                      className="p-4 rounded-xl bg-[#050811] border border-slate-800 font-mono text-xs space-y-2 mb-6 text-left"
                     >
                       {project.testLogSample.map((line, idx) => (
                         <p
@@ -601,7 +601,7 @@ export default function ProjectsSection() {
                               ? "text-emerald-400 font-bold mt-2"
                               : line.startsWith("✓")
                               ? "text-emerald-300"
-                              : "text-[hsl(var(--accent))]"
+                              : "text-amber-400"
                           }
                         >
                           {line}
@@ -616,7 +616,7 @@ export default function ProjectsSection() {
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 rounded-lg bg-[hsl(var(--primary)/0.1)] text-[hsl(var(--primary))] text-xs font-semibold"
+                      className="px-3 py-1 rounded-lg bg-amber-500/10 dark:bg-amber-500/15 text-amber-800 dark:text-[#fbbf24] border border-amber-500/20 text-xs font-semibold"
                     >
                       {tag}
                     </span>

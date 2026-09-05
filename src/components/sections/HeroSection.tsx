@@ -46,15 +46,15 @@ export default function HeroSection() {
             {/* Headline */}
             <motion.h1
               {...anim(0.1)}
-              className="font-heading text-4xl sm:text-5xl lg:text-[52px] font-black tracking-tight leading-[1.08] mb-4 text-white"
+              className="font-heading text-4xl sm:text-5xl lg:text-[52px] font-black tracking-tight leading-[1.08] mb-4 text-slate-900 dark:text-white"
             >
-              Architecting <span className="text-shimmer">Resilient Automation</span> & Quality Systems
+              Architecting <span className="text-shimmer">Resilient Automation</span> &amp; Quality Systems
             </motion.h1>
 
             {/* 1-Line Real Stack Summary */}
             <motion.p
               {...anim(0.2)}
-              className="text-sm sm:text-base text-slate-400 font-mono leading-relaxed mb-6"
+              className="text-sm sm:text-base text-slate-600 dark:text-slate-400 font-mono leading-relaxed mb-6"
             >
               Playwright (TypeScript) · Apache JMeter (15k VUs) · CI/CD Gates @ Brain Station 23
             </motion.p>
@@ -65,28 +65,28 @@ export default function HeroSection() {
               className="grid grid-cols-3 gap-3 my-6"
             >
               <div className="glass-card rounded-xl p-3 text-center border-t-2 border-t-[#f59e0b]">
-                <div className="font-heading text-2xl sm:text-3xl font-black text-white">
+                <div className="font-heading text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
                   99.4<span className="text-xs text-[#f59e0b] ml-0.5">%</span>
                 </div>
-                <div className="font-mono text-[10px] text-slate-400 uppercase tracking-wider mt-1">
+                <div className="font-mono text-[10px] text-slate-600 dark:text-slate-400 font-semibold uppercase tracking-wider mt-1">
                   Platform Uptime
                 </div>
               </div>
 
               <div className="glass-card rounded-xl p-3 text-center border-t-2 border-t-[#f59e0b]">
-                <div className="font-heading text-2xl sm:text-3xl font-black text-white">
+                <div className="font-heading text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
                   15k<span className="text-xs text-[#f59e0b] ml-0.5">+</span>
                 </div>
-                <div className="font-mono text-[10px] text-slate-400 uppercase tracking-wider mt-1">
+                <div className="font-mono text-[10px] text-slate-600 dark:text-slate-400 font-semibold uppercase tracking-wider mt-1">
                   VUs Stress Tested
                 </div>
               </div>
 
               <div className="glass-card rounded-xl p-3 text-center border-t-2 border-t-[#f59e0b]">
-                <div className="font-heading text-2xl sm:text-3xl font-black text-white">
+                <div className="font-heading text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
                   75<span className="text-xs text-[#f59e0b] ml-0.5">%</span>
                 </div>
-                <div className="font-mono text-[10px] text-slate-400 uppercase tracking-wider mt-1">
+                <div className="font-mono text-[10px] text-slate-600 dark:text-slate-400 font-semibold uppercase tracking-wider mt-1">
                   Runtime Cut (14h→3.5h)
                 </div>
               </div>
@@ -136,36 +136,36 @@ export default function HeroSection() {
               <GitBranch size={13} />
               Automated Quality Stream // Multi-Node Architecture
             </span>
-            <span className="font-mono text-[11px] text-emerald-400 flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="font-mono text-[11px] text-emerald-500 font-semibold flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               Continuous Quality Gate Active
             </span>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
-            <div className="bg-[#07070a]/90 border border-white/10 rounded-xl p-3 flex items-center gap-2.5">
+            <div className="bg-white/80 dark:bg-[#07070a]/90 border border-black/5 dark:border-white/10 shadow-sm rounded-xl p-3 flex items-center gap-2.5">
               <span className="w-2.5 h-2.5 rounded-full bg-[#f59e0b]" />
-              <div className="font-mono text-xs font-semibold text-white">1. Git Push (PR)</div>
+              <div className="font-mono text-xs font-semibold text-slate-900 dark:text-white">1. Git Push (PR)</div>
             </div>
 
-            <div className="bg-[#07070a]/90 border border-white/10 rounded-xl p-3 flex items-center gap-2.5">
+            <div className="bg-white/80 dark:bg-[#07070a]/90 border border-black/5 dark:border-white/10 shadow-sm rounded-xl p-3 flex items-center gap-2.5">
               <span className="w-2.5 h-2.5 rounded-full bg-[#f59e0b]" />
-              <div className="font-mono text-xs font-semibold text-white">2. 80+ Smoke Checks</div>
+              <div className="font-mono text-xs font-semibold text-slate-900 dark:text-white">2. 80+ Smoke Checks</div>
             </div>
 
-            <div className="bg-[#07070a]/90 border border-[#10b981]/40 shadow-[0_0_15px_rgba(16,185,129,0.15)] rounded-xl p-3 flex items-center gap-2.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-              <div className="font-mono text-xs font-semibold text-emerald-300">3. Playwright E2E</div>
+            <div className="bg-white/80 dark:bg-[#07070a]/90 border border-[#10b981]/40 shadow-[0_0_15px_rgba(16,185,129,0.15)] rounded-xl p-3 flex items-center gap-2.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+              <div className="font-mono text-xs font-semibold text-emerald-600 dark:text-emerald-300">3. Playwright E2E</div>
             </div>
 
-            <div className="bg-[#07070a]/90 border border-white/10 rounded-xl p-3 flex items-center gap-2.5">
+            <div className="bg-white/80 dark:bg-[#07070a]/90 border border-black/5 dark:border-white/10 shadow-sm rounded-xl p-3 flex items-center gap-2.5">
               <span className="w-2.5 h-2.5 rounded-full bg-[#f59e0b]" />
-              <div className="font-mono text-xs font-semibold text-white">4. JMeter 15k Stress</div>
+              <div className="font-mono text-xs font-semibold text-slate-900 dark:text-white">4. JMeter 15k Stress</div>
             </div>
 
-            <div className="bg-[#07070a]/90 border border-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.25)] rounded-xl p-3 flex items-center gap-2.5 col-span-2 sm:col-span-1">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
-              <div className="font-mono text-xs font-bold text-emerald-400">5. 0-Defect Release</div>
+            <div className="bg-white/80 dark:bg-[#07070a]/90 border border-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.25)] rounded-xl p-3 flex items-center gap-2.5 col-span-2 sm:col-span-1">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+              <div className="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">5. 0-Defect Release</div>
             </div>
           </div>
         </motion.div>

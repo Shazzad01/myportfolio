@@ -65,19 +65,19 @@ export default function SkillsSection() {
       <div className="container-max">
         
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-white/10">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-black/10 dark:border-white/10">
           <div>
             <div className="font-mono text-xs font-bold text-[#f59e0b] uppercase tracking-widest flex items-center gap-2 mb-2">
               <Cpu size={13} />
               Production Arsenal // Official Brand SVGs
             </div>
-            <h2 className="font-heading text-3xl sm:text-4xl font-black text-white tracking-tight">
-              Technical <span className="text-gradient">Arsenal & Radar</span>
+            <h2 className="font-heading text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
+              Technical <span className="text-gradient">Arsenal &amp; Radar</span>
             </h2>
           </div>
 
           {/* Category Filter Pills */}
-          <div className="flex flex-wrap gap-1.5 mt-4 sm:mt-0 bg-black/40 p-1.5 rounded-full border border-white/10">
+          <div className="flex flex-wrap gap-1.5 mt-4 sm:mt-0 bg-black/5 dark:bg-black/40 p-1.5 rounded-full border border-black/5 dark:border-white/10">
             {categories.map((cat) => (
               <button
                 key={cat.id}
@@ -85,7 +85,7 @@ export default function SkillsSection() {
                 className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-medium transition-all ${
                   activeFilter === cat.id
                     ? "bg-[#f59e0b] text-[#07070a] font-bold shadow-[0_0_15px_rgba(245,158,11,0.4)]"
-                    : "text-slate-400 hover:text-white hover:bg-white/5"
+                    : "text-slate-600 hover:text-slate-900 hover:bg-black/5 dark:text-slate-400 dark:hover:text-white dark:hover:bg-white/5"
                 }`}
               >
                 {cat.label}
@@ -114,16 +114,16 @@ export default function SkillsSection() {
                     <motion.div
                       key={skill.name}
                       whileHover={{ scale: 1.02, y: -2 }}
-                      className="glass-card rounded-xl p-4 flex items-center gap-3.5 border border-white/10 hover:border-[#f59e0b]/40 transition-all group"
+                      className="glass-card rounded-xl p-4 flex items-center gap-3.5 border border-slate-200 dark:border-white/10 hover:border-[#f59e0b]/40 transition-all group"
                     >
-                      <div className="w-10 h-10 rounded-lg bg-black/50 p-2 border border-white/10 flex items-center justify-center shrink-0 group-hover:border-[#f59e0b]/40 group-hover:shadow-[0_0_15px_rgba(245,158,11,0.2)] transition-all">
+                      <div className="w-10 h-10 rounded-lg bg-slate-100 dark:bg-black/50 p-2 border border-slate-200 dark:border-white/10 flex items-center justify-center shrink-0 group-hover:border-[#f59e0b]/40 group-hover:shadow-[0_0_15px_rgba(245,158,11,0.2)] transition-all">
                         <SvgIcon className="w-full h-full" />
                       </div>
                       <div className="min-w-0 flex-1">
-                        <div className="font-heading font-bold text-sm text-white truncate">
+                        <div className="font-heading font-bold text-sm text-slate-900 dark:text-white truncate">
                           {skill.name}
                         </div>
-                        <div className="font-mono text-[10px] text-slate-400 truncate">
+                        <div className="font-mono text-[10px] text-slate-600 dark:text-slate-400 font-medium truncate">
                           {skill.tag}
                         </div>
                       </div>
@@ -147,58 +147,58 @@ export default function SkillsSection() {
             <div className="space-y-4">
               <div>
                 <div className="flex justify-between text-xs font-mono mb-1">
-                  <span className="text-white">UI Automation (Playwright/Selenium)</span>
+                  <span className="text-slate-900 dark:text-white font-medium">UI Automation (Playwright/Selenium)</span>
                   <span className="text-[#f59e0b] font-bold">98%</span>
                 </div>
-                <div className="w-full h-2 rounded-full bg-white/5 overflow-hidden">
+                <div className="w-full h-2 rounded-full bg-slate-200/60 dark:bg-white/5 overflow-hidden">
                   <div className="h-full bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] rounded-full" style={{ width: "98%" }} />
                 </div>
               </div>
 
               <div>
                 <div className="flex justify-between text-xs font-mono mb-1">
-                  <span className="text-white">API Testing & Contracts (Postman)</span>
+                  <span className="text-slate-900 dark:text-white font-medium">API Testing &amp; Contracts (Postman)</span>
                   <span className="text-[#f59e0b] font-bold">95%</span>
                 </div>
-                <div className="w-full h-2 rounded-full bg-white/5 overflow-hidden">
+                <div className="w-full h-2 rounded-full bg-slate-200/60 dark:bg-white/5 overflow-hidden">
                   <div className="h-full bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] rounded-full" style={{ width: "95%" }} />
                 </div>
               </div>
 
               <div>
                 <div className="flex justify-between text-xs font-mono mb-1">
-                  <span className="text-white">Load & Stress (JMeter 15k VUs)</span>
+                  <span className="text-slate-900 dark:text-white font-medium">Load &amp; Stress (JMeter 15k VUs)</span>
                   <span className="text-[#f59e0b] font-bold">92%</span>
                 </div>
-                <div className="w-full h-2 rounded-full bg-white/5 overflow-hidden">
+                <div className="w-full h-2 rounded-full bg-slate-200/60 dark:bg-white/5 overflow-hidden">
                   <div className="h-full bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] rounded-full" style={{ width: "92%" }} />
                 </div>
               </div>
 
               <div>
                 <div className="flex justify-between text-xs font-mono mb-1">
-                  <span className="text-white">CI/CD Quality Gates (GH Actions)</span>
+                  <span className="text-slate-900 dark:text-white font-medium">CI/CD Quality Gates (GH Actions)</span>
                   <span className="text-[#f59e0b] font-bold">90%</span>
                 </div>
-                <div className="w-full h-2 rounded-full bg-white/5 overflow-hidden">
+                <div className="w-full h-2 rounded-full bg-slate-200/60 dark:bg-white/5 overflow-hidden">
                   <div className="h-full bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] rounded-full" style={{ width: "90%" }} />
                 </div>
               </div>
 
               <div>
                 <div className="flex justify-between text-xs font-mono mb-1">
-                  <span className="text-white">Core Scripting (TS, Python, Java)</span>
+                  <span className="text-slate-900 dark:text-white font-medium">Core Scripting (TS, Python, Java)</span>
                   <span className="text-[#f59e0b] font-bold">94%</span>
                 </div>
-                <div className="w-full h-2 rounded-full bg-white/5 overflow-hidden">
+                <div className="w-full h-2 rounded-full bg-slate-200/60 dark:bg-white/5 overflow-hidden">
                   <div className="h-full bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] rounded-full" style={{ width: "94%" }} />
                 </div>
               </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-400">
+            <div className="mt-6 pt-4 border-t border-black/10 dark:border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-600 dark:text-slate-400 font-semibold">
               <span>Brain Station 23 SQA II</span>
-              <span className="text-emerald-400 font-bold">100% Release Sign-off</span>
+              <span className="text-emerald-600 dark:text-emerald-400 font-bold">100% Release Sign-off</span>
             </div>
           </div>
 

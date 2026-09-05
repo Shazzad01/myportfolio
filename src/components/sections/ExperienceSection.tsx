@@ -68,7 +68,7 @@ export default function ExperienceSection() {
             <Sparkles size={14} className="text-[hsl(var(--accent))]" />
             Career Evolution
           </p>
-          <h2 className="font-heading text-4xl sm:text-5xl font-bold">Work Experience &amp; Git Tree</h2>
+          <h2 className="font-heading text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white">Work Experience &amp; Git Tree</h2>
         </motion.div>
 
         {/* Timeline Container */}
@@ -111,20 +111,20 @@ export default function ExperienceSection() {
                           <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[hsl(var(--primary)/0.15)] text-[hsl(var(--primary))]">
                             {exp.badge}
                           </span>
-                          <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#07070a] text-[#fbbf24] border border-[#f59e0b]/30">
+                          <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-amber-500/10 dark:bg-[#07070a] text-amber-700 dark:text-[#fbbf24] border border-[#f59e0b]/30 font-semibold">
                             {exp.releaseBranch}
                           </span>
                         </div>
-                        <span className="text-xs text-[hsl(var(--muted-foreground))] flex items-center gap-1">
+                        <span className="text-xs text-slate-600 dark:text-slate-400 flex items-center gap-1">
                           <Calendar size={12} />
                           {exp.period}
                         </span>
                       </div>
 
-                      <h3 className="font-heading font-bold text-xl text-[hsl(var(--foreground))]">
+                      <h3 className="font-heading font-bold text-xl text-slate-900 dark:text-white">
                         {exp.title}
                       </h3>
-                      <p className="text-sm font-semibold text-[hsl(var(--accent))] mb-3 flex items-center gap-1.5">
+                      <p className="text-sm font-semibold text-amber-700 dark:text-[#fbbf24] mb-3 flex items-center gap-1.5">
                         <Briefcase size={14} />
                         {exp.company}
                       </p>
@@ -134,7 +134,7 @@ export default function ExperienceSection() {
                         {exp.techPills.map((pill) => (
                           <span
                             key={pill}
-                            className="px-2 py-0.5 rounded-md text-[10px] font-mono font-medium bg-[hsl(var(--muted))] text-[hsl(var(--muted-foreground))]"
+                            className="px-2 py-0.5 rounded-md text-[10px] font-mono font-medium bg-black/5 dark:bg-white/10 text-slate-700 dark:text-slate-300"
                           >
                             {pill}
                           </span>
@@ -145,9 +145,9 @@ export default function ExperienceSection() {
                         {exp.highlights.map((h, index) => (
                           <li
                             key={index}
-                            className="flex items-start gap-2.5 text-xs sm:text-sm text-[hsl(var(--muted-foreground))] leading-relaxed"
+                            className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed"
                           >
-                            <ChevronRight size={14} className="text-[hsl(var(--primary))] shrink-0 mt-0.5" />
+                            <ChevronRight size={14} className="text-amber-600 dark:text-[#f59e0b] shrink-0 mt-0.5" />
                             <span>{h}</span>
                           </li>
                         ))}
