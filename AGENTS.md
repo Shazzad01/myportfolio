@@ -34,7 +34,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ### Strict Ground-Truth Data Invariant
 - **Zero Extrapolation**: NEVER invent, extrapolate, or insert data (certifications, metrics, projects, companies) not provided by the user or found in `master_career_profile.md`. If in doubt, ask before writing code.
-- **No Fictitious Credentials**: Do NOT add certifications (e.g. ISTQB) or unverified client projects unless explicitly provided by the user.
+- **No Fictitious Credentials**: Do NOT add unverified certifications (e.g. ISTQB). Strictly verified credentials & honors from master profile: Batch 16 SQA Professional Certification, DIU B.Sc. in CSE, 7-Dimension QA Audit Framework, and nopStation Agility & Excellence Award (Team Shwapno & Paragon, Brain Station 23).
 
 ### Tailwind CSS v4 Class-Based Dark Mode Rule
 - **Mandatory Directive**: In Tailwind CSS v4 with `next-themes` or class-based theme toggling, **ALWAYS declare `@custom-variant dark (&:where(.dark, .dark *));`** at the top of `globals.css` immediately after `@import "tailwindcss";`. Without this, Tailwind v4 binds `dark:` to OS media queries and ignores `.dark` class toggles on light-mode systems.

@@ -53,6 +53,7 @@ interface Project {
   };
   architecture: ArchitectureStep[];
   testLogSample: string[];
+  award?: string;
   testimonial?: {
     quote: string;
     author: string;
@@ -68,6 +69,7 @@ const projects: Project[] = [
     period: "Apr 2024 – Present",
     platforms: ["Storefront Web", "Android App", "iOS App", "Order & Delivery System"],
     tags: ["Playwright", "GitHub Actions", "Apache JMeter", "TypeScript", "bKash / Nagad", "CI/CD"],
+    award: "nopStation Agility & Excellence Award Winner",
     brandIcons: [PlaywrightIcon, JMeterIcon, GitHubActionsIcon],
     problem:
       "Legacy retail infrastructure struggled with high-concurrency traffic spikes during national shopping festivals and lacked real-time multi-branch inventory synchronization, causing checkout errors.",
@@ -100,6 +102,7 @@ const projects: Project[] = [
     period: "Jul 2025 – Mar 2026",
     platforms: ["Web App", "Storefront Mobile App", "Delivery Logistics", "Multi-Warehouse Portal"],
     tags: ["Playwright", "GitLab CI/CD", "Postman / Newman", "Cross-Browser", "API Testing"],
+    award: "nopStation Agility & Excellence Award Winner",
     brandIcons: [PlaywrightIcon, GitLabIcon, PostmanIcon],
     problem:
       "Manual validation of dynamic discount codes, multi-warehouse stock allocations, and express delivery slots took 6 hours per release, creating release bottlenecks and potential checkout discrepancies.",
@@ -456,11 +459,17 @@ export default function ProjectsSection() {
                 {/* Top Banner */}
                 <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
                   <div>
-                    <div className="flex items-center gap-2 mb-2">
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
                       <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                         {project.period}
                       </span>
+                      {project.award && (
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#f59e0b]/15 text-amber-800 dark:text-[#fbbf24] border border-[#f59e0b]/35 shadow-sm">
+                          <Sparkles size={11} className="text-[#f59e0b]" />
+                          🏆 {project.award}
+                        </span>
+                      )}
                     </div>
                     <div className="flex items-center gap-3">
                       <h3 className="font-heading font-bold text-2xl sm:text-3xl text-slate-900 dark:text-white">

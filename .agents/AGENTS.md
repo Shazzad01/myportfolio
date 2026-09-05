@@ -53,7 +53,7 @@ Always build or maintain the portfolio with these sections in this exact order:
 | 3 | **Skills** | Automation tools & frameworks: Selenium, Cypress, Playwright, Appium, Python, JS/TS, CI/CD |
 | 4 | **Work Experience** | Vertical timeline, company → role → key achievements with impact metrics |
 | 5 | **Featured Projects** | Automation frameworks built, test suites, CI/CD integrations — problem → approach → result |
-| 6 | **Certifications** | Strictly verified certifications from master profile (Batch 16 SQA, 7-Dimension Audit). NEVER hallucinate ISTQB. |
+| 6 | **Certifications & Honors** | Strictly verified credentials from master profile (Batch 16 SQA, 7-Dimension Audit, nopStation Agility & Excellence Award). NEVER hallucinate ISTQB. |
 | 7 | **Tech Stack** | Animated icon grid — languages, tools, frameworks, platforms |
 | 8 | **Resume** | Prominent download CTA; PDF served from `/public/resume.pdf` |
 | 9 | **Contact** | Direct Communication Hub: One-click copyable Email, Phone/WhatsApp, LinkedIn, GitHub, and Location badge. No form inputs. |
@@ -92,7 +92,7 @@ Theme:       next-themes (dark/light mode)
 - **Colors**: Velvet Obsidian (`#07070a` / `hsl(240 18% 3%)`) & Rich Champagne Gold (`#f59e0b` / `#fbbf24`) in Dark Mode; Champagne Ivory (`#faf8f5`) with deep contrast slate (`#0f172a`) in Light Mode.
 - **70/30 Visual-First Ratio**: 70% interactive visuals (terminal simulators, SVG pipeline flows, latency curves, metric badges) and 30% concise text. Zero walls of prose.
 - **Tailwind CSS v4 Dark Mode Engine Invariant**: When using class-based dark mode (`next-themes`), ALWAYS declare `@custom-variant dark (&:where(.dark, .dark *));` at the top of `globals.css` immediately after `@import "tailwindcss";` to ensure `dark:*` utilities trigger on all operating systems regardless of OS preferences.
-- **Strict Ground-Truth Data Invariant**: NEVER extrapolate or hallucinate unprovided certifications, roles, or metrics. Strictly adhere to `master_career_profile.md` or ask the user before writing code.
+- **Strict Ground-Truth Data Invariant**: NEVER extrapolate or hallucinate unprovided certifications, roles, or metrics. Strictly adhere to `master_career_profile.md` or ask the user before writing code. Recognized verified credentials & honors: Batch 16 SQA, DIU B.Sc. in CSE, 7-Dimension QA Audit, and nopStation Agility & Excellence Award (Team Shwapno & Paragon, Brain Station 23).
 - **Typography**: Clear hierarchy — Outfit for headings, Inter for body. High contrast readability in both dark and light modes.
 - **Glassmorphism & Gradients**: Smoked glass panels in dark mode (`backdrop-blur-xl`), alabaster ivory glass in light mode, with glowing amber border highlights.
 - **Official Multi-Color Brand SVGs**: Official brand logos for Playwright, JMeter, Selenium, Appium, Postman, K6, TypeScript, JavaScript, Java, Python, HTML5, CSS3, Docker, GitHub Actions, GitLab, Jira, Trello, Azure Boards.
