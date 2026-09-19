@@ -36,20 +36,20 @@ export default function Navbar() {
         className={cn(
           "max-w-6xl mx-auto flex items-center justify-between h-16 px-5 rounded-full transition-all duration-300",
           scrolled
-            ? "glass shadow-xl shadow-black/5 dark:shadow-black/80 border border-[#f59e0b]/25"
-            : "bg-white/90 dark:bg-[#0c0e14]/85 backdrop-blur-xl border border-black/5 dark:border-white/10 shadow-lg shadow-black/5 dark:shadow-none"
+            ? "glass shadow-xl shadow-black/5 dark:shadow-black/80 border border-cyan-500/25"
+            : "bg-white/90 dark:bg-[#07080f]/85 backdrop-blur-xl border border-black/5 dark:border-white/10 shadow-lg shadow-black/5 dark:shadow-none"
         )}
       >
         {/* Brand Group */}
         <Link href="#hero" className="flex items-center gap-3 group">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#f59e0b] to-[#d97706] flex items-center justify-center font-heading font-black text-xs text-[#07070a] shadow-[0_0_15px_rgba(245,158,11,0.35)] group-hover:scale-105 transition-transform">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-violet-600 flex items-center justify-center font-heading font-black text-xs text-white shadow-[0_0_15px_rgba(6,182,212,0.4)] group-hover:scale-105 transition-transform">
             MSM
           </div>
           <div className="flex flex-col">
             <span className="font-heading font-bold text-sm text-slate-900 dark:text-white tracking-tight leading-none">
               Muhammad Shazzad Mia
             </span>
-            <span className="font-mono text-[10px] text-[#f59e0b] font-bold tracking-wider mt-0.5 uppercase">
+            <span className="font-mono text-[10px] text-cyan-600 dark:text-cyan-400 font-bold tracking-wider mt-0.5 uppercase">
               SQA Engineer II
             </span>
           </div>
@@ -81,7 +81,7 @@ export default function Navbar() {
           <a
             href="/resume.pdf"
             download
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full btn-gold-glow text-xs"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full btn-cyan-glow text-xs"
           >
             <Download size={13} />
             <span>CV</span>
@@ -90,10 +90,10 @@ export default function Navbar() {
           {/* Command Palette */}
           <button
             onClick={() => window.dispatchEvent(new CustomEvent("open-command-palette"))}
-            className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-[#f59e0b]/40 transition-all"
+            className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-cyan-400/40 transition-all"
             title="Open Command Palette (Ctrl+K)"
           >
-            <Command size={13} className="text-[#f59e0b]" />
+            <Command size={13} className="text-cyan-400" />
             <span className="font-mono text-[10px]">⌘K</span>
           </button>
 
@@ -128,7 +128,7 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="md:hidden max-w-6xl mx-auto mt-2 p-4 rounded-2xl glass border border-[#f59e0b]/20 shadow-2xl"
+            className="md:hidden max-w-6xl mx-auto mt-2 p-4 rounded-2xl glass border border-cyan-500/20 shadow-2xl"
           >
             <ul className="flex flex-col gap-2">
               {navLinks.map((link) => (
@@ -147,7 +147,7 @@ export default function Navbar() {
               <a
                 href="/resume.pdf"
                 download
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl btn-gold-glow text-xs"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl btn-cyan-glow text-xs"
               >
                 <Download size={14} />
                 <span>Download Resume</span>
