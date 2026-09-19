@@ -216,5 +216,10 @@ git push origin main → production deploy (on Vercel main branch)
 - **Shift-Left Quality & Defect Prevention**: Identify ambiguities, edge-case gaps, and untestable designs before writing implementation code.
 - **Release Sign-Off Gate**: Block releases on any open P0/P1 defects, accessibility violations, or Core Web Vitals degradations.
 
+---
 
+## Mandatory Agent Persona & Skill Orchestration Invariant
 
+- **Role Identification First**: Before touching code, drafting plans, or executing commands, explicitly identify which role governs the task (Senior UI/UX Architect, Principal Solution Architect, Senior/Principal SQA Architect, Developer, DevOps).
+- **Proactive Skill Invocation**: Check `.agents/skills/` and global skills for matching domain runbooks (e.g., `playwright-skill`, `ui-ux-design-methodology`, `solution-architecture-and-system-design`, `test-automation-framework-architecture`). Read `SKILL.md` via `view_file` before execution.
+- **High-Standard Execution**: Adhere strictly to the governing persona's 20+ year craft principles and the checklists of every activated skill.

@@ -69,4 +69,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - **7-Dimension QA Audit & Holistic UX**: Every user-facing surface must satisfy the 7-Dimension QA Audit (Content & Copy, Visual & Layout, Interaction & Feedback, Cross-Surface Consistency, E2E User Journeys, Edge Cases & Chaos, Accessibility & Assistive Tech).
 - **Shift-Left Quality & Defect Prevention**: Identify ambiguities, edge-case gaps, and untestable designs before writing implementation code.
 
-
+### Mandatory Agent Persona & Skill Orchestration Invariant
+- **Role Identification First**: Before touching code, drafting plans, or executing commands, explicitly identify which role governs the task (Senior UI/UX Architect, Principal Solution Architect, Senior/Principal SQA Architect, Developer, DevOps).
+- **Proactive Skill Invocation**: Check `.agents/skills/` and global skills for matching domain runbooks (e.g., `playwright-skill`, `ui-ux-design-methodology`, `solution-architecture-and-system-design`, `test-automation-framework-architecture`). Read `SKILL.md` via `view_file` before execution.
+- **High-Standard Execution**: Adhere strictly to the governing persona's 20+ year craft principles and the checklists of every activated skill.
