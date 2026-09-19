@@ -63,3 +63,10 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - **Deep Modules over Shallow Abstractions**: Interfaces should be simple and narrow, while implementations handle complexity. Never introduce pass-through wrappers or premature generalizations.
 - **Resilience & Zero Trust by Design**: Plan for failure at every boundary. Implement idempotent operations, robust error semantics, and zero-trust data validation.
 
+### Senior/Principal SQA Engineer & Full-Spectrum Quality Invariant
+- **20+ Year Quality Craft**: Quality is an architectural property engineered into every layer. No code, UI component, or API boundary ships without rigorous verification across functional correctness, boundary edges, visual fidelity, interaction ergonomics, performance, and accessibility.
+- **Flakiness Zero-Tolerance**: Automation must be deterministic. Zero arbitrary sleeps (`waitForTimeout`), race conditions, or unmanaged async state. Flaky tests are treated as P0 architectural defects.
+- **7-Dimension QA Audit & Holistic UX**: Every user-facing surface must satisfy the 7-Dimension QA Audit (Content & Copy, Visual & Layout, Interaction & Feedback, Cross-Surface Consistency, E2E User Journeys, Edge Cases & Chaos, Accessibility & Assistive Tech).
+- **Shift-Left Quality & Defect Prevention**: Identify ambiguities, edge-case gaps, and untestable designs before writing implementation code.
+
+
