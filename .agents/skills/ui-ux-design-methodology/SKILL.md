@@ -345,3 +345,32 @@ When engineering world-class case studies for personal portfolios or product sho
   - Zero Cumulative Layout Shift (CLS) during skeleton loading.
   - Actionable error recovery and retry states.
 - [ ] **Content Integrity**: Authentic, real-world data and copy; zero generic AI placeholder filler text.
+
+---
+
+## 15. The 5-Step UX & 4-Pillar UI Architecture (Figma Foundation)
+
+### The 4 Pillars of UI Design
+1. **Visual Hierarchy**: Guide the user's eye naturally using scale (Outfit headings vs. Inter body), font weights (700 -> 500 -> 400), and color chroma (10% accent vs. 60% base).
+2. **Consistency & Predictability**: Zero arbitrary margins; align strictly to the 8-point spatial grid and 3-tier design token system.
+3. **Accessibility**: High contrast (WCAG AA 4.5:1 body, 3:1 graphical), clear focus rings, and full screen-reader ARIA labeling.
+4. **Responsiveness**: Fluid layout scaling from 375px mobile to 1440px+ desktop without horizontal scroll or truncated critical controls.
+
+### The 5 Steps of UX Execution
+1. **Research & Empathy**: Uncover true user problems via JTBD (Jobs-to-be-Done) and competitive benchmarks.
+2. **Information Architecture**: Structure content taxonomies, hierarchical sitemaps, and chunked cards (Miller's Law 7±2).
+3. **Wireframing**: Establish spatial balance and scanning patterns (F-pattern / Z-pattern) without aesthetic distractions.
+4. **Prototyping & Micro-Interactions**: Wire interactive state transitions, physics-based springs, and tactile feedback.
+5. **Usability Validation**: Stress-test interfaces with real users against Task Success Rate (TSR) and Time on Task (ToT).
+
+---
+
+## 16. UX Validation & Edge-Case Stress Testing Protocols
+
+Never validate only the "happy path". Before shipping any UI, stress-test these 4 real-world edge-case dimensions:
+1. **Content Density Stress Test**: Test components with 200-character strings, multi-line titles, and localized text expansion (German/French 30% longer text strings).
+2. **System State Completeness**: Explicitly build and test Zero-Data (Empty), Loading (Skeleton), Timeout, and Error (500/404) states.
+3. **Interaction Stress Test**: Verify rapid clicking (idempotency, debounce), keyboard-only tab navigation, and focus restoration.
+4. **Interaction vs. Concept Validation**:
+   - *Concept Validation*: Validates whether the solution solves a real problem for the user.
+   - *Interaction Validation*: Validates whether the UI controls, state logic, and feedback respond predictably under real system conditions.

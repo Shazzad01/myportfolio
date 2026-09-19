@@ -124,3 +124,32 @@ Always ensure the custom variant is declared in `globals.css`:
               inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
 }
 ```
+
+---
+
+## 5. The 3-Tier Design Token Hierarchy
+
+Every design token must be structured into a strict 3-tier abstraction hierarchy to prevent styling chaos and enable instant theme switching:
+
+```
+ [TIER 1: GLOBAL / PRIMITIVE TOKENS]
+ Raw immutable values (e.g. amber-500: #f59e0b, space-16: 16px, radius-8: 8px)
+                  │
+                  ▼
+ [TIER 2: SEMANTIC / SYSTEM TOKENS]
+ Intent and context (e.g. color-surface-base, color-action-primary, color-border-subtle)
+                  │
+                  ▼
+ [TIER 3: COMPONENT-SCOPED TOKENS]
+ Bound to component contracts (e.g. button-primary-bg, card-padding, input-radius)
+```
+
+### The 60-30-10 Color Cadence Rule
+- **60% Base Surface**: Neutral canvas (`#07070a` dark / `#faf8f5` light).
+- **30% Structural Secondary**: Card surfaces, containers, borders, navigation chrome.
+- **10% High-Chroma Accent**: Primary CTAs, active status indicators, specular amber glows.
+
+### WCAG Contrast Invariant
+- **4.5:1 Minimum Contrast**: Required for all body text and secondary text.
+- **3.0:1 Minimum Contrast**: Required for large text (18pt+ / 14pt bold), interactive icons, and input borders.
+

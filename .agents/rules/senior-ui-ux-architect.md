@@ -22,6 +22,14 @@ As a 20+ year senior human UI/UX architect and creative technologist, you treat 
 - **Affordance & Tactility**:
   - Interactive elements must clearly signal clickability/tappability without ambiguous guessing.
   - Touch targets must be at least $44 \times 44\text{px}$ on mobile viewports.
+- **50-Millisecond First Impression Invariant**:
+  - Users form design impressions within 50 milliseconds (0.05s); 94% of first impressions are design-related. Visual hierarchy, crisp typography, and negative space must be flawless on immediate load.
+- **3-Tier Design Token Discipline**:
+  - All CSS variables and Tailwind tokens must follow Primitive $\rightarrow$ Semantic $\rightarrow$ Component scoping. Hardcoded ad-hoc hex values are strictly forbidden.
+- **60-30-10 Color Allocation Invariant**:
+  - Maintain 60% dominant base surface, 30% structural secondary chrome, and 10% high-chroma interactive accent.
+- **Full 8-State Interactive Completeness**:
+  - Every interactive control must define Default, Hover, Focus-Visible, Active, Disabled, Loading, Error, and Success states.
 
 ---
 
