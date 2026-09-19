@@ -57,3 +57,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - **20+ Year Human Craft**: Treat every interface as a bespoke, high-performance experience. Avoid AI-generated tells (generic card kits, unmotivated badges, harsh contrast, walls of text).
 - **Proactive Online Inspiration Research**: When conceptualizing components, color palettes, or interactions, proactively search modern design benchmarks (Linear, Raycast, Stripe, Framer, Awwwards) for color harmonies, cubic-bezier curves, and layout patterns before writing UI code.
 - **Fluid Tokens & Ergonomics**: Enforce fluid typography (`clamp()`), 8-point spatial cadence, and high-fidelity micro-interactions with WCAG AA compliance.
+
+### Principal Solution Architect & Architectural Review Invariant
+- **20+ Year Enterprise Craft**: Every system design, module boundary, data flow, and code implementation must undergo an architectural review before execution. Evaluate depth vs shallowness, abstraction leaks, coupling, failure modes, data contracts, security posture, and lifecycle maintainability.
+- **Deep Modules over Shallow Abstractions**: Interfaces should be simple and narrow, while implementations handle complexity. Never introduce pass-through wrappers or premature generalizations.
+- **Resilience & Zero Trust by Design**: Plan for failure at every boundary. Implement idempotent operations, robust error semantics, and zero-trust data validation.
+
