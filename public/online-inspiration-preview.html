@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Inspiration & Design Engineering Showcase — Muhammad Shazzad Mia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #08090a;
+      --surface: #0f1012;
+      --surface-elevated: #16181b;
+      --border: rgba(255, 255, 255, 0.07);
+      --border-highlight: rgba(245, 158, 11, 0.4);
+      --primary: #f59e0b;
+      --primary-glow: rgba(245, 158, 11, 0.25);
+      --emerald: #10b981;
+      --emerald-glow: rgba(16, 185, 129, 0.2);
+      --indigo: #6366f1;
+      --text: #f8fafc;
+      --text-muted: #8e95a5;
+      --font-display: 'Outfit', -apple-system, sans-serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      background-image: 
+        radial-gradient(circle at 50% -10%, rgba(245, 158, 11, 0.1) 0%, transparent 60%),
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 100% 100%, 32px 32px, 32px 32px;
+    }
+
+    /* Top Floating Nav (Rauno & Apple Style) */
+    .nav-wrapper {
+      position: sticky;
+      top: 1.25rem;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      padding: 0 1rem;
+    }
+    .glass-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      background: rgba(15, 16, 18, 0.85);
+      border: 1px solid var(--border);
+      padding: 0.6rem 1.25rem;
+      border-radius: 9999px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .brand {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 10px var(--emerald);
+      animation: pulse 2s infinite;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+    .nav-links a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: #fff;
+    }
+    .nav-cta {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #000;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-cta:hover {
+      transform: scale(1.04);
+      box-shadow: 0 0 16px var(--primary-glow);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 6rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      max-width: 840px;
+      margin: 0 auto 4.5rem;
+    }
+    .source-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      font-family: var(--font-mono);
+    }
+    .source-badge span.highlight {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5.5vw, 4.2rem);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      margin-bottom: 1.25rem;
+      background: linear-gradient(180deg, #ffffff 40%, rgba(255, 255, 255, 0.65) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p.lead {
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 680px;
+      margin: 0 auto 2.25rem;
+    }
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: #f8fafc;
+      color: #08090a;
+      padding: 12px 26px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-primary:hover {
+      background: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: #f8fafc;
+      padding: 12px 26px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Section Header */
+    .section-head {
+      margin-bottom: 2rem;
+    }
+    .section-head .tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .section-head h2 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    /* Linear / Raycast Bento Grid */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 4.5rem;
+    }
+    .bento-card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.75rem;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .bento-card:hover {
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+    /* Cursor spotlight overlay */
+    .bento-card::before {
+      content: "";
+      position: absolute;
+      top: var(--mouse-y, -200px);
+      left: var(--mouse-x, -200px);
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .bento-card:hover::before {
+      opacity: 1;
+    }
+
+    .col-7 { grid-column: span 7; }
+    .col-5 { grid-column: span 5; }
+    .col-4 { grid-column: span 4; }
+    .col-8 { grid-column: span 8; }
+    .col-6 { grid-column: span 6; }
+    .col-12 { grid-column: span 12; }
+
+    @media (max-width: 960px) {
+      .col-7, .col-5, .col-4, .col-8, .col-6 { grid-column: span 12; }
+    }
+
+    /* Card Headings */
+    .card-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.25rem;
+      line-height: 1.5;
+    }
+
+    /* Interactive Live Playwright Terminal Simulator */
+    .terminal-window {
+      background: #060708;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+    }
+    .terminal-topbar {
+      background: #0d0e10;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: #10b981; }
+    .terminal-title {
+      color: var(--text-muted);
+      font-size: 0.72rem;
+    }
+    .terminal-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .term-btn {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .term-btn:hover {
+      background: var(--primary);
+      color: #000;
+      border-color: var(--primary);
+    }
+    .terminal-body {
+      padding: 1rem;
+      height: 220px;
+      overflow-y: auto;
+      color: #d1d5db;
+      line-height: 1.6;
+    }
+    .term-line {
+      margin-bottom: 4px;
+      opacity: 0;
+      animation: termFade 0.25s forwards;
+    }
+    @keyframes termFade {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .t-green { color: #10b981; }
+    .t-amber { color: #f59e0b; }
+    .t-cyan { color: #06b6d4; }
+    .t-dim { color: #6b7280; }
+
+    /* Interactive Pipeline Flow (Stripe & Vercel Style) */
+    .pipeline-wrapper {
+      background: #0a0b0d;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      position: relative;
+      overflow-x: auto;
+    }
+    .pipeline-node {
+      background: #121418;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      min-width: 140px;
+      position: relative;
+      transition: all 0.3s;
+    }
+    .pipeline-node.active {
+      border-color: var(--primary);
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+    }
+    .pipeline-node.success {
+      border-color: var(--emerald);
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+    }
+    .node-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.35rem;
+    }
+    .node-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .node-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+    .pipeline-connector {
+      flex: 1;
+      height: 2px;
+      background: var(--border);
+      position: relative;
+      min-width: 40px;
+    }
+    .connector-pulse {
+      position: absolute;
+      top: -3px;
+      left: 0;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 8px var(--primary);
+      animation: pipePulse 2.5s infinite linear;
+    }
+    @keyframes pipePulse {
+      0% { left: 0%; }
+      100% { left: 100%; }
+    }
+
+    /* Stats Grid */
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 2.75rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+      background: linear-gradient(135deg, #ffffff 40%, #fef3c7 70%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Key Benchmarks Inspiration Tabs */
+    .inspiration-pills {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .insp-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .insp-pill strong {
+      color: #fff;
+    }
+
+    /* Pulse animation */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Island Header (Rauno / Apple Inspiration) -->
+  <header class="nav-wrapper">
+    <nav class="glass-nav">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span>Muhammad Shazzad Mia</span>
+      </div>
+      <div class="nav-links">
+        <a href="#telemetry">Telemetry</a>
+        <a href="#pipeline">CI/CD Pipeline</a>
+        <a href="#projects">Architectures</a>
+        <a href="#stack">Tech Stack</a>
+      </div>
+      <a href="mailto:shazzadm065@gmail.com" class="nav-cta">Connect ↗</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- Hero Section with Linear & Raycast Editorial Precision -->
+    <section class="hero">
+      <div class="source-badge">
+        <span>Curated from</span>
+        <span class="highlight">Linear.app</span> • 
+        <span class="highlight">Rauno.me</span> • 
+        <span class="highlight">Awwwards</span>
+      </div>
+      <h1>Engineering Deterministic Test Automation at Scale.</h1>
+      <p class="lead">
+        SQA Automation Engineer II at Brain Station 23. Specializing in hermetic Playwright TypeScript architectures, JMeter volumetric performance gates, and zero-defect CI/CD pipelines for 10M+ user platforms.
+      </p>
+      <div class="hero-actions">
+        <a href="#telemetry" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Explore Live Telemetry
+        </a>
+        <a href="#pipeline" class="btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6Z"/></svg>
+          Inspect Pipeline Graph
+        </a>
+      </div>
+    </section>
+
+    <!-- Online Benchmark Annotations -->
+    <div class="inspiration-pills">
+      <div class="insp-pill">
+        <span>⚡ <strong>Linear Bento Grid:</strong> Asymmetric spatial weight & cursor spotlight</span>
+      </div>
+      <div class="insp-pill">
+        <span>🎯 <strong>Rauno Interaction:</strong> Living executable terminal simulator</span>
+      </div>
+      <div class="insp-pill">
+        <span>🌐 <strong>Stripe / Supabase:</strong> Dynamic glowing multi-node pipeline</span>
+      </div>
+      <div class="insp-pill">
+        <span>✨ <strong>Emil Kowalski Physics:</strong> Snappy spring curves & zero visual slop</span>
+      </div>
+    </div>
+
+    <!-- Bento Grid Section -->
+    <section id="telemetry" class="bento-grid">
+
+      <!-- Card 1: Live Interactive Terminal (Rauno / Emil Inspired) -->
+      <div class="bento-card col-7">
+        <div class="card-label">
+          <span>Executable Terminal Sandbox</span>
+          <span style="color: var(--emerald);">● Status: Ready</span>
+        </div>
+        <div class="card-title">Live Playwright Test Runner</div>
+        <div class="card-desc">Click an action to simulate real deterministic browser test runs and flaky mitigation logic.</div>
+
+        <div class="terminal-window">
+          <div class="terminal-topbar">
+            <div class="terminal-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <div class="terminal-title">playwright-runner.ts — 80x24</div>
+            <div class="terminal-actions">
+              <button class="term-btn" onclick="runTestSuite()">▶ Run Suite</button>
+              <button class="term-btn" onclick="runFlakyFix()">⚡ Fix Flake</button>
+              <button class="term-btn" onclick="clearTerminal()">⌫ Clear</button>
+            </div>
+          </div>
+          <div class="terminal-body" id="termBody">
+            <div class="term-line t-dim">$ npx playwright test --project=chromium --reporter=list</div>
+            <div class="term-line t-cyan">[info] Initializing hermetic browser fixture (Chromium 122)...</div>
+            <div class="term-line t-green">✓ tests/e2e/auth.spec.ts:14:5 › User authentication flow (842ms)</div>
+            <div class="term-line t-green">✓ tests/e2e/checkout.spec.ts:28:5 › Complete payment flow with Stripe (1.4s)</div>
+            <div class="term-line t-amber">ℹ tests/e2e/cart.spec.ts:42:5 › Optimistic cart quantity update (410ms)</div>
+            <div class="term-line t-green">✓ tests/api/contract.spec.ts:10:5 › Verify Zod runtime schema match (180ms)</div>
+            <div class="term-line t-cyan">=========================================</div>
+            <div class="term-line t-green">🎉 4 passed (2.83s) — 0 flaky, 100% deterministic</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Test Resilience Stats (Linear Metric Tile) -->
+      <div class="bento-card col-5" style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div class="card-label">
+            <span>Verified Quality Metrics</span>
+            <span style="color: var(--primary);">★ Brain Station 23</span>
+          </div>
+          <div class="card-title">99.8% Test Determinism</div>
+          <div class="card-desc">Achieved across 2,940+ automated end-to-end regression suites for enterprise e-commerce platforms.</div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
+          <div style="background: rgba(255,255,255,0.03); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border);">
+            <div class="stat-number">2.9k+</div>
+            <div class="stat-label">Automated Tests</div>
+          </div>
+          <div style="background: rgba(255,255,255,0.03); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border);">
+            <div class="stat-number" style="background: linear-gradient(135deg, #10b981, #059669); -webkit-background-clip: text;">-45%</div>
+            <div class="stat-label">Regression Cycle Time</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Interactive Multi-Node Pipeline Flow (Stripe & Supabase Inspired) -->
+      <div id="pipeline" class="bento-card col-12">
+        <div class="card-label">
+          <span>Continuous Quality Architecture</span>
+          <span style="color: var(--emerald);">● Automated Gate: Active</span>
+        </div>
+        <div class="card-title">Enterprise CI/CD Zero-Defect Pipeline</div>
+        <div class="card-desc">Every pull request triggers hermetic parallel checks before production deployment sign-off.</div>
+
+        <div class="pipeline-wrapper">
+          <div class="pipeline-node active">
+            <div class="node-icon">📦</div>
+            <div class="node-name">Git Commit</div>
+            <div class="node-sub">Branch: feat/qa-audit</div>
+          </div>
+
+          <div class="pipeline-connector"><div class="connector-pulse"></div></div>
+
+          <div class="pipeline-node active">
+            <div class="node-icon">🛡️</div>
+            <div class="node-name">ESLint & TS Check</div>
+            <div class="node-sub">Zero Type Errors</div>
+          </div>
+
+          <div class="pipeline-connector"><div class="connector-pulse" style="animation-delay: 0.6s;"></div></div>
+
+          <div class="pipeline-node success">
+            <div class="node-icon">🎭</div>
+            <div class="node-name">Playwright E2E</div>
+            <div class="node-sub">2,940 Tests Passed</div>
+          </div>
+
+          <div class="pipeline-connector"><div class="connector-pulse" style="animation-delay: 1.2s;"></div></div>
+
+          <div class="pipeline-node success">
+            <div class="node-icon">⚡</div>
+            <div class="node-name">JMeter Volumetric</div>
+            <div class="node-sub">5,000 VUs / &lt;1.2s P95</div>
+          </div>
+
+          <div class="pipeline-connector"><div class="connector-pulse" style="animation-delay: 1.8s;"></div></div>
+
+          <div class="pipeline-node success">
+            <div class="node-icon">🚀</div>
+            <div class="node-name">Production Sign-off</div>
+            <div class="node-sub">Zero-Defect Release</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Architecture Case Study 1 -->
+      <div class="bento-card col-6">
+        <div class="card-label">
+          <span>Featured Architecture</span>
+          <span style="color: var(--primary);">nopStation & Brain Station 23</span>
+        </div>
+        <div class="card-title">Enterprise E-Commerce Test Engine</div>
+        <div class="card-desc">Architected hybrid Playwright + TypeScript framework for Shwapno & Paragon e-commerce ecosystems, reducing test duration from 4 hours to 28 minutes.</div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <span style="font-size: 0.75rem; background: rgba(255,255,255,0.06); padding: 4px 10px; border-radius: 6px;">Playwright</span>
+          <span style="font-size: 0.75rem; background: rgba(255,255,255,0.06); padding: 4px 10px; border-radius: 6px;">TypeScript</span>
+          <span style="font-size: 0.75rem; background: rgba(255,255,255,0.06); padding: 4px 10px; border-radius: 6px;">Docker</span>
+          <span style="font-size: 0.75rem; background: rgba(255,255,255,0.06); padding: 4px 10px; border-radius: 6px;">GitHub Actions</span>
+        </div>
+      </div>
+
+      <!-- Card 5: Architecture Case Study 2 -->
+      <div class="bento-card col-6">
+        <div class="card-label">
+          <span>Performance Benchmark</span>
+          <span style="color: var(--emerald);">Volumetric Load Harness</span>
+        </div>
+        <div class="card-title">5,000 Concurrent VU Stress Testing</div>
+        <div class="card-desc">Engineered Apache JMeter & k6 distributed load harnesses to identify database bottleneck connection pool saturation, sustaining 10M+ user peak traffic.</div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <span style="font-size: 0.75rem; background: rgba(255,255,255,0.06); padding: 4px 10px; border-radius: 6px;">Apache JMeter</span>
+          <span style="font-size: 0.75rem; background: rgba(255,255,255,0.06); padding: 4px 10px; border-radius: 6px;">k6</span>
+          <span style="font-size: 0.75rem; background: rgba(255,255,255,0.06); padding: 4px 10px; border-radius: 6px;">Grafana</span>
+          <span style="font-size: 0.75rem; background: rgba(255,255,255,0.06); padding: 4px 10px; border-radius: 6px;">CI Matrix</span>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+    // Cursor spotlight effect (Linear / Aceternity style)
+    document.querySelectorAll('.bento-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+
+    // Interactive Terminal Logic
+    const termBody = document.getElementById('termBody');
+
+    function addLog(text, colorClass = '') {
+      const line = document.createElement('div');
+      line.className = `term-line ${colorClass}`;
+      line.textContent = text;
+      termBody.appendChild(line);
+      termBody.scrollTop = termBody.scrollHeight;
+    }
+
+    function runTestSuite() {
+      clearTerminal();
+      addLog('$ npx playwright test --workers=4', 't-dim');
+      setTimeout(() => addLog('[setup] Spawning 4 parallel worker processes...', 't-cyan'), 200);
+      setTimeout(() => addLog('✓ tests/e2e/auth.spec.ts (680ms)', 't-green'), 600);
+      setTimeout(() => addLog('✓ tests/e2e/cart.spec.ts (940ms)', 't-green'), 1000);
+      setTimeout(() => addLog('✓ tests/e2e/payment.spec.ts (1.2s)', 't-green'), 1400);
+      setTimeout(() => addLog('✓ tests/perf/jmeter-smoke.spec.ts (430ms)', 't-green'), 1800);
+      setTimeout(() => {
+        addLog('=========================================', 't-cyan');
+        addLog('🚀 Suite execution complete: 4 passed, 0 failures in 3.25s', 't-green');
+      }, 2200);
+    }
+
+    function runFlakyFix() {
+      clearTerminal();
+      addLog('$ npx tsx scripts/flaky-detector.ts', 't-dim');
+      setTimeout(() => addLog('[diagnose] Scanning 2,940 test executions for unmanaged async waits...', 't-amber'), 250);
+      setTimeout(() => addLog('⚠ Found arbitrary `page.waitForTimeout(3000)` in search.spec.ts:32', 't-amber'), 800);
+      setTimeout(() => addLog('⚡ Refactoring to auto-retrying web-first assertion: `expect(locator).toBeVisible()`', 't-cyan'), 1400);
+      setTimeout(() => addLog('✓ Re-running 50 iterations: 50/50 PASSED (0% flakiness)', 't-green'), 2000);
+    }
+
+    function clearTerminal() {
+      termBody.innerHTML = '';
+    }
+  </script>
+</body>
+</html>

@@ -38,8 +38,11 @@ Define the visual problem in exact terms:
 ### Phase 2: Live Benchmark Search
 Use `search_web` with targeted query formulas:
 
-| Research Objective | Target Benchmarks | Recommended Search Query Pattern |
+| Research Objective | Target Benchmarks | Recommended Search / Exploration Method |
 |:---|:---|:---|
+| **Minimalist Portfolios & Layouts** | Minimal Gallery (`minimal.gallery/tag/portfolio/`) | Browser exploration of live portfolio templates, typography pairings & negative space |
+| **Section Architecture & Heros** | Unsection (`unsection.com/category/hero-section-design`) | Deconstruct hero layouts, interactive widget frames & bento grids |
+| **Editorial & Work Directories** | siteInspire (`siteinspire.com/websites/category/portfolio`) | Inspect clean card spacing, monochrome contrast & directory lists |
 | **Dark Mode Palettes** | Linear, Raycast, Vercel | `"<keyword> dark mode UI color tokens palette linear raycast"` |
 | **Glassmorphism & Refraction** | Apple macOS, iOS, Stripe | `"modern glassmorphism CSS backdrop-filter border highlight specular"` |
 | **Motion & Micro-interactions** | Framer, Awwwards, Rauno | `"Framer Motion spring physics transition interactive card rauno"` |

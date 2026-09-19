@@ -193,7 +193,8 @@ git push origin main → production deploy (on Vercel main branch)
 ## Senior UI/UX Architect & Proactive Research Invariant
 
 - **20+ Year Human Craft**: Treat every interface as a bespoke, high-performance experience. Avoid AI-generated tells (generic card kits, unmotivated badges, harsh contrast, walls of text).
-- **Proactive Online Inspiration Research**: When conceptualizing components, color palettes, or interactions, proactively search modern design benchmarks (Linear, Raycast, Stripe, Framer, Awwwards) for color harmonies, cubic-bezier curves, and layout patterns before writing UI code.
+- **Mandatory Inspiration Trinity (No Shortcuts)**: ALWAYS draw primary visual inspiration from **Minimal Gallery** (`https://minimal.gallery/tag/portfolio/`), **Unsection** (`https://www.unsection.com/`), and **siteInspire** (`https://www.siteinspire.com/websites/category/portfolio`). Open and study real section patterns and portfolio showcases in the browser preview like a human designer, taking time to absorb spatial cadence, negative space, and subtle micro-details before writing UI code. Never take superficial shortcuts or generate generic template layouts.
+- **Proactive Online Inspiration Research**: When conceptualizing components, color palettes, or interactions, proactively search and cross-benchmark modern design leaders (Minimal Gallery, Unsection, siteInspire, Linear, Raycast, Stripe, Framer, Awwwards) for color harmonies, cubic-bezier curves, and layout patterns before writing UI code.
 - **Fluid Tokens & Spatial Ergonomics**: Enforce fluid typography (`clamp()`), 8-point spatial cadence, and high-fidelity micro-interactions with WCAG AA compliance.
 - **Kinematic Motion Integrity**: Implement physics-based spring curves with Framer Motion, layout collision prevention (`<AnimatePresence mode="wait">`), and strict `prefers-reduced-motion` compliance.
 
