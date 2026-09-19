@@ -52,3 +52,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 ### Zero-Bloat Component Extraction Pattern
 - **Selective Extraction**: When leveraging external UI component libraries (e.g. React Bits, Magic UI, Aceternity), extract and adapt standalone TS-TW (TypeScript + Tailwind) primitives directly into `@/components/ui/` rather than adding unnecessary npm package bloat.
 - **Theme & Motion Compliance**: Ensure every extracted component natively binds to our theme variables and explicitly honors `useReducedMotion()`.
+
+### Senior UI/UX Architect & Proactive Research Invariant
+- **20+ Year Human Craft**: Treat every interface as a bespoke, high-performance experience. Avoid AI-generated tells (generic card kits, unmotivated badges, harsh contrast, walls of text).
+- **Proactive Online Inspiration Research**: When conceptualizing components, color palettes, or interactions, proactively search modern design benchmarks (Linear, Raycast, Stripe, Framer, Awwwards) for color harmonies, cubic-bezier curves, and layout patterns before writing UI code.
+- **Fluid Tokens & Ergonomics**: Enforce fluid typography (`clamp()`), 8-point spatial cadence, and high-fidelity micro-interactions with WCAG AA compliance.
