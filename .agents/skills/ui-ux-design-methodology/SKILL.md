@@ -1,15 +1,50 @@
 ---
 name: ui-ux-design-methodology
-description: End-to-end UI/UX design methodology, user experience research, information architecture, design systems, component state matrices, and design-to-QA handoff standards.
+description: End-to-end UI/UX design methodology, 20-year cognitive ergonomics (Fitts's/Hick's/Miller's Law), information architecture, design systems, component state matrices, and design-to-QA handoff standards.
 ---
 
-# UI/UX Design Methodology & Workflow
+# UI/UX Design Methodology & Cognitive Ergonomics
 
-This skill defines the end-to-end product design process, establishing professional UI/UX standards for researching, structuring, styling, prototyping, and validating modern web applications and user interfaces.
+This skill defines the end-to-end product design process, establishing senior-level UI/UX standards for researching, structuring, styling, prototyping, and validating modern web applications with 20+ years of cognitive ergonomics and user-centered craft.
 
 ---
 
-## 1. The Double Diamond Framework
+## 1. 20-Year UX Cognitive Ergonomics & Laws
+
+Great interface design is rooted in human perception, cognitive limits, and motor dexterity. Every layout and interaction must be governed by these fundamental laws:
+
+### Fitts's Law (Target Acquisition & Reachability)
+$$T = a + b \log_2 \left(\frac{2D}{W}\right)$$
+- **Distance ($D$) & Size ($W$)**: The time required to rapidly move to a target area is a function of the ratio between distance to the target and the width of the target.
+- **Rules of Application**:
+  - Touch targets must never be smaller than $44 \times 44\text{px}$ on mobile viewports.
+  - Critical action buttons (CTA, Submit, Next) must be positioned in natural thumb-reach zones (bottom half of mobile screens).
+  - Pin frequently used controls to edges or corners (infinite virtual width in desktop mouse movement).
+
+### Hick's Law (Decision Latency Reduction)
+$$T = b \log_2 (n + 1)$$
+- **Choice Architecture**: The time it takes to make a decision increases logarithmically with the number and complexity of choices ($n$).
+- **Rules of Application**:
+  - Limit primary actions to exactly **one dominant CTA per screen/view**.
+  - Secondary choices should be visually subordinate (ghost buttons, text links).
+  - Break complex multi-field forms into sequential, progressive disclosure steps.
+
+### Miller's Law (Working Memory Capacity)
+- **Cognitive Chunking**: The average human working memory can hold approximately $7 \pm 2$ chunks of information at a time.
+- **Rules of Application**:
+  - Group related data into cards of 3 to 5 metrics maximum.
+  - Format long alphanumeric sequences into digestible chunks (e.g. phone numbers, API keys, tracking codes).
+  - Navigation menus must have no more than 5–7 primary top-level destinations.
+
+### Jakob's Law (Familiar Mental Models)
+- Users spend most of their time on other sites. They expect your site to work like the ones they already know.
+- **Rules of Application**:
+  - Place navigation, search, profile, and theme toggles in conventional locations.
+  - Do not reinvent standard affordances (links look clickable, form fields look typeable).
+
+---
+
+## 2. The Double Diamond Framework
 
 Every UI/UX feature or redesign must progress through four structured phases:
 
@@ -25,83 +60,58 @@ Every UI/UX feature or redesign must progress through four structured phases:
 ```
 
 ### Phase 1: Discover (UX Research & Strategy)
-Before writing any code or drawing components, establish the problem context:
-- **User Goals & Personas**: Who is the target user? What are their core motivations and friction points?
-- **Competitive Analysis**: How do leading platforms solve similar interaction challenges?
-- **Data & Behavioral Signals**: Audit current friction points, drop-offs, heatmaps, and confusing terminology.
-- **Problem Statement**: Articulate what user friction is being removed and what value is delivered.
+- **User Goals & Personas**: Who is the user? What are their core motivations and friction points?
+- **Competitive Benchmarks**: How do market leaders (Linear, Stripe, Apple) address this interaction?
+- **Behavioral Signals**: Identify drop-offs, dead clicks, and confusing terminology.
 
 ### Phase 2: Define (Information Architecture & User Flows)
-Structure content logically before visual styling:
 - **Information Architecture (IA)**: Group content intuitively with clear taxonomic hierarchy and priority order.
-- **User Flows**: Map step-by-step decision trees:
-  `Entry Point` → `Action / Input` → `Validation & Decision` → `Feedback` → `Goal Completion`.
-- **Low-Fidelity Wireframing**: Validate structural layouts, reading order, and visual scanning patterns (F-pattern or Z-pattern) without being distracted by color or ornamentation.
+- **User Flows**: Map step-by-step decision trees: `Entry` → `Action` → `Validation` → `Feedback` → `Goal`.
+- **Low-Fidelity Wireframes**: Test visual scanning patterns (F-pattern or Z-pattern) without color distraction.
 
 ### Phase 3: Develop (Design Systems, Tokens & High-Fidelity UI)
-Craft production-ready interface systems:
-- **Spatial Grid System**: Standardize on an 8-point spatial grid (`8px`, `16px`, `24px`, `32px`, `48px`, `64px`) for margins, padding, and layout gaps.
-- **Design Tokens**: Centralize design tokens for color palettes, elevation/shadows, border-radii, and typography.
-- **Atomic Hierarchy**:
-  - *Atoms*: Colors, typography tokens, icons, buttons, raw inputs.
-  - *Molecules*: Search input with icon, labeled form control, stat counter widget.
-  - *Organisms*: Navigation bar, project showcase card, contact form, modal dialog.
-  - *Templates & Pages*: Cohesive, responsive page layouts.
-- **Interactive Prototyping**: Build realistic interactions with spring physics, micro-interactions, and visual feedback for every user touchpoint.
+- **8-Point Spatial Grid**: Standardize on `4px`, `8px`, `12px`, `16px`, `24px`, `32px`, `48px`, `64px`, `96px`.
+- **Design Tokens**: Centralize tokens for color palettes, shadows, border-radii, and typography.
+- **Atomic Hierarchy**: Atoms → Molecules → Organisms → Templates & Pages.
 
 ### Phase 4: Deliver (Handoff & Design QA)
-Ensure seamless translation from design to production:
-- **Design Specifications**: Inspectable layout parameters (Flexbox / CSS Grid), typography sizes, line-heights, and exact vector SVG exports.
-- **State Coverage**: Account for all interactive states and edge cases before engineering sign-off.
-- **Design QA Audit**: Cross-verify built code against design specs for spacing, typography, contrast, responsiveness, and interaction polish.
+- **Specifications**: Strict parameter definitions (Flexbox / CSS Grid, line-heights, vector SVGs).
+- **State Coverage**: Account for all 8 interactive states before sign-off.
+- **Design QA Audit**: Cross-verify code against design specs for spacing, typography, contrast, responsiveness, and interaction polish.
 
 ---
 
-## 2. Mandatory Component State Matrix
+## 3. Mandatory 8-State Component Matrix & Code Implementations
 
-Every interactive element (button, card, input, dropdown, modal, toggle) must explicitly account for all **8 Core UI States**:
+Every interactive component must explicitly implement all 8 states with robust ARIA attributes:
 
-| # | State | Visual & Behavioral Requirement | Accessibility / Code Signal |
+| # | State | Visual Requirement | Tailwind CSS & ARIA Implementation |
 |:---|:---|:---|:---|
-| 1 | **Default / Idle** | Clean base appearance with obvious affordance and visual hierarchy. | Natural resting state |
-| 2 | **Hover** | Subtle elevation, color tint, or scale lift ($1.02\times$) indicating interactive potential. | `:hover` / `whileHover` |
-| 3 | **Focus / Keyboard** | High-contrast visible focus ring ($\ge 2\text{px}$ offset) for keyboard accessibility. | `:focus-visible`, WCAG 2.4.7 |
-| 4 | **Active / Pressed** | Visual depression or inset feedback ($0.98\times$ scale or darkened background). | `:active` / `whileTap` |
-| 5 | **Disabled / Inactive** | De-emphasized styling ($50\%$ opacity), `cursor-not-allowed`, interactions suppressed. | `disabled`, `aria-disabled="true"` |
-| 6 | **Loading / Busy** | Skeleton placeholder or inline spinner; disable double submissions. | `aria-busy="true"`, `role="status"` |
-| 7 | **Error / Invalid** | Distinct error border/accent, inline human-readable message (never rely on color alone). | `aria-invalid="true"`, `aria-describedby` |
-| 8 | **Empty State** | Meaningful empty state illustration or icon, friendly copy, and primary action CTA. | Prompts user onboarding/action |
+| 1 | **Default** | Clear affordance, 8pt alignment | `bg-amber-500 text-slate-950 font-medium` |
+| 2 | **Hover** | Subtle elevation, scale ($1.02\times$) | `hover:bg-amber-400 hover:scale-[1.02] transition-transform` |
+| 3 | **Focus** | High-contrast visible focus ring | `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2` |
+| 4 | **Active** | Tactile depression ($0.98\times$) | `active:scale-[0.98] active:bg-amber-600` |
+| 5 | **Disabled** | $50\%$ opacity, suppressed events | `disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none aria-disabled="true"` |
+| 6 | **Loading** | Inline spinner or skeleton pulse | `aria-busy="true" role="status"` with animate-pulse |
+| 7 | **Error** | Red accent, inline descriptive text | `aria-invalid="true" border-rose-500 focus:ring-rose-500` |
+| 8 | **Empty** | Friendly illustration + primary CTA | `role="region" aria-label="No results found"` |
 
 ---
 
-## 3. Visual & Interaction Design Standards
+## 4. Mobile Ergonomics & Thumb-Zone Mapping
 
-### Typography Hierarchy & Readability
-- **Type Scale**: Maintain strict typographic hierarchy (e.g., Display `3rem+`, H1 `2.25rem`, H2 `1.75rem`, H3 `1.25rem`, Body `1rem`, Caption `0.875rem`).
-- **Font Pairing**: Limit to 1–2 distinct font families (e.g., Outfit for geometric headings + Inter for clean body reading).
-- **Line Length & Leading**: Keep body line lengths under 80 characters for optimal legibility; line-height $\ge 1.5$ for body, $1.1$–$1.2$ for large headings.
-
-### Color Theory & Contrast Standards
-- **Semantic Palette**: Use semantic tokens (`surface-base`, `surface-raised`, `primary`, `accent`, `border-muted`, `destructive`, `success`).
-- **Contrast Ratios**: Strict adherence to WCAG 2.1 AA standards:
-  - Text to background: $\ge 4.5:1$ (normal text) and $\ge 3.0:1$ (large text $\ge 18\text{pt}$ / $24\text{px}$).
-  - UI components and graphical objects: $\ge 3.0:1$.
-- **Information Redundancy**: Never convey information using color alone; always pair color with icons, text labels, or distinct patterns.
-
-### Motion & Micro-Interactions
-- **Purpose-Driven Motion**: Animate with intent (directional feedback, state changes, status confirmations).
-- **Timing & Easing**: Use 150ms–300ms transitions with natural spring physics or `cubic-bezier(0.16, 1, 0.3, 1)`. Avoid sluggish animations (>500ms).
-- **Reduced Motion**: Respect system accessibility preferences (`prefers-reduced-motion: reduce`).
+On mobile devices ($375\text{px}$–$430\text{px}$ width):
+- **Natural Thumb Zone (Bottom 40% of viewport)**: Primary navigation, filters, submit actions, bottom sheets.
+- **Stretch Zone (Middle 30%)**: Secondary scrollable content cards and telemetry.
+- **Hard-to-Reach Zone (Top 30%)**: Static headers, status bars, and informational readouts only. Never place primary destruction or confirmation triggers here.
 
 ---
 
-## 4. Design-to-SQA Collaboration & Audit Checklist
-
-Use this checklist during feature development, code reviews, and UI/UX audits:
+## 5. Design-to-SQA Collaboration & Audit Checklist
 
 - [ ] **Visual Hierarchy**: Does the primary action stand out immediately within 3 seconds?
 - [ ] **State Completeness**: Are all 8 states (Default, Hover, Focus, Active, Disabled, Loading, Error, Empty) implemented?
-- [ ] **Responsive Fluidity**: Does the layout scale seamlessly across 375px (mobile), 768px (tablet), 1024px (small desktop), and 1440px+ (wide)?
+- [ ] **Responsive Fluidity**: Does the layout scale seamlessly across 375px (mobile), 768px (tablet), 1024px (desktop), and 1440px+ (wide)?
 - [ ] **Touch Targets**: Are all clickable/tappable elements at least $44 \times 44\text{px}$ on touch viewports?
 - [ ] **Keyboard Navigation**: Can every interactive element be navigated using `Tab` / `Shift+Tab` and triggered using `Enter` or `Space`?
 - [ ] **Focus Visibility**: Is there a clear, high-contrast focus ring when navigating via keyboard?
@@ -109,4 +119,4 @@ Use this checklist during feature development, code reviews, and UI/UX audits:
   - Extreme text strings (wrapping, truncation with tooltips).
   - Slow network / loading states (skeletons with layout stability, zero Cumulative Layout Shift).
   - API error responses (clear recovery options, retry buttons).
-- [ ] **Content Integrity**: Real, authentic content and copy; no unstyled placeholder text or generic AI filler phrases.
+- [ ] **Content Integrity**: Real, authentic content and copy; zero unstyled placeholder text or generic AI filler phrases.
