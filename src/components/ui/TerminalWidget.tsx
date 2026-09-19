@@ -10,6 +10,8 @@ import {
   ShieldCheck,
   Flame,
   Zap,
+  Copy,
+  Check,
 } from "lucide-react";
 import DecryptedText from "@/components/ui/DecryptedText";
 
@@ -113,9 +115,18 @@ export default function TerminalWidget() {
     return () => clearInterval(interval);
   }, [isRunning, currentSuite]);
 
+  const [copied, setCopied] = useState(false);
+
   const handleRestart = () => {
     setActiveStep(0);
     setIsRunning(true);
+  };
+
+  const handleCopy = () => {
+    const fullLog = currentSuite.logs.map((l) => l.text).join("\n");
+    navigator.clipboard.writeText(fullLog);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
@@ -145,6 +156,14 @@ export default function TerminalWidget() {
 
         {/* Action Controls */}
         <div className="flex items-center gap-1.5 shrink-0 pl-2">
+          <button
+            onClick={handleCopy}
+            title="Copy Console Logs"
+            className="flex items-center gap-1 px-2.5 py-1 rounded-md bg-white/5 text-slate-300 hover:text-[#f59e0b] hover:bg-[#f59e0b]/10 transition-all font-sans text-[11px]"
+          >
+            {copied ? <Check size={11} className="text-emerald-400" /> : <Copy size={11} />}
+            <span>{copied ? "Copied" : "Copy"}</span>
+          </button>
           <button
             onClick={handleRestart}
             title="Rerun Suite"

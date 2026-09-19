@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import { Award, GraduationCap, CheckCircle2, Sparkles, ShieldCheck, Trophy, Quote } from "lucide-react";
+import { Award, GraduationCap, CheckCircle2, Sparkles, ShieldCheck, Trophy, Quote, BookOpen, ExternalLink } from "lucide-react";
 
 export default function CertificationsSection() {
   const shouldReduceMotion = useReducedMotion();
@@ -20,13 +20,13 @@ export default function CertificationsSection() {
         >
           <p className="text-xs font-bold text-[#f59e0b] tracking-widest uppercase mb-3 flex items-center justify-center gap-2 font-mono">
             <Sparkles size={14} className="text-[#fbbf24]" />
-            Honors, Credentials &amp; Academic Background
+            Honors, Credentials &amp; Research
           </p>
           <h2 className="font-heading text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-3">
-            Awards, Certifications &amp; Education
+            Awards, Certifications &amp; Research
           </h2>
           <p className="text-sm text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            Verified industry recognitions, enterprise delivery honors, and foundational software engineering credentials.
+            Verified industry recognitions, peer-reviewed international publications, and enterprise software quality credentials.
           </p>
         </motion.div>
 
@@ -137,8 +137,8 @@ export default function CertificationsSection() {
           </div>
         </motion.div>
 
-        {/* 3-Column Grid for Credentials & Education */}
-        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto text-left">
+        {/* 4-Card Grid for Credentials, Education & Research */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto text-left">
           {/* Card 1: Professional SQA Training */}
           <motion.div
             initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
@@ -146,39 +146,39 @@ export default function CertificationsSection() {
             viewport={{ once: true, amount: 0.1 }}
             transition={{ type: "spring", stiffness: 240, damping: 22, delay: 0.1 }}
             whileHover={shouldReduceMotion ? {} : { y: -5, scale: 1.02 }}
-            className="glass-card p-6 sm:p-7 rounded-3xl border border-[#f59e0b]/25 hover:border-[#f59e0b]/50 flex flex-col justify-between transition-all"
+            className="glass-card p-6 rounded-3xl border border-[#f59e0b]/25 hover:border-[#f59e0b]/50 flex flex-col justify-between transition-all"
           >
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-[#f59e0b]/15 flex items-center justify-center text-[#f59e0b] mb-5 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
-                <Award size={26} />
+              <div className="w-12 h-12 rounded-2xl bg-[#f59e0b]/15 flex items-center justify-center text-[#f59e0b] mb-4 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
+                <Award size={24} />
               </div>
               <span className="px-3 py-1 rounded-full text-[10px] font-bold bg-[#f59e0b]/15 text-amber-700 dark:text-[#f59e0b] border border-[#f59e0b]/30">
                 Professional SQA
               </span>
-              <h3 className="font-heading font-bold text-xl text-slate-900 dark:text-white mt-3 mb-1">
+              <h3 className="font-heading font-bold text-lg text-slate-900 dark:text-white mt-3 mb-1">
                 Software Quality Assurance
               </h3>
-              <p className="text-sm font-semibold text-amber-600 dark:text-[#fbbf24] mb-4">
+              <p className="text-xs font-semibold text-amber-600 dark:text-[#fbbf24] mb-3">
                 IT Training BD · Batch 16 (2023)
               </p>
-              <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-400">
+              <ul className="space-y-1.5 text-xs text-slate-600 dark:text-slate-400">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 size={13} className="text-emerald-500 shrink-0" />
-                  Manual &amp; Automated Testing Principles
+                  <CheckCircle2 size={12} className="text-emerald-500 shrink-0" />
+                  Manual &amp; Automation Fundamentals
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 size={13} className="text-emerald-500 shrink-0" />
-                  JMeter Performance &amp; Test Management
+                  <CheckCircle2 size={12} className="text-emerald-500 shrink-0" />
+                  JMeter Performance &amp; Stress Tests
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 size={13} className="text-emerald-500 shrink-0" />
+                  <CheckCircle2 size={12} className="text-emerald-500 shrink-0" />
                   Defect Lifecycle &amp; Jira Tracking
                 </li>
               </ul>
             </div>
-            <div className="mt-6 pt-4 border-t border-black/10 dark:border-white/10 font-mono text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1.5">
+            <div className="mt-5 pt-3 border-t border-black/10 dark:border-white/10 font-mono text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-emerald-500" />
-              <span>Certified Professional (IT Training BD)</span>
+              <span>Certified Professional</span>
             </div>
           </motion.div>
 
@@ -189,79 +189,129 @@ export default function CertificationsSection() {
             viewport={{ once: true, amount: 0.1 }}
             transition={{ type: "spring", stiffness: 240, damping: 22, delay: 0.2 }}
             whileHover={shouldReduceMotion ? {} : { y: -5, scale: 1.02 }}
-            className="glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-white/10 hover:border-[#f59e0b]/40 flex flex-col justify-between transition-all"
+            className="glass-card p-6 rounded-3xl border border-slate-200 dark:border-white/10 hover:border-[#f59e0b]/40 flex flex-col justify-between transition-all"
           >
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-5">
-                <GraduationCap size={26} />
+              <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4">
+                <GraduationCap size={24} />
               </div>
               <span className="px-3 py-1 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
                 CGPA 3.59 / 4.00
               </span>
-              <h3 className="font-heading font-bold text-xl text-slate-900 dark:text-white mt-3 mb-1">
-                BSc in Computer Science &amp; Engineering
+              <h3 className="font-heading font-bold text-lg text-slate-900 dark:text-white mt-3 mb-1">
+                BSc in CSE
               </h3>
-              <p className="text-sm font-semibold text-amber-600 dark:text-[#fbbf24] mb-4">
+              <p className="text-xs font-semibold text-amber-600 dark:text-[#fbbf24] mb-3">
                 Daffodil International University (2023)
               </p>
-              <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-400">
+              <ul className="space-y-1.5 text-xs text-slate-600 dark:text-slate-400">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 size={13} className="text-emerald-500 shrink-0" />
-                  Software Engineering &amp; System Architecture
+                  <CheckCircle2 size={12} className="text-emerald-500 shrink-0" />
+                  Software Architecture &amp; OOP
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 size={13} className="text-emerald-500 shrink-0" />
-                  Object-Oriented Programming (Java, C++)
+                  <CheckCircle2 size={12} className="text-emerald-500 shrink-0" />
+                  Database Systems &amp; SQL Querying
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 size={13} className="text-emerald-500 shrink-0" />
-                  Database Management Systems (SQL)
+                  <CheckCircle2 size={12} className="text-emerald-500 shrink-0" />
+                  Data Structures &amp; Algorithms
                 </li>
               </ul>
             </div>
-            <div className="mt-6 pt-4 border-t border-black/10 dark:border-white/10 font-mono text-[11px] text-slate-600 dark:text-slate-400 font-semibold">
-              <span>Graduated March 2023 · Dhaka, BD</span>
+            <div className="mt-5 pt-3 border-t border-black/10 dark:border-white/10 font-mono text-[11px] text-slate-600 dark:text-slate-400 font-semibold">
+              <span>Graduated Mar 2023 · Dhaka</span>
             </div>
           </motion.div>
 
-          {/* Card 3: 7-Dimension QA Audit & AI-Assisted QA */}
+          {/* Card 3: Peer-Reviewed IEEE Research Publication */}
+          <motion.div
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ type: "spring", stiffness: 240, damping: 22, delay: 0.25 }}
+            whileHover={shouldReduceMotion ? {} : { y: -5, scale: 1.02 }}
+            className="glass-card p-6 rounded-3xl border border-indigo-500/30 hover:border-indigo-500/60 flex flex-col justify-between transition-all bg-gradient-to-b from-indigo-500/5 to-transparent"
+          >
+            <div>
+              <div className="w-12 h-12 rounded-2xl bg-indigo-500/15 flex items-center justify-center text-indigo-500 dark:text-indigo-400 mb-4 shadow-[0_0_15px_rgba(99,102,241,0.2)]">
+                <BookOpen size={24} />
+              </div>
+              <span className="px-3 py-1 rounded-full text-[10px] font-bold bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30">
+                IEEE Publication (ICCCI 2023)
+              </span>
+              <h3 className="font-heading font-bold text-lg text-slate-900 dark:text-white mt-3 mb-1">
+                Skin Cancer Detection via CNN
+              </h3>
+              <p className="text-xs font-semibold text-indigo-600 dark:text-indigo-300 mb-3">
+                fastai Deep Learning Models
+              </p>
+              <ul className="space-y-1.5 text-xs text-slate-600 dark:text-slate-400">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={12} className="text-emerald-500 shrink-0" />
+                  <strong className="text-slate-900 dark:text-white">97% Accuracy:</strong> Melanoma classification
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={12} className="text-emerald-500 shrink-0" />
+                  Peer-Reviewed IEEE Conference
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 size={12} className="text-emerald-500 shrink-0" />
+                  DIU Capstone Research Project
+                </li>
+              </ul>
+            </div>
+            <div className="mt-5 pt-3 border-t border-black/10 dark:border-white/10 font-mono text-[11px]">
+              <a
+                href="https://ieeexplore.ieee.org/abstract/document/10128274"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 font-bold transition-colors"
+              >
+                <span>IEEE Xplore DOI</span>
+                <ExternalLink size={12} />
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Card 4: 7-Dimension QA Audit & AI-Assisted QA */}
           <motion.div
             initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ type: "spring", stiffness: 240, damping: 22, delay: 0.3 }}
             whileHover={shouldReduceMotion ? {} : { y: -5, scale: 1.02 }}
-            className="glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-white/10 hover:border-[#f59e0b]/40 flex flex-col justify-between transition-all"
+            className="glass-card p-6 rounded-3xl border border-slate-200 dark:border-white/10 hover:border-[#f59e0b]/40 flex flex-col justify-between transition-all"
           >
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-5">
-                <ShieldCheck size={26} />
+              <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-4">
+                <ShieldCheck size={24} />
               </div>
               <span className="px-3 py-1 rounded-full text-[10px] font-bold bg-[#f59e0b]/15 text-amber-700 dark:text-[#f59e0b]">
                 Enterprise Methodology
               </span>
-              <h3 className="font-heading font-bold text-xl text-slate-900 dark:text-white mt-3 mb-1">
-                7-Dimension QA Audit Framework
+              <h3 className="font-heading font-bold text-lg text-slate-900 dark:text-white mt-3 mb-1">
+                7-Dimension QA Audit
               </h3>
-              <p className="text-sm font-semibold text-amber-600 dark:text-[#fbbf24] mb-4">
-                Brain Station 23 Enterprise Practice
+              <p className="text-xs font-semibold text-amber-600 dark:text-[#fbbf24] mb-3">
+                Brain Station 23 Practice
               </p>
-              <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-400">
+              <ul className="space-y-1.5 text-xs text-slate-600 dark:text-slate-400">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 size={13} className="text-emerald-500 shrink-0" />
+                  <CheckCircle2 size={12} className="text-emerald-500 shrink-0" />
                   Content, Visual, Flow &amp; a11y Audits
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 size={13} className="text-emerald-500 shrink-0" />
-                  GitHub Copilot AI Automated Triage (35% faster)
+                  <CheckCircle2 size={12} className="text-emerald-500 shrink-0" />
+                  GitHub Copilot Triage (35% faster)
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 size={13} className="text-emerald-500 shrink-0" />
-                  15,000+ VU Performance Benchmarks
+                  <CheckCircle2 size={12} className="text-emerald-500 shrink-0" />
+                  15k+ VU Performance Benchmarks
                 </li>
               </ul>
             </div>
-            <div className="mt-6 pt-4 border-t border-black/10 dark:border-white/10 font-mono text-[11px] text-slate-600 dark:text-slate-400 font-semibold">
+            <div className="mt-5 pt-3 border-t border-black/10 dark:border-white/10 font-mono text-[11px] text-slate-600 dark:text-slate-400 font-semibold">
               <span>Active SQA II Practice</span>
             </div>
           </motion.div>

@@ -13,6 +13,7 @@ const navLinks = [
   { label: "Arsenal", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Frameworks", href: "#projects" },
+  { label: "Awards", href: "#certifications" },
   { label: "Contact", href: "#contact" },
 ];
 
