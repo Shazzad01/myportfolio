@@ -224,3 +224,18 @@ git push origin main → production deploy (on Vercel main branch)
 - **Role Identification First**: Before touching code, drafting plans, or executing commands, explicitly identify which role governs the task (Senior UI/UX Architect, Principal Solution Architect, Senior/Principal SQA Architect, Developer, DevOps).
 - **Proactive Skill Invocation**: Check `.agents/skills/` and global skills for matching domain runbooks (e.g., `playwright-skill`, `ui-ux-design-methodology`, `solution-architecture-and-system-design`, `test-automation-framework-architecture`). Read `SKILL.md` via `view_file` before execution.
 - **High-Standard Execution**: Adhere strictly to the governing persona's 20+ year craft principles and the checklists of every activated skill.
+
+---
+
+## Strict Zero-Work-Without-Skills Invariant (Mandatory)
+
+- **Strictly Forbidden Without Skills**: You are STRICTLY FORBIDDEN from performing ANY work, code modification, debugging, UI design, architectural decision, test writing, or shell execution without actively invoking and following a relevant skill.
+- **Mandatory Discovery & Pre-Invocation**: Before taking any action or writing any implementation, identify and read the governing skill (`SKILL.md` via `view_file`) from `.agents/skills/` or global skills.
+- **Auto-Installation / Creation Mandate If Missing**:
+  - If no suitable skill exists for the task, you MUST NOT proceed with the work directly.
+  - You MUST first acquire or create the required skill:
+    1. Search and install the official/standard skill from trusted sources (e.g. `skills.sh`, `vercel-labs/agent-skills`, official framework repositories) into `.agents/skills/<skill-name>/`, OR
+    2. Author a comprehensive, production-grade `SKILL.md` adhering to the skills architecture in `.agents/skills/<skill-name>/`.
+  - Only after the skill is fully established, verified, and read may you begin the requested task.
+- **Traceable Execution**: Announce the active skill being used and strictly adhere to its guidelines, workflows, and quality checklists.
+
