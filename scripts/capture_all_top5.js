@@ -11,11 +11,11 @@ const path = require('path');
   await page.waitForTimeout(1000);
 
   const options = [
-    { name: '01_horizon_stripes', selector: 'button:has-text("01. Deep Horizon")' },
-    { name: '02_cosmic_prism', selector: 'button:has-text("02. Cosmic Glass")' },
-    { name: '03_cyber_radar', selector: 'button:has-text("03. Cybernetic Telemetry")' },
-    { name: '04_sunset_caustic', selector: 'button:has-text("04. Twilight Sunset")' },
-    { name: '05_monochrome_specular', selector: 'button:has-text("05. Monochrome Specular")' }
+    { name: '01_cursor_glare', selector: 'button:has-text("01. Interactive")' },
+    { name: '02_breathing_corona', selector: 'button:has-text("02. Breathing")' },
+    { name: '03_laser_glint', selector: 'button:has-text("03. Linear")' },
+    { name: '04_specular_motes', selector: 'button:has-text("04. Zero-Gravity")' },
+    { name: '05_topographic_waves', selector: 'button:has-text("05. Topographic")' }
   ];
 
   const screenshotsDir = 'C:\\Users\\User\\.gemini\\antigravity\\brain\\e0f4935c-bdec-49cd-8dbf-59da2a6615ee\\screenshots';
@@ -25,7 +25,7 @@ const path = require('path');
     try {
       await page.click(opt.selector);
       await page.waitForTimeout(1200);
-      const filePath = path.join(screenshotsDir, `preview_${opt.name}.png`);
+      const filePath = path.join(screenshotsDir, `motion_${opt.name}.png`);
       await page.screenshot({ path: filePath });
       console.log(`Saved: ${filePath}`);
     } catch (e) {
@@ -34,5 +34,5 @@ const path = require('path');
   }
 
   await browser.close();
-  console.log('All 5 previews captured successfully.');
+  console.log('All 5 motion previews captured successfully.');
 })();
