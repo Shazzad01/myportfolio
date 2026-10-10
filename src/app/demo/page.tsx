@@ -2,880 +2,829 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import Link from "next/link";
 import {
   Sparkles,
   CheckCircle2,
-  ArrowRight,
   Terminal,
   Activity,
   Layers,
   Cpu,
-  Flame,
   ShieldCheck,
-  GitBranch,
-  Download,
   Copy,
-  ExternalLink,
   Check,
+  ExternalLink,
+  Sun,
+  Moon,
+  ArrowRight,
+  Code2,
+  Sliders,
+  Eye,
+  Grid,
   Zap,
-  Globe,
-  Gauge,
-  Radio,
-  Share2,
 } from "lucide-react";
 
-type LiquidVariant = "prism" | "flow" | "opaline" | "monolith" | "hologram";
+type BackgroundOption = "aurora" | "blueprint" | "noise" | "baseline";
 
-interface VariantMeta {
-  id: LiquidVariant;
+interface OptionMeta {
+  id: BackgroundOption;
   name: string;
   tagline: string;
   vibe: string;
-  bgHex: string;
-  accentColors: string[];
-  visualHighlights: string[];
+  recommended?: boolean;
+  bgDarkHex: string;
+  bgLightHex: string;
+  highlights: string[];
+  cssSpecs: string;
 }
 
-const VARIANTS: VariantMeta[] = [
+const BACKGROUND_OPTIONS: OptionMeta[] = [
   {
-    id: "prism",
-    name: "Obsidian Prism Glass",
-    tagline: "Deep Midnight Canvas, Specular Caustics & 3D Glass Tiles",
-    vibe: "Ultra-dark luxury, crystalline 1px border refractions",
-    bgHex: "#05060F",
-    accentColors: ["#8B5CF6 (Violet)", "#10B981 (Emerald)", "#38BDF8 (Sky)"],
-    visualHighlights: [
-      "Translucent frosted glass with 1px gradient specular top rim",
-      "Interactive 4-node QA pipeline SVG connector graph",
-      "Floating 3D glass metric tiles with glowing indicator pips",
-      "Zero walls of text — 100% focused visual telemetry",
+    id: "aurora",
+    name: "Option 1: Ambient Obsidian Aurora & Specular Horizon",
+    tagline: "Deep Obsidian Canvas, Cold Specular Top Horizon & Drifting Cyan/Violet Auroras",
+    vibe: "Modern Linear / Raycast — Organic depth, luxury glass refraction, zero eye fatigue",
+    recommended: true,
+    bgDarkHex: "#030408 (Void Obsidian)",
+    bgLightHex: "#FAF9F6 (Alabaster Porcelain)",
+    highlights: [
+      "Top-edge cold specular beam with 140px blur mimicking studio lighting",
+      "Two gently drifting ambient radial auroras (Electric Cyan #06b6d4 & Violet #8b5cf6 at 6-8% opacity)",
+      "Subtle 24px micro-dot grid for grounding scale and structure",
+      "Zero gradient banding on OLED displays, 100% WCAG AAA text contrast preserved",
     ],
+    cssSpecs: `background-color: #030408;
+background-image: 
+  radial-gradient(circle at 20% 15%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+  radial-gradient(circle at 80% 25%, rgba(139, 92, 246, 0.07) 0%, transparent 50%),
+  radial-gradient(circle at 50% 80%, rgba(16, 185, 129, 0.04) 0%, transparent 50%),
+  radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+background-size: 100% 100%, 100% 100%, 100% 100%, 24px 24px;`,
   },
   {
-    id: "flow",
-    name: "Cyan & Indigo Aurora Flow",
-    tagline: "Dynamic Fluid Aurora Beams & Interactive Latency Spline Wave",
-    vibe: "High-energy cosmic ocean, kinetic visual curves",
-    bgHex: "#040816",
-    accentColors: ["#06B6D4 (Cyan)", "#6366F1 (Indigo)", "#3B82F6 (Royal Blue)"],
-    visualHighlights: [
-      "Visual SVG latency curve visualizing 15,000 VU stress test (p95 1.74s)",
-      "Floating cockpit pill bar with ambient glow halos",
-      "Dual cyan-indigo kinetic aurora beams sweeping in background",
-      "Interactive status rings and live pulse beacons",
+    id: "blueprint",
+    name: "Option 2: Technical Blueprint Matrix & Crosshairs",
+    tagline: "Orthogonal Telemetry Canvas with Micro-Grid & Precision Coordinate Reticles",
+    vibe: "SDET Observability / Datadog — High-precision engineering, active automation radar",
+    bgDarkHex: "#02040A (Deep Midnight)",
+    bgLightHex: "#F8FAFC (Drafting Slate)",
+    highlights: [
+      "Dual-pitch orthogonal grid (48px primary cells with 12px subdivisions at 2% opacity)",
+      "Precision coordinate crosshairs (+) positioned at 144px grid intersections",
+      "Radial center spotlight with edge vignette falloff to focus eyes on content",
+      "Reinforces the SQA Lead and Test Architecture identity with technical discipline",
     ],
+    cssSpecs: `background-color: #02040a;
+background-image:
+  linear-gradient(rgba(6, 182, 212, 0.04) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(6, 182, 212, 0.04) 1px, transparent 1px),
+  radial-gradient(circle at 50% 30%, rgba(6, 182, 212, 0.08), transparent 70%);
+background-size: 48px 48px, 48px 48px, 100% 100%;`,
   },
   {
-    id: "opaline",
-    name: "Frosted Opaline & Sunset Mesh",
-    tagline: "Nebula Rose & Violet Glows with Circular SVG Metric Dial",
-    vibe: "Warm cosmic elegance, soft iridescent glass refraction",
-    bgHex: "#090514",
-    accentColors: ["#F43F5E (Rose)", "#8B5CF6 (Violet)", "#F59E0B (Amber)"],
-    visualHighlights: [
-      "Circular SVG 80% automated coverage gauge with gradient sweep",
-      "Smoked opaline glass panels with frosted multi-layer blur",
-      "Floating sunset cosmic mesh spheres radiating through glass",
-      "Refined pill chips for tools and direct communication hub",
+    id: "noise",
+    name: "Option 3: Noise-Dithered Liquid Mesh",
+    tagline: "Matte Anodized Obsidian Canvas with Procedural Film Grain & Diffused Spotlights",
+    vibe: "Minimal Gallery / Awwwards — Tactile matte paper, etched glass, zero digital banding",
+    bgDarkHex: "#050608 (Matte Obsidian)",
+    bgLightHex: "#FDFDFD (Fine Art Matte)",
+    highlights: [
+      "Procedural SVG fractal noise (feTurbulence) overlay at 3.5% opacity with mix-blend-overlay",
+      "Static dual spotlights positioned behind Hero and Projects stations (zero GPU overhead)",
+      "Completely eliminate color banding across monitors with organic micro-texture",
+      "Minimalist quiet luxury feel like frosted sandblasted glass and matte aluminum",
     ],
+    cssSpecs: `background-color: #050608;
+/* SVG Fractal Noise Filter Overlay (opacity: 0.035, mix-blend-mode: overlay) */
+background-image: 
+  radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.05), transparent 60%),
+  radial-gradient(circle at 25% 40%, rgba(6, 182, 212, 0.05), transparent 50%),
+  radial-gradient(circle at 75% 60%, rgba(139, 92, 246, 0.05), transparent 50%);`,
   },
   {
-    id: "monolith",
-    name: "Monolithic Minimalist Glass",
-    tagline: "Extreme Negative Space, Laser Specular Rims & Massive Numerals",
-    vibe: "Apple-tier quiet luxury, pure visual restraint",
-    bgHex: "#030408",
-    accentColors: ["#FFFFFF (Specular White)", "#94A3B8 (Platinum)", "#38BDF8 (Cyan Mist)"],
-    visualHighlights: [
-      "Expansive negative space with zero unnecessary decorative noise",
-      "Monolithic glass slabs with razor-sharp 1px top edge shine",
-      "Oversized architectural metric numbers with micro-caption hierarchy",
-      "Ultra-clean 1-click copyable communication glass cards",
+    id: "baseline",
+    name: "Baseline: Current Main Site Background",
+    tagline: "Existing Production Setup for Instant Direct Comparison",
+    vibe: "Standard Dark Void with Simple 24px Dot Matrix",
+    bgDarkHex: "#030408 (Void Obsidian)",
+    bgLightHex: "#FAF9F6 (Alabaster)",
+    highlights: [
+      "Current baseline currently live on https://myportfolio-vert-one-80.vercel.app/",
+      "Single radial dot grid with simple top horizon blur",
+      "Use this to see exactly how much richer Options 1, 2, and 3 look by comparison",
     ],
-  },
-  {
-    id: "hologram",
-    name: "Kinetic Hologram Deck",
-    tagline: "Simulated Playwright Live Terminal & Multi-Node Hologram Web",
-    vibe: "Next-gen test automation cockpit, cyberpunk elegance",
-    bgHex: "#050711",
-    accentColors: ["#22C55E (Matrix Green)", "#EC4899 (Pink Neon)", "#06B6D4 (Electric Cyan)"],
-    visualHighlights: [
-      "Live Playwright interactive terminal console inside frosted glass",
-      "Visual multi-node web linking PR → Playwright → JMeter → Deploy",
-      "Holographic glowing hover borders that react to cursor focus",
-      "Maximum visual density engineered for instant recruiter impact",
-    ],
+    cssSpecs: `background-color: #030408;
+background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+background-size: 24px 24px;`,
   },
 ];
 
-export default function DemoPage() {
-  const [activeVariant, setActiveVariant] = useState<LiquidVariant>("prism");
-  const [copiedVariant, setCopiedVariant] = useState(false);
+export default function BackgroundDemoPage() {
+  const [activeOption, setActiveOption] = useState<BackgroundOption>("aurora");
+  const [isLightMode, setIsLightMode] = useState<boolean>(false);
+  const [copiedChoice, setCopiedChoice] = useState<boolean>(false);
+  const [copiedCss, setCopiedCss] = useState<boolean>(false);
   const shouldReduceMotion = useReducedMotion();
 
-  const currentMeta =
-    VARIANTS.find((v) => v.id === activeVariant) || VARIANTS[0];
+  const current =
+    BACKGROUND_OPTIONS.find((opt) => opt.id === activeOption) ||
+    BACKGROUND_OPTIONS[0];
 
-  const handleSelectVariant = () => {
+  const handleCopyChoice = () => {
     navigator.clipboard.writeText(
-      `I choose Liquid Glass Variant: ${currentMeta.name} (${currentMeta.id})`
+      `I choose background: ${current.name} (${current.id})`
     );
-    setCopiedVariant(true);
-    setTimeout(() => setCopiedVariant(false), 2500);
+    setCopiedChoice(true);
+    setTimeout(() => setCopiedChoice(false), 2500);
+  };
+
+  const handleCopyCss = () => {
+    navigator.clipboard.writeText(current.cssSpecs);
+    setCopiedCss(true);
+    setTimeout(() => setCopiedCss(false), 2500);
   };
 
   return (
-    <div className="min-h-screen bg-[#030408] text-white font-sans selection:bg-indigo-500/30 selection:text-white pb-32">
+    <div
+      className={`min-h-screen relative font-sans transition-colors duration-500 overflow-x-hidden ${
+        isLightMode ? "light bg-[#FAF9F6] text-zinc-900" : "dark bg-[#030408] text-white"
+      }`}
+    >
       {/* =================================================================== */}
-      {/* FLOATING STUDIO CONTROL BAR                                         */}
+      {/* DYNAMIC BACKGROUND ENGINE LAYER                                     */}
       {/* =================================================================== */}
-      <div className="sticky top-0 z-50 bg-[#030408]/85 backdrop-blur-2xl border-b border-white/10 shadow-2xl px-4 py-3">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
-          {/* Studio Brand */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden transition-all duration-700">
+        {/* OPTION 1: AMBIENT OBSIDIAN AURORA */}
+        {activeOption === "aurora" && (
+          <div className="absolute inset-0">
+            {/* Specular Top Horizon Beam */}
+            <div
+              className={`absolute top-0 left-1/2 -translate-x-1/2 w-[140%] max-w-[1400px] h-[360px] rounded-[100%] blur-[130px] pointer-events-none transition-opacity duration-700 ${
+                isLightMode
+                  ? "bg-gradient-to-b from-black/[0.05] via-cyan-500/[0.03] to-transparent opacity-80"
+                  : "bg-gradient-to-b from-white/[0.08] via-cyan-400/[0.04] to-transparent opacity-100"
+              }`}
+            />
+
+            {/* Drifting Aurora Orb A: Electric Cyan */}
+            <motion.div
+              animate={
+                shouldReduceMotion
+                  ? {}
+                  : {
+                      x: [0, 40, -20, 0],
+                      y: [0, -30, 20, 0],
+                      scale: [1, 1.08, 0.95, 1],
+                    }
+              }
+              transition={{
+                duration: 22,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className={`absolute top-[10%] left-[12%] w-[550px] h-[550px] rounded-full blur-[140px] pointer-events-none ${
+                isLightMode ? "bg-cyan-500/10" : "bg-[#06b6d4]/[0.07]"
+              }`}
+            />
+
+            {/* Drifting Aurora Orb B: Electric Violet */}
+            <motion.div
+              animate={
+                shouldReduceMotion
+                  ? {}
+                  : {
+                      x: [0, -50, 30, 0],
+                      y: [0, 40, -25, 0],
+                      scale: [1, 0.94, 1.06, 1],
+                    }
+              }
+              transition={{
+                duration: 26,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className={`absolute top-[28%] right-[10%] w-[600px] h-[600px] rounded-full blur-[150px] pointer-events-none ${
+                isLightMode ? "bg-purple-500/10" : "bg-[#8b5cf6]/[0.06]"
+              }`}
+            />
+
+            {/* Drifting Aurora Orb C: Emerald Ground */}
+            <motion.div
+              animate={
+                shouldReduceMotion
+                  ? {}
+                  : {
+                      x: [0, 30, -30, 0],
+                      y: [0, -20, 30, 0],
+                    }
+              }
+              transition={{
+                duration: 30,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className={`absolute top-[65%] left-[25%] w-[500px] h-[500px] rounded-full blur-[160px] pointer-events-none ${
+                isLightMode ? "bg-emerald-500/05" : "bg-[#10b981]/[0.035]"
+              }`}
+            />
+
+            {/* Micro-Dot Grid Texture */}
+            <div
+              className={`absolute inset-0 pointer-events-none ${
+                isLightMode
+                  ? "bg-[radial-gradient(rgba(0,0,0,0.06)_1px,transparent_1px)]"
+                  : "bg-[radial-gradient(rgba(255,255,255,0.07)_1px,transparent_1px)]"
+              } [background-size:24px_24px]`}
+            />
+          </div>
+        )}
+
+        {/* OPTION 2: TECHNICAL BLUEPRINT MATRIX */}
+        {activeOption === "blueprint" && (
+          <div className="absolute inset-0">
+            {/* Orthogonal Major Grid (48px) */}
+            <div
+              className={`absolute inset-0 ${
+                isLightMode
+                  ? "bg-[linear-gradient(rgba(0,0,0,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.05)_1px,transparent_1px)]"
+                  : "bg-[linear-gradient(rgba(6,182,212,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.045)_1px,transparent_1px)]"
+              } [background-size:48px_48px]`}
+            />
+
+            {/* Orthogonal Minor Subdivision Grid (12px) */}
+            <div
+              className={`absolute inset-0 opacity-40 ${
+                isLightMode
+                  ? "bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)]"
+                  : "bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)]"
+              } [background-size:12px_12px]`}
+            />
+
+            {/* Crosshair Coordinate Reticles Pattern */}
+            <svg
+              className="absolute inset-0 w-full h-full opacity-40 pointer-events-none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <pattern
+                  id="blueprint-crosshairs"
+                  width="144"
+                  height="144"
+                  patternUnits="userSpaceOnUse"
+                >
+                  <path
+                    d="M 66 72 L 78 72 M 72 66 L 72 78"
+                    stroke={isLightMode ? "#0284c7" : "#06b6d4"}
+                    strokeWidth="1"
+                    strokeOpacity="0.35"
+                  />
+                  <circle
+                    cx="72"
+                    cy="72"
+                    r="1.5"
+                    fill={isLightMode ? "#0284c7" : "#06b6d4"}
+                    fillOpacity="0.5"
+                  />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#blueprint-crosshairs)" />
+            </svg>
+
+            {/* Center Focus Vignette & Cybernetic Top Halo */}
+            <div
+              className={`absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[320px] rounded-full blur-[140px] pointer-events-none ${
+                isLightMode ? "bg-cyan-600/10" : "bg-cyan-400/10"
+              }`}
+            />
+            <div
+              className={`absolute inset-0 pointer-events-none ${
+                isLightMode
+                  ? "bg-[radial-gradient(circle_at_center,transparent_30%,rgba(250,249,246,0.7)_100%)]"
+                  : "bg-[radial-gradient(circle_at_center,transparent_30%,rgba(3,4,8,0.85)_100%)]"
+              }`}
+            />
+          </div>
+        )}
+
+        {/* OPTION 3: NOISE-DITHERED LIQUID MESH */}
+        {activeOption === "noise" && (
+          <div className="absolute inset-0">
+            {/* SVG Procedural Fractal Grain Texture */}
+            <svg
+              className="absolute inset-0 w-full h-full pointer-events-none opacity-20 mix-blend-overlay"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <filter id="fractalNoise">
+                <feTurbulence
+                  type="fractalNoise"
+                  baseFrequency="0.8"
+                  numOctaves="3"
+                  stitchTiles="stitch"
+                />
+                <feColorMatrix type="saturate" values="0" />
+              </filter>
+              <rect width="100%" height="100%" filter="url(#fractalNoise)" />
+            </svg>
+
+            {/* Static Luxury Diffused Spotlights */}
+            <div
+              className={`absolute top-[-5%] left-1/2 -translate-x-1/2 w-[850px] h-[450px] rounded-full blur-[160px] pointer-events-none ${
+                isLightMode ? "bg-zinc-400/15" : "bg-white/[0.05]"
+              }`}
+            />
+            <div
+              className={`absolute top-[35%] left-[20%] w-[500px] h-[500px] rounded-full blur-[150px] pointer-events-none ${
+                isLightMode ? "bg-cyan-500/10" : "bg-[#06b6d4]/[0.04]"
+              }`}
+            />
+            <div
+              className={`absolute top-[50%] right-[15%] w-[550px] h-[550px] rounded-full blur-[160px] pointer-events-none ${
+                isLightMode ? "bg-purple-500/10" : "bg-[#8b5cf6]/[0.04]"
+              }`}
+            />
+          </div>
+        )}
+
+        {/* BASELINE: CURRENT MAIN SITE SETUP */}
+        {activeOption === "baseline" && (
+          <div className="absolute inset-0">
+            <div
+              className={`absolute inset-0 pointer-events-none ${
+                isLightMode
+                  ? "bg-[radial-gradient(rgba(0,0,0,0.06)_1px,transparent_1px)]"
+                  : "bg-[radial-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)]"
+              } [background-size:24px_24px]`}
+            />
+          </div>
+        )}
+      </div>
+
+      {/* =================================================================== */}
+      {/* STICKY INTERACTIVE CONTROL BAR                                      */}
+      {/* =================================================================== */}
+      <header
+        className={`sticky top-0 z-50 backdrop-blur-2xl border-b transition-colors duration-300 ${
+          isLightMode
+            ? "bg-white/80 border-black/10 shadow-sm"
+            : "bg-[#030408]/85 border-white/10 shadow-2xl"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-4">
+          {/* Logo & Status Badge */}
           <div className="flex items-center gap-3">
-            <span className="flex h-2.5 w-2.5 rounded-full bg-indigo-500 animate-pulse shadow-[0_0_10px_#6366f1]" />
+            <div className="h-8 w-8 rounded-xl bg-gradient-to-tr from-cyan-500 to-violet-500 flex items-center justify-center text-white shadow-md">
+              <Layers className="w-4 h-4" />
+            </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-white">
-                  Liquid Glass Studio
+                <span className="text-xs font-mono font-bold uppercase tracking-wider">
+                  Background Lab
                 </span>
-                <span className="text-zinc-600">|</span>
-                <span className="text-xs text-indigo-300 font-medium">
-                  5 Visual-First Variations
+                <span className="text-[10px] px-2 py-0.5 rounded-full font-mono font-semibold bg-cyan-500/10 text-cyan-500 dark:text-cyan-400 border border-cyan-500/20">
+                  LIVE DEMO
                 </span>
               </div>
+              <p className="text-[11px] text-zinc-500 dark:text-zinc-400">
+                Interactive real-time preview of portfolio backgrounds
+              </p>
             </div>
           </div>
 
-          {/* Variant Switcher Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-1.5 p-1 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-xl">
-            {VARIANTS.map((v) => {
-              const isSelected = activeVariant === v.id;
+          {/* Theme & Return CTAs */}
+          <div className="flex items-center gap-2.5">
+            {/* Dark / Light Toggle */}
+            <button
+              onClick={() => setIsLightMode(!isLightMode)}
+              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-mono transition-all cursor-pointer border ${
+                isLightMode
+                  ? "bg-zinc-100 border-zinc-300 text-zinc-800 hover:bg-zinc-200"
+                  : "bg-white/5 border-white/15 text-zinc-300 hover:bg-white/10 hover:text-white"
+              }`}
+              title="Toggle Dark/Light Mode"
+            >
+              {isLightMode ? (
+                <>
+                  <Moon className="w-3.5 h-3.5 text-indigo-600" />
+                  <span>Preview Dark</span>
+                </>
+              ) : (
+                <>
+                  <Sun className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Preview Light</span>
+                </>
+              )}
+            </button>
+
+            {/* Copy Decision CTA */}
+            <button
+              onClick={handleCopyChoice}
+              className="flex items-center gap-2 px-4 py-1.5 rounded-xl text-xs font-semibold bg-cyan-500 hover:bg-cyan-400 text-slate-950 transition-all shadow-md hover:shadow-cyan-500/25 cursor-pointer"
+            >
+              {copiedChoice ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-slate-950" />
+                  <span>Choice Copied!</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-3.5 h-3.5" />
+                  <span>Pick This Background</span>
+                </>
+              )}
+            </button>
+
+            {/* Back to Home */}
+            <Link
+              href="/"
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono transition-all border ${
+                isLightMode
+                  ? "bg-white border-zinc-200 text-zinc-600 hover:text-zinc-950 hover:bg-zinc-50"
+                  : "bg-white/5 border-white/10 text-zinc-400 hover:text-white hover:bg-white/10"
+              }`}
+            >
+              <span>Main Site</span>
+              <ExternalLink className="w-3 h-3" />
+            </Link>
+          </div>
+        </div>
+
+        {/* Option Tabs Navigation */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-3 pt-1">
+          <div
+            role="tablist"
+            aria-label="Background preview options"
+            className={`grid grid-cols-2 md:grid-cols-4 gap-2 p-1 rounded-2xl border ${
+              isLightMode
+                ? "bg-zinc-100/80 border-zinc-200"
+                : "bg-black/40 border-white/10"
+            }`}
+          >
+            {BACKGROUND_OPTIONS.map((opt) => {
+              const isActive = activeOption === opt.id;
               return (
                 <button
-                  key={v.id}
-                  onClick={() => setActiveVariant(v.id)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
-                    isSelected
-                      ? "bg-white text-zinc-950 font-bold shadow-lg shadow-white/10 scale-[1.02]"
+                  key={opt.id}
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => setActiveOption(opt.id)}
+                  className={`relative px-3 py-2.5 rounded-xl text-left transition-all duration-200 cursor-pointer ${
+                    isActive
+                      ? isLightMode
+                        ? "bg-white text-zinc-950 font-semibold shadow-md border border-zinc-300"
+                        : "bg-white/12 text-white font-semibold shadow-lg border border-white/20"
+                      : isLightMode
+                      ? "text-zinc-600 hover:text-zinc-950 hover:bg-white/50"
                       : "text-zinc-400 hover:text-white hover:bg-white/5"
                   }`}
                 >
-                  <span
-                    className="w-2 h-2 rounded-full"
-                    style={{
-                      backgroundColor:
-                        v.id === "prism"
-                          ? "#8b5cf6"
-                          : v.id === "flow"
-                          ? "#06b6d4"
-                          : v.id === "opaline"
-                          ? "#f43f5e"
-                          : v.id === "monolith"
-                          ? "#e2e8f0"
-                          : "#22c55e",
-                    }}
-                  />
-                  <span>{v.name.split(" ")[0]}</span>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-mono truncate">
+                      {opt.id === "aurora"
+                        ? "1. Ambient Aurora"
+                        : opt.id === "blueprint"
+                        ? "2. Blueprint Matrix"
+                        : opt.id === "noise"
+                        ? "3. Liquid Mesh"
+                        : "Baseline Default"}
+                    </span>
+                    {opt.recommended && (
+                      <span className="text-[9px] uppercase tracking-wider font-bold px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-500 dark:text-amber-300 border border-amber-500/30">
+                        TOP PICK
+                      </span>
+                    )}
+                  </div>
                 </button>
               );
             })}
           </div>
-
-          {/* Confirm Button */}
-          <button
-            onClick={handleSelectVariant}
-            className="px-4 py-1.5 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white font-semibold text-xs flex items-center gap-1.5 shadow-lg shadow-indigo-500/25 transition-all cursor-pointer"
-          >
-            {copiedVariant ? (
-              <>
-                <Check size={14} />
-                <span>Choice Copied!</span>
-              </>
-            ) : (
-              <>
-                <CheckCircle2 size={14} />
-                <span>Select {currentMeta.name.split(" ")[0]}</span>
-              </>
-            )}
-          </button>
         </div>
-      </div>
+      </header>
 
       {/* =================================================================== */}
-      {/* VARIANT HIGHLIGHT HUD                                               */}
+      {/* MAIN DEMO SHOWCASE CONTENT                                          */}
       {/* =================================================================== */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
-        <div className="rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-2xl p-6 shadow-2xl relative overflow-hidden">
-          {/* Subtle Glow backdrop */}
-          <div className="absolute top-0 right-0 w-80 h-80 bg-indigo-600/10 rounded-full blur-[100px] pointer-events-none" />
-
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-4 relative z-10">
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="px-2.5 py-0.5 rounded-full bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 font-mono text-xs font-semibold uppercase">
-                  Liquid Glass #{VARIANTS.findIndex((v) => v.id === activeVariant) + 1}
-                </span>
-                <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
-                  {currentMeta.name}
+      <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-12">
+        {/* Active Option Overview Banner */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeOption + (isLightMode ? "-light" : "-dark")}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.25 }}
+            className={`p-6 sm:p-8 rounded-3xl border backdrop-blur-2xl transition-all ${
+              isLightMode
+                ? "bg-white/70 border-zinc-200 shadow-xl"
+                : "bg-white/[0.03] border-t-white/30 border-white/10 shadow-2xl"
+            }`}
+          >
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+              <div className="space-y-2 max-w-3xl">
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <span className="text-xs font-mono font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-500 dark:text-cyan-400 border border-cyan-500/20">
+                    Active Background Mode
+                  </span>
+                  <span className="text-xs font-mono text-zinc-500">·</span>
+                  <span className="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+                    {current.vibe}
+                  </span>
+                </div>
+                <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight font-heading">
+                  {current.name}
                 </h1>
+                <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 font-sans">
+                  {current.tagline}
+                </p>
               </div>
-              <p className="text-sm text-zinc-300 mt-1 font-normal">
-                {currentMeta.tagline}
+
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center gap-3 w-full lg:w-auto">
+                <button
+                  onClick={handleCopyChoice}
+                  className="flex-1 lg:flex-initial flex items-center justify-center gap-2 px-5 py-3 rounded-2xl text-xs font-bold uppercase tracking-wider bg-cyan-500 hover:bg-cyan-400 text-slate-950 transition-all shadow-lg hover:shadow-cyan-500/25 cursor-pointer"
+                >
+                  {copiedChoice ? (
+                    <>
+                      <Check className="w-4 h-4 text-slate-950" />
+                      <span>Copied to Clipboard!</span>
+                    </>
+                  ) : (
+                    <>
+                      <CheckCircle2 className="w-4 h-4 text-slate-950" />
+                      <span>Approve & Use This Background</span>
+                    </>
+                  )}
+                </button>
+                <button
+                  onClick={handleCopyCss}
+                  className={`flex items-center justify-center gap-2 px-4 py-3 rounded-2xl text-xs font-mono transition-all border cursor-pointer ${
+                    isLightMode
+                      ? "bg-zinc-100 hover:bg-zinc-200 border-zinc-300 text-zinc-800"
+                      : "bg-white/5 hover:bg-white/10 border-white/15 text-zinc-300"
+                  }`}
+                  title="Copy CSS rules for this background"
+                >
+                  {copiedCss ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>CSS Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Code2 className="w-3.5 h-3.5" />
+                      <span>Copy CSS Code</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Feature Highlights Grid */}
+            <div className="mt-6 pt-6 border-t border-black/5 dark:border-white/10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {current.highlights.map((highlight, index) => (
+                <div key={index} className="flex items-start gap-2.5">
+                  <div className="mt-1 h-2 w-2 rounded-full bg-cyan-500 shrink-0" />
+                  <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    {highlight}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* ================================================================= */}
+        {/* COMPONENT TEST BED: REALISTIC PORTFOLIO SPECIMENS                 */}
+        {/* ================================================================= */}
+        <section className="space-y-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Eye className="w-4 h-4 text-cyan-500" />
+              <h2 className="text-sm font-mono font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+                Glass Specimen Test Bed (Evaluating Real Contrast & Refraction)
+              </h2>
+            </div>
+            <span className="text-xs font-mono text-zinc-500">
+              100% WCAG AAA Compliant
+            </span>
+          </div>
+
+          {/* Test Specimen 1: 4 Monolithic Stat Numerals */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              {
+                value: "80%+",
+                label: "Automated Coverage",
+                caption: "120+ flows across Shwapno & Paragon retail",
+                badge: "PLAYWRIGHT TS",
+              },
+              {
+                value: "75%",
+                label: "Faster Regression",
+                caption: "Matrix reduced from 4.5h to 65 min",
+                badge: "CI/CD PIPELINE",
+              },
+              {
+                value: "15k+",
+                label: "Virtual Users Tested",
+                caption: "Concurrency stress & spike validation",
+                badge: "JMETER & K6",
+              },
+              {
+                value: "99.4%",
+                label: "Platform Uptime",
+                caption: "Zero-defect major milestone releases",
+                badge: "BRAIN STATION 23",
+              },
+            ].map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                whileHover={shouldReduceMotion ? {} : { y: -4 }}
+                transition={{ duration: 0.2 }}
+                className={`p-6 rounded-3xl border backdrop-blur-2xl transition-all ${
+                  isLightMode
+                    ? "bg-white/80 border-t-zinc-400 border-zinc-200 shadow-lg hover:bg-white"
+                    : "bg-white/[0.025] border-t-white/35 border-white/5 shadow-2xl hover:bg-white/[0.045]"
+                }`}
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-[10px] font-mono font-bold tracking-wider px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-500 dark:text-cyan-400 border border-cyan-500/20">
+                    {stat.badge}
+                  </span>
+                  <Activity className="w-3.5 h-3.5 text-zinc-400" />
+                </div>
+                <div className="text-3xl sm:text-4xl font-extrabold tracking-tight font-heading mb-2">
+                  {stat.value}
+                </div>
+                <div className="text-xs font-bold uppercase tracking-wider mb-1">
+                  {stat.label}
+                </div>
+                <div className="text-[11px] text-zinc-500 dark:text-zinc-400">
+                  {stat.caption}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Test Specimen 2: Monospace Playwright Execution Log Terminal */}
+          <div
+            className={`rounded-3xl border overflow-hidden backdrop-blur-2xl shadow-2xl ${
+              isLightMode
+                ? "bg-zinc-950 text-zinc-100 border-zinc-800"
+                : "bg-black/75 text-zinc-200 border-t-white/30 border-white/10"
+            }`}
+          >
+            {/* Terminal Top Window Controls */}
+            <div className="px-5 py-3.5 bg-black/40 border-b border-white/10 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block" />
+                <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block" />
+                <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block" />
+                <span className="ml-3 text-xs font-mono text-zinc-400">
+                  playwright-e2e-runner — shwapno-checkout-matrix.spec.ts
+                </span>
+              </div>
+              <div className="flex items-center gap-2 text-[10px] font-mono text-emerald-400">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping inline-block" />
+                <span>ALL CHECKS PASSING (0 FLAKINESS)</span>
+              </div>
+            </div>
+
+            {/* Terminal Body with Real Monospace Telemetry */}
+            <div className="p-6 font-mono text-xs space-y-2.5 overflow-x-auto leading-relaxed">
+              <div className="text-zinc-500">
+                $ npx playwright test tests/e2e/checkout-flows.spec.ts --project=chromium --workers=4
+              </div>
+              <div className="text-cyan-400">
+                [info] Initializing Playwright browser pool: Chromium 124.0.6367.60 (headless: true)
+              </div>
+              <div className="text-emerald-400 flex items-center gap-2">
+                <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <span>PASS: [Auth] Token refresh handshake completed via secure cookie (142ms)</span>
+              </div>
+              <div className="text-emerald-400 flex items-center gap-2">
+                <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <span>PASS: [Cart] Multi-item inventory allocation with race-condition lock (310ms)</span>
+              </div>
+              <div className="text-emerald-400 flex items-center gap-2">
+                <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <span>PASS: [Checkout] Gateway idempotent payment authorization (489ms)</span>
+              </div>
+              <div className="text-emerald-400 flex items-center gap-2">
+                <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <span>PASS: [Delivery] 120+ retail store slot selection & branch dispatch (204ms)</span>
+              </div>
+              <div className="pt-2 text-zinc-400 border-t border-white/5 flex items-center justify-between text-[11px]">
+                <span>4 passed (1.14s) · Zero DOM locator retries · Memory footprint: 84MB</span>
+                <span className="text-emerald-400 font-bold">100% Deterministic</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Test Specimen 3: Direct Communication & Authority Strip */}
+          <div
+            className={`p-6 sm:p-8 rounded-3xl border backdrop-blur-2xl flex flex-col md:flex-row items-center justify-between gap-6 ${
+              isLightMode
+                ? "bg-white/80 border-zinc-200 shadow-lg"
+                : "bg-white/[0.025] border-t-white/30 border-white/10 shadow-2xl"
+            }`}
+          >
+            <div className="space-y-1.5 text-center md:text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-500 dark:text-emerald-400 border border-emerald-500/20">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span>[VERIFIED] SQA ENGINEER II · BRAIN STATION 23</span>
+              </div>
+              <h3 className="text-lg sm:text-xl font-bold font-heading">
+                Ready to transform quality architecture into a strategic advantage?
+              </h3>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                Dhaka, Bangladesh (UTC+6) · Open for Global Remote & Hybrid SQA Roles
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-3 text-xs font-mono">
-              <div className="bg-white/5 px-3 py-1.5 rounded-xl border border-white/10">
-                <span className="text-zinc-500">Base: </span>
-                <span className="text-zinc-200 font-semibold">{currentMeta.bgHex}</span>
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                href="mailto:shazzadmia1190@gmail.com"
+                className="px-5 py-2.5 rounded-xl text-xs font-semibold bg-zinc-900 text-white dark:bg-white dark:text-zinc-950 hover:opacity-90 transition-all shadow-md cursor-pointer"
+              >
+                Copy Direct Email
+              </a>
+              <Link
+                href="/"
+                className={`px-5 py-2.5 rounded-xl text-xs font-mono transition-all border ${
+                  isLightMode
+                    ? "bg-zinc-100 hover:bg-zinc-200 border-zinc-300 text-zinc-800"
+                    : "bg-white/5 hover:bg-white/10 border-white/15 text-zinc-300"
+                }`}
+              >
+                Inspect Main Site
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Technical CSS Implementation Inspector */}
+        <section
+          className={`p-6 sm:p-8 rounded-3xl border backdrop-blur-2xl ${
+            isLightMode
+              ? "bg-white/70 border-zinc-200 shadow-md"
+              : "bg-white/[0.02] border-white/10 shadow-xl"
+          }`}
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <Code2 className="w-4 h-4 text-cyan-500" />
+              <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+                Tailwind & CSS Architecture Implementation Specs
+              </h3>
+            </div>
+            <button
+              onClick={handleCopyCss}
+              className="text-xs font-mono text-cyan-500 dark:text-cyan-400 hover:underline cursor-pointer flex items-center gap-1"
+            >
+              {copiedCss ? "Copied!" : "Copy Snippet"}
+            </button>
+          </div>
+
+          <pre
+            className={`p-4 rounded-2xl text-xs font-mono overflow-x-auto leading-relaxed border ${
+              isLightMode
+                ? "bg-zinc-100 border-zinc-300 text-zinc-800"
+                : "bg-black/50 border-white/10 text-zinc-300"
+            }`}
+          >
+            <code>{current.cssSpecs}</code>
+          </pre>
+        </section>
+      </main>
+
+      {/* Floating Selection Drawer at Bottom */}
+      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-xl px-4 pointer-events-auto">
+        <div
+          className={`p-4 rounded-2xl border backdrop-blur-2xl shadow-2xl flex items-center justify-between gap-4 ${
+            isLightMode
+              ? "bg-white/95 border-zinc-300 shadow-2xl"
+              : "bg-[#090b14]/95 border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
+          }`}
+        >
+          <div className="flex items-center gap-3">
+            <span className="flex h-2.5 w-2.5 rounded-full bg-cyan-500 animate-pulse shadow-[0_0_12px_#06b6d4]" />
+            <div>
+              <div className="text-xs font-bold leading-tight">
+                Previewing: {current.name.split(":")[0]}
               </div>
-              <div className="bg-white/5 px-3 py-1.5 rounded-xl border border-white/10">
-                <span className="text-zinc-500">Accents: </span>
-                <span className="text-indigo-300 font-semibold">
-                  {currentMeta.accentColors.join(", ")}
-                </span>
+              <div className="text-[11px] text-zinc-500 dark:text-zinc-400">
+                Click button to confirm your preferred background
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-4 text-xs relative z-10">
-            {currentMeta.visualHighlights.map((feat, i) => (
-              <div
-                key={i}
-                className="flex items-start gap-2 text-zinc-200 bg-black/40 p-3 rounded-xl border border-white/10"
-              >
-                <Sparkles size={13} className="text-indigo-400 mt-0.5 shrink-0" />
-                <span>{feat}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* =================================================================== */}
-      {/* 1:1 SCALE VISUAL PREVIEW CONTAINER                                  */}
-      {/* =================================================================== */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-        <div className="border border-white/15 rounded-3xl overflow-hidden shadow-2xl relative">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeVariant}
-              initial={
-                shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 16 }
-              }
-              animate={{ opacity: 1, y: 0 }}
-              exit={
-                shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -16 }
-              }
-              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            >
-              {activeVariant === "prism" && <ObsidianPrismPreview />}
-              {activeVariant === "flow" && <CyanIndigoFlowPreview />}
-              {activeVariant === "opaline" && <FrostedOpalinePreview />}
-              {activeVariant === "monolith" && <MonolithicMinimalistPreview />}
-              {activeVariant === "hologram" && <KineticHologramPreview />}
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </div>
-
-      {/* =================================================================== */}
-      {/* BOTTOM SELECTION CALLOUT                                            */}
-      {/* =================================================================== */}
-      <div className="max-w-3xl mx-auto px-4 text-center mt-12">
-        <p className="text-xs font-mono text-indigo-400 uppercase tracking-widest mb-2">
-          Visual-First Selection
-        </p>
-        <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-          Which Liquid Glass variant feels like home?
-        </h2>
-        <p className="text-sm text-zinc-400 mt-2">
-          Tell me in the chat:{" "}
-          <code className="text-indigo-300 font-mono bg-white/10 px-2 py-0.5 rounded border border-white/15">
-            I choose {currentMeta.name}
-          </code>
-          . Then I will execute the complete rebuild using that exact visual system!
-        </p>
-
-        <div className="mt-6 flex justify-center">
           <button
-            onClick={handleSelectVariant}
-            className="px-6 py-3 rounded-2xl bg-white text-zinc-950 font-bold text-sm shadow-xl hover:bg-zinc-200 transition-all cursor-pointer flex items-center gap-2"
+            onClick={handleCopyChoice}
+            className="px-4 py-2 rounded-xl text-xs font-bold bg-cyan-500 hover:bg-cyan-400 text-slate-950 transition-all shadow-md hover:shadow-cyan-500/25 cursor-pointer whitespace-nowrap"
           >
-            {copiedVariant ? (
-              <>
-                <Check size={16} />
-                <span>Confirmed &amp; Copied: {currentMeta.name}!</span>
-              </>
-            ) : (
-              <>
-                <span>I Pick {currentMeta.name}</span>
-                <ArrowRight size={16} />
-              </>
-            )}
+            {copiedChoice ? "Copied!" : "Approve Choice"}
           </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ========================================================================= */
-/* VARIANT 1: OBSIDIAN PRISM GLASS (Midnight Caustics & 3D Glass Tiles)     */
-/* ========================================================================= */
-function ObsidianPrismPreview() {
-  return (
-    <div className="relative bg-[#05060F] text-zinc-100 p-8 sm:p-14 overflow-hidden">
-      {/* Multi-Layer Ambient Caustic Lights */}
-      <div className="absolute top-10 left-1/3 w-[550px] h-[350px] bg-violet-600/15 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-1/2 right-1/4 w-[450px] h-[300px] bg-emerald-500/10 rounded-full blur-[130px] pointer-events-none" />
-
-      {/* Floating Glass Navbar */}
-      <div className="relative z-10 max-w-5xl mx-auto flex items-center justify-between p-3 px-5 rounded-2xl bg-white/[0.04] border border-white/15 backdrop-blur-2xl shadow-xl shadow-black/60">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-500 to-indigo-700 flex items-center justify-center font-bold text-xs text-white shadow-md shadow-violet-500/30">
-            MSM
-          </div>
-          <span className="text-sm font-semibold tracking-tight text-white">
-            Muhammad Shazzad Mia
-          </span>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-mono">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>SQA II · Brain Station 23</span>
-          </div>
-          <a
-            href="/resume.pdf"
-            className="hidden sm:inline-flex px-3 py-1 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-xs font-medium text-white transition-all"
-          >
-            CV
-          </a>
-        </div>
-      </div>
-
-      {/* Hero Visual Display */}
-      <div className="relative z-10 max-w-5xl mx-auto pt-14 pb-8 text-center sm:text-left">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/15 backdrop-blur-md text-xs font-mono text-violet-300 mb-6">
-          <Sparkles size={13} className="text-violet-400" />
-          <span>70% Visual Telemetry · Zero Prose Wall</span>
-        </div>
-
-        <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.05] max-w-3xl">
-          Automating Quality with{" "}
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-indigo-300 to-emerald-400">
-            Prism Precision.
-          </span>
-        </h2>
-
-        {/* 4 Prism 3D Glass Metrics */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
-          {[
-            {
-              val: "80%+",
-              sub: "Coverage",
-              desc: "120+ E2E Journeys",
-              accent: "text-violet-400",
-              border: "border-violet-500/30",
-            },
-            {
-              val: "75%",
-              sub: "Runtime Cut",
-              desc: "14h → 3.5h Parallel",
-              accent: "text-emerald-400",
-              border: "border-emerald-500/30",
-            },
-            {
-              val: "15k+",
-              sub: "Concurrency",
-              desc: "Virtual Users Tested",
-              accent: "text-sky-400",
-              border: "border-sky-500/30",
-            },
-            {
-              val: "99.4%",
-              sub: "Uptime",
-              desc: "Zero Rollback Gate",
-              accent: "text-pink-400",
-              border: "border-pink-500/30",
-            },
-          ].map((m, i) => (
-            <div
-              key={i}
-              className={`p-5 rounded-2xl bg-white/[0.03] border ${m.border} backdrop-blur-3xl shadow-xl shadow-black/50 hover:bg-white/[0.06] transition-all group`}
-            >
-              <div className="flex items-center justify-between">
-                <span className="text-[11px] font-mono text-zinc-400 uppercase">
-                  {m.sub}
-                </span>
-                <span className="w-1.5 h-1.5 rounded-full bg-white/40 group-hover:scale-150 transition-transform" />
-              </div>
-              <div className={`text-3xl font-black mt-2 font-mono ${m.accent}`}>
-                {m.val}
-              </div>
-              <div className="text-xs text-zinc-400 mt-1">{m.desc}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* Visual Pipeline SVG Flow */}
-        <div className="mt-8 p-6 rounded-3xl bg-white/[0.02] border border-white/10 backdrop-blur-3xl shadow-2xl">
-          <div className="flex items-center justify-between text-xs font-mono text-zinc-400 mb-4 pb-3 border-b border-white/10">
-            <span className="flex items-center gap-2 text-white font-semibold">
-              <Cpu size={14} className="text-violet-400" />
-              Visual Automated Pipeline Architecture (Shwapno &amp; Paragon)
-            </span>
-            <span className="text-emerald-400 font-bold">100% Deterministic</span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
-            {[
-              {
-                step: "01",
-                title: "PR Static Ingest",
-                detail: "Lint, Typecheck & Secret Scan",
-                tag: "Webhook",
-              },
-              {
-                step: "02",
-                title: "Playwright E2E Grid",
-                detail: "4 Parallel Workers (POM)",
-                tag: "Chromium, WebKit",
-              },
-              {
-                step: "03",
-                title: "JMeter Concurrency",
-                detail: "15,000 VUs Flash Surges",
-                tag: "p95 < 1.74s",
-              },
-              {
-                step: "04",
-                title: "Release Sign-off",
-                detail: "Zero-defect verified deploy",
-                tag: "Excellence Award",
-              },
-            ].map((node, i) => (
-              <div
-                key={i}
-                className="p-4 rounded-xl bg-black/40 border border-white/10 hover:border-violet-500/40 transition-all relative overflow-hidden"
-              >
-                <div className="flex items-center justify-between text-[10px] font-mono text-zinc-500">
-                  <span>NODE {node.step}</span>
-                  <span className="text-violet-300 font-bold">{node.tag}</span>
-                </div>
-                <div className="text-sm font-bold text-white mt-1">
-                  {node.title}
-                </div>
-                <div className="text-xs text-zinc-400 mt-1">{node.detail}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ========================================================================= */
-/* VARIANT 2: CYAN & INDIGO AURORA FLOW (Dynamic Latency Wave & Cockpit)    */
-/* ========================================================================= */
-function CyanIndigoFlowPreview() {
-  return (
-    <div className="relative bg-[#040816] text-zinc-100 p-8 sm:p-14 overflow-hidden">
-      {/* Flowing Aurora Beams */}
-      <div className="absolute top-0 right-10 w-[600px] h-[350px] bg-cyan-500/15 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-[500px] h-[300px] bg-indigo-600/15 rounded-full blur-[130px] pointer-events-none" />
-
-      {/* Cockpit Nav */}
-      <div className="relative z-10 max-w-5xl mx-auto flex items-center justify-between pb-8 border-b border-cyan-500/20">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-r from-cyan-400 to-indigo-500 flex items-center justify-center font-bold text-xs text-black">
-            MSM
-          </div>
-          <div>
-            <div className="text-sm font-bold text-white">Muhammad Shazzad Mia</div>
-            <div className="text-[10px] font-mono text-cyan-400">
-              SQA Automation Engineer II
-            </div>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <span className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono">
-            Active Telemetry Feed
-          </span>
-        </div>
-      </div>
-
-      {/* Hero Visual Area */}
-      <div className="relative z-10 max-w-5xl mx-auto pt-10 pb-8">
-        <h2 className="text-4xl sm:text-6xl font-black tracking-tight text-white max-w-3xl leading-[1.08]">
-          Fluid Aurora Telemetry for{" "}
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400">
-            Enterprise Concurrency.
-          </span>
-        </h2>
-
-        {/* Visual Latency Curve Wave Card */}
-        <div className="mt-8 p-6 rounded-3xl bg-cyan-950/20 border border-cyan-500/30 backdrop-blur-2xl shadow-2xl relative overflow-hidden">
-          <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-cyan-500/20 text-xs font-mono">
-            <div className="flex items-center gap-2 text-cyan-300 font-bold">
-              <Activity size={16} className="text-cyan-400 animate-pulse" />
-              <span>APACHE JMETER LATENCY PROFILING (15,000 VUs)</span>
-            </div>
-            <div className="flex items-center gap-4 text-zinc-300">
-              <span>p95: 1.74s</span>
-              <span className="text-cyan-400 font-bold">Error Rate: 0.02%</span>
-              <span className="text-emerald-400 font-bold">PASS &lt; 2.0s SLA</span>
-            </div>
-          </div>
-
-          {/* SVG Spline Curve Visualization */}
-          <div className="py-6 relative">
-            <svg
-              viewBox="0 0 800 180"
-              className="w-full h-36 stroke-cyan-400 fill-none"
-            >
-              <defs>
-                <linearGradient id="cyanGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.3" />
-                  <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.0" />
-                </linearGradient>
-              </defs>
-              {/* Fill area */}
-              <path
-                d="M 0 140 Q 150 135 250 80 T 500 60 T 700 95 T 800 100 L 800 180 L 0 180 Z"
-                fill="url(#cyanGradient)"
-                stroke="none"
-              />
-              {/* Main curve */}
-              <path
-                d="M 0 140 Q 150 135 250 80 T 500 60 T 700 95 T 800 100"
-                strokeWidth="3"
-                className="stroke-cyan-400"
-              />
-              {/* Threshold line */}
-              <line
-                x1="0"
-                y1="40"
-                x2="800"
-                y2="40"
-                stroke="#ec4899"
-                strokeWidth="1.5"
-                strokeDasharray="6,6"
-              />
-              <text x="10" y="32" fill="#ec4899" fontSize="10" fontFamily="monospace">
-                SLA CEILING: 2.00s
-              </text>
-              <circle cx="500" cy="60" r="5" fill="#06b6d4" className="animate-ping" />
-              <circle cx="500" cy="60" r="5" fill="#ffffff" />
-            </svg>
-          </div>
-
-          <div className="grid grid-cols-3 gap-3 pt-4 border-t border-cyan-500/20 text-center text-xs font-mono">
-            <div>
-              <span className="text-zinc-500 text-[10px]">PEAK CONCURRENCY</span>
-              <div className="text-lg font-bold text-white">15,000 Users</div>
-            </div>
-            <div>
-              <span className="text-zinc-500 text-[10px]">AVG LATENCY</span>
-              <div className="text-lg font-bold text-cyan-300">1.12s</div>
-            </div>
-            <div>
-              <span className="text-zinc-500 text-[10px]">TOTAL REQUESTS</span>
-              <div className="text-lg font-bold text-white">1.8M / Session</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ========================================================================= */
-/* VARIANT 3: FROSTED OPALINE & SUNSET MESH (Circular Gauge & Sunset Glow)   */
-/* ========================================================================= */
-function FrostedOpalinePreview() {
-  return (
-    <div className="relative bg-[#090514] text-zinc-100 p-8 sm:p-14 overflow-hidden">
-      {/* Sunset Mesh Orbs */}
-      <div className="absolute top-10 left-1/4 w-[500px] h-[350px] bg-rose-500/15 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-1/2 right-1/4 w-[450px] h-[300px] bg-violet-600/20 rounded-full blur-[130px] pointer-events-none" />
-
-      {/* Top Opaline Bar */}
-      <div className="relative z-10 max-w-5xl mx-auto flex items-center justify-between pb-8 border-b border-rose-500/20">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-rose-500 to-violet-600 flex items-center justify-center font-bold text-xs text-white">
-            MSM
-          </div>
-          <div>
-            <div className="text-sm font-bold text-white">Muhammad Shazzad Mia</div>
-            <div className="text-[10px] text-rose-300">Brain Station 23 · SQA II</div>
-          </div>
-        </div>
-
-        <button className="px-4 py-1.5 rounded-full bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-200 text-xs font-semibold backdrop-blur-md">
-          Download Resume (PDF)
-        </button>
-      </div>
-
-      {/* Hero Visual Area with Circular Gauge */}
-      <div className="relative z-10 max-w-5xl mx-auto pt-10 pb-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-7">
-            <span className="px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/20 text-xs font-mono text-rose-300">
-              ✦ Frosted Opaline &amp; Sunset Mesh
-            </span>
-            <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mt-4 leading-[1.08]">
-              Soft Refraction.{" "}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-rose-400 via-purple-300 to-amber-300">
-                Rigorous Proof.
-              </span>
-            </h2>
-            <p className="mt-4 text-base text-zinc-300 max-w-xl leading-relaxed">
-              Precision test automation engineering eliminating manual overhead
-              across nationwide enterprise platforms.
-            </p>
-
-            <div className="flex flex-wrap gap-2 mt-6">
-              {[
-                "Playwright TS",
-                "JMeter 15k",
-                "CI/CD Gate",
-                "Shwapno",
-                "Paragon",
-                "Batch 16 SQA",
-              ].map((pill, i) => (
-                <span
-                  key={i}
-                  className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-zinc-300 backdrop-blur-md"
-                >
-                  {pill}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Circular SVG 80% Metric Wheel */}
-          <div className="lg:col-span-5 flex justify-center">
-            <div className="p-8 rounded-3xl bg-white/[0.03] border border-rose-500/30 backdrop-blur-3xl shadow-2xl flex flex-col items-center text-center">
-              <div className="relative w-44 h-44 flex items-center justify-center">
-                <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    fill="none"
-                    stroke="#2e1065"
-                    strokeWidth="8"
-                  />
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    fill="none"
-                    stroke="url(#sunsetStroke)"
-                    strokeWidth="8"
-                    strokeDasharray="251.2"
-                    strokeDashoffset="50.2"
-                    strokeLinecap="round"
-                  />
-                  <defs>
-                    <linearGradient id="sunsetStroke" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0%" stopColor="#f43f5e" />
-                      <stop offset="100%" stopColor="#8b5cf6" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-                <div className="absolute flex flex-col items-center">
-                  <span className="text-3xl font-black text-white font-mono">80%+</span>
-                  <span className="text-[10px] text-zinc-400 uppercase tracking-wider">
-                    Automated
-                  </span>
-                </div>
-              </div>
-              <div className="text-sm font-bold text-white mt-4">
-                120+ High-Value User Flows
-              </div>
-              <div className="text-xs text-zinc-400 mt-1">
-                Slashing regression cycles by 75%
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ========================================================================= */
-/* VARIANT 4: MONOLITHIC MINIMALIST GLASS (Laser Specular Rims & Pure Space) */
-/* ========================================================================= */
-function MonolithicMinimalistPreview() {
-  return (
-    <div className="relative bg-[#030408] text-white p-8 sm:p-16 overflow-hidden">
-      {/* Subtle Cold Light Horizon */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[200px] bg-white/[0.04] rounded-full blur-[140px] pointer-events-none" />
-
-      {/* Nav */}
-      <div className="relative z-10 max-w-5xl mx-auto flex items-center justify-between pb-10 border-b border-white/10">
-        <span className="font-mono text-xs font-bold tracking-widest text-white uppercase">
-          MUHAMMAD SHAZZAD MIA // SQA II
-        </span>
-        <span className="text-xs font-mono text-zinc-400">
-          Brain Station 23 · Dhaka
-        </span>
-      </div>
-
-      {/* Hero */}
-      <div className="relative z-10 max-w-5xl mx-auto pt-16 pb-12">
-        <div className="max-w-3xl">
-          <h2 className="text-5xl sm:text-7xl font-bold tracking-tight text-white leading-[0.98]">
-            Quality, reduced to its essence.
-          </h2>
-          <p className="mt-6 text-lg text-zinc-400 font-light leading-relaxed max-w-xl">
-            Lead automation engineer specializing in resilient Playwright
-            frameworks and high-concurrency JMeter stress architecture.
-          </p>
-        </div>
-
-        {/* Monolithic Glass Slabs with Top Specular Glow */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-14">
-          {[
-            {
-              num: "80%",
-              label: "Automated Suite",
-              detail: "120+ Production Flows",
-            },
-            {
-              num: "15k",
-              label: "Concurrent Users",
-              detail: "JMeter Flash Surges",
-            },
-            {
-              num: "99.4%",
-              label: "Verified Uptime",
-              detail: "15+ Zero-Defect Sprints",
-            },
-          ].map((card, i) => (
-            <div
-              key={i}
-              className="p-8 rounded-3xl bg-white/[0.02] border-t border-white/30 border-x border-b border-white/5 backdrop-blur-2xl shadow-2xl relative group hover:bg-white/[0.04] transition-all"
-            >
-              <div className="text-5xl sm:text-6xl font-extralight tracking-tight text-white font-mono">
-                {card.num}
-              </div>
-              <div className="text-sm font-semibold text-zinc-200 mt-4">
-                {card.label}
-              </div>
-              <div className="text-xs text-zinc-500 mt-1">{card.detail}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* Direct Contact Glass Row */}
-        <div className="mt-12 p-4 rounded-2xl bg-white/[0.02] border border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-zinc-300">
-          <div>
-            <span>DIRECT CHANNELS: </span>
-            <strong className="text-white">shazzadm065@gmail.com</strong>
-            <span className="mx-2 text-zinc-600">|</span>
-            <strong className="text-white">+8801621864789</strong>
-          </div>
-          <a
-            href="/resume.pdf"
-            className="text-white font-bold hover:underline flex items-center gap-1.5"
-          >
-            <span>Download Curriculum Vitae</span>
-            <ArrowRight size={13} />
-          </a>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ========================================================================= */
-/* VARIANT 5: KINETIC HOLOGRAM DECK (Glass Terminal Simulator & Node Web)    */
-/* ========================================================================= */
-function KineticHologramPreview() {
-  return (
-    <div className="relative bg-[#050711] text-zinc-100 p-8 sm:p-14 overflow-hidden">
-      {/* Multi-chroma laser ambient glow */}
-      <div className="absolute top-0 right-1/3 w-[500px] h-[300px] bg-emerald-500/10 rounded-full blur-[130px] pointer-events-none" />
-      <div className="absolute bottom-10 left-1/4 w-[450px] h-[300px] bg-fuchsia-600/15 rounded-full blur-[120px] pointer-events-none" />
-
-      {/* Top Deck Bar */}
-      <div className="relative z-10 max-w-5xl mx-auto flex items-center justify-between pb-6 border-b border-emerald-500/20">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-black border border-emerald-400/40 flex items-center justify-center font-mono text-xs font-bold text-emerald-400">
-            &gt;_
-          </div>
-          <div className="font-mono text-xs text-zinc-300">
-            <strong className="text-white">HOLOGRAPHIC_COCKPIT</strong> // SHAZZAD.DEV
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-xs">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-            <span>PLAYWRIGHT_GRID_READY</span>
-          </span>
-        </div>
-      </div>
-
-      {/* Hero Visual Telemetry */}
-      <div className="relative z-10 max-w-5xl mx-auto pt-8 pb-6">
-        <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
-          TEST RUNNER HOLOGRAM &amp; AUTOMATION WEB
-        </h2>
-
-        {/* Live Terminal Console Glass Window */}
-        <div className="mt-6 rounded-2xl bg-black/60 border border-emerald-500/30 backdrop-blur-2xl p-5 shadow-2xl">
-          <div className="flex items-center justify-between pb-3 border-b border-white/10 text-xs font-mono">
-            <span className="text-zinc-400 flex items-center gap-2">
-              <Terminal size={14} className="text-emerald-400" />
-              <span>TERMINAL TELEMETRY // 4 WORKERS PARALLEL</span>
-            </span>
-            <span className="text-emerald-400 font-bold">120/120 PASSED (0 FLAKES)</span>
-          </div>
-
-          <div className="mt-3 space-y-1.5 font-mono text-xs text-zinc-300">
-            <div className="flex items-center justify-between text-zinc-400">
-              <span>● [P1] Shwapno bKash OTP Webhook Checkout</span>
-              <span className="text-emerald-400 font-bold">PASS (412ms)</span>
-            </div>
-            <div className="flex items-center justify-between text-zinc-400">
-              <span>● [P1] Paragon Multi-Branch Inventory Sync</span>
-              <span className="text-emerald-400 font-bold">PASS (720ms)</span>
-            </div>
-            <div className="flex items-center justify-between text-zinc-400">
-              <span>● [P1] Algolia Search Indexing Stress Test</span>
-              <span className="text-emerald-400 font-bold">PASS (380ms)</span>
-            </div>
-          </div>
-        </div>
-
-        {/* 4 Hologram Visual Chips */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
-          <div className="p-4 rounded-xl bg-white/[0.02] border border-emerald-500/30 backdrop-blur-xl">
-            <div className="text-[10px] font-mono text-zinc-400 uppercase">COVERAGE</div>
-            <div className="text-2xl font-black text-emerald-400 font-mono mt-1">80%+</div>
-          </div>
-          <div className="p-4 rounded-xl bg-white/[0.02] border border-cyan-500/30 backdrop-blur-xl">
-            <div className="text-[10px] font-mono text-zinc-400 uppercase">LOAD TEST</div>
-            <div className="text-2xl font-black text-cyan-400 font-mono mt-1">15,000 VUs</div>
-          </div>
-          <div className="p-4 rounded-xl bg-white/[0.02] border border-purple-500/30 backdrop-blur-xl">
-            <div className="text-[10px] font-mono text-zinc-400 uppercase">EXECUTION CUT</div>
-            <div className="text-2xl font-black text-purple-400 font-mono mt-1">75% Faster</div>
-          </div>
-          <div className="p-4 rounded-xl bg-white/[0.02] border border-pink-500/30 backdrop-blur-xl">
-            <div className="text-[10px] font-mono text-zinc-400 uppercase">PLATFORM SLA</div>
-            <div className="text-2xl font-black text-pink-400 font-mono mt-1">99.4% Up</div>
-          </div>
         </div>
       </div>
     </div>
