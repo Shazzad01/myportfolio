@@ -6,7 +6,6 @@ import Link from "next/link";
 import {
   Sparkles,
   CheckCircle2,
-  Terminal,
   Activity,
   Layers,
   Cpu,
@@ -16,133 +15,131 @@ import {
   ExternalLink,
   Sun,
   Moon,
-  ArrowRight,
-  Code2,
   Eye,
   Zap,
   MousePointer2,
-  Waves,
-  Scan,
+  Share2,
+  Atom,
+  Orbit,
   Sparkle,
-  Radio,
+  Focus,
+  Box,
 } from "lucide-react";
 
-type ModernAnimationOption =
-  | "cursor-glare"
-  | "breathing-corona"
-  | "laser-glint"
-  | "specular-motes"
-  | "topographic-waves";
+type InteractiveMotionOption =
+  | "constellation-magnetic"
+  | "fluid-bioluminescent"
+  | "specular-lens-ripple"
+  | "orbital-gravitational"
+  | "spatial-3d-parallax";
 
-interface AnimationMeta {
-  id: ModernAnimationOption;
+interface OptionMeta {
+  id: InteractiveMotionOption;
   num: string;
   name: string;
   tagline: string;
   vibe: string;
   recommended?: boolean;
-  motionMechanics: string[];
-  whyItIsModern: string;
+  mechanics: string[];
+  whyItFits: string;
 }
 
-const ANIMATION_VARIATIONS: AnimationMeta[] = [
+const MOTION_OPTIONS: OptionMeta[] = [
   {
-    id: "cursor-glare",
+    id: "constellation-magnetic",
     num: "01",
-    name: "Interactive Cursor Specular Glare",
-    tagline: "Fluid Mouse-Reactive Specular Spotlight with Smooth Spring Physics Damping",
-    vibe: "Linear & Raycast Signature — Tactile physical illumination, responds to your presence",
+    name: "Magnetic Constellation & Specular Spotlight",
+    tagline: "Zero-Gravity Particles with Magnetic Cursor Attraction & Dynamic Geometric Link Threads",
+    vibe: "Raycast & Stripe Graph — High-intelligence network, responsive physics",
     recommended: true,
-    motionMechanics: [
-      "Smooth 60fps physics-damped spotlight that follows your cursor across the obsidian floor.",
-      "The top 1px diamond-cut horizon catches and reflects light as your cursor approaches it.",
-      "Frosted glass cards naturally illuminate and reveal frosted bevels under your cursor spotlight.",
-      "Zero-gravity fallback: smoothly orbits in an infinity loop on touch devices.",
+    mechanics: [
+      "22 zero-gravity specular motes floating organically in Brownian motion.",
+      "As your cursor approaches particles, a magnetic force smoothly attracts the nearest motes.",
+      "Ultra-faint 1px luminous geometric connection threads render dynamically between nearby particles and your cursor.",
+      "A soft specular spotlight glides under your cursor, illuminating frosted glass bevels.",
     ],
-    whyItIsModern:
-      "Replaces cheesy looping screensavers with reactive, human-guided lighting. The page feels like a physical luxury device you can touch.",
+    whyItFits:
+      "Merges the organic ambient floating of #4 with the tactile cursor-tracking of #1, creating an intelligent connected network.",
   },
   {
-    id: "breathing-corona",
+    id: "fluid-bioluminescent",
     num: "02",
-    name: "Breathing Atmospheric Corona",
-    tagline: "Slow Sinusoidal Horizon Pulse & Luminous Specular Expansion",
-    vibe: "Apple Pro Keynote — Meditative luxury, zero visual noise, hypnotic elegance",
-    motionMechanics: [
-      "The specular horizon beam at the top gently breathes in a deep 10-second harmonic cycle.",
-      "Scale and luminance expand and contract with organic cubic-bezier(0.16, 1, 0.3, 1) ease.",
-      "Pure velvet obsidian floor stays calm and anchored, ensuring zero distraction while reading.",
-      "A soft specular wave washes down gently over the hero deck every cycle.",
+    name: "Bioluminescent Swarm & Fluid Cursor Wake",
+    tagline: "Curved Fluid Vector Flow Field with Specular Particle Swarm & Dynamic Cursor Disturbance",
+    vibe: "Linear & Apple Vision Pro — Hypnotic organic flow, zero-gravity particle wake",
+    mechanics: [
+      "Particles glide along smooth organic fluid flow curves across the canvas.",
+      "Moving your cursor creates a gentle hydrodynamic wake that parts the particle field.",
+      "Pure white and ice-cyan particles pulse with soft breathing luminescence.",
+      "Top specular horizon casts an ambient downward wash, illuminating the fluid wake.",
     ],
-    whyItIsModern:
-      "Calm and confident. Unlike distracting animations that fight for attention, this creates atmospheric presence that calms the eye.",
+    whyItFits:
+      "Feels like moving your hand through deep bioluminescent ocean waters. Incredibly calm, organic, and mesmerizing.",
   },
   {
-    id: "laser-glint",
+    id: "specular-lens-ripple",
     num: "03",
-    name: "Linear Horizon Glint & Edge Shimmer",
-    tagline: "Single Razor-Sharp 1px Specular Light Glint Traveling Across Diamond Horizon",
-    vibe: "Stripe Press & Linear Horizon — Architectural precision, titanium edge glint",
-    motionMechanics: [
-      "A razor-sharp 1px diamond glint sweeps smoothly across the top horizon edge every 7 seconds.",
-      "Produces a localized flare and soft trailing specular lens refraction as it passes.",
-      "Subtle 120px specular halo underneath follows the glint's path across the top.",
-      "100% clean, non-repetitive: gives the impression of light catching a polished bevel.",
+    name: "Fresnel Specular Lens & Surface Bobbing Motes",
+    tagline: "High-Refraction Cursor Fresnel Spotlight with Interactive Ripple Waves that Bob Floating Particles",
+    vibe: "Minimal Gallery & Awwwards Winner — Tactile optical glass refraction, liquid obsidian",
+    mechanics: [
+      "Cursor spotlight features a 2-stage optical Fresnel lens: intense specular white core + wide ice-cyan halo.",
+      "Cursor movement casts subtle radial surface waves that ripple across the obsidian plane.",
+      "Floating zero-gravity particles gently bob and react to the ripple waves as they pass.",
+      "Creates the illusion of an ultra-clean optical lens sweeping across black glass.",
     ],
-    whyItIsModern:
-      "Precision-crafted micro-motion. It looks like natural sunlight catching the polished chamfered edge of an iPhone or luxury watch.",
+    whyItFits:
+      "Takes the cursor spotlight of #1 to optical perfection while making the particles of #4 physically react to the light.",
   },
   {
-    id: "specular-motes",
+    id: "orbital-gravitational",
     num: "04",
-    name: "Zero-Gravity Specular Motes (Brownian Drift)",
-    tagline: "Micro-Fine Specular Dust Particles Drifting Organically in Zero Gravity",
-    vibe: "Cosmos & Minimal Gallery — Cinematic film projection beam, organic ambient life",
-    motionMechanics: [
-      "18 micro-fine (1.5px–2px) glowing specular particles drifting in organic 2D Brownian motion.",
-      "Gentle non-linear floating: particles drift upward and across with varying physics damping.",
-      "Soft breathing opacities (fading from 0 to 0.7 and back) like dust caught in a cinema light beam.",
-      "NOT falling matrix lines: completely random, organic, floating zero-gravity drift.",
+    name: "Orbital Gravity Well & Miniature Satellite Motes",
+    tagline: "Background Brownian Drift with a Ring of Micro-Satellites Orbiting Your Cursor",
+    vibe: "Cosmos & Studio Freight — Astrophysics luxury, gravitational harmony",
+    mechanics: [
+      "Background field features deep, slow zero-gravity ambient drift.",
+      "6 micro-fine satellite particles enter orbit around your cursor with spring-damped gravity.",
+      "As you move, the orbital satellites trail with realistic inertia and angular momentum.",
+      "Produces an unmistakable aura of focus and precision around the user's interaction point.",
     ],
-    whyItIsModern:
-      "Organic physics-driven Brownian motion. Feels like looking through an ultra-clean optical lens into ambient space.",
+    whyItFits:
+      "Directly elevates the particle physics of #4 into an interactive gravitational dance centered on your cursor.",
   },
   {
-    id: "topographic-waves",
+    id: "spatial-3d-parallax",
     num: "05",
-    name: "Topographic Horizon Contour Waves",
-    tagline: "Concentric 1px Acoustic Ripple Contours Radiating Outward from Specular Source",
-    vibe: "Awwwards & Teenage Engineering — Sound design aesthetics, architectural topography",
-    motionMechanics: [
-      "Ultra-fine concentric elliptical 1px contour ripples gently expanding from the horizon source.",
-      "Slow, measured outward expansion (14-second wave cycle) that dissolves smoothly into the obsidian void.",
-      "Subtle ice-cyan specular refraction along the crest of each contour line.",
-      "Geometric discipline: gives the feeling of sound waves radiating in an anechoic audio chamber.",
+    name: "Spatial 3D Depth Parallax & Multilayer Starfield",
+    tagline: "3-Layer Deep Specular Starfield with Gyroscopic 3D Perspective Tilt Driven by Cursor",
+    vibe: "Apple Spatial Computing & Studio Archetype — Real three-dimensional glass depth",
+    mechanics: [
+      "3 distinct z-depth particle tiers: distant micro-stars, mid-ground motes, and foreground luminous specks.",
+      "Moving your cursor tilts the entire spatial coordinate frame in real 3D perspective (perspective: 1200px).",
+      "Different z-layers respond with calibrated parallax ratios (0.2x, 0.5x, 1.0x).",
+      "Turns the webpage into a deep physical 3D shadowbox made of smoked glass and floating stars.",
     ],
-    whyItIsModern:
-      "Architectural and acoustic. Combines hardware product design aesthetics with subtle wave theory.",
+    whyItFits:
+      "Takes both #1 and #4 and adds true z-axis depth. The particles feel like they exist in real 3D space behind the glass cards.",
   },
 ];
 
-export default function ModernAnimationLab() {
+export default function AdvancedMotionLaboratory() {
   const [activeOption, setActiveOption] =
-    useState<ModernAnimationOption>("cursor-glare");
+    useState<InteractiveMotionOption>("constellation-magnetic");
   const [isLightMode, setIsLightMode] = useState<boolean>(false);
   const [copiedChoice, setCopiedChoice] = useState<boolean>(false);
   const [mousePos, setMousePos] = useState<{ x: number; y: number }>({
     x: 720,
-    y: 350,
+    y: 400,
   });
-  const containerRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const shouldReduceMotion = useReducedMotion();
 
   const current =
-    ANIMATION_VARIATIONS.find((opt) => opt.id === activeOption) ||
-    ANIMATION_VARIATIONS[0];
+    MOTION_OPTIONS.find((opt) => opt.id === activeOption) || MOTION_OPTIONS[0];
 
-  // Mouse tracking for Option 1: Cursor Glare
+  // Mouse tracking
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (activeOption !== "cursor-glare") return;
     const rect = e.currentTarget.getBoundingClientRect();
     setMousePos({
       x: e.clientX - rect.left,
@@ -150,9 +147,281 @@ export default function ModernAnimationLab() {
     });
   };
 
+  // High-Performance Interactive Particle Canvas Engine
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animId: number;
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    const handleResize = () => {
+      if (!canvas) return;
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    };
+    window.addEventListener("resize", handleResize);
+
+    // Initialize 24 Particle Entities with 3D Depth Properties
+    interface Particle {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      baseX: number;
+      baseY: number;
+      size: number;
+      z: number; // 1 to 3
+      alpha: number;
+      orbitAngle: number;
+      orbitRadius: number;
+      orbitSpeed: number;
+    }
+
+    const particles: Particle[] = [];
+    const count = activeOption === "spatial-3d-parallax" ? 36 : 24;
+
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.35,
+        baseX: Math.random() * width,
+        baseY: Math.random() * height,
+        size: Math.random() * 1.5 + 1.2,
+        z: Math.random() * 2 + 1,
+        alpha: Math.random() * 0.5 + 0.3,
+        orbitAngle: Math.random() * Math.PI * 2,
+        orbitRadius: Math.random() * 60 + 35,
+        orbitSpeed: (Math.random() * 0.02 + 0.015) * (Math.random() > 0.5 ? 1 : -1),
+      });
+    }
+
+    let frame = 0;
+
+    const render = () => {
+      ctx.clearRect(0, 0, width, height);
+      frame++;
+
+      const targetX = mousePos.x;
+      const targetY = mousePos.y;
+
+      // -------------------------------------------------------------
+      // OPTION 1: CONSTELLATION & MAGNETIC
+      // -------------------------------------------------------------
+      if (activeOption === "constellation-magnetic") {
+        particles.forEach((p, idx) => {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0 || p.x > width) p.vx *= -1;
+          if (p.y < 0 || p.y > height) p.vy *= -1;
+
+          // Magnetic attraction to cursor
+          const dx = targetX - p.x;
+          const dy = targetY - p.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 180 && dist > 10) {
+            const force = (180 - dist) / 180;
+            p.x += (dx / dist) * force * 1.8;
+            p.y += (dy / dist) * force * 1.8;
+
+            // Connect line to cursor
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(targetX, targetY);
+            ctx.strokeStyle = `rgba(56, 189, 248, ${0.35 * force})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+
+          // Connect nearby particles
+          for (let j = idx + 1; j < particles.length; j++) {
+            const p2 = particles[j];
+            const pDist = Math.hypot(p.x - p2.x, p.y - p2.y);
+            if (pDist < 110) {
+              const pAlpha = ((110 - pDist) / 110) * 0.22;
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.strokeStyle = `rgba(255, 255, 255, ${pAlpha})`;
+              ctx.lineWidth = 0.8;
+              ctx.stroke();
+            }
+          }
+
+          // Draw particle
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
+          ctx.shadowColor = "#38bdf8";
+          ctx.shadowBlur = 8;
+          ctx.fill();
+        });
+      }
+
+      // -------------------------------------------------------------
+      // OPTION 2: BIOLUMINESCENT FLUID SWARM
+      // -------------------------------------------------------------
+      else if (activeOption === "fluid-bioluminescent") {
+        particles.forEach((p) => {
+          // Fluid Perlin-like curve flow
+          const angle = Math.sin(p.x * 0.003 + frame * 0.01) * Math.cos(p.y * 0.003 + frame * 0.01) * Math.PI * 2;
+          p.x += Math.cos(angle) * 0.6 + p.vx * 0.5;
+          p.y += Math.sin(angle) * 0.6 + p.vy * 0.5;
+
+          if (p.x < 0) p.x = width;
+          if (p.x > width) p.x = 0;
+          if (p.y < 0) p.y = height;
+          if (p.y > height) p.y = 0;
+
+          // Cursor wake disturbance
+          const dx = p.x - targetX;
+          const dy = p.y - targetY;
+          const dist = Math.hypot(dx, dy);
+          if (dist < 140) {
+            const push = (140 - dist) / 140;
+            p.x += (dx / dist) * push * 3.5;
+            p.y += (dy / dist) * push * 3.5;
+          }
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size * 1.2, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(56, 189, 248, ${p.alpha * 0.9})`;
+          ctx.shadowColor = "#00f2fe";
+          ctx.shadowBlur = 12;
+          ctx.fill();
+        });
+      }
+
+      // -------------------------------------------------------------
+      // OPTION 3: FRESNEL LENS & RIPPLE
+      // -------------------------------------------------------------
+      else if (activeOption === "specular-lens-ripple") {
+        particles.forEach((p) => {
+          p.x += p.vx * 0.8;
+          p.y += p.vy * 0.8;
+          if (p.x < 0 || p.x > width) p.vx *= -1;
+          if (p.y < 0 || p.y > height) p.vy *= -1;
+
+          // Distance to lens center
+          const dist = Math.hypot(targetX - p.x, targetY - p.y);
+          let extraScale = 1;
+          let extraAlpha = p.alpha;
+
+          if (dist < 220) {
+            // Ripple wave distortion
+            const wave = Math.sin(dist * 0.05 - frame * 0.08);
+            p.y += wave * 0.8;
+            extraScale = 1 + (220 - dist) / 150;
+            extraAlpha = Math.min(1, p.alpha + 0.4);
+          }
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size * extraScale, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 255, 255, ${extraAlpha})`;
+          ctx.shadowColor = dist < 220 ? "#38bdf8" : "#ffffff";
+          ctx.shadowBlur = dist < 220 ? 14 : 6;
+          ctx.fill();
+        });
+      }
+
+      // -------------------------------------------------------------
+      // OPTION 4: ORBITAL GRAVITATIONAL SATELLITES
+      // -------------------------------------------------------------
+      else if (activeOption === "orbital-gravitational") {
+        // First 8 particles act as satellites orbiting the cursor
+        particles.forEach((p, idx) => {
+          if (idx < 6) {
+            p.orbitAngle += p.orbitSpeed;
+            const orbitX = targetX + Math.cos(p.orbitAngle) * p.orbitRadius;
+            const orbitY = targetY + Math.sin(p.orbitAngle) * (p.orbitRadius * 0.6);
+            // Smooth spring damping to orbit position
+            p.x += (orbitX - p.x) * 0.15;
+            p.y += (orbitY - p.y) * 0.15;
+
+            // Draw orbit trail
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size * 1.4, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(255, 255, 255, 0.95)";
+            ctx.shadowColor = "#38bdf8";
+            ctx.shadowBlur = 12;
+            ctx.fill();
+
+            // Fine link tether to cursor
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(targetX, targetY);
+            ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+            ctx.lineWidth = 0.7;
+            ctx.stroke();
+          } else {
+            // Background slow drift
+            p.x += p.vx * 0.6;
+            p.y += p.vy * 0.6;
+            if (p.x < 0 || p.x > width) p.vx *= -1;
+            if (p.y < 0 || p.y > height) p.vy *= -1;
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha * 0.7})`;
+            ctx.shadowColor = "#ffffff";
+            ctx.shadowBlur = 5;
+            ctx.fill();
+          }
+        });
+      }
+
+      // -------------------------------------------------------------
+      // OPTION 5: SPATIAL 3D DEPTH PARALLAX
+      // -------------------------------------------------------------
+      else if (activeOption === "spatial-3d-parallax") {
+        const mouseRatioX = (targetX / width - 0.5) * 2;
+        const mouseRatioY = (targetY / height - 0.5) * 2;
+
+        particles.forEach((p) => {
+          // Shift coordinates based on z-depth layer
+          const parallaxShiftX = mouseRatioX * p.z * 18;
+          const parallaxShiftY = mouseRatioY * p.z * 14;
+
+          p.baseX += p.vx * 0.5;
+          p.baseY += p.vy * 0.5;
+          if (p.baseX < 0) p.baseX = width;
+          if (p.baseX > width) p.baseX = 0;
+          if (p.baseY < 0) p.baseY = height;
+          if (p.baseY > height) p.baseY = 0;
+
+          const renderX = p.baseX + parallaxShiftX;
+          const renderY = p.baseY + parallaxShiftY;
+          const renderSize = p.size * (p.z * 0.6);
+
+          ctx.beginPath();
+          ctx.arc(renderX, renderY, renderSize, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha * (p.z * 0.4)})`;
+          ctx.shadowColor = p.z > 2 ? "#38bdf8" : "#ffffff";
+          ctx.shadowBlur = p.z > 2 ? 10 : 4;
+          ctx.fill();
+        });
+      }
+
+      animId = requestAnimationFrame(render);
+    };
+
+    render();
+
+    return () => {
+      cancelAnimationFrame(animId);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [activeOption, mousePos]);
+
   const handleCopyChoice = () => {
     navigator.clipboard.writeText(
-      `I choose Modern Animation Variation: [${current.num}] ${current.name} (${current.id})`
+      `I choose Modern Motion Style: [${current.num}] ${current.name} (${current.id})`
     );
     setCopiedChoice(true);
     setTimeout(() => setCopiedChoice(false), 2500);
@@ -160,7 +429,6 @@ export default function ModernAnimationLab() {
 
   return (
     <div
-      ref={containerRef}
       onMouseMove={handleMouseMove}
       className={`min-h-screen relative font-sans transition-colors duration-500 overflow-x-hidden ${
         isLightMode
@@ -169,7 +437,7 @@ export default function ModernAnimationLab() {
       }`}
     >
       {/* =================================================================== */}
-      {/* MONOCHROME SPECULAR HORIZON BASE (THE USER'S APPROVED CANVAS)       */}
+      {/* MONOCHROME SPECULAR HORIZON BASE (YOUR APPROVED TONE)               */}
       {/* =================================================================== */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         {/* Core Velvet Obsidian Floor */}
@@ -187,235 +455,30 @@ export default function ModernAnimationLab() {
         {/* 1px Diamond-Cut Horizon Laser Line */}
         <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-white to-transparent shadow-[0_0_25px_#ffffff] opacity-90" />
 
-        {/* =============================================================== */}
-        {/* ANIMATION VARIATION 01: INTERACTIVE CURSOR SPECULAR GLARE       */}
-        {/* =============================================================== */}
-        {activeOption === "cursor-glare" && (
-          <div className="absolute inset-0 pointer-events-none">
-            {/* Dynamic Smooth Follow Spotlight */}
-            <motion.div
-              animate={{
-                x: mousePos.x - 300,
-                y: mousePos.y - 300,
-              }}
-              transition={{
-                type: "spring",
-                damping: 30,
-                stiffness: 180,
-                mass: 0.6,
-              }}
-              className="absolute w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.12)_0%,rgba(56,189,248,0.08)_35%,transparent_70%)] blur-[90px]"
-            />
+        {/* Dynamic Smooth Cursor Specular Spotlight Layer */}
+        <motion.div
+          animate={{
+            x: mousePos.x - 300,
+            y: mousePos.y - 300,
+          }}
+          transition={{
+            type: "spring",
+            damping: 32,
+            stiffness: 190,
+            mass: 0.5,
+          }}
+          className="absolute w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.11)_0%,rgba(56,189,248,0.07)_35%,transparent_70%)] blur-[80px] pointer-events-none"
+        />
 
-            {/* Ambient Secondary Breathing Halo */}
-            <motion.div
-              animate={
-                shouldReduceMotion
-                  ? {}
-                  : {
-                      scale: [1, 1.1, 1],
-                      opacity: [0.35, 0.55, 0.35],
-                    }
-              }
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute top-[8%] left-1/2 -translate-x-1/2 w-[900px] h-[350px] rounded-full bg-cyan-400/10 blur-[140px]"
-            />
-          </div>
-        )}
-
-        {/* =============================================================== */}
-        {/* ANIMATION VARIATION 02: BREATHING ATMOSPHERIC CORONA            */}
-        {/* =============================================================== */}
-        {activeOption === "breathing-corona" && (
-          <div className="absolute inset-0 pointer-events-none">
-            {/* Pulsing Specular Corona Expansion */}
-            <motion.div
-              animate={
-                shouldReduceMotion
-                  ? {}
-                  : {
-                      scaleY: [1, 1.35, 1],
-                      scaleX: [1, 1.12, 1],
-                      opacity: [0.65, 1, 0.65],
-                    }
-              }
-              transition={{
-                duration: 9,
-                repeat: Infinity,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[550px] rounded-full bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.22)_0%,rgba(56,189,248,0.15)_35%,transparent_75%)] blur-[110px]"
-            />
-
-            {/* Deep Slow Ambient Sub-Wave */}
-            <motion.div
-              animate={
-                shouldReduceMotion
-                  ? {}
-                  : {
-                      opacity: [0.2, 0.45, 0.2],
-                      y: [0, 40, 0],
-                    }
-              }
-              transition={{
-                duration: 12,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute top-[25%] left-1/2 -translate-x-1/2 w-[1000px] h-[400px] rounded-full bg-cyan-500/10 blur-[150px]"
-            />
-          </div>
-        )}
-
-        {/* =============================================================== */}
-        {/* ANIMATION VARIATION 03: LINEAR HORIZON GLINT & EDGE SHIMMER     */}
-        {/* =============================================================== */}
-        {activeOption === "laser-glint" && (
-          <div className="absolute inset-0 pointer-events-none">
-            {/* Razor-Sharp Traveling Diamond Glint along 1px Rim */}
-            <motion.div
-              animate={
-                shouldReduceMotion
-                  ? {}
-                  : {
-                      x: [-200, 1640],
-                    }
-              }
-              transition={{
-                duration: 6.5,
-                repeat: Infinity,
-                ease: [0.4, 0, 0.2, 1],
-                repeatDelay: 1.5,
-              }}
-              className="absolute top-0 w-[220px] h-[3px] bg-gradient-to-r from-transparent via-white to-transparent shadow-[0_0_35px_#ffffff,0_0_15px_#38bdf8]"
-            >
-              {/* Soft Trailing Specular Cone */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[180px] h-[160px] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.35)_0%,rgba(56,189,248,0.18)_40%,transparent_80%)] blur-[25px]" />
-            </motion.div>
-
-            {/* Subtle Horizon Counter-Pulse */}
-            <motion.div
-              animate={
-                shouldReduceMotion
-                  ? {}
-                  : {
-                      opacity: [0.4, 0.7, 0.4],
-                    }
-              }
-              transition={{
-                duration: 6.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                repeatDelay: 1.5,
-              }}
-              className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] rounded-full bg-white/10 blur-[130px]"
-            />
-          </div>
-        )}
-
-        {/* =============================================================== */}
-        {/* ANIMATION VARIATION 04: ZERO-GRAVITY SPECULAR MOTES (BROWNIAN)  */}
-        {/* =============================================================== */}
-        {activeOption === "specular-motes" && (
-          <div className="absolute inset-0 pointer-events-none">
-            {/* 16 Organic Brownian Drift Specular Particles */}
-            {[
-              { id: 1, x: "18%", y: "22%", size: 2.2, dur: 14, dx: 45, dy: -35 },
-              { id: 2, x: "28%", y: "45%", size: 1.8, dur: 18, dx: -35, dy: 40 },
-              { id: 3, x: "42%", y: "18%", size: 2.5, dur: 12, dx: 50, dy: -25 },
-              { id: 4, x: "55%", y: "38%", size: 1.6, dur: 16, dx: -40, dy: -45 },
-              { id: 5, x: "68%", y: "26%", size: 2.0, dur: 15, dx: 30, dy: 50 },
-              { id: 6, x: "82%", y: "42%", size: 1.7, dur: 20, dx: -45, dy: -30 },
-              { id: 7, x: "12%", y: "65%", size: 2.4, dur: 13, dx: 35, dy: 45 },
-              { id: 8, x: "35%", y: "75%", size: 1.5, dur: 19, dx: -50, dy: -40 },
-              { id: 9, x: "78%", y: "70%", size: 2.1, dur: 17, dx: 40, dy: 35 },
-              { id: 10, x: "48%", y: "82%", size: 1.8, dur: 21, dx: -35, dy: 45 },
-              { id: 11, x: "88%", y: "15%", size: 2.6, dur: 11, dx: -40, dy: 30 },
-              { id: 12, x: "62%", y: "60%", size: 1.6, dur: 22, dx: 45, dy: -35 },
-            ].map((p) => (
-              <motion.div
-                key={p.id}
-                style={{
-                  left: p.x,
-                  top: p.y,
-                  width: `${p.size}px`,
-                  height: `${p.size}px`,
-                }}
-                animate={
-                  shouldReduceMotion
-                    ? {}
-                    : {
-                        x: [0, p.dx, -p.dx * 0.7, 0],
-                        y: [0, p.dy, -p.dy * 0.8, 0],
-                        opacity: [0.1, 0.85, 0.3, 0.85, 0.1],
-                        scale: [0.8, 1.25, 0.9, 1.25, 0.8],
-                      }
-                }
-                transition={{
-                  duration: p.dur,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute rounded-full bg-white shadow-[0_0_8px_#ffffff,0_0_15px_#38bdf8]"
-              />
-            ))}
-          </div>
-        )}
-
-        {/* =============================================================== */}
-        {/* ANIMATION VARIATION 05: TOPOGRAPHIC CONTOUR WAVES               */}
-        {/* =============================================================== */}
-        {activeOption === "topographic-waves" && (
-          <div className="absolute inset-0 pointer-events-none">
-            {/* Concentric Horizon Contour Waves Radiating Outward */}
-            {[0, 1, 2, 3].map((ring) => (
-              <motion.div
-                key={ring}
-                animate={
-                  shouldReduceMotion
-                    ? {}
-                    : {
-                        scale: [0.85, 1.45],
-                        opacity: [0.55, 0],
-                      }
-                }
-                transition={{
-                  duration: 12,
-                  repeat: Infinity,
-                  ease: [0.16, 1, 0.3, 1],
-                  delay: ring * 3,
-                }}
-                className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[1100px] h-[550px] rounded-[100%] border border-cyan-400/25 shadow-[0_0_20px_rgba(56,189,248,0.15)] pointer-events-none"
-              />
-            ))}
-
-            {/* Central Acoustic Pulse Focal Core */}
-            <motion.div
-              animate={
-                shouldReduceMotion
-                  ? {}
-                  : {
-                      scale: [1, 1.15, 1],
-                      opacity: [0.4, 0.7, 0.4],
-                    }
-              }
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute top-0 left-1/2 -translate-x-1/2 w-[850px] h-[320px] rounded-full bg-cyan-400/12 blur-[120px]"
-            />
-          </div>
-        )}
+        {/* Live Canvas for Interactive Particles & Motes */}
+        <canvas
+          ref={canvasRef}
+          className="absolute inset-0 w-full h-full pointer-events-none z-10"
+        />
       </div>
 
       {/* =================================================================== */}
-      {/* STICKY TOP STUDIO CONTROLLER HEADER                                 */}
+      {/* STICKY TOP CONTROLLER HEADER                                        */}
       {/* =================================================================== */}
       <header
         className={`sticky top-0 z-50 backdrop-blur-2xl border-b transition-colors duration-300 ${
@@ -433,14 +496,14 @@ export default function ModernAnimationLab() {
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-xs font-mono font-bold uppercase tracking-wider">
-                  Motion Lab
+                  Interactive Motion Lab
                 </span>
                 <span className="text-[10px] px-2 py-0.5 rounded-full font-mono font-semibold bg-white/15 text-white border border-white/20">
-                  MONOCHROME SPECULAR
+                  5 CURSOR & MOTE VARIATIONS
                 </span>
               </div>
               <p className="text-[11px] text-zinc-400">
-                5 Modern 2026 Animation Styles on Approved Specular Horizon
+                Move your mouse to experience the interactive physics in real-time
               </p>
             </div>
           </div>
@@ -503,18 +566,18 @@ export default function ModernAnimationLab() {
           </div>
         </div>
 
-        {/* 5 Modern Animation Switcher Navigation Tabs */}
+        {/* 5 Interactive Motion Switcher Tabs */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-3 pt-1">
           <div
             role="tablist"
-            aria-label="Modern Animation Options"
+            aria-label="Interactive Motion Options"
             className={`grid grid-cols-2 md:grid-cols-5 gap-2 p-1.5 rounded-2xl border ${
               isLightMode
                 ? "bg-zinc-100/90 border-zinc-200"
                 : "bg-black/60 border-white/10"
             }`}
           >
-            {ANIMATION_VARIATIONS.map((opt) => {
+            {MOTION_OPTIONS.map((opt) => {
               const isActive = activeOption === opt.id;
               return (
                 <button
@@ -574,7 +637,7 @@ export default function ModernAnimationLab() {
               <div className="space-y-2.5 max-w-3xl">
                 <div className="flex flex-wrap items-center gap-2.5">
                   <span className="text-xs font-mono font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-white/10 text-white border border-white/20">
-                    Animation Style {current.num} / 05
+                    Interactive Motion Style {current.num} / 05
                   </span>
                   <span className="text-xs font-mono text-zinc-500">·</span>
                   <span className="text-xs font-mono text-zinc-400">
@@ -588,7 +651,7 @@ export default function ModernAnimationLab() {
                   {current.tagline}
                 </p>
                 <p className="text-xs sm:text-sm text-cyan-400 font-mono">
-                  Why this is modern: {current.whyItIsModern}
+                  Why it fits 1 & 4: {current.whyItFits}
                 </p>
               </div>
 
@@ -615,9 +678,9 @@ export default function ModernAnimationLab() {
 
             {/* Motion Mechanics Breakdown */}
             <div className="mt-6 pt-6 border-t border-white/10 grid grid-cols-1 md:grid-cols-2 gap-4">
-              {current.motionMechanics.map((point, index) => (
+              {current.mechanics.map((point, index) => (
                 <div key={index} className="flex items-start gap-2.5">
-                  <div className="mt-1 h-2 w-2 rounded-full bg-white shrink-0" />
+                  <div className="mt-1 h-2 w-2 rounded-full bg-cyan-400 shrink-0" />
                   <p className="text-xs text-zinc-300 leading-relaxed">
                     {point}
                   </p>
@@ -628,14 +691,14 @@ export default function ModernAnimationLab() {
         </AnimatePresence>
 
         {/* ================================================================= */}
-        {/* COMPONENT TEST BED: REALISTIC GLASS CARDS OVER SPECULAR MOTION    */}
+        {/* COMPONENT TEST BED: REALISTIC GLASS CARDS OVER INTERACTIVE MOTION */}
         {/* ================================================================= */}
         <section className="space-y-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Eye className="w-4 h-4 text-white" />
+              <MousePointer2 className="w-4 h-4 text-cyan-400" />
               <h2 className="text-sm font-mono font-bold uppercase tracking-wider text-zinc-400">
-                Monochrome Specular Test Bed (Testing Legibility Against Motion)
+                Interactive Specimen Test Bed (Move Cursor Over Cards to See Lighting & Particles)
               </h2>
             </div>
             <span className="text-xs font-mono text-emerald-400">
@@ -808,7 +871,7 @@ export default function ModernAnimationLab() {
           }`}
         >
           <div className="flex items-center gap-3">
-            <span className="flex h-2.5 w-2.5 rounded-full bg-white animate-pulse shadow-[0_0_12px_#ffffff]" />
+            <span className="flex h-2.5 w-2.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_12px_#38bdf8]" />
             <div>
               <div className="text-xs font-bold leading-tight">
                 Previewing Motion {current.num}: {current.name.split(" ")[0]} {current.name.split(" ")[1]}

@@ -11,11 +11,11 @@ const path = require('path');
   await page.waitForTimeout(1000);
 
   const options = [
-    { name: '01_cursor_glare', selector: 'button:has-text("01. Interactive")' },
-    { name: '02_breathing_corona', selector: 'button:has-text("02. Breathing")' },
-    { name: '03_laser_glint', selector: 'button:has-text("03. Linear")' },
-    { name: '04_specular_motes', selector: 'button:has-text("04. Zero-Gravity")' },
-    { name: '05_topographic_waves', selector: 'button:has-text("05. Topographic")' }
+    { name: '01_constellation_magnetic', selector: 'button:has-text("01. Magnetic")' },
+    { name: '02_fluid_bioluminescent', selector: 'button:has-text("02. Bioluminescent")' },
+    { name: '03_specular_lens_ripple', selector: 'button:has-text("03. Fresnel")' },
+    { name: '04_orbital_gravitational', selector: 'button:has-text("04. Orbital")' },
+    { name: '05_spatial_3d_parallax', selector: 'button:has-text("05. Spatial")' }
   ];
 
   const screenshotsDir = 'C:\\Users\\User\\.gemini\\antigravity\\brain\\e0f4935c-bdec-49cd-8dbf-59da2a6615ee\\screenshots';
@@ -24,8 +24,10 @@ const path = require('path');
     console.log(`Clicking ${opt.name}...`);
     try {
       await page.click(opt.selector);
-      await page.waitForTimeout(1200);
-      const filePath = path.join(screenshotsDir, `motion_${opt.name}.png`);
+      // Move mouse to simulate interaction
+      await page.mouse.move(720, 380);
+      await page.waitForTimeout(1400);
+      const filePath = path.join(screenshotsDir, `interact_${opt.name}.png`);
       await page.screenshot({ path: filePath });
       console.log(`Saved: ${filePath}`);
     } catch (e) {
@@ -34,5 +36,5 @@ const path = require('path');
   }
 
   await browser.close();
-  console.log('All 5 motion previews captured successfully.');
+  console.log('All 5 interactive variations captured successfully.');
 })();
