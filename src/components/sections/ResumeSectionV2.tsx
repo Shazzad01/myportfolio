@@ -2,7 +2,6 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import {
-  Download,
   ExternalLink,
   FileText,
   CheckCircle2,

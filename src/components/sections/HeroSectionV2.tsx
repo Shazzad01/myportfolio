@@ -53,9 +53,13 @@ export default function HeroSectionV2() {
 
   const handleCopyEmail = async () => {
     try {
-      await navigator.clipboard.writeText("shazzadm065@gmail.com");
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
+      if (typeof navigator !== "undefined" && navigator.clipboard) {
+        await navigator.clipboard.writeText("shazzadm065@gmail.com");
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2500);
+      } else {
+        window.location.href = "mailto:shazzadm065@gmail.com";
+      }
     } catch {
       window.location.href = "mailto:shazzadm065@gmail.com";
     }
@@ -160,6 +164,7 @@ export default function HeroSectionV2() {
               type="button"
               className="group inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/[0.02] backdrop-blur-md text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:border-black/25 dark:hover:border-white/25 transition-all cursor-pointer shadow-sm"
               title="Click to copy email address"
+              aria-label="Copy email address to clipboard"
             >
               {copied ? (
                 <>

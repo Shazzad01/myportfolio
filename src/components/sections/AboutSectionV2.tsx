@@ -9,9 +9,6 @@ import {
   GraduationCap,
   Award,
   MapPin,
-  ShieldCheck,
-  Activity,
-  ArrowRight,
 } from "lucide-react";
 
 interface Pillar {

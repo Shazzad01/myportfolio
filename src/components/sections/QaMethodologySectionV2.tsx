@@ -16,10 +16,7 @@ import {
   Check,
   ChevronDown,
   Sparkles,
-  ExternalLink,
   Code2,
-  Layers,
-  Activity,
   CheckCheck,
 } from "lucide-react";
 
@@ -187,9 +184,17 @@ export default function QaMethodologySectionV2() {
       : dimensions.filter((d) => d.category === activeFilter);
 
   const handleCopy = (id: string, code: string) => {
-    navigator.clipboard.writeText(code);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard
+        .writeText(code)
+        .then(() => {
+          setCopiedId(id);
+          setTimeout(() => setCopiedId(null), 2000);
+        })
+        .catch((err) => {
+          console.error("Failed to copy assertion snippet:", err);
+        });
+    }
   };
 
   const toggleExpand = (id: string) => {
@@ -238,7 +243,11 @@ export default function QaMethodologySectionV2() {
 
         {/* Filter Navigation Tabs */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
-          <div className="flex flex-wrap items-center gap-2 p-1 rounded-2xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/5 dark:border-white/5 backdrop-blur-xl">
+          <div
+            role="tablist"
+            aria-label="Filter categories"
+            className="flex flex-wrap items-center gap-2 p-1 rounded-2xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/5 dark:border-white/5 backdrop-blur-xl"
+          >
             {(
               [
                 { id: "all", label: "All 7 Dimensions" },
@@ -251,6 +260,8 @@ export default function QaMethodologySectionV2() {
               return (
                 <button
                   key={tab.id}
+                  role="tab"
+                  aria-selected={isActive}
                   onClick={() => setActiveFilter(tab.id)}
                   className={`px-3.5 py-1.5 rounded-xl text-xs font-mono-geist transition-all duration-200 cursor-pointer ${
                     isActive
@@ -400,11 +411,13 @@ export default function QaMethodologySectionV2() {
                                     <span>assertion.spec.ts</span>
                                   </span>
                                   <button
+                                    type="button"
                                     onClick={() =>
                                       handleCopy(dimension.id, dimension.telemetrySnippet)
                                     }
                                     className="hover:text-white transition-colors cursor-pointer flex items-center gap-1"
                                     title="Copy assertion snippet"
+                                    aria-label={`Copy assertion snippet for dimension ${dimension.num}`}
                                   >
                                     {isCopied ? (
                                       <>
@@ -525,9 +538,11 @@ export default function QaMethodologySectionV2() {
                           <span className="text-zinc-500 ml-1">axe-accessibility.spec.ts</span>
                         </div>
                         <button
+                          type="button"
                           onClick={() => handleCopy("07", flagshipCard.telemetrySnippet)}
                           className="hover:text-white transition-colors cursor-pointer flex items-center gap-1 text-[10px]"
                           title="Copy snippet"
+                          aria-label="Copy axe accessibility assertion snippet"
                         >
                           {copiedId === "07" ? (
                             <>

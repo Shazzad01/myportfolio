@@ -6,17 +6,11 @@ import {
   CheckCircle2,
   Copy,
   Check,
-  Terminal,
   Activity,
-  Cpu,
   ShieldCheck,
-  Layers,
-  Sparkles,
   GitPullRequest,
   Gauge,
   FileCode,
-  ArrowRight,
-  TrendingUp,
 } from "lucide-react";
 import {
   PlaywrightIcon,
@@ -348,11 +342,13 @@ export default function ProjectsSectionV2() {
 
   const handleCopyCode = async () => {
     try {
-      await navigator.clipboard.writeText(activeFramework.consoleConfig.codeSnippet);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      // Fallback
+      if (typeof navigator !== "undefined" && navigator.clipboard) {
+        await navigator.clipboard.writeText(activeFramework.consoleConfig.codeSnippet);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      }
+    } catch (err) {
+      console.error("Failed to copy code snippet:", err);
       setCopied(false);
     }
   };
@@ -625,6 +621,7 @@ export default function ProjectsSectionV2() {
                       onClick={handleCopyCode}
                       className="p-1.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-400 hover:text-white transition-all text-xs font-mono-geist flex items-center gap-1 cursor-pointer"
                       title="Copy code to clipboard"
+                      aria-label="Copy code to clipboard"
                     >
                       {copied ? (
                         <>

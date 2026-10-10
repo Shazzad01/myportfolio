@@ -3,26 +3,16 @@
 import { useState } from "react";
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
 import {
-  GitPullRequest,
-  CheckCircle2,
   Terminal,
-  Activity,
   ShieldCheck,
-  Cpu,
-  Layers,
-  ArrowRight,
-  Clock,
-  Sparkles,
   Copy,
   Check,
   Server,
-  Zap,
 } from "lucide-react";
 import {
   PlaywrightIcon,
   JMeterIcon,
   GitHubActionsIcon,
-  TypeScriptIcon,
 } from "@/components/ui/SvgIcons";
 
 interface PipelineStage {
@@ -156,11 +146,13 @@ export default function PipelineSection() {
 
   const handleCopyCommand = async (cmd: string) => {
     try {
-      await navigator.clipboard.writeText(cmd);
-      setCopiedCommand(true);
-      setTimeout(() => setCopiedCommand(false), 2000);
-    } catch {
-      // fallback
+      if (typeof navigator !== "undefined" && navigator.clipboard) {
+        await navigator.clipboard.writeText(cmd);
+        setCopiedCommand(true);
+        setTimeout(() => setCopiedCommand(false), 2000);
+      }
+    } catch (err) {
+      console.error("Failed to copy pipeline command:", err);
     }
   };
 

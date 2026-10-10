@@ -9,10 +9,7 @@ import {
   Copy,
   Check,
   ArrowUpRight,
-  ExternalLink,
-  ShieldCheck,
   Clock,
-  Sparkles,
 } from "lucide-react";
 
 // Official GitHub Vector Icon
@@ -50,17 +47,23 @@ export default function ContactSectionV2() {
 
   const handleCopy = (text: string, key: string, label: string) => {
     if (typeof window !== "undefined" && navigator?.clipboard) {
-      navigator.clipboard.writeText(text);
-      setCopiedKey(key);
-      setToastMessage(`Copied ${label} to clipboard: ${text}`);
+      navigator.clipboard
+        .writeText(text)
+        .then(() => {
+          setCopiedKey(key);
+          setToastMessage(`Copied ${label} to clipboard: ${text}`);
 
-      setTimeout(() => {
-        setCopiedKey(null);
-      }, 2000);
+          setTimeout(() => {
+            setCopiedKey(null);
+          }, 2000);
 
-      setTimeout(() => {
-        setToastMessage(null);
-      }, 3000);
+          setTimeout(() => {
+            setToastMessage(null);
+          }, 3000);
+        })
+        .catch((err) => {
+          console.error("Failed to copy contact info:", err);
+        });
     }
   };
 
@@ -207,8 +210,9 @@ export default function ContactSectionV2() {
                     <button
                       type="button"
                       onClick={() => handleCopy(channel.copyValue, channel.key, channel.label)}
-                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-black/[0.03] dark:bg-white/[0.05] text-zinc-800 dark:text-zinc-200 border border-black/10 dark:border-white/10 hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition-all active:scale-95"
+                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-black/[0.03] dark:bg-white/[0.05] text-zinc-800 dark:text-zinc-200 border border-black/10 dark:border-white/10 hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition-all active:scale-95 cursor-pointer"
                       title={`Copy ${channel.label} to clipboard`}
+                      aria-label={`Copy ${channel.label} to clipboard`}
                     >
                       {isCopied ? (
                         <>

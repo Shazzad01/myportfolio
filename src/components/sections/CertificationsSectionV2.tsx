@@ -8,7 +8,6 @@ import {
   GraduationCap,
   CheckCircle2,
   ShieldCheck,
-  Check,
 } from "lucide-react";
 
 export default function CertificationsSectionV2() {

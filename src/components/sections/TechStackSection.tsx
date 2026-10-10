@@ -94,7 +94,7 @@ export default function TechStackSection() {
                     : { type: "spring", stiffness: 280, damping: 24, delay: i * 0.03 }
                 }
                 whileHover={shouldReduceMotion ? {} : { y: -4 }}
-                className="p-5 rounded-2xl bg-white/[0.02] dark:bg-white/[0.02] border-t border-black/20 dark:border-t-white/30 border-x border-b border-black/5 dark:border-white/5 backdrop-blur-2xl shadow-xl hover:bg-white/[0.04] flex flex-col items-center justify-center gap-3 text-center group cursor-pointer transition-all duration-300"
+                className="p-5 rounded-2xl bg-white/[0.02] dark:bg-white/[0.02] border-t border-black/20 dark:border-t-white/30 border-x border-b border-black/5 dark:border-white/5 backdrop-blur-2xl shadow-xl hover:bg-white/[0.04] flex flex-col items-center justify-center gap-3 text-center group transition-all duration-300"
               >
                 <div className="w-12 h-12 rounded-xl bg-black/[0.04] dark:bg-white/[0.04] border border-black/10 dark:border-white/10 flex items-center justify-center p-2.5 transition-transform duration-300 group-hover:scale-110">
                   <Icon className="w-full h-full" />

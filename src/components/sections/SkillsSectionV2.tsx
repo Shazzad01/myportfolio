@@ -324,12 +324,18 @@ export default function SkillsSectionV2() {
 
         {/* Filter Navigation Tabs */}
         <div className="flex flex-wrap items-center gap-2 mb-10">
-          <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/5 dark:border-white/5 backdrop-blur-xl">
+          <div
+            role="tablist"
+            aria-label="Filter categories"
+            className="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/5 dark:border-white/5 backdrop-blur-xl"
+          >
             {categories.map((cat) => {
               const isActive = activeCategory === cat.id;
               return (
                 <button
                   key={cat.id}
+                  role="tab"
+                  aria-selected={isActive}
                   onClick={() => setActiveCategory(cat.id)}
                   className={`px-3.5 py-1.5 rounded-xl text-xs font-mono-geist transition-all duration-200 cursor-pointer ${
                     isActive
