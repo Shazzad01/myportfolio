@@ -7,15 +7,7 @@ import {
   MapPin,
   Award,
   CheckCircle2,
-  Layers,
-  Zap,
-  ShieldCheck,
-  Activity,
-  ArrowUpRight,
-  TrendingUp,
-  Cpu,
   Building2,
-  Sparkles,
 } from "lucide-react";
 import {
   PlaywrightIcon,
@@ -256,7 +248,7 @@ export default function ExperienceSectionV2() {
                   <h3 className="font-geist text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white flex items-center gap-3">
                     SQA Engineer II
                     <span className="font-mono-geist text-xs font-normal text-zinc-400 dark:text-zinc-500 hidden md:inline">
-                      // nopStation Division
+                      {"// nopStation Division"}
                     </span>
                   </h3>
                   <div className="font-mono-geist text-sm text-zinc-700 dark:text-zinc-300 font-medium mt-1 flex items-center gap-2">
@@ -294,7 +286,11 @@ export default function ExperienceSectionV2() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-1.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5">
+                <div
+                  role="tablist"
+                  aria-label="Production Platforms"
+                  className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-1.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5"
+                >
                   {(["shwapno", "paragon"] as PlatformId[]).map((pid) => {
                     const isSelected = activePlatform === pid;
                     const p = platformsData[pid];
@@ -302,6 +298,8 @@ export default function ExperienceSectionV2() {
                       <button
                         key={pid}
                         type="button"
+                        role="tab"
+                        aria-selected={isSelected}
                         onClick={() => setActivePlatform(pid)}
                         className={`relative text-left p-3.5 rounded-xl transition-all flex flex-col justify-between ${
                           isSelected
