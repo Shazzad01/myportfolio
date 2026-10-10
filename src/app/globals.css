@@ -18,8 +18,11 @@
     /* Monolithic Minimalist Glass Tokens */
     --canvas-void: #FAF9F6;
     --surface-monolith: rgba(0, 0, 0, 0.02);
+    --surface-monolith-hover: rgba(0, 0, 0, 0.04);
     --border-specular: rgba(0, 0, 0, 0.20);
+    --border-specular-hover: rgba(0, 0, 0, 0.35);
     --border-subtle: rgba(0, 0, 0, 0.06);
+    --horizon-gradient: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 0, 0, 0.04), transparent 70%);
   }
 
   .dark {
@@ -37,8 +40,11 @@
     /* Monolithic Minimalist Glass Tokens */
     --canvas-void: #030408;
     --surface-monolith: rgba(255, 255, 255, 0.02);
+    --surface-monolith-hover: rgba(255, 255, 255, 0.045);
     --border-specular: rgba(255, 255, 255, 0.30);
+    --border-specular-hover: rgba(255, 255, 255, 0.50);
     --border-subtle: rgba(255, 255, 255, 0.05);
+    --horizon-gradient: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 255, 255, 0.06), transparent 70%);
   }
 }
 
@@ -54,7 +60,7 @@
 
   body {
     background-color: var(--canvas-void);
-    @apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))] transition-colors duration-300;
+    @apply text-[hsl(var(--foreground))] transition-colors duration-300;
     font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
     overflow-x: hidden;
     background-image: 
@@ -366,21 +372,11 @@
 
   /* Monolithic Minimalist Glass Utilities */
   .glass-monolith {
-    background: rgba(255, 255, 255, 0.02);
-    border-top: 1px solid rgba(255, 255, 255, 0.30);
-    border-left: 1px solid rgba(255, 255, 255, 0.05);
-    border-right: 1px solid rgba(255, 255, 255, 0.05);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-  }
-
-  :not(.dark) .glass-monolith {
-    background: rgba(0, 0, 0, 0.02);
-    border-top: 1px solid rgba(0, 0, 0, 0.20);
-    border-left: 1px solid rgba(0, 0, 0, 0.06);
-    border-right: 1px solid rgba(0, 0, 0, 0.06);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    background: var(--surface-monolith);
+    border-top: 1px solid var(--border-specular);
+    border-left: 1px solid var(--border-subtle);
+    border-right: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
   }
@@ -390,30 +386,16 @@
   }
 
   .glass-monolith-interactive:hover {
-    background: rgba(255, 255, 255, 0.045);
-    border-top-color: rgba(255, 255, 255, 0.50);
-    transform: translateY(-2px);
-  }
-
-  :not(.dark) .glass-monolith-interactive:hover {
-    background: rgba(0, 0, 0, 0.04);
-    border-top-color: rgba(0, 0, 0, 0.35);
+    background: var(--surface-monolith-hover);
+    border-top-color: var(--border-specular-hover);
     transform: translateY(-2px);
   }
 
   .border-specular-top {
-    border-top: 1px solid rgba(255, 255, 255, 0.30);
-  }
-
-  :not(.dark) .border-specular-top {
-    border-top: 1px solid rgba(0, 0, 0, 0.20);
+    border-top: 1px solid var(--border-specular);
   }
 
   .horizon-light {
-    background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 255, 255, 0.06), transparent 70%);
-  }
-
-  :not(.dark) .horizon-light {
-    background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 0, 0, 0.04), transparent 70%);
+    background: var(--horizon-gradient);
   }
 }
