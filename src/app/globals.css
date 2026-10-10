@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 210 20% 98%;
+    --background: 45 33% 97.3%; /* #FAF9F6 Alabaster Porcelain */
     --foreground: 222 47% 11%;
     --primary: 189 94% 43%; /* #06b6d4 Electric Cyan */
     --primary-glow: 186 94% 53%; /* #22d3ee Light Cyan */
@@ -14,19 +14,31 @@
     --muted: 210 20% 96%;
     --muted-foreground: 215 16% 47%;
     --success: 158 75% 42%;
+
+    /* Monolithic Minimalist Glass Tokens */
+    --canvas-void: #FAF9F6;
+    --surface-monolith: rgba(0, 0, 0, 0.02);
+    --border-specular: rgba(0, 0, 0, 0.20);
+    --border-subtle: rgba(0, 0, 0, 0.06);
   }
 
   .dark {
-    --background: 240 25% 3%; /* #05050a Titanium Obsidian */
+    --background: 230 45% 2.2%; /* #030408 Void Obsidian */
     --foreground: 210 40% 98%; /* Platinum #f8fafc */
     --primary: 189 94% 43%; /* #06b6d4 Electric Cyan */
     --primary-glow: 186 94% 53%; /* #22d3ee Cyan radiance */
     --accent: 258 90% 66%; /* #8b5cf6 Neon Violet */
-    --card: 240 18% 6%; /* #090a12 Obsidian Glass */
+    --card: 230 45% 2.2%; /* Obsidian Glass */
     --card-border: 189 94% 43%; /* Cyan specular */
     --muted: 240 14% 10%;
     --muted-foreground: 215 16% 65%;
     --success: 158 75% 45%; /* #10b981 Emerald Pass */
+
+    /* Monolithic Minimalist Glass Tokens */
+    --canvas-void: #030408;
+    --surface-monolith: rgba(255, 255, 255, 0.02);
+    --border-specular: rgba(255, 255, 255, 0.30);
+    --border-subtle: rgba(255, 255, 255, 0.05);
   }
 }
 
@@ -41,6 +53,7 @@
   }
 
   body {
+    background-color: var(--canvas-void);
     @apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))] transition-colors duration-300;
     font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
     overflow-x: hidden;
@@ -349,5 +362,58 @@
     background: rgba(0, 0, 0, 0.06);
     border-color: rgba(0, 0, 0, 0.25);
     color: #09090b;
+  }
+
+  /* Monolithic Minimalist Glass Utilities */
+  .glass-monolith {
+    background: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid rgba(255, 255, 255, 0.30);
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+
+  :not(.dark) .glass-monolith {
+    background: rgba(0, 0, 0, 0.02);
+    border-top: 1px solid rgba(0, 0, 0, 0.20);
+    border-left: 1px solid rgba(0, 0, 0, 0.06);
+    border-right: 1px solid rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+
+  .glass-monolith-interactive {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .glass-monolith-interactive:hover {
+    background: rgba(255, 255, 255, 0.045);
+    border-top-color: rgba(255, 255, 255, 0.50);
+    transform: translateY(-2px);
+  }
+
+  :not(.dark) .glass-monolith-interactive:hover {
+    background: rgba(0, 0, 0, 0.04);
+    border-top-color: rgba(0, 0, 0, 0.35);
+    transform: translateY(-2px);
+  }
+
+  .border-specular-top {
+    border-top: 1px solid rgba(255, 255, 255, 0.30);
+  }
+
+  :not(.dark) .border-specular-top {
+    border-top: 1px solid rgba(0, 0, 0, 0.20);
+  }
+
+  .horizon-light {
+    background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 255, 255, 0.06), transparent 70%);
+  }
+
+  :not(.dark) .horizon-light {
+    background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 0, 0, 0.04), transparent 70%);
   }
 }
