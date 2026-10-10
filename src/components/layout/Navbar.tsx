@@ -8,12 +8,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { label: "Cockpit", href: "#hero" },
-  { label: "Telemetry", href: "#about" },
-  { label: "Arsenal", href: "#skills" },
+  { label: "Overview", href: "#hero" },
+  { label: "About", href: "#about" },
+  { label: "Methodology", href: "#methodology" },
+  { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Frameworks", href: "#projects" },
-  { label: "Awards", href: "#certifications" },
+  { label: "Honors", href: "#certifications" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -31,37 +32,51 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="fixed top-3 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 transition-all duration-300">
+    <header className="fixed top-3 left-0 right-0 z-50 px-3 sm:px-6 lg:px-8 transition-all duration-300">
       <nav
         className={cn(
-          "max-w-6xl mx-auto flex items-center justify-between h-16 px-5 rounded-full transition-all duration-300",
+          "max-w-6xl mx-auto flex items-center justify-between h-14 sm:h-16 px-4 sm:px-5 rounded-full transition-all duration-300",
           scrolled
-            ? "glass shadow-xl shadow-black/5 dark:shadow-black/80 border border-cyan-500/25"
-            : "bg-white/90 dark:bg-[#07080f]/85 backdrop-blur-xl border border-black/5 dark:border-white/10 shadow-lg shadow-black/5 dark:shadow-none"
+            ? "bg-white/85 dark:bg-zinc-950/85 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 shadow-lg shadow-black/5 dark:shadow-black/50"
+            : "bg-white/70 dark:bg-zinc-950/70 backdrop-blur-md border border-zinc-200/70 dark:border-zinc-800/70 shadow-sm"
         )}
       >
         {/* Brand Group */}
-        <Link href="#hero" className="flex items-center gap-3 group">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-violet-600 flex items-center justify-center font-heading font-black text-xs text-white shadow-[0_0_15px_rgba(6,182,212,0.4)] group-hover:scale-105 transition-transform">
+        <Link href="#hero" className="flex items-center gap-2.5 sm:gap-3 group">
+          <div className="w-8 h-8 rounded-lg bg-zinc-900 text-white dark:bg-white dark:text-zinc-950 flex items-center justify-center font-geist font-bold text-xs shadow-sm group-hover:scale-105 transition-transform">
             MSM
           </div>
           <div className="flex flex-col">
-            <span className="font-heading font-bold text-sm text-slate-900 dark:text-white tracking-tight leading-none">
+            <span className="font-geist font-semibold text-xs sm:text-sm text-zinc-900 dark:text-white tracking-tight leading-none">
               Muhammad Shazzad Mia
             </span>
-            <span className="font-mono text-[10px] text-cyan-600 dark:text-cyan-400 font-bold tracking-wider mt-0.5 uppercase">
-              SQA Engineer II
+            <span className="font-mono-geist text-[10px] text-zinc-500 dark:text-zinc-400 font-medium tracking-wide mt-0.5">
+              SQA Engineer II · BS23
             </span>
           </div>
         </Link>
 
         {/* Desktop Nav Links */}
-        <ul className="hidden md:flex items-center gap-1 bg-black/5 dark:bg-black/40 p-1.5 rounded-full border border-black/5 dark:border-white/5">
+        <ul className="hidden xl:flex items-center gap-0.5 bg-zinc-100/80 dark:bg-zinc-900/80 p-1 rounded-full border border-zinc-200/60 dark:border-zinc-800/60">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="px-3.5 py-1.5 rounded-full text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-black/5 dark:text-slate-400 dark:hover:text-white dark:hover:bg-white/5 transition-all"
+                className="px-3 py-1 rounded-full text-xs font-geist text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white hover:bg-white dark:hover:bg-zinc-800 transition-all"
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        {/* Compact Desktop Nav (Medium/Large screens) */}
+        <ul className="hidden md:flex xl:hidden items-center gap-0.5 bg-zinc-100/80 dark:bg-zinc-900/80 p-1 rounded-full border border-zinc-200/60 dark:border-zinc-800/60">
+          {navLinks.filter((l) => ["#hero", "#skills", "#experience", "#projects", "#contact"].includes(l.href)).map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                className="px-2.5 py-1 rounded-full text-xs font-geist text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white hover:bg-white dark:hover:bg-zinc-800 transition-all"
               >
                 {link.label}
               </Link>
@@ -70,43 +85,43 @@ export default function Navbar() {
         </ul>
 
         {/* Actions */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-2 sm:gap-2.5">
           {/* Status Badge */}
-          <div className="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-[11px] font-semibold">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>Available for SDET Roles</span>
+          <div className="hidden lg:flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[11px] font-mono-geist font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span>Open for SDET Roles</span>
           </div>
 
           {/* Quick Resume CTA */}
           <a
             href="/resume.pdf"
             download
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full btn-cyan-glow text-xs"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full btn-mono-primary text-xs font-medium cursor-pointer"
           >
-            <Download size={13} />
+            <Download size={12} />
             <span>CV</span>
           </a>
 
           {/* Command Palette */}
           <button
             onClick={() => window.dispatchEvent(new CustomEvent("open-command-palette"))}
-            className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-cyan-400/40 transition-all"
+            className="hidden sm:inline-flex items-center gap-1.5 px-2 py-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:border-zinc-400 dark:hover:border-zinc-600 transition-all cursor-pointer"
             title="Open Command Palette (Ctrl+K)"
           >
-            <Command size={13} className="text-cyan-400" />
-            <span className="font-mono text-[10px]">⌘K</span>
+            <Command size={12} className="text-zinc-500 dark:text-zinc-400" />
+            <span className="font-mono-geist text-[10px]">⌘K</span>
           </button>
 
           {/* Theme Toggle */}
           {mounted && (
             <motion.button
-              whileHover={{ scale: 1.1, rotate: 15 }}
-              whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               aria-label="Toggle theme"
-              className="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+              className="p-2 rounded-full text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors cursor-pointer"
             >
-              {theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
+              {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
             </motion.button>
           )}
 
@@ -114,9 +129,9 @@ export default function Navbar() {
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle mobile menu"
-            className="p-2 rounded-lg md:hidden text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
+            className="p-2 rounded-lg md:hidden text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white cursor-pointer"
           >
-            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+            {mobileOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
         </div>
       </nav>
@@ -125,29 +140,30 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="md:hidden max-w-6xl mx-auto mt-2 p-4 rounded-2xl glass border border-cyan-500/20 shadow-2xl"
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden max-w-6xl mx-auto mt-2 p-4 rounded-2xl bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl border border-zinc-200 dark:border-zinc-800 shadow-xl"
           >
-            <ul className="flex flex-col gap-2">
+            <ul className="flex flex-col gap-1">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className="block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5"
+                    className="block px-3.5 py-2 rounded-lg text-xs sm:text-sm font-medium font-geist text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
                   >
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
-            <div className="mt-4 pt-4 border-t border-black/10 dark:border-white/10 flex justify-between items-center">
+            <div className="mt-3 pt-3 border-t border-zinc-200 dark:border-zinc-800 flex justify-between items-center">
               <a
                 href="/resume.pdf"
                 download
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl btn-cyan-glow text-xs"
+                className="w-full text-center inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg btn-mono-primary text-xs font-semibold"
               >
                 <Download size={14} />
                 <span>Download Resume</span>

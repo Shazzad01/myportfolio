@@ -106,7 +106,7 @@ export default function HeroSectionV2() {
 
   return (
     <section
-      id="hero-v2"
+      id="hero"
       className="relative min-h-[94vh] flex flex-col justify-center items-center pt-28 pb-20 overflow-hidden"
     >
       {/* Subtle Dot Grid Background */}

@@ -34,18 +34,18 @@ const socialLinks = [
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="border-t border-slate-200 dark:border-white/10 bg-slate-50/95 dark:bg-[#07070a]/90 transition-colors">
+    <footer className="border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-950/80 backdrop-blur-md transition-colors">
       <div className="container-max px-4 sm:px-6 lg:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
         <div className="flex flex-col items-center sm:items-start gap-1">
-          <span className="font-heading font-bold text-lg text-slate-900 dark:text-white">
-            Muhammad Shazzad Mia <span className="text-amber-600 dark:text-[#f59e0b]">// SQA Engineer II</span>
+          <span className="font-geist font-semibold text-base text-zinc-900 dark:text-white">
+            Muhammad Shazzad Mia <span className="text-zinc-400 dark:text-zinc-500 font-normal">/</span> <span className="font-mono-geist text-xs text-emerald-600 dark:text-emerald-400">SQA Engineer II</span>
           </span>
-          <p className="text-xs text-slate-600 dark:text-slate-400">
+          <p className="text-xs font-geist text-zinc-600 dark:text-zinc-400">
             Brain Station 23 · Dhaka, Bangladesh
           </p>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           {socialLinks.map(({ label, href, icon: Icon }) => (
             <a
               key={label}
@@ -53,14 +53,14 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="p-2.5 rounded-xl bg-black/5 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-400 hover:text-amber-600 dark:hover:text-[#f59e0b] hover:border-[#f59e0b]/40 hover:bg-[#f59e0b]/10 transition-all duration-200"
+              className="p-2 rounded-lg bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:border-zinc-400 dark:hover:border-zinc-600 transition-all duration-200 shadow-sm"
             >
               <Icon />
             </a>
           ))}
         </div>
 
-        <p className="text-xs text-slate-600 dark:text-slate-400 flex items-center gap-1 font-mono">
+        <p className="text-xs text-zinc-500 dark:text-zinc-400 flex items-center gap-1 font-mono-geist">
           © {year} Built for Zero-Flake Quality
         </p>
       </div>
