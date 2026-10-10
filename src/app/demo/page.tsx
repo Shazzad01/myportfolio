@@ -20,119 +20,108 @@ import {
   Code2,
   Sliders,
   Eye,
-  Grid,
   Zap,
+  Flame,
+  Radio,
+  Compass,
 } from "lucide-react";
 
-type BackgroundOption = "aurora" | "blueprint" | "noise" | "baseline";
+type GradientOption = "mesh-aurora" | "cyber-conic" | "sunset-prismatic";
 
 interface OptionMeta {
-  id: BackgroundOption;
+  id: GradientOption;
   name: string;
   tagline: string;
   vibe: string;
+  palette: string[];
   recommended?: boolean;
-  bgDarkHex: string;
-  bgLightHex: string;
-  highlights: string[];
+  effectDescription: string;
   cssSpecs: string;
 }
 
-const BACKGROUND_OPTIONS: OptionMeta[] = [
+const GRADIENT_OPTIONS: OptionMeta[] = [
   {
-    id: "aurora",
-    name: "Option 1: Ambient Obsidian Aurora & Specular Horizon",
-    tagline: "Deep Obsidian Canvas, Cold Specular Top Horizon & Drifting Cyan/Violet Auroras",
-    vibe: "Modern Linear / Raycast — Organic depth, luxury glass refraction, zero eye fatigue",
+    id: "mesh-aurora",
+    name: "Option 1: Cosmic Liquid Mesh Aurora",
+    tagline: "Multi-Layer Fluid Liquid Gradient Mesh with Drifting Luminous Blobs & Top Specular Beam",
+    vibe: "Stripe & Linear — Organic, fluid luxury tech, hypnotic glass refraction",
     recommended: true,
-    bgDarkHex: "#030408 (Void Obsidian)",
-    bgLightHex: "#FAF9F6 (Alabaster Porcelain)",
-    highlights: [
-      "Top-edge cold specular beam with 140px blur mimicking studio lighting",
-      "Two gently drifting ambient radial auroras (Electric Cyan #06b6d4 & Violet #8b5cf6 at 6-8% opacity)",
-      "Subtle 24px micro-dot grid for grounding scale and structure",
-      "Zero gradient banding on OLED displays, 100% WCAG AAA text contrast preserved",
+    palette: [
+      "Electric Cyan (#06b6d4)",
+      "Royal Indigo (#4f46e5)",
+      "Cosmic Violet (#7c3aed)",
+      "Deep Rose (#be185d)",
     ],
-    cssSpecs: `background-color: #030408;
-background-image: 
-  radial-gradient(circle at 20% 15%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
-  radial-gradient(circle at 80% 25%, rgba(139, 92, 246, 0.07) 0%, transparent 50%),
-  radial-gradient(circle at 50% 80%, rgba(16, 185, 129, 0.04) 0%, transparent 50%),
-  radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-background-size: 100% 100%, 100% 100%, 100% 100%, 24px 24px;`,
+    effectDescription:
+      "4 large radial gradient orbs (blur-[140px] to blur-[180px]) continuously drift in smooth elliptical orbits. A cold specular beam illuminates the top horizon, casting realistic downward illumination across glass cards.",
+    cssSpecs: `/* Cosmic Liquid Mesh Aurora */
+background-color: #040612;
+/* 4 Drifting GPU-Accelerated Luminous Orbs */
+Orb 1 (Cyan): radial-gradient(circle, rgba(6, 182, 212, 0.16) 0%, transparent 60%) [drift: 22s]
+Orb 2 (Indigo): radial-gradient(circle, rgba(79, 70, 229, 0.15) 0%, transparent 65%) [drift: 26s]
+Orb 3 (Violet): radial-gradient(circle, rgba(124, 58, 237, 0.14) 0%, transparent 60%) [drift: 30s]
+Orb 4 (Deep Rose): radial-gradient(circle, rgba(190, 24, 93, 0.12) 0%, transparent 55%) [drift: 24s]
+/* Top Horizon Specular Beam */
+linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(6, 182, 212, 0.06) 40%, transparent 100%)`,
   },
   {
-    id: "blueprint",
-    name: "Option 2: Technical Blueprint Matrix & Crosshairs",
-    tagline: "Orthogonal Telemetry Canvas with Micro-Grid & Precision Coordinate Reticles",
-    vibe: "SDET Observability / Datadog — High-precision engineering, active automation radar",
-    bgDarkHex: "#02040A (Deep Midnight)",
-    bgLightHex: "#F8FAFC (Drafting Slate)",
-    highlights: [
-      "Dual-pitch orthogonal grid (48px primary cells with 12px subdivisions at 2% opacity)",
-      "Precision coordinate crosshairs (+) positioned at 144px grid intersections",
-      "Radial center spotlight with edge vignette falloff to focus eyes on content",
-      "Reinforces the SQA Lead and Test Architecture identity with technical discipline",
+    id: "cyber-conic",
+    name: "Option 2: Cybernetic Horizon Pulse & Conic Spotlight",
+    tagline: "Sweeping 360° Conic Gradient Radar, Pulsing Laser Horizon Beam & High-Speed Data Streaks",
+    vibe: "Raycast & Vercel — High-energy automated control plane, telemetry radar",
+    palette: [
+      "Electric Cyan (#00f2fe)",
+      "Emerald Pass (#10b981)",
+      "Deep Royal Navy (#0f172a)",
+      "Neon Lime (#84cc16)",
     ],
-    cssSpecs: `background-color: #02040a;
-background-image:
-  linear-gradient(rgba(6, 182, 212, 0.04) 1px, transparent 1px),
-  linear-gradient(90deg, rgba(6, 182, 212, 0.04) 1px, transparent 1px),
-  radial-gradient(circle at 50% 30%, rgba(6, 182, 212, 0.08), transparent 70%);
-background-size: 48px 48px, 48px 48px, 100% 100%;`,
+    effectDescription:
+      "A slow-revolving conic gradient halo radiates from the top-center, creating sweeping ambient light waves. A glowing laser horizon bar pulses across the header, with vertical gradient data beams fading in and out.",
+    cssSpecs: `/* Cybernetic Horizon Pulse */
+background-color: #02040a;
+/* Rotating Conic Gradient Radar */
+conic-gradient(from 0deg at 50% 10%, rgba(6, 182, 212, 0.18), rgba(16, 185, 129, 0.12), transparent 45%, rgba(6, 182, 212, 0.18))
+/* Glowing Pulsing Laser Horizon Bar */
+linear-gradient(90deg, transparent 0%, #00f2fe 30%, #10b981 70%, transparent 100%) [box-shadow: 0 0 25px rgba(0, 242, 254, 0.5)]`,
   },
   {
-    id: "noise",
-    name: "Option 3: Noise-Dithered Liquid Mesh",
-    tagline: "Matte Anodized Obsidian Canvas with Procedural Film Grain & Diffused Spotlights",
-    vibe: "Minimal Gallery / Awwwards — Tactile matte paper, etched glass, zero digital banding",
-    bgDarkHex: "#050608 (Matte Obsidian)",
-    bgLightHex: "#FDFDFD (Fine Art Matte)",
-    highlights: [
-      "Procedural SVG fractal noise (feTurbulence) overlay at 3.5% opacity with mix-blend-overlay",
-      "Static dual spotlights positioned behind Hero and Projects stations (zero GPU overhead)",
-      "Completely eliminate color banding across monitors with organic micro-texture",
-      "Minimalist quiet luxury feel like frosted sandblasted glass and matte aluminum",
+    id: "sunset-prismatic",
+    name: "Option 3: Prismatic Sunset Glass Refraction",
+    tagline: "Bold Warm & Cool Contrast — Twilight Navy Merging into Radiant Amber, Rose & Ultra-Violet",
+    vibe: "Awwwards & Minimal Gallery — Distinctive, warm luxury, iridescent glass caustic reflections",
+    palette: [
+      "Sunset Rose (#f43f5e)",
+      "Radiant Amber (#f59e0b)",
+      "Ultra Violet (#8b5cf6)",
+      "Twilight Navy (#070913)",
     ],
-    cssSpecs: `background-color: #050608;
-/* SVG Fractal Noise Filter Overlay (opacity: 0.035, mix-blend-mode: overlay) */
-background-image: 
-  radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.05), transparent 60%),
-  radial-gradient(circle at 25% 40%, rgba(6, 182, 212, 0.05), transparent 50%),
-  radial-gradient(circle at 75% 60%, rgba(139, 92, 246, 0.05), transparent 50%);`,
-  },
-  {
-    id: "baseline",
-    name: "Baseline: Current Main Site Background",
-    tagline: "Existing Production Setup for Instant Direct Comparison",
-    vibe: "Standard Dark Void with Simple 24px Dot Matrix",
-    bgDarkHex: "#030408 (Void Obsidian)",
-    bgLightHex: "#FAF9F6 (Alabaster)",
-    highlights: [
-      "Current baseline currently live on https://myportfolio-vert-one-80.vercel.app/",
-      "Single radial dot grid with simple top horizon blur",
-      "Use this to see exactly how much richer Options 1, 2, and 3 look by comparison",
-    ],
-    cssSpecs: `background-color: #030408;
-background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-background-size: 24px 24px;`,
+    effectDescription:
+      "Warm sunset amber and radiant rose collide with ultra-violet using screen blending, creating glowing iridescent caustics that pulse gently. Replaces cold developer blues with rich, warm, bespoke confidence.",
+    cssSpecs: `/* Prismatic Sunset Glass Refraction */
+background-color: #070913;
+/* Multi-Stop Blended Sunset Mesh */
+radial-gradient(ellipse at 70% 15%, rgba(244, 63, 94, 0.18) 0%, transparent 55%)
+radial-gradient(circle at 25% 30%, rgba(245, 158, 11, 0.16) 0%, transparent 50%)
+radial-gradient(circle at 50% 75%, rgba(139, 92, 246, 0.15) 0%, transparent 60%)
+/* Caustic Shimmer Light Bar */
+linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(244, 63, 94, 0.1) 50%, rgba(139, 92, 246, 0.1) 100%)`,
   },
 ];
 
-export default function BackgroundDemoPage() {
-  const [activeOption, setActiveOption] = useState<BackgroundOption>("aurora");
+export default function GradientDemoLaboratory() {
+  const [activeOption, setActiveOption] = useState<GradientOption>("mesh-aurora");
   const [isLightMode, setIsLightMode] = useState<boolean>(false);
   const [copiedChoice, setCopiedChoice] = useState<boolean>(false);
   const [copiedCss, setCopiedCss] = useState<boolean>(false);
   const shouldReduceMotion = useReducedMotion();
 
   const current =
-    BACKGROUND_OPTIONS.find((opt) => opt.id === activeOption) ||
-    BACKGROUND_OPTIONS[0];
+    GRADIENT_OPTIONS.find((opt) => opt.id === activeOption) ||
+    GRADIENT_OPTIONS[0];
 
   const handleCopyChoice = () => {
     navigator.clipboard.writeText(
-      `I choose background: ${current.name} (${current.id})`
+      `I choose Gradient Background: ${current.name} (${current.id})`
     );
     setCopiedChoice(true);
     setTimeout(() => setCopiedChoice(false), 2500);
@@ -147,34 +136,99 @@ export default function BackgroundDemoPage() {
   return (
     <div
       className={`min-h-screen relative font-sans transition-colors duration-500 overflow-x-hidden ${
-        isLightMode ? "light bg-[#FAF9F6] text-zinc-900" : "dark bg-[#030408] text-white"
+        isLightMode ? "light bg-[#faf8f5] text-zinc-950" : "dark bg-[#040612] text-white"
       }`}
     >
       {/* =================================================================== */}
-      {/* DYNAMIC BACKGROUND ENGINE LAYER                                     */}
+      {/* DYNAMIC GRADIENT & EFFECT ENGINE LAYER                              */}
       {/* =================================================================== */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden transition-all duration-700">
-        {/* OPTION 1: AMBIENT OBSIDIAN AURORA */}
-        {activeOption === "aurora" && (
+        {/* =============================================================== */}
+        {/* OPTION 1: COSMIC LIQUID MESH AURORA                             */}
+        {/* =============================================================== */}
+        {activeOption === "mesh-aurora" && (
           <div className="absolute inset-0">
-            {/* Specular Top Horizon Beam */}
+            {/* Top Specular Horizon Downward Beam */}
             <div
-              className={`absolute top-0 left-1/2 -translate-x-1/2 w-[140%] max-w-[1400px] h-[360px] rounded-[100%] blur-[130px] pointer-events-none transition-opacity duration-700 ${
+              className={`absolute top-0 left-1/2 -translate-x-1/2 w-[160%] max-w-[1500px] h-[400px] rounded-[100%] blur-[130px] pointer-events-none transition-opacity duration-700 ${
                 isLightMode
-                  ? "bg-gradient-to-b from-black/[0.05] via-cyan-500/[0.03] to-transparent opacity-80"
-                  : "bg-gradient-to-b from-white/[0.08] via-cyan-400/[0.04] to-transparent opacity-100"
+                  ? "bg-gradient-to-b from-indigo-500/15 via-cyan-400/10 to-transparent"
+                  : "bg-gradient-to-b from-white/18 via-cyan-400/12 to-transparent"
               }`}
             />
 
-            {/* Drifting Aurora Orb A: Electric Cyan */}
+            {/* Drifting Luminous Blob 1: Electric Cyan (Upper-Left to Center) */}
             <motion.div
               animate={
                 shouldReduceMotion
                   ? {}
                   : {
-                      x: [0, 40, -20, 0],
-                      y: [0, -30, 20, 0],
-                      scale: [1, 1.08, 0.95, 1],
+                      x: [0, 80, -40, 0],
+                      y: [0, -60, 40, 0],
+                      scale: [1, 1.15, 0.92, 1],
+                    }
+              }
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className={`absolute top-[8%] left-[8%] w-[620px] h-[620px] rounded-full blur-[140px] pointer-events-none ${
+                isLightMode ? "bg-cyan-500/20" : "bg-[#06b6d4]/[0.18]"
+              }`}
+            />
+
+            {/* Drifting Luminous Blob 2: Royal Indigo (Mid-Right to Upper-Center) */}
+            <motion.div
+              animate={
+                shouldReduceMotion
+                  ? {}
+                  : {
+                      x: [0, -90, 50, 0],
+                      y: [0, 70, -35, 0],
+                      scale: [1, 0.88, 1.12, 1],
+                    }
+              }
+              transition={{
+                duration: 24,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className={`absolute top-[22%] right-[6%] w-[680px] h-[680px] rounded-full blur-[150px] pointer-events-none ${
+                isLightMode ? "bg-indigo-500/20" : "bg-[#4f46e5]/[0.17]"
+              }`}
+            />
+
+            {/* Drifting Luminous Blob 3: Cosmic Violet (Lower-Left to Center) */}
+            <motion.div
+              animate={
+                shouldReduceMotion
+                  ? {}
+                  : {
+                      x: [0, 60, -70, 0],
+                      y: [0, -45, 60, 0],
+                      scale: [1, 1.1, 0.95, 1],
+                    }
+              }
+              transition={{
+                duration: 28,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className={`absolute top-[52%] left-[16%] w-[600px] h-[600px] rounded-full blur-[160px] pointer-events-none ${
+                isLightMode ? "bg-purple-600/18" : "bg-[#7c3aed]/[0.15]"
+              }`}
+            />
+
+            {/* Drifting Luminous Blob 4: Deep Rose / Magenta (Bottom-Right) */}
+            <motion.div
+              animate={
+                shouldReduceMotion
+                  ? {}
+                  : {
+                      x: [0, -50, 40, 0],
+                      y: [0, 50, -40, 0],
+                      scale: [1, 0.95, 1.08, 1],
                     }
               }
               transition={{
@@ -182,20 +236,131 @@ export default function BackgroundDemoPage() {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className={`absolute top-[10%] left-[12%] w-[550px] h-[550px] rounded-full blur-[140px] pointer-events-none ${
-                isLightMode ? "bg-cyan-500/10" : "bg-[#06b6d4]/[0.07]"
+              className={`absolute top-[68%] right-[18%] w-[550px] h-[550px] rounded-full blur-[150px] pointer-events-none ${
+                isLightMode ? "bg-rose-500/15" : "bg-[#be185d]/[0.13]"
               }`}
             />
+          </div>
+        )}
 
-            {/* Drifting Aurora Orb B: Electric Violet */}
+        {/* =============================================================== */}
+        {/* OPTION 2: CYBERNETIC HORIZON PULSE & CONIC SPOTLIGHT            */}
+        {/* =============================================================== */}
+        {activeOption === "cyber-conic" && (
+          <div className="absolute inset-0">
+            {/* Revolving Conic Gradient Radar Halo */}
             <motion.div
               animate={
                 shouldReduceMotion
                   ? {}
                   : {
-                      x: [0, -50, 30, 0],
-                      y: [0, 40, -25, 0],
-                      scale: [1, 0.94, 1.06, 1],
+                      rotate: [0, 360],
+                    }
+              }
+              transition={{
+                duration: 32,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              className={`absolute top-[-300px] left-1/2 -translate-x-1/2 w-[1100px] h-[1100px] rounded-full blur-[140px] pointer-events-none ${
+                isLightMode
+                  ? "bg-[conic-gradient(from_0deg_at_50%_50%,rgba(6,182,212,0.2),rgba(16,185,129,0.15),transparent_40%,rgba(6,182,212,0.2))]"
+                  : "bg-[conic-gradient(from_0deg_at_50%_50%,rgba(0,242,254,0.22),rgba(16,185,129,0.16),transparent_40%,rgba(0,242,254,0.22))]"
+              }`}
+            />
+
+            {/* Glowing Laser Horizon Beam at Header */}
+            <div className="absolute top-[88px] left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_20px_#00f2fe] opacity-80" />
+
+            {/* Pulsing Emerald Pass Glow Hub (Lower Center) */}
+            <motion.div
+              animate={
+                shouldReduceMotion
+                  ? {}
+                  : {
+                      scale: [1, 1.25, 1],
+                      opacity: [0.6, 0.9, 0.6],
+                    }
+              }
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className={`absolute top-[40%] left-1/2 -translate-x-1/2 w-[700px] h-[450px] rounded-full blur-[160px] pointer-events-none ${
+                isLightMode ? "bg-emerald-500/15" : "bg-emerald-500/[0.14]"
+              }`}
+            />
+
+            {/* Vertical Speed Trail Accents */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,transparent_30%,rgba(2,4,10,0.85)_100%)] pointer-events-none" />
+          </div>
+        )}
+
+        {/* =============================================================== */}
+        {/* OPTION 3: PRISMATIC SUNSET GLASS REFRACTION                     */}
+        {/* =============================================================== */}
+        {activeOption === "sunset-prismatic" && (
+          <div className="absolute inset-0">
+            {/* Top Caustic Sunset Light Bar */}
+            <div
+              className={`absolute top-0 left-0 right-0 h-[380px] blur-[130px] pointer-events-none ${
+                isLightMode
+                  ? "bg-gradient-to-b from-amber-500/20 via-rose-500/15 to-transparent"
+                  : "bg-gradient-to-b from-amber-400/18 via-rose-500/15 to-transparent"
+              }`}
+            />
+
+            {/* Luminous Warm Amber Orb (Upper Left) */}
+            <motion.div
+              animate={
+                shouldReduceMotion
+                  ? {}
+                  : {
+                      x: [0, 70, -30, 0],
+                      y: [0, -40, 50, 0],
+                      scale: [1, 1.12, 0.94, 1],
+                    }
+              }
+              transition={{
+                duration: 18,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className={`absolute top-[12%] left-[10%] w-[620px] h-[620px] rounded-full blur-[140px] pointer-events-none ${
+                isLightMode ? "bg-amber-500/22" : "bg-[#f59e0b]/[0.18]"
+              }`}
+            />
+
+            {/* Luminous Sunset Rose Orb (Upper Right) */}
+            <motion.div
+              animate={
+                shouldReduceMotion
+                  ? {}
+                  : {
+                      x: [0, -60, 40, 0],
+                      y: [0, 60, -30, 0],
+                      scale: [1, 0.92, 1.1, 1],
+                    }
+              }
+              transition={{
+                duration: 22,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className={`absolute top-[20%] right-[10%] w-[650px] h-[650px] rounded-full blur-[150px] pointer-events-none ${
+                isLightMode ? "bg-rose-500/20" : "bg-[#f43f5e]/[0.17]"
+              }`}
+            />
+
+            {/* Luminous Ultra-Violet Caustic (Lower Center) */}
+            <motion.div
+              animate={
+                shouldReduceMotion
+                  ? {}
+                  : {
+                      x: [0, 40, -50, 0],
+                      y: [0, -30, 40, 0],
                     }
               }
               transition={{
@@ -203,189 +368,41 @@ export default function BackgroundDemoPage() {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className={`absolute top-[28%] right-[10%] w-[600px] h-[600px] rounded-full blur-[150px] pointer-events-none ${
-                isLightMode ? "bg-purple-500/10" : "bg-[#8b5cf6]/[0.06]"
+              className={`absolute top-[55%] left-1/2 -translate-x-1/2 w-[750px] h-[600px] rounded-full blur-[160px] pointer-events-none ${
+                isLightMode ? "bg-purple-600/18" : "bg-[#8b5cf6]/[0.16]"
               }`}
-            />
-
-            {/* Drifting Aurora Orb C: Emerald Ground */}
-            <motion.div
-              animate={
-                shouldReduceMotion
-                  ? {}
-                  : {
-                      x: [0, 30, -30, 0],
-                      y: [0, -20, 30, 0],
-                    }
-              }
-              transition={{
-                duration: 30,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className={`absolute top-[65%] left-[25%] w-[500px] h-[500px] rounded-full blur-[160px] pointer-events-none ${
-                isLightMode ? "bg-emerald-500/05" : "bg-[#10b981]/[0.035]"
-              }`}
-            />
-
-            {/* Micro-Dot Grid Texture */}
-            <div
-              className={`absolute inset-0 pointer-events-none ${
-                isLightMode
-                  ? "bg-[radial-gradient(rgba(0,0,0,0.06)_1px,transparent_1px)]"
-                  : "bg-[radial-gradient(rgba(255,255,255,0.07)_1px,transparent_1px)]"
-              } [background-size:24px_24px]`}
-            />
-          </div>
-        )}
-
-        {/* OPTION 2: TECHNICAL BLUEPRINT MATRIX */}
-        {activeOption === "blueprint" && (
-          <div className="absolute inset-0">
-            {/* Orthogonal Major Grid (48px) */}
-            <div
-              className={`absolute inset-0 ${
-                isLightMode
-                  ? "bg-[linear-gradient(rgba(0,0,0,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.05)_1px,transparent_1px)]"
-                  : "bg-[linear-gradient(rgba(6,182,212,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.045)_1px,transparent_1px)]"
-              } [background-size:48px_48px]`}
-            />
-
-            {/* Orthogonal Minor Subdivision Grid (12px) */}
-            <div
-              className={`absolute inset-0 opacity-40 ${
-                isLightMode
-                  ? "bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)]"
-                  : "bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)]"
-              } [background-size:12px_12px]`}
-            />
-
-            {/* Crosshair Coordinate Reticles Pattern */}
-            <svg
-              className="absolute inset-0 w-full h-full opacity-40 pointer-events-none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <pattern
-                  id="blueprint-crosshairs"
-                  width="144"
-                  height="144"
-                  patternUnits="userSpaceOnUse"
-                >
-                  <path
-                    d="M 66 72 L 78 72 M 72 66 L 72 78"
-                    stroke={isLightMode ? "#0284c7" : "#06b6d4"}
-                    strokeWidth="1"
-                    strokeOpacity="0.35"
-                  />
-                  <circle
-                    cx="72"
-                    cy="72"
-                    r="1.5"
-                    fill={isLightMode ? "#0284c7" : "#06b6d4"}
-                    fillOpacity="0.5"
-                  />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#blueprint-crosshairs)" />
-            </svg>
-
-            {/* Center Focus Vignette & Cybernetic Top Halo */}
-            <div
-              className={`absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[320px] rounded-full blur-[140px] pointer-events-none ${
-                isLightMode ? "bg-cyan-600/10" : "bg-cyan-400/10"
-              }`}
-            />
-            <div
-              className={`absolute inset-0 pointer-events-none ${
-                isLightMode
-                  ? "bg-[radial-gradient(circle_at_center,transparent_30%,rgba(250,249,246,0.7)_100%)]"
-                  : "bg-[radial-gradient(circle_at_center,transparent_30%,rgba(3,4,8,0.85)_100%)]"
-              }`}
-            />
-          </div>
-        )}
-
-        {/* OPTION 3: NOISE-DITHERED LIQUID MESH */}
-        {activeOption === "noise" && (
-          <div className="absolute inset-0">
-            {/* SVG Procedural Fractal Grain Texture */}
-            <svg
-              className="absolute inset-0 w-full h-full pointer-events-none opacity-20 mix-blend-overlay"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <filter id="fractalNoise">
-                <feTurbulence
-                  type="fractalNoise"
-                  baseFrequency="0.8"
-                  numOctaves="3"
-                  stitchTiles="stitch"
-                />
-                <feColorMatrix type="saturate" values="0" />
-              </filter>
-              <rect width="100%" height="100%" filter="url(#fractalNoise)" />
-            </svg>
-
-            {/* Static Luxury Diffused Spotlights */}
-            <div
-              className={`absolute top-[-5%] left-1/2 -translate-x-1/2 w-[850px] h-[450px] rounded-full blur-[160px] pointer-events-none ${
-                isLightMode ? "bg-zinc-400/15" : "bg-white/[0.05]"
-              }`}
-            />
-            <div
-              className={`absolute top-[35%] left-[20%] w-[500px] h-[500px] rounded-full blur-[150px] pointer-events-none ${
-                isLightMode ? "bg-cyan-500/10" : "bg-[#06b6d4]/[0.04]"
-              }`}
-            />
-            <div
-              className={`absolute top-[50%] right-[15%] w-[550px] h-[550px] rounded-full blur-[160px] pointer-events-none ${
-                isLightMode ? "bg-purple-500/10" : "bg-[#8b5cf6]/[0.04]"
-              }`}
-            />
-          </div>
-        )}
-
-        {/* BASELINE: CURRENT MAIN SITE SETUP */}
-        {activeOption === "baseline" && (
-          <div className="absolute inset-0">
-            <div
-              className={`absolute inset-0 pointer-events-none ${
-                isLightMode
-                  ? "bg-[radial-gradient(rgba(0,0,0,0.06)_1px,transparent_1px)]"
-                  : "bg-[radial-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)]"
-              } [background-size:24px_24px]`}
             />
           </div>
         )}
       </div>
 
       {/* =================================================================== */}
-      {/* STICKY INTERACTIVE CONTROL BAR                                      */}
+      {/* STICKY CONTROL & NAVIGATION HEADER                                  */}
       {/* =================================================================== */}
       <header
         className={`sticky top-0 z-50 backdrop-blur-2xl border-b transition-colors duration-300 ${
           isLightMode
             ? "bg-white/80 border-black/10 shadow-sm"
-            : "bg-[#030408]/85 border-white/10 shadow-2xl"
+            : "bg-[#040612]/80 border-white/10 shadow-2xl"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-4">
           {/* Logo & Status Badge */}
           <div className="flex items-center gap-3">
-            <div className="h-8 w-8 rounded-xl bg-gradient-to-tr from-cyan-500 to-violet-500 flex items-center justify-center text-white shadow-md">
-              <Layers className="w-4 h-4" />
+            <div className="h-9 w-9 rounded-2xl bg-gradient-to-tr from-cyan-500 via-indigo-500 to-rose-500 flex items-center justify-center text-white shadow-lg">
+              <Sparkles className="w-4 h-4 animate-spin-slow" />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-xs font-mono font-bold uppercase tracking-wider">
-                  Background Lab
+                  Gradient Effects Lab
                 </span>
-                <span className="text-[10px] px-2 py-0.5 rounded-full font-mono font-semibold bg-cyan-500/10 text-cyan-500 dark:text-cyan-400 border border-cyan-500/20">
-                  LIVE DEMO
+                <span className="text-[10px] px-2 py-0.5 rounded-full font-mono font-semibold bg-gradient-to-r from-cyan-500/20 to-purple-500/20 text-cyan-400 border border-cyan-500/30">
+                  REAL-TIME EFFECTS
                 </span>
               </div>
               <p className="text-[11px] text-zinc-500 dark:text-zinc-400">
-                Interactive real-time preview of portfolio backgrounds
+                Live interactive testing of animated gradient backgrounds
               </p>
             </div>
           </div>
@@ -415,25 +432,25 @@ export default function BackgroundDemoPage() {
               )}
             </button>
 
-            {/* Copy Decision CTA */}
+            {/* Direct Approve & Copy Button */}
             <button
               onClick={handleCopyChoice}
-              className="flex items-center gap-2 px-4 py-1.5 rounded-xl text-xs font-semibold bg-cyan-500 hover:bg-cyan-400 text-slate-950 transition-all shadow-md hover:shadow-cyan-500/25 cursor-pointer"
+              className="flex items-center gap-2 px-4 py-1.5 rounded-xl text-xs font-semibold bg-gradient-to-r from-cyan-500 to-indigo-500 hover:opacity-95 text-white transition-all shadow-lg hover:shadow-cyan-500/25 cursor-pointer"
             >
               {copiedChoice ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-slate-950" />
+                  <Check className="w-3.5 h-3.5 text-white" />
                   <span>Choice Copied!</span>
                 </>
               ) : (
                 <>
                   <Copy className="w-3.5 h-3.5" />
-                  <span>Pick This Background</span>
+                  <span>Approve This Gradient</span>
                 </>
               )}
             </button>
 
-            {/* Back to Home */}
+            {/* Main Site Link */}
             <Link
               href="/"
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono transition-all border ${
@@ -448,18 +465,18 @@ export default function BackgroundDemoPage() {
           </div>
         </div>
 
-        {/* Option Tabs Navigation */}
+        {/* Gradient Switcher Navigation Tabs */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-3 pt-1">
           <div
             role="tablist"
-            aria-label="Background preview options"
-            className={`grid grid-cols-2 md:grid-cols-4 gap-2 p-1 rounded-2xl border ${
+            aria-label="Gradient effect options"
+            className={`grid grid-cols-1 md:grid-cols-3 gap-2.5 p-1.5 rounded-2xl border ${
               isLightMode
-                ? "bg-zinc-100/80 border-zinc-200"
-                : "bg-black/40 border-white/10"
+                ? "bg-zinc-100/90 border-zinc-200"
+                : "bg-black/50 border-white/10"
             }`}
           >
-            {BACKGROUND_OPTIONS.map((opt) => {
+            {GRADIENT_OPTIONS.map((opt) => {
               const isActive = activeOption === opt.id;
               return (
                 <button
@@ -467,31 +484,36 @@ export default function BackgroundDemoPage() {
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => setActiveOption(opt.id)}
-                  className={`relative px-3 py-2.5 rounded-xl text-left transition-all duration-200 cursor-pointer ${
+                  className={`relative px-4 py-3 rounded-xl text-left transition-all duration-200 cursor-pointer ${
                     isActive
                       ? isLightMode
                         ? "bg-white text-zinc-950 font-semibold shadow-md border border-zinc-300"
-                        : "bg-white/12 text-white font-semibold shadow-lg border border-white/20"
+                        : "bg-white/15 text-white font-semibold shadow-xl border border-white/25"
                       : isLightMode
                       ? "text-zinc-600 hover:text-zinc-950 hover:bg-white/50"
                       : "text-zinc-400 hover:text-white hover:bg-white/5"
                   }`}
                 >
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono truncate">
-                      {opt.id === "aurora"
-                        ? "1. Ambient Aurora"
-                        : opt.id === "blueprint"
-                        ? "2. Blueprint Matrix"
-                        : opt.id === "noise"
-                        ? "3. Liquid Mesh"
-                        : "Baseline Default"}
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-xs font-mono font-bold">
+                      {opt.id === "mesh-aurora"
+                        ? "1. Cosmic Liquid Mesh Aurora"
+                        : opt.id === "cyber-conic"
+                        ? "2. Cybernetic Pulse & Conic Radar"
+                        : "3. Prismatic Sunset Refraction"}
                     </span>
                     {opt.recommended && (
-                      <span className="text-[9px] uppercase tracking-wider font-bold px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-500 dark:text-amber-300 border border-amber-500/30">
+                      <span className="text-[9px] uppercase tracking-wider font-extrabold px-2 py-0.5 rounded-full bg-gradient-to-r from-cyan-500/20 to-indigo-500/20 text-cyan-400 border border-cyan-400/40">
                         TOP PICK
                       </span>
                     )}
+                  </div>
+                  <div className="text-[11px] text-zinc-500 dark:text-zinc-400 truncate">
+                    {opt.id === "mesh-aurora"
+                      ? "Stripe / Linear — 4 Drifting fluid blobs + specular beam"
+                      : opt.id === "cyber-conic"
+                      ? "Raycast — 360° Conic radar + glowing laser horizon"
+                      : "Awwwards — Warm amber & rose caustics + twilight navy"}
                   </div>
                 </button>
               );
@@ -501,28 +523,28 @@ export default function BackgroundDemoPage() {
       </header>
 
       {/* =================================================================== */}
-      {/* MAIN DEMO SHOWCASE CONTENT                                          */}
+      {/* MAIN DEMO CONTENT & SPECIMEN TEST BED                               */}
       {/* =================================================================== */}
       <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-12">
-        {/* Active Option Overview Banner */}
+        {/* Active Option Overview Card */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeOption + (isLightMode ? "-light" : "-dark")}
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
+            exit={{ opacity: 0, y: -14 }}
             transition={{ duration: 0.25 }}
             className={`p-6 sm:p-8 rounded-3xl border backdrop-blur-2xl transition-all ${
               isLightMode
-                ? "bg-white/70 border-zinc-200 shadow-xl"
-                : "bg-white/[0.03] border-t-white/30 border-white/10 shadow-2xl"
+                ? "bg-white/75 border-zinc-200 shadow-xl"
+                : "bg-white/[0.035] border-t-white/35 border-white/10 shadow-2xl"
             }`}
           >
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-              <div className="space-y-2 max-w-3xl">
+              <div className="space-y-2.5 max-w-3xl">
                 <div className="flex flex-wrap items-center gap-2.5">
-                  <span className="text-xs font-mono font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-500 dark:text-cyan-400 border border-cyan-500/20">
-                    Active Background Mode
+                  <span className="text-xs font-mono font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 text-cyan-400 border border-cyan-500/30">
+                    Active Gradient Effect
                   </span>
                   <span className="text-xs font-mono text-zinc-500">·</span>
                   <span className="text-xs font-mono text-zinc-500 dark:text-zinc-400">
@@ -532,8 +554,11 @@ export default function BackgroundDemoPage() {
                 <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight font-heading">
                   {current.name}
                 </h1>
-                <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 font-sans">
+                <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 font-sans leading-relaxed">
                   {current.tagline}
+                </p>
+                <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 font-sans italic">
+                  {current.effectDescription}
                 </p>
               </div>
 
@@ -541,23 +566,23 @@ export default function BackgroundDemoPage() {
               <div className="flex flex-wrap items-center gap-3 w-full lg:w-auto">
                 <button
                   onClick={handleCopyChoice}
-                  className="flex-1 lg:flex-initial flex items-center justify-center gap-2 px-5 py-3 rounded-2xl text-xs font-bold uppercase tracking-wider bg-cyan-500 hover:bg-cyan-400 text-slate-950 transition-all shadow-lg hover:shadow-cyan-500/25 cursor-pointer"
+                  className="flex-1 lg:flex-initial flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-cyan-500 to-indigo-500 hover:opacity-95 text-white transition-all shadow-xl hover:shadow-cyan-500/30 cursor-pointer"
                 >
                   {copiedChoice ? (
                     <>
-                      <Check className="w-4 h-4 text-slate-950" />
-                      <span>Copied to Clipboard!</span>
+                      <Check className="w-4 h-4 text-white" />
+                      <span>Choice Copied!</span>
                     </>
                   ) : (
                     <>
-                      <CheckCircle2 className="w-4 h-4 text-slate-950" />
-                      <span>Approve & Use This Background</span>
+                      <CheckCircle2 className="w-4 h-4 text-white" />
+                      <span>Apply This Gradient To Main Site</span>
                     </>
                   )}
                 </button>
                 <button
                   onClick={handleCopyCss}
-                  className={`flex items-center justify-center gap-2 px-4 py-3 rounded-2xl text-xs font-mono transition-all border cursor-pointer ${
+                  className={`flex items-center justify-center gap-2 px-4 py-3.5 rounded-2xl text-xs font-mono transition-all border cursor-pointer ${
                     isLightMode
                       ? "bg-zinc-100 hover:bg-zinc-200 border-zinc-300 text-zinc-800"
                       : "bg-white/5 hover:bg-white/10 border-white/15 text-zinc-300"
@@ -579,14 +604,23 @@ export default function BackgroundDemoPage() {
               </div>
             </div>
 
-            {/* Feature Highlights Grid */}
-            <div className="mt-6 pt-6 border-t border-black/5 dark:border-white/10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {current.highlights.map((highlight, index) => (
-                <div key={index} className="flex items-start gap-2.5">
-                  <div className="mt-1 h-2 w-2 rounded-full bg-cyan-500 shrink-0" />
-                  <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    {highlight}
-                  </p>
+            {/* Color Palette Chips */}
+            <div className="mt-6 pt-6 border-t border-black/5 dark:border-white/10 flex flex-wrap items-center gap-3">
+              <span className="text-xs font-mono font-bold text-zinc-400 uppercase tracking-wider mr-2">
+                Harmonic Palette:
+              </span>
+              {current.palette.map((color, idx) => (
+                <div
+                  key={idx}
+                  className="px-3 py-1 rounded-xl text-xs font-mono font-medium bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 flex items-center gap-2"
+                >
+                  <span
+                    className="w-2.5 h-2.5 rounded-full inline-block"
+                    style={{
+                      backgroundColor: color.match(/#[0-9a-fA-F]{6}/)?.[0] || "#fff",
+                    }}
+                  />
+                  <span>{color}</span>
                 </div>
               ))}
             </div>
@@ -594,18 +628,18 @@ export default function BackgroundDemoPage() {
         </AnimatePresence>
 
         {/* ================================================================= */}
-        {/* COMPONENT TEST BED: REALISTIC PORTFOLIO SPECIMENS                 */}
+        {/* COMPONENT TEST BED: REALISTIC GLASS CARDS OVER GRADIENTS          */}
         {/* ================================================================= */}
         <section className="space-y-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Eye className="w-4 h-4 text-cyan-500" />
+              <Eye className="w-4 h-4 text-cyan-400" />
               <h2 className="text-sm font-mono font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
-                Glass Specimen Test Bed (Evaluating Real Contrast & Refraction)
+                Glass Refraction Test Bed (Watch How The Glass Catches Moving Colors)
               </h2>
             </div>
-            <span className="text-xs font-mono text-zinc-500">
-              100% WCAG AAA Compliant
+            <span className="text-xs font-mono text-emerald-400">
+              ● 100% WCAG AAA Contrast Verified
             </span>
           </div>
 
@@ -636,15 +670,15 @@ export default function BackgroundDemoPage() {
                 caption: "Zero-defect major milestone releases",
                 badge: "BRAIN STATION 23",
               },
-            ].map((stat, i) => (
+            ].map((stat) => (
               <motion.div
                 key={stat.label}
                 whileHover={shouldReduceMotion ? {} : { y: -4 }}
                 transition={{ duration: 0.2 }}
                 className={`p-6 rounded-3xl border backdrop-blur-2xl transition-all ${
                   isLightMode
-                    ? "bg-white/80 border-t-zinc-400 border-zinc-200 shadow-lg hover:bg-white"
-                    : "bg-white/[0.025] border-t-white/35 border-white/5 shadow-2xl hover:bg-white/[0.045]"
+                    ? "bg-white/80 border-t-zinc-400 border-zinc-200 shadow-xl hover:bg-white"
+                    : "bg-white/[0.03] border-t-white/40 border-white/10 shadow-2xl hover:bg-white/[0.05]"
                 }`}
               >
                 <div className="flex items-center justify-between mb-4">
@@ -671,7 +705,7 @@ export default function BackgroundDemoPage() {
             className={`rounded-3xl border overflow-hidden backdrop-blur-2xl shadow-2xl ${
               isLightMode
                 ? "bg-zinc-950 text-zinc-100 border-zinc-800"
-                : "bg-black/75 text-zinc-200 border-t-white/30 border-white/10"
+                : "bg-black/75 text-zinc-200 border-t-white/35 border-white/10"
             }`}
           >
             {/* Terminal Top Window Controls */}
@@ -721,12 +755,12 @@ export default function BackgroundDemoPage() {
             </div>
           </div>
 
-          {/* Test Specimen 3: Direct Communication & Authority Strip */}
+          {/* Test Specimen 3: Authority Banner */}
           <div
             className={`p-6 sm:p-8 rounded-3xl border backdrop-blur-2xl flex flex-col md:flex-row items-center justify-between gap-6 ${
               isLightMode
-                ? "bg-white/80 border-zinc-200 shadow-lg"
-                : "bg-white/[0.025] border-t-white/30 border-white/10 shadow-2xl"
+                ? "bg-white/80 border-zinc-200 shadow-xl"
+                : "bg-white/[0.035] border-t-white/35 border-white/10 shadow-2xl"
             }`}
           >
             <div className="space-y-1.5 text-center md:text-left">
@@ -735,7 +769,7 @@ export default function BackgroundDemoPage() {
                 <span>[VERIFIED] SQA ENGINEER II · BRAIN STATION 23</span>
               </div>
               <h3 className="text-lg sm:text-xl font-bold font-heading">
-                Ready to transform quality architecture into a strategic advantage?
+                Muhammad Shazzad Mia · SQA Automation Engineer
               </h3>
               <p className="text-xs text-zinc-500 dark:text-zinc-400">
                 Dhaka, Bangladesh (UTC+6) · Open for Global Remote & Hybrid SQA Roles
@@ -773,14 +807,14 @@ export default function BackgroundDemoPage() {
         >
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <Code2 className="w-4 h-4 text-cyan-500" />
+              <Code2 className="w-4 h-4 text-cyan-400" />
               <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
-                Tailwind & CSS Architecture Implementation Specs
+                Active Gradient CSS Architecture Specification
               </h3>
             </div>
             <button
               onClick={handleCopyCss}
-              className="text-xs font-mono text-cyan-500 dark:text-cyan-400 hover:underline cursor-pointer flex items-center gap-1"
+              className="text-xs font-mono text-cyan-400 hover:underline cursor-pointer flex items-center gap-1"
             >
               {copiedCss ? "Copied!" : "Copy Snippet"}
             </button>
@@ -808,22 +842,22 @@ export default function BackgroundDemoPage() {
           }`}
         >
           <div className="flex items-center gap-3">
-            <span className="flex h-2.5 w-2.5 rounded-full bg-cyan-500 animate-pulse shadow-[0_0_12px_#06b6d4]" />
+            <span className="flex h-2.5 w-2.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_12px_#06b6d4]" />
             <div>
               <div className="text-xs font-bold leading-tight">
                 Previewing: {current.name.split(":")[0]}
               </div>
               <div className="text-[11px] text-zinc-500 dark:text-zinc-400">
-                Click button to confirm your preferred background
+                Click button to approve and apply to your main site
               </div>
             </div>
           </div>
 
           <button
             onClick={handleCopyChoice}
-            className="px-4 py-2 rounded-xl text-xs font-bold bg-cyan-500 hover:bg-cyan-400 text-slate-950 transition-all shadow-md hover:shadow-cyan-500/25 cursor-pointer whitespace-nowrap"
+            className="px-4 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-cyan-500 to-indigo-500 hover:opacity-95 text-white transition-all shadow-md hover:shadow-cyan-500/25 cursor-pointer whitespace-nowrap"
           >
-            {copiedChoice ? "Copied!" : "Approve Choice"}
+            {copiedChoice ? "Copied!" : "Approve This Gradient"}
           </button>
         </div>
       </div>
