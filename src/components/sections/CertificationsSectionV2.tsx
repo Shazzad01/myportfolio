@@ -1,18 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import {
   Trophy,
   Award,
   GraduationCap,
-  CheckCircle2,
   ShieldCheck,
   ExternalLink,
-  FileText,
   BookOpen,
+  ZoomIn,
+  X,
+  FileText,
   Sparkles,
+  CheckCircle2,
 } from "lucide-react";
 
 type CategoryId = "all" | "research" | "honors" | "degree";
@@ -30,9 +32,43 @@ const categories: CategoryTab[] = [
   { id: "degree", label: "Academic Degree", count: 1 },
 ];
 
+interface ModalItem {
+  title: string;
+  subtitle: string;
+  badge: string;
+  imageSrc: string;
+  imageAlt: string;
+  externalUrl?: string;
+  externalLabel?: string;
+  fileUrl?: string;
+  fileLabel?: string;
+  citation?: string;
+}
+
 export default function CertificationsSectionV2() {
   const shouldReduceMotion = useReducedMotion();
   const [activeCategory, setActiveCategory] = useState<CategoryId>("all");
+  const [activeModalItem, setActiveModalItem] = useState<ModalItem | null>(null);
+
+  // Close modal on Escape and prevent body scrolling
+  useEffect(() => {
+    if (!activeModalItem) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveModalItem(null);
+      }
+    };
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeModalItem]);
 
   const showResearch = activeCategory === "all" || activeCategory === "research";
   const showHonors = activeCategory === "all" || activeCategory === "honors";
@@ -43,9 +79,9 @@ export default function CertificationsSectionV2() {
       {/* Anchor alias for legacy hash navigation */}
       <span id="certifications" className="absolute -top-24" aria-hidden="true" />
 
-      {/* Specular Ambient Glow */}
+      {/* Specular Ambient Horizon Glow */}
       <div
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[340px] bg-gradient-to-b from-black/[0.02] dark:from-white/[0.02] to-transparent rounded-full blur-[140px] pointer-events-none"
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full max-w-6xl h-[400px] bg-gradient-to-b from-blue-500/[0.03] dark:from-emerald-500/[0.03] to-transparent rounded-full blur-[160px] pointer-events-none"
         aria-hidden="true"
       />
 
@@ -56,25 +92,25 @@ export default function CertificationsSectionV2() {
           <div>
             <div className="inline-flex items-center gap-2 mb-2">
               <span className="font-mono-geist text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">
-                [RESEARCH_&amp;_CREDENTIALS]
+                [VISUAL_CREDENTIAL_GALLERY]
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.7)] motion-reduce:animate-none animate-pulse" />
             </div>
             <h2 className="font-geist text-3xl sm:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white">
-              Research Publications &amp; Industry Honors
+              Research Publications &amp; Verified Honors
             </h2>
           </div>
           <span className="font-mono-geist text-xs text-zinc-500 dark:text-zinc-400 mt-2 sm:mt-0">
-            5 Audited Credentials · Zero Hallucinations
+            5 Physical &amp; Published Artifacts · Click Any to Inspect
           </span>
         </div>
 
-        {/* Subtitle */}
-        <p className="max-w-3xl font-geist text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-normal leading-relaxed mb-8 sm:mb-12">
-          Peer-reviewed scientific publications, formal test engineering certifications, and recognized industry awards. Every entry verified with published DOI records and physical institutional certificates.
+        {/* Minimalist Visual Prompt */}
+        <p className="max-w-3xl font-geist text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-normal leading-relaxed mb-8 sm:mb-10">
+          Authentic peer-reviewed research literature, conference presentation certificates, and industry excellence awards. Every credential features high-resolution document previews for immediate verification.
         </p>
 
-        {/* Monolithic Category Filter Tabs */}
+        {/* Category Filter Tabs */}
         <div
           role="tablist"
           aria-label="Filter credentials by category"
@@ -88,7 +124,7 @@ export default function CertificationsSectionV2() {
                 role="tab"
                 id={`tab-${tab.id}`}
                 aria-selected={isActive}
-                aria-controls="credentials-grid"
+                aria-controls="visual-credentials-grid"
                 onClick={() => setActiveCategory(tab.id)}
                 className={`relative px-4 py-2 rounded-xl font-mono-geist text-xs transition-all duration-200 flex items-center gap-2 ${
                   isActive
@@ -111,11 +147,11 @@ export default function CertificationsSectionV2() {
           })}
         </div>
 
-        {/* Category-Filtered Grid Container with Container-Level AnimatePresence */}
+        {/* Container-Level AnimatePresence for Category Transitions */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeCategory}
-            id="credentials-grid"
+            id="visual-credentials-grid"
             role="tabpanel"
             aria-labelledby={`tab-${activeCategory}`}
             initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 14 }}
@@ -125,516 +161,587 @@ export default function CertificationsSectionV2() {
             className="space-y-10 sm:space-y-12"
           >
             {/* ========================================================================= */}
-            {/* 1. IEEE XPLORE PEER-REVIEWED PUBLICATION (FLAGSHIP RESEARCH SLAB) */}
+            {/* ROW 1: FLAGSHIP SHOWCASE — IEEE RESEARCH & NOPSTATION CRYSTAL TROPHY */}
             {/* ========================================================================= */}
-            {showResearch && (
-              <div className="rounded-3xl bg-white/[0.02] dark:bg-white/[0.02] border-t border-black/20 dark:border-t-white/30 border-x border-b border-black/5 dark:border-white/5 backdrop-blur-2xl shadow-2xl p-6 sm:p-10 hover:bg-white/[0.03] transition-all">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-start">
-                  
-                  {/* Left Column: Citation, Narrative & Metadata */}
-                  <div className="lg:col-span-8 space-y-6">
-                    {/* Top Badge & Metadata */}
-                    <div className="flex flex-wrap items-center gap-2 sm:gap-3 font-mono-geist text-xs">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 font-semibold text-[11px]">
-                        <BookOpen size={13} className="shrink-0" />
-                        [IEEE XPLORE PUBLISHED RESEARCH · ICCCI &apos;23]
-                      </span>
-                      <span className="text-zinc-400 dark:text-zinc-600">•</span>
-                      <span className="text-zinc-600 dark:text-zinc-400">Year: 2023</span>
-                      <span className="text-zinc-400 dark:text-zinc-600">•</span>
-                      <span className="text-zinc-600 dark:text-zinc-400">Technically Sponsored by IEEE Madras Section</span>
-                    </div>
-
-                    {/* Paper Title */}
-                    <div>
-                      <h3 className="font-geist text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white tracking-tight">
-                        An Approach to Detect Melanoma Skin Cancer Using Fast.ai CNN Models
-                      </h3>
-                      <p className="font-mono-geist text-xs sm:text-sm text-blue-600 dark:text-blue-400 font-medium mt-2">
-                        13th International Conference on Computer Communication and Informatics (ICCCI 2023)
-                      </p>
-                    </div>
-
-                    {/* Authorship Citation */}
-                    <div className="border-l-2 border-blue-500 pl-4 py-1 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 font-mono-geist bg-black/[0.01] dark:bg-white/[0.01] rounded-r-lg">
-                      <span className="text-zinc-500 dark:text-zinc-400 block font-sans text-xs mb-0.5">Authors:</span>
-                      <span className="font-semibold text-zinc-900 dark:text-white">Md Shazzad Mia</span>, Md. Jahid Hasan, et al.
-                    </div>
-
-                    {/* Research Summary */}
-                    <p className="font-geist text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
-                      Peer-reviewed scientific publication presenting an automated deep learning diagnostic pipeline for early malignant melanoma skin cancer classification. Leveraged Fast.ai transfer learning on deep convolutional neural networks (ResNet), cyclical learning rate policies, and automated ROC-AUC evaluation curves to achieve high-precision lesion discrimination.
-                    </p>
-
-                    {/* Quantified Research Metrics & Publication Chips */}
-                    <div className="space-y-3 pt-2">
-                      <span className="font-mono-geist text-[11px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider block font-semibold">
-                        Peer-Reviewed Technical Specifications:
-                      </span>
+            {(showResearch || showHonors) && (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10">
+                
+                {/* Visual Card 1: IEEE ICCCI 2023 Peer-Reviewed Research Publication */}
+                {showResearch && (
+                  <div className="group rounded-3xl bg-white/[0.02] dark:bg-white/[0.02] border-t border-black/20 dark:border-t-white/30 border-x border-b border-black/5 dark:border-white/5 backdrop-blur-2xl shadow-xl hover:shadow-2xl hover:border-black/30 dark:hover:border-white/35 transition-all p-5 sm:p-7 flex flex-col justify-between">
+                    <div className="space-y-5">
                       
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <div className="p-3.5 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5">
-                          <span className="font-geist text-lg sm:text-xl font-bold text-zinc-900 dark:text-white block">
-                            Fast.ai CNN
-                          </span>
-                          <span className="font-mono-geist text-[11px] text-blue-600 dark:text-blue-400 font-semibold block mt-0.5">
-                            Deep Learning Model
-                          </span>
-                          <span className="font-geist text-[11px] text-zinc-500 dark:text-zinc-400 block mt-1">
-                            Transfer learning with progressive image resizing and fine-tuning.
+                      {/* Top Header Badge */}
+                      <div className="flex items-center justify-between font-mono-geist text-xs">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 font-semibold text-[11px]">
+                          <BookOpen size={13} className="shrink-0" />
+                          [IEEE XPLORE PUBLISHED RESEARCH]
+                        </span>
+                        <span className="text-zinc-500 dark:text-zinc-400">Year: 2023</span>
+                      </div>
+
+                      {/* Visual Certificate Frame (Click to Zoom) */}
+                      <div
+                        role="button"
+                        tabIndex={0}
+                        onClick={() =>
+                          setActiveModalItem({
+                            title: "An Approach to Detect Melanoma Skin Cancer Using Fast.ai CNN Models",
+                            subtitle: "13th International Conference on Computer Communication and Informatics (ICCCI 2023)",
+                            badge: "IEEE XPLORE PUBLISHED RESEARCH",
+                            imageSrc: "/certificates/ieee_iccci_2023_preview.png",
+                            imageAlt: "Official IEEE ICCCI 2023 Presentation Certificate - Md Shazzad Mia",
+                            externalUrl: "https://ieeexplore.ieee.org/abstract/document/10128274",
+                            externalLabel: "Read on IEEE Xplore",
+                            fileUrl: "/certificates/ieee_iccci_2023_certificate.pdf",
+                            fileLabel: "Download Original PDF Certificate",
+                            citation: "Md Shazzad Mia, Md. Jahid Hasan, et al. · DOI: 10.1109/ICCCI56745.2023.10128274 · Electronic ISBN: 979-8-3503-1002-3",
+                          })
+                        }
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            setActiveModalItem({
+                              title: "An Approach to Detect Melanoma Skin Cancer Using Fast.ai CNN Models",
+                              subtitle: "13th International Conference on Computer Communication and Informatics (ICCCI 2023)",
+                              badge: "IEEE XPLORE PUBLISHED RESEARCH",
+                              imageSrc: "/certificates/ieee_iccci_2023_preview.png",
+                              imageAlt: "Official IEEE ICCCI 2023 Presentation Certificate - Md Shazzad Mia",
+                              externalUrl: "https://ieeexplore.ieee.org/abstract/document/10128274",
+                              externalLabel: "Read on IEEE Xplore",
+                              fileUrl: "/certificates/ieee_iccci_2023_certificate.pdf",
+                              fileLabel: "Download Original PDF Certificate",
+                              citation: "Md Shazzad Mia, Md. Jahid Hasan, et al. · DOI: 10.1109/ICCCI56745.2023.10128274 · Electronic ISBN: 979-8-3503-1002-3",
+                            });
+                          }
+                        }}
+                        className="relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 bg-black/[0.04] dark:bg-black/40 cursor-pointer group/img transition-all"
+                        aria-label="Inspect IEEE ICCCI 2023 Presentation Certificate in high resolution"
+                      >
+                        <Image
+                          src="/certificates/ieee_iccci_2023_preview.png"
+                          alt="IEEE ICCCI 2023 Presentation Certificate - Md Shazzad Mia"
+                          fill
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                          className="object-cover object-top group-hover/img:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover/img:opacity-80 transition-opacity" />
+                        
+                        {/* Hover Overlay Hint */}
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity">
+                          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-blue-600/90 text-white font-mono-geist text-xs font-semibold shadow-lg backdrop-blur-md">
+                            <ZoomIn size={14} />
+                            Click to Inspect Certificate
                           </span>
                         </div>
 
-                        <div className="p-3.5 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5">
-                          <span className="font-geist text-lg sm:text-xl font-bold text-zinc-900 dark:text-white block">
-                            Computer Vision
+                        {/* Bottom Floating Pill inside image */}
+                        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] font-mono-geist text-white/90">
+                          <span className="px-2 py-0.5 rounded bg-black/60 backdrop-blur-sm border border-white/15">
+                            Coimbatore, India · IEEE Madras
                           </span>
-                          <span className="font-mono-geist text-[11px] text-blue-600 dark:text-blue-400 font-semibold block mt-0.5">
-                            Dermoscopic Analysis
-                          </span>
-                          <span className="font-geist text-[11px] text-zinc-500 dark:text-zinc-400 block mt-1">
-                            Automated segmentation &amp; binary classification (Malignant vs Benign).
-                          </span>
-                        </div>
-
-                        <div className="p-3.5 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5">
-                          <span className="font-geist text-lg sm:text-xl font-bold text-zinc-900 dark:text-white block">
-                            IEEE Indexed
-                          </span>
-                          <span className="font-mono-geist text-[11px] text-blue-600 dark:text-blue-400 font-semibold block mt-0.5">
-                            Electronic ISBN
-                          </span>
-                          <span className="font-mono-geist text-[11px] text-zinc-500 dark:text-zinc-400 block mt-1">
-                            979-8-3503-1002-3
+                          <span className="px-2 py-0.5 rounded bg-blue-500/80 font-semibold backdrop-blur-sm">
+                            Official Paper Certificate
                           </span>
                         </div>
                       </div>
+
+                      {/* Paper Title & Citation */}
+                      <div>
+                        <h3 className="font-geist text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white tracking-tight">
+                          An Approach to Detect Melanoma Skin Cancer Using Fast.ai CNN Models
+                        </h3>
+                        <p className="font-mono-geist text-xs sm:text-sm text-blue-600 dark:text-blue-400 font-medium mt-1">
+                          13th ICCCI 2023 · Authors: <span className="text-zinc-900 dark:text-white font-semibold">Md Shazzad Mia</span>, et al.
+                        </p>
+                      </div>
+
+                      {/* High-Impact Visual Telemetry Chips */}
+                      <div className="flex flex-wrap items-center gap-2 pt-1 font-mono-geist text-xs">
+                        <span className="px-2.5 py-1 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 font-semibold">
+                          Fast.ai ResNet CNN
+                        </span>
+                        <span className="px-2.5 py-1 rounded-lg bg-black/[0.03] dark:bg-white/[0.04] border border-black/5 dark:border-white/5 text-zinc-700 dark:text-zinc-300">
+                          Computer Vision
+                        </span>
+                        <span className="px-2.5 py-1 rounded-lg bg-black/[0.03] dark:bg-white/[0.04] border border-black/5 dark:border-white/5 text-zinc-700 dark:text-zinc-300">
+                          ROC-AUC Validated
+                        </span>
+                        <span className="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-semibold">
+                          IEEE Indexed ✓
+                        </span>
+                      </div>
                     </div>
 
-                    {/* Action Buttons: Direct IEEE Link + Conference Certificate */}
-                    <div className="pt-2 flex flex-wrap items-center gap-3">
+                    {/* Dual Action CTAs */}
+                    <div className="pt-6 mt-6 border-t border-black/5 dark:border-white/5 flex flex-wrap items-center gap-3">
                       <a
                         href="https://ieeexplore.ieee.org/abstract/document/10128274"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-mono-geist text-xs font-semibold shadow-lg shadow-blue-500/20 transition-all"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-mono-geist text-xs font-semibold shadow-md shadow-blue-500/20 transition-all"
                       >
-                        <ExternalLink size={14} />
+                        <ExternalLink size={13} />
                         <span>Read on IEEE Xplore</span>
                       </a>
 
-                      <a
-                        href="/certificates/ieee_iccci_2023_certificate.pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.05] dark:bg-white/[0.05] hover:bg-white/[0.1] border border-black/10 dark:border-white/15 text-zinc-900 dark:text-white font-mono-geist text-xs font-semibold transition-all"
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setActiveModalItem({
+                            title: "An Approach to Detect Melanoma Skin Cancer Using Fast.ai CNN Models",
+                            subtitle: "13th International Conference on Computer Communication and Informatics (ICCCI 2023)",
+                            badge: "IEEE XPLORE PUBLISHED RESEARCH",
+                            imageSrc: "/certificates/ieee_iccci_2023_preview.png",
+                            imageAlt: "Official IEEE ICCCI 2023 Presentation Certificate - Md Shazzad Mia",
+                            externalUrl: "https://ieeexplore.ieee.org/abstract/document/10128274",
+                            externalLabel: "Read on IEEE Xplore",
+                            fileUrl: "/certificates/ieee_iccci_2023_certificate.pdf",
+                            fileLabel: "Download Original PDF Certificate",
+                            citation: "Md Shazzad Mia, Md. Jahid Hasan, et al. · DOI: 10.1109/ICCCI56745.2023.10128274 · Electronic ISBN: 979-8-3503-1002-3",
+                          })
+                        }
+                        className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white font-mono-geist text-xs font-semibold transition-all"
                       >
-                        <FileText size={14} className="text-blue-500" />
-                        <span>View Presentation Certificate (PDF)</span>
-                      </a>
+                        <ZoomIn size={13} className="text-blue-500" />
+                        <span>Inspect Certificate</span>
+                      </button>
                     </div>
                   </div>
+                )}
 
-                  {/* Right Column: Publication Telemetry Box */}
-                  <div className="lg:col-span-4 w-full">
-                    <div className="rounded-2xl border-t border-black/20 dark:border-t-white/30 border-x border-b border-black/10 dark:border-white/10 bg-black/[0.03] dark:bg-white/[0.02] p-5 sm:p-6 space-y-4 font-mono-geist text-xs shadow-xl">
-                      <div className="flex items-center justify-between pb-3 border-b border-black/5 dark:border-white/5">
-                        <span className="text-zinc-500 dark:text-zinc-400 uppercase text-[10px] tracking-wider font-semibold">
-                          Publication Citation
-                        </span>
-                        <span className="px-2 py-0.5 rounded bg-blue-500/10 text-blue-600 dark:text-blue-400 text-[10px] font-semibold">
-                          VERIFIED
-                        </span>
-                      </div>
-
-                      <div className="space-y-3">
-                        <div>
-                          <span className="text-zinc-500 dark:text-zinc-400 block text-[11px]">Conference:</span>
-                          <span className="text-zinc-800 dark:text-zinc-200 font-semibold text-xs">
-                            13th ICCCI (Coimbatore, India)
-                          </span>
-                        </div>
-
-                        <div>
-                          <span className="text-zinc-500 dark:text-zinc-400 block text-[11px]">IEEE Sponsor:</span>
-                          <span className="text-zinc-800 dark:text-zinc-200 text-xs">
-                            IEEE Madras Section
-                          </span>
-                        </div>
-
-                        <div>
-                          <span className="text-zinc-500 dark:text-zinc-400 block text-[11px]">DOI:</span>
-                          <a
-                            href="https://doi.org/10.1109/ICCCI56745.2023.10128274"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-600 dark:text-blue-400 hover:underline break-all text-[11px]"
-                          >
-                            10.1109/ICCCI56745.2023.10128274
-                          </a>
-                        </div>
-
-                        <div>
-                          <span className="text-zinc-500 dark:text-zinc-400 block text-[11px]">DVD ISBN:</span>
-                          <span className="text-zinc-700 dark:text-zinc-300 text-xs">
-                            979-8-3503-1001-6
-                          </span>
-                        </div>
-                      </div>
-
-                      <div className="pt-3 border-t border-black/5 dark:border-white/5 flex items-center gap-2 text-[11px] text-zinc-500 dark:text-zinc-400">
-                        <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse shrink-0" />
-                        <span>Indexed in IEEE Xplore Digital Library</span>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            )}
-
-            {/* ========================================================================= */}
-            {/* 2. FEATURED INDUSTRY HONOR — nopStation Agility & Excellence Award */}
-            {/* ========================================================================= */}
-            {showHonors && (
-              <div className="rounded-3xl bg-white/[0.02] dark:bg-white/[0.02] border-t border-black/20 dark:border-t-white/30 border-x border-b border-black/5 dark:border-white/5 backdrop-blur-2xl shadow-2xl p-6 sm:p-10 hover:bg-white/[0.04] transition-all">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center">
-                  
-                  {/* Left Column: Citation, Narrative & Quantified Delivery Metrics */}
-                  <div className="lg:col-span-7 space-y-6">
-                    {/* Top Badge & Metadata */}
-                    <div className="flex flex-wrap items-center gap-2 sm:gap-3 font-mono-geist text-xs">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-semibold text-[11px]">
-                        <Trophy size={13} className="shrink-0" />
-                        [AWARD OF EXCELLENCE · ZERO ROLLBACK]
-                      </span>
-                      <span className="text-zinc-400 dark:text-zinc-600">•</span>
-                      <span className="text-zinc-600 dark:text-zinc-400">Year: 2024</span>
-                      <span className="text-zinc-400 dark:text-zinc-600">•</span>
-                      <span className="text-zinc-600 dark:text-zinc-400">nopStation × Brain Station 23</span>
-                    </div>
-
-                    {/* Award Title */}
-                    <div>
-                      <h3 className="font-geist text-2xl sm:text-4xl font-bold text-zinc-900 dark:text-white tracking-tight">
-                        nopStation Agility &amp; Excellence Award
-                      </h3>
-                      <p className="font-mono-geist text-xs sm:text-sm text-emerald-600 dark:text-emerald-400 font-medium mt-2">
-                        Awarded to Team Shwapno &amp; Paragon for High-Impact Quality Engineering
-                      </p>
-                    </div>
-
-                    {/* Official Citation Quote */}
-                    <div className="border-l-2 border-emerald-500 pl-4 py-1.5 text-sm sm:text-base text-zinc-700 dark:text-zinc-300 italic font-normal leading-relaxed bg-black/[0.01] dark:bg-white/[0.01] rounded-r-lg">
-                      &ldquo;In recognition of exceptional Agility &amp; Excellence in delivering impactful solutions. This award highlights teamwork, innovation, and commitment to driving results.&rdquo;
-                    </div>
-
-                    {/* Context Summary */}
-                    <p className="font-geist text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
-                      Recognized for outstanding agility, test coverage leadership, and zero-defect deliveries across Bangladesh&apos;s premier grocery e-commerce platform (Shwapno) and enterprise agro-food supply operations (Paragon).
-                    </p>
-
-                    {/* Quantified SQA Delivery Highlights */}
-                    <div className="space-y-3 pt-2">
-                      <span className="font-mono-geist text-[11px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider block font-semibold">
-                        Verified SQA Lead Contributions &amp; SLA Metrics:
-                      </span>
+                {/* Visual Card 2: nopStation Agility & Excellence Award (Crystal Trophy) */}
+                {showHonors && (
+                  <div className="group rounded-3xl bg-white/[0.02] dark:bg-white/[0.02] border-t border-black/20 dark:border-t-white/30 border-x border-b border-black/5 dark:border-white/5 backdrop-blur-2xl shadow-xl hover:shadow-2xl hover:border-black/30 dark:hover:border-white/35 transition-all p-5 sm:p-7 flex flex-col justify-between">
+                    <div className="space-y-5">
                       
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <div className="p-3.5 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5">
-                          <span className="font-geist text-xl font-bold text-zinc-900 dark:text-white block">
-                            99.4%
-                          </span>
-                          <span className="font-mono-geist text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold block mt-0.5">
-                            Platform Uptime
-                          </span>
-                          <span className="font-geist text-[11px] text-zinc-500 dark:text-zinc-400 block mt-1">
-                            Zero critical defects across 15+ major production releases.
+                      {/* Top Header Badge */}
+                      <div className="flex items-center justify-between font-mono-geist text-xs">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-semibold text-[11px]">
+                          <Trophy size={13} className="shrink-0" />
+                          [INDUSTRY EXCELLENCE · ZERO ROLLBACK]
+                        </span>
+                        <span className="text-zinc-500 dark:text-zinc-400">Year: 2024</span>
+                      </div>
+
+                      {/* Visual Crystal Trophy Photo Frame (Click to Zoom) */}
+                      <div
+                        role="button"
+                        tabIndex={0}
+                        onClick={() =>
+                          setActiveModalItem({
+                            title: "nopStation Agility & Excellence Award",
+                            subtitle: "Awarded to Team Shwapno & Paragon · Brain Station 23",
+                            badge: "INDUSTRY AWARD OF EXCELLENCE",
+                            imageSrc: "/images/awards/nopstation-award.jpg",
+                            imageAlt: "Official nopStation Agility & Excellence Award Crystal Trophy - Brain Station 23",
+                            citation: "In recognition of exceptional Agility & Excellence in delivering impactful solutions. This award highlights teamwork, innovation, and commitment to driving results.",
+                          })
+                        }
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            setActiveModalItem({
+                              title: "nopStation Agility & Excellence Award",
+                              subtitle: "Awarded to Team Shwapno & Paragon · Brain Station 23",
+                              badge: "INDUSTRY AWARD OF EXCELLENCE",
+                              imageSrc: "/images/awards/nopstation-award.jpg",
+                              imageAlt: "Official nopStation Agility & Excellence Award Crystal Trophy - Brain Station 23",
+                              citation: "In recognition of exceptional Agility & Excellence in delivering impactful solutions. This award highlights teamwork, innovation, and commitment to driving results.",
+                            });
+                          }
+                        }}
+                        className="relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 bg-black/[0.04] dark:bg-black/40 cursor-pointer group/img transition-all"
+                        aria-label="Inspect nopStation Agility and Excellence Award Crystal Trophy in high resolution"
+                      >
+                        <Image
+                          src="/images/awards/nopstation-award.jpg"
+                          alt="Official nopStation Agility & Excellence Award Crystal Trophy"
+                          fill
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                          className="object-cover object-center group-hover/img:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover/img:opacity-80 transition-opacity" />
+                        
+                        {/* Hover Overlay Hint */}
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity">
+                          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-emerald-600/90 text-white font-mono-geist text-xs font-semibold shadow-lg backdrop-blur-md">
+                            <ZoomIn size={14} />
+                            Click to Inspect Trophy
                           </span>
                         </div>
 
-                        <div className="p-3.5 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5">
-                          <span className="font-geist text-xl font-bold text-zinc-900 dark:text-white block">
-                            75% Cut
+                        {/* Bottom Floating Pill inside image */}
+                        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] font-mono-geist text-white/90">
+                          <span className="px-2 py-0.5 rounded bg-black/60 backdrop-blur-sm border border-white/15">
+                            Brain Station 23 · Dhaka
                           </span>
-                          <span className="font-mono-geist text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold block mt-0.5">
-                            Regression Runtime
-                          </span>
-                          <span className="font-geist text-[11px] text-zinc-500 dark:text-zinc-400 block mt-1">
-                            Playwright POM reduced 14h manual cycles down to 3.5h.
+                          <span className="px-2 py-0.5 rounded bg-emerald-500/80 font-semibold backdrop-blur-sm">
+                            Physical Crystal Inscribed Trophy
                           </span>
                         </div>
+                      </div>
 
-                        <div className="p-3.5 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5">
-                          <span className="font-geist text-xl font-bold text-zinc-900 dark:text-white block">
-                            15,000+
-                          </span>
-                          <span className="font-mono-geist text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold block mt-0.5">
-                            Virtual Users
-                          </span>
-                          <span className="font-geist text-[11px] text-zinc-500 dark:text-zinc-400 block mt-1">
-                            Apache JMeter distributed stress benchmarking (p95 &lt; 1.74s).
-                          </span>
+                      {/* Award Title & Team Context */}
+                      <div>
+                        <h3 className="font-geist text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white tracking-tight">
+                          nopStation Agility &amp; Excellence Award
+                        </h3>
+                        <p className="font-mono-geist text-xs sm:text-sm text-emerald-600 dark:text-emerald-400 font-medium mt-1">
+                          Awarded to Team Shwapno &amp; Paragon · Brain Station 23
+                        </p>
+                      </div>
+
+                      {/* High-Impact SLA Metrics */}
+                      <div className="grid grid-cols-3 gap-2 pt-1 font-mono-geist text-xs">
+                        <div className="p-2.5 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5 text-center">
+                          <span className="font-bold text-zinc-900 dark:text-white block text-sm">99.4%</span>
+                          <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">Uptime SLA</span>
+                        </div>
+                        <div className="p-2.5 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5 text-center">
+                          <span className="font-bold text-zinc-900 dark:text-white block text-sm">75% Cut</span>
+                          <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">Regression</span>
+                        </div>
+                        <div className="p-2.5 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5 text-center">
+                          <span className="font-bold text-zinc-900 dark:text-white block text-sm">15,000+</span>
+                          <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">Stress VUs</span>
                         </div>
                       </div>
                     </div>
 
-                    {/* Status Verification Pip */}
-                    <div className="pt-2 flex items-center gap-2 font-mono-geist text-xs text-zinc-500 dark:text-zinc-400">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-                      <span>Verified physical crystal trophy inscribed to Team Shwapno &amp; Paragon · Brain Station 23</span>
+                    {/* Action CTA */}
+                    <div className="pt-6 mt-6 border-t border-black/5 dark:border-white/5 flex items-center justify-between font-mono-geist text-xs">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setActiveModalItem({
+                            title: "nopStation Agility & Excellence Award",
+                            subtitle: "Awarded to Team Shwapno & Paragon · Brain Station 23",
+                            badge: "INDUSTRY AWARD OF EXCELLENCE",
+                            imageSrc: "/images/awards/nopstation-award.jpg",
+                            imageAlt: "Official nopStation Agility & Excellence Award Crystal Trophy - Brain Station 23",
+                            citation: "In recognition of exceptional Agility & Excellence in delivering impactful solutions. This award highlights teamwork, innovation, and commitment to driving results.",
+                          })
+                        }
+                        className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-black/10 dark:border-white/10 text-zinc-900 dark:text-white font-mono-geist text-xs font-semibold transition-all"
+                      >
+                        <ZoomIn size={13} className="text-emerald-500" />
+                        <span>Inspect Physical Trophy</span>
+                      </button>
+                      <span className="text-zinc-500 text-[11px]">Brain Station 23</span>
                     </div>
                   </div>
+                )}
 
-                  {/* Right Column: Physical Crystal Trophy Photograph */}
-                  <div className="lg:col-span-5 flex flex-col items-center justify-center">
-                    <div className="w-full max-w-xs sm:max-w-sm overflow-hidden rounded-2xl border-t border-black/20 dark:border-t-white/30 border-x border-b border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.02] shadow-2xl">
-                      <Image
-                        src="/images/awards/nopstation-award.jpg"
-                        alt="nopStation Agility & Excellence Award Crystal Trophy - Team Shwapno & Paragon, Brain Station 23"
-                        width={480}
-                        height={640}
-                        className="w-full h-auto object-cover object-center grayscale hover:grayscale-0 transition-all duration-500"
-                        priority
-                      />
-                      <div className="p-4 bg-zinc-50/80 dark:bg-zinc-950/80 border-t border-black/5 dark:border-white/5 text-center font-mono-geist">
-                        <p className="text-xs font-semibold text-zinc-900 dark:text-white">
-                          Official Crystal Trophy
-                        </p>
-                        <p className="text-[11px] text-zinc-500 dark:text-zinc-400 mt-0.5">
-                          Brain Station 23 · Dhaka, Bangladesh
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
               </div>
             )}
 
             {/* ========================================================================= */}
-            {/* 3, 4, 5: GRID OF RESEARCH PAPER 2, SQA PROFESSIONAL & ACADEMIC DEGREE */}
+            {/* ROW 2: VISUAL 3-COLUMN GRID — DELHI RESEARCH, SQA CREDENTIAL, B.SC. DEGREE */}
             {/* ========================================================================= */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               
-              {/* Plaque 3: Healthcare ML Research Paper (ICDABM 2022) */}
+              {/* Visual Card 3: ICDABM 2022 Healthcare ML Conference Paper Certificate */}
               {showResearch && (
-                <div className="rounded-3xl bg-white/[0.02] dark:bg-white/[0.02] border-t border-black/20 dark:border-t-white/30 border-x border-b border-black/5 dark:border-white/5 backdrop-blur-2xl shadow-xl p-6 sm:p-8 hover:bg-white/[0.04] transition-all flex flex-col justify-between">
-                  <div className="space-y-5">
-                    {/* Top Meta */}
+                <div className="group rounded-3xl bg-white/[0.02] dark:bg-white/[0.02] border-t border-black/20 dark:border-t-white/30 border-x border-b border-black/5 dark:border-white/5 backdrop-blur-2xl shadow-xl hover:shadow-2xl hover:border-black/30 dark:hover:border-white/35 transition-all p-5 sm:p-6 flex flex-col justify-between">
+                  <div className="space-y-4">
+                    
+                    {/* Top Badge */}
                     <div className="flex items-center justify-between font-mono-geist text-xs">
                       <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20 font-semibold text-[11px]">
                         <BookOpen size={13} className="shrink-0" />
                         [HEALTHCARE ML RESEARCH]
                       </span>
-                      <span className="text-zinc-500 dark:text-zinc-400 font-mono-geist">
-                        Year: 2022
-                      </span>
+                      <span className="text-zinc-500 dark:text-zinc-400">Year: 2022</span>
                     </div>
 
-                    {/* Title & Forum */}
+                    {/* Visual Certificate Frame */}
+                    <div
+                      role="button"
+                      tabIndex={0}
+                      onClick={() =>
+                        setActiveModalItem({
+                          title: "An Effective System of Diabetes Readmission Prediction",
+                          subtitle: "International Conference on Data Analytics in Business and Marketing (ICDABM 2022)",
+                          badge: "HEALTHCARE ML RESEARCH PAPER",
+                          imageSrc: "/certificates/diabetes_readmission_preview.png",
+                          imageAlt: "ICDABM 2022 Conference Paper Presentation Certificate - Md Shazzad Mia",
+                          fileUrl: "/certificates/diabetes_readmission_icdabm_certificate.pdf",
+                          fileLabel: "Download Original Presentation PDF",
+                          citation: "Md Shazzad Mia, et al. · Jointly organized by Shivaji College, University of Delhi & Daffodil International University · 100,000+ patient encounters.",
+                        })
+                      }
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          setActiveModalItem({
+                            title: "An Effective System of Diabetes Readmission Prediction",
+                            subtitle: "International Conference on Data Analytics in Business and Marketing (ICDABM 2022)",
+                            badge: "HEALTHCARE ML RESEARCH PAPER",
+                            imageSrc: "/certificates/diabetes_readmission_preview.png",
+                            imageAlt: "ICDABM 2022 Conference Paper Presentation Certificate - Md Shazzad Mia",
+                            fileUrl: "/certificates/diabetes_readmission_icdabm_certificate.pdf",
+                            fileLabel: "Download Original Presentation PDF",
+                            citation: "Md Shazzad Mia, et al. · Jointly organized by Shivaji College, University of Delhi & Daffodil International University · 100,000+ patient encounters.",
+                          });
+                        }
+                      }}
+                      className="relative w-full aspect-[16/10] rounded-xl overflow-hidden border border-black/10 dark:border-white/10 bg-black/[0.04] dark:bg-black/40 cursor-pointer group/img transition-all"
+                      aria-label="Inspect ICDABM 2022 Conference Presentation Certificate"
+                    >
+                      <Image
+                        src="/certificates/diabetes_readmission_preview.png"
+                        alt="ICDABM 2022 Conference Paper Certificate"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover object-top group-hover/img:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent opacity-60 group-hover/img:opacity-80 transition-opacity" />
+                      
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-purple-600/90 text-white font-mono-geist text-xs font-semibold shadow-md backdrop-blur-md">
+                          <ZoomIn size={13} />
+                          Inspect Certificate
+                        </span>
+                      </div>
+
+                      <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[10px] font-mono-geist text-white/90">
+                        <span className="px-1.5 py-0.5 rounded bg-black/60">Univ of Delhi &amp; DIU</span>
+                        <span className="px-1.5 py-0.5 rounded bg-purple-500/80 font-semibold">100k+ Dataset</span>
+                      </div>
+                    </div>
+
+                    {/* Paper Title & Authors */}
                     <div>
-                      <h3 className="font-geist text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white">
-                        An Effective System of Diabetes Readmission Prediction
+                      <h3 className="font-geist text-lg sm:text-xl font-bold text-zinc-900 dark:text-white tracking-tight">
+                        Diabetes Readmission Prediction
                       </h3>
                       <p className="font-mono-geist text-xs text-purple-600 dark:text-purple-400 mt-1">
-                        ICDABM 2022 · Shivaji College (Univ of Delhi) &amp; DIU
+                        ICDABM 2022 · Md Shazzad Mia, et al.
                       </p>
                     </div>
 
-                    {/* Authorship */}
-                    <div className="font-mono-geist text-xs text-zinc-500 dark:text-zinc-400">
-                      <span>Authors: </span>
-                      <span className="text-zinc-800 dark:text-zinc-200 font-semibold">Md Shazzad Mia</span>, et al.
-                    </div>
-
-                    {/* Description */}
-                    <p className="font-geist text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
-                      Predictive healthcare machine learning investigation into 30-day clinical readmission factors among diabetic inpatients across a clinical dataset of 100,000+ patient encounters. Handled class imbalance and optimized ROC-AUC clinical recall sensitivity.
-                    </p>
-
-                    {/* Technical Highlights */}
-                    <div className="space-y-2 pt-2">
-                      <span className="font-mono-geist text-[11px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider block font-semibold">
-                        Key Research Contributions:
+                    {/* Chips */}
+                    <div className="flex flex-wrap gap-1.5 font-mono-geist text-[11px]">
+                      <span className="px-2 py-0.5 rounded bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20 font-semibold">
+                        100k+ Patients
                       </span>
-                      <ul className="space-y-2 font-geist text-xs text-zinc-700 dark:text-zinc-300">
-                        <li className="flex items-start gap-2">
-                          <CheckCircle2 size={14} className="text-purple-500 shrink-0 mt-0.5" />
-                          <span><strong>100,000+ Patient Cohort:</strong> Large-scale clinical inpatient records analyzed for readmission risks.</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <CheckCircle2 size={14} className="text-purple-500 shrink-0 mt-0.5" />
-                          <span><strong>Feature Pipeline:</strong> Clinical feature encoding, variance thresholding, and outlier normalization.</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <CheckCircle2 size={14} className="text-purple-500 shrink-0 mt-0.5" />
-                          <span><strong>International Forum:</strong> Presented at ICDABM2022 with academic delegation.</span>
-                        </li>
-                      </ul>
+                      <span className="px-2 py-0.5 rounded bg-black/[0.03] dark:bg-white/[0.04] border border-black/5 dark:border-white/5 text-zinc-700 dark:text-zinc-300">
+                        30-Day Clinical ML
+                      </span>
                     </div>
                   </div>
 
-                  {/* Bottom Verification Footer & CTA */}
-                  <div className="pt-6 mt-6 border-t border-black/5 dark:border-white/5 space-y-3">
-                    <a
-                      href="/certificates/diabetes_readmission_icdabm_certificate.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 text-purple-700 dark:text-purple-300 border border-purple-500/20 font-mono-geist text-xs font-semibold transition-all"
+                  {/* Footer CTA */}
+                  <div className="pt-4 mt-5 border-t border-black/5 dark:border-white/5 flex items-center justify-between font-mono-geist text-xs">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setActiveModalItem({
+                          title: "An Effective System of Diabetes Readmission Prediction",
+                          subtitle: "International Conference on Data Analytics in Business and Marketing (ICDABM 2022)",
+                          badge: "HEALTHCARE ML RESEARCH PAPER",
+                          imageSrc: "/certificates/diabetes_readmission_preview.png",
+                          imageAlt: "ICDABM 2022 Conference Paper Presentation Certificate - Md Shazzad Mia",
+                          fileUrl: "/certificates/diabetes_readmission_icdabm_certificate.pdf",
+                          fileLabel: "Download Original Presentation PDF",
+                          citation: "Md Shazzad Mia, et al. · Jointly organized by Shivaji College, University of Delhi & Daffodil International University · 100,000+ patient encounters.",
+                        })
+                      }
+                      className="inline-flex items-center gap-1.5 text-purple-600 dark:text-purple-400 hover:underline font-semibold"
                     >
-                      <FileText size={13} />
-                      <span>View Paper Certificate (PDF)</span>
-                    </a>
-                    <div className="flex items-center justify-between font-mono-geist text-[11px] text-zinc-500">
-                      <span className="flex items-center gap-1.5 text-purple-600 dark:text-purple-400 font-medium">
-                        <ShieldCheck size={13} />
-                        Verified Paper Presentation
-                      </span>
-                      <span>Univ of Delhi &amp; DIU</span>
-                    </div>
+                      <ZoomIn size={13} />
+                      <span>Inspect (PDF Preview)</span>
+                    </button>
+                    <span className="text-zinc-500 text-[11px]">DU &amp; DIU</span>
                   </div>
                 </div>
               )}
 
-              {/* Plaque 4: Batch 16 SQA Professional Certification */}
+              {/* Visual Card 4: IT Training BD SQA Professional Certification (Batch 16) */}
               {showHonors && (
-                <div className="rounded-3xl bg-white/[0.02] dark:bg-white/[0.02] border-t border-black/20 dark:border-t-white/30 border-x border-b border-black/5 dark:border-white/5 backdrop-blur-2xl shadow-xl p-6 sm:p-8 hover:bg-white/[0.04] transition-all flex flex-col justify-between">
-                  <div className="space-y-5">
-                    {/* Top Meta */}
+                <div className="group rounded-3xl bg-white/[0.02] dark:bg-white/[0.02] border-t border-black/20 dark:border-t-white/30 border-x border-b border-black/5 dark:border-white/5 backdrop-blur-2xl shadow-xl hover:shadow-2xl hover:border-black/30 dark:hover:border-white/35 transition-all p-5 sm:p-6 flex flex-col justify-between">
+                  <div className="space-y-4">
+                    
+                    {/* Top Badge */}
                     <div className="flex items-center justify-between font-mono-geist text-xs">
                       <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-semibold text-[11px]">
                         <Award size={13} className="shrink-0" />
                         [PROFESSIONAL SQA · BATCH 16]
                       </span>
-                      <span className="text-zinc-500 dark:text-zinc-400 font-mono-geist">
-                        Year: 2023
-                      </span>
+                      <span className="text-zinc-500 dark:text-zinc-400">Year: 2023</span>
+                    </div>
+
+                    {/* Visual Certificate Frame */}
+                    <div
+                      role="button"
+                      tabIndex={0}
+                      onClick={() =>
+                        setActiveModalItem({
+                          title: "SQA & Cyber Security Professional Certification",
+                          subtitle: "IT Training BD · Batch 16 Comprehensive SQA Program",
+                          badge: "PROFESSIONAL SQA CERTIFICATION",
+                          imageSrc: "/certificates/sqa_batch16_certificate.png",
+                          imageAlt: "IT Training BD SQA Professional Certificate (Batch 16) - Md Shazzad Mia",
+                          fileUrl: "/certificates/sqa_batch16_certificate.png",
+                          fileLabel: "Download Original Certificate Image",
+                          citation: "Certificate ID: ITB-B16-366 · Instructor: Sabiul Islam Rashed (Head of Cyber Security & SQA @BurnSys) · Awarded for stellar performance in test automation & security.",
+                        })
+                      }
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          setActiveModalItem({
+                            title: "SQA & Cyber Security Professional Certification",
+                            subtitle: "IT Training BD · Batch 16 Comprehensive SQA Program",
+                            badge: "PROFESSIONAL SQA CERTIFICATION",
+                            imageSrc: "/certificates/sqa_batch16_certificate.png",
+                            imageAlt: "IT Training BD SQA Professional Certificate (Batch 16) - Md Shazzad Mia",
+                            fileUrl: "/certificates/sqa_batch16_certificate.png",
+                            fileLabel: "Download Original Certificate Image",
+                            citation: "Certificate ID: ITB-B16-366 · Instructor: Sabiul Islam Rashed (Head of Cyber Security & SQA @BurnSys) · Awarded for stellar performance in test automation & security.",
+                          });
+                        }
+                      }}
+                      className="relative w-full aspect-[16/10] rounded-xl overflow-hidden border border-black/10 dark:border-white/10 bg-black/[0.04] dark:bg-black/40 cursor-pointer group/img transition-all"
+                      aria-label="Inspect SQA Professional Certificate Batch 16"
+                    >
+                      <Image
+                        src="/certificates/sqa_batch16_certificate.png"
+                        alt="SQA Professional Certificate (Batch 16)"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover object-top group-hover/img:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent opacity-60 group-hover/img:opacity-80 transition-opacity" />
+                      
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-600/90 text-white font-mono-geist text-xs font-semibold shadow-md backdrop-blur-md">
+                          <ZoomIn size={13} />
+                          Inspect Certificate
+                        </span>
+                      </div>
+
+                      <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[10px] font-mono-geist text-white/90">
+                        <span className="px-1.5 py-0.5 rounded bg-black/60">ID: ITB-B16-366</span>
+                        <span className="px-1.5 py-0.5 rounded bg-emerald-500/80 font-semibold">Stellar Grade</span>
+                      </div>
                     </div>
 
                     {/* Title & Organization */}
                     <div>
-                      <h3 className="font-geist text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white">
+                      <h3 className="font-geist text-lg sm:text-xl font-bold text-zinc-900 dark:text-white tracking-tight">
                         SQA Professional Certification
                       </h3>
-                      <p className="font-mono-geist text-xs text-zinc-500 dark:text-zinc-400 mt-1">
-                        IT Training BD · Certificate ID: <span className="text-emerald-600 dark:text-emerald-400 font-semibold">ITB-B16-366</span>
+                      <p className="font-mono-geist text-xs text-emerald-600 dark:text-emerald-400 mt-1">
+                        IT Training BD · BurnSys Head of SQA
                       </p>
                     </div>
 
-                    {/* Description */}
-                    <p className="font-geist text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
-                      Hands-on professional SQA and cyber security program under Sabiul Islam Rashed (Head of Cyber Security &amp; SQA @BurnSys). Awarded for stellar performance across automated test architectures and security validation.
-                    </p>
-
-                    {/* Core Modules & Competencies */}
-                    <div className="space-y-2 pt-2">
-                      <span className="font-mono-geist text-[11px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider block font-semibold">
-                        Core Curriculum Modules:
+                    {/* Chips */}
+                    <div className="flex flex-wrap gap-1.5 font-mono-geist text-[11px]">
+                      <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-semibold">
+                        Selenium &amp; Playwright
                       </span>
-                      <ul className="space-y-2 font-geist text-xs text-zinc-700 dark:text-zinc-300">
-                        <li className="flex items-start gap-2">
-                          <CheckCircle2 size={14} className="text-emerald-500 shrink-0 mt-0.5" />
-                          <span><strong>Manual Rigor:</strong> Test planning, severity matrices, and Jira RTM traceability.</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <CheckCircle2 size={14} className="text-emerald-500 shrink-0 mt-0.5" />
-                          <span><strong>Automation Frameworks:</strong> Selenium WebDriver, Playwright, POM design patterns.</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <CheckCircle2 size={14} className="text-emerald-500 shrink-0 mt-0.5" />
-                          <span><strong>API &amp; Performance:</strong> Postman schema testing and JMeter load benchmarking.</span>
-                        </li>
-                      </ul>
+                      <span className="px-2 py-0.5 rounded bg-black/[0.03] dark:bg-white/[0.04] border border-black/5 dark:border-white/5 text-zinc-700 dark:text-zinc-300">
+                        JMeter Stress
+                      </span>
                     </div>
                   </div>
 
-                  {/* Bottom Verification Footer & CTA */}
-                  <div className="pt-6 mt-6 border-t border-black/5 dark:border-white/5 space-y-3">
-                    <a
-                      href="/certificates/sqa_batch16_certificate.png"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20 font-mono-geist text-xs font-semibold transition-all"
+                  {/* Footer CTA */}
+                  <div className="pt-4 mt-5 border-t border-black/5 dark:border-white/5 flex items-center justify-between font-mono-geist text-xs">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setActiveModalItem({
+                          title: "SQA & Cyber Security Professional Certification",
+                          subtitle: "IT Training BD · Batch 16 Comprehensive SQA Program",
+                          badge: "PROFESSIONAL SQA CERTIFICATION",
+                          imageSrc: "/certificates/sqa_batch16_certificate.png",
+                          imageAlt: "IT Training BD SQA Professional Certificate (Batch 16) - Md Shazzad Mia",
+                          fileUrl: "/certificates/sqa_batch16_certificate.png",
+                          fileLabel: "Download Original Certificate Image",
+                          citation: "Certificate ID: ITB-B16-366 · Instructor: Sabiul Islam Rashed (Head of Cyber Security & SQA @BurnSys) · Awarded for stellar performance in test automation & security.",
+                        })
+                      }
+                      className="inline-flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 hover:underline font-semibold"
                     >
-                      <FileText size={13} />
-                      <span>View Course Certificate (PNG)</span>
-                    </a>
-                    <div className="flex items-center justify-between font-mono-geist text-[11px] text-zinc-500">
-                      <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-medium">
-                        <ShieldCheck size={13} />
-                        ID: ITB-B16-366
-                      </span>
-                      <span>Dhaka, Bangladesh</span>
-                    </div>
+                      <ZoomIn size={13} />
+                      <span>Inspect Certificate</span>
+                    </button>
+                    <span className="text-zinc-500 text-[11px]">ITB-B16-366</span>
                   </div>
                 </div>
               )}
 
-              {/* Plaque 5: B.Sc. in Computer Science & Engineering */}
+              {/* Visual Card 5: B.Sc. in Computer Science & Engineering (DIU Parchment Plaque) */}
               {showDegree && (
-                <div className="rounded-3xl bg-white/[0.02] dark:bg-white/[0.02] border-t border-black/20 dark:border-t-white/30 border-x border-b border-black/5 dark:border-white/5 backdrop-blur-2xl shadow-xl p-6 sm:p-8 hover:bg-white/[0.04] transition-all flex flex-col justify-between">
-                  <div className="space-y-5">
-                    {/* Top Meta */}
+                <div className="group rounded-3xl bg-white/[0.02] dark:bg-white/[0.02] border-t border-black/20 dark:border-t-white/30 border-x border-b border-black/5 dark:border-white/5 backdrop-blur-2xl shadow-xl hover:shadow-2xl hover:border-black/30 dark:hover:border-white/35 transition-all p-5 sm:p-6 flex flex-col justify-between">
+                  <div className="space-y-4">
+                    
+                    {/* Top Badge */}
                     <div className="flex items-center justify-between font-mono-geist text-xs">
                       <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-semibold text-[11px]">
                         <GraduationCap size={13} className="shrink-0" />
                         [ACADEMIC DEGREE · CSE]
                       </span>
-                      <span className="text-zinc-500 dark:text-zinc-400 font-mono-geist">
-                        2019 – 2023
-                      </span>
+                      <span className="text-zinc-500 dark:text-zinc-400">2019 – 2023</span>
                     </div>
 
-                    {/* Title & Organization */}
+                    {/* Academic Parchment Visual Box */}
+                    <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden border border-black/10 dark:border-white/10 bg-gradient-to-br from-zinc-100 via-zinc-50 to-zinc-200 dark:from-zinc-900 dark:via-zinc-950 dark:to-zinc-900 p-4 flex flex-col justify-between shadow-inner">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <GraduationCap size={20} className="text-emerald-600 dark:text-emerald-400" />
+                          <span className="font-mono-geist text-xs font-bold text-zinc-900 dark:text-white">
+                            DIU FACULTY OF CSE
+                          </span>
+                        </div>
+                        <span className="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 font-mono-geist text-[10px] font-bold">
+                          HONORS
+                        </span>
+                      </div>
+
+                      <div className="text-center py-1">
+                        <span className="font-geist text-3xl font-extrabold text-zinc-900 dark:text-white tracking-tight tabular-nums block">
+                          3.59
+                        </span>
+                        <span className="font-mono-geist text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold block uppercase">
+                          CGPA Out of 4.00
+                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-between font-mono-geist text-[10px] text-zinc-500 dark:text-zinc-400 pt-1 border-t border-black/5 dark:border-white/5">
+                        <span>Daffodil Int&apos;l University</span>
+                        <span className="text-emerald-600 dark:text-emerald-400 font-semibold">Distinction ✓</span>
+                      </div>
+                    </div>
+
+                    {/* Degree Title & Institution */}
                     <div>
-                      <h3 className="font-geist text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white">
+                      <h3 className="font-geist text-lg sm:text-xl font-bold text-zinc-900 dark:text-white tracking-tight">
                         B.Sc. in Computer Science &amp; Engineering
                       </h3>
                       <p className="font-mono-geist text-xs text-zinc-500 dark:text-zinc-400 mt-1">
-                        Daffodil International University (DIU) · <span className="text-emerald-600 dark:text-emerald-400 font-semibold">CGPA 3.59 / 4.00</span>
+                        Daffodil International University (DIU)
                       </p>
                     </div>
 
-                    {/* Description */}
-                    <p className="font-geist text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
-                      Four-year formal engineering degree establishing deep mathematical and computational foundations in software architecture, algorithms, database systems, and object-oriented design patterns.
-                    </p>
-
-                    {/* Core Foundations & Academic Standing */}
-                    <div className="space-y-2 pt-2">
-                      <span className="font-mono-geist text-[11px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider block font-semibold">
-                        Engineering Foundations:
+                    {/* Academic Foundation Chips */}
+                    <div className="flex flex-wrap gap-1.5 font-mono-geist text-[11px]">
+                      <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-semibold">
+                        Graduated with Distinction
                       </span>
-                      <ul className="space-y-2 font-geist text-xs text-zinc-700 dark:text-zinc-300">
-                        <li className="flex items-start gap-2">
-                          <CheckCircle2 size={14} className="text-emerald-500 shrink-0 mt-0.5" />
-                          <span><strong>Architecture:</strong> OOP principles, Clean Architecture, design patterns.</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <CheckCircle2 size={14} className="text-emerald-500 shrink-0 mt-0.5" />
-                          <span><strong>Database Systems:</strong> Relational schema normalization &amp; indexing.</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <CheckCircle2 size={14} className="text-emerald-500 shrink-0 mt-0.5" />
-                          <span><strong>Distinction:</strong> Maintained high academic standing (CGPA 3.59 / 4.00).</span>
-                        </li>
-                      </ul>
+                      <span className="px-2 py-0.5 rounded bg-black/[0.03] dark:bg-white/[0.04] border border-black/5 dark:border-white/5 text-zinc-700 dark:text-zinc-300">
+                        Clean Architecture
+                      </span>
                     </div>
                   </div>
 
-                  {/* Bottom Verification Footer */}
-                  <div className="pt-6 mt-6 border-t border-black/5 dark:border-white/5 space-y-3">
-                    <div className="p-2.5 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5 text-center font-mono-geist text-xs text-zinc-700 dark:text-zinc-300">
-                      Graduated with Academic Distinction
-                    </div>
-                    <div className="flex items-center justify-between font-mono-geist text-[11px] text-zinc-500">
-                      <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-medium">
-                        <ShieldCheck size={13} />
-                        Verified B.Sc. Degree
-                      </span>
-                      <span>Dhaka, Bangladesh</span>
-                    </div>
+                  {/* Footer Standing */}
+                  <div className="pt-4 mt-5 border-t border-black/5 dark:border-white/5 flex items-center justify-between font-mono-geist text-xs text-zinc-500">
+                    <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-medium">
+                      <ShieldCheck size={13} />
+                      Verified Degree (CGPA 3.59)
+                    </span>
+                    <span>Dhaka, BD</span>
                   </div>
                 </div>
               )}
@@ -645,6 +752,121 @@ export default function CertificationsSectionV2() {
         </AnimatePresence>
 
       </div>
+
+      {/* ========================================================================= */}
+      {/* INTERACTIVE HIGH-DEFINITION LIGHTBOX MODAL */}
+      {/* ========================================================================= */}
+      <AnimatePresence>
+        {activeModalItem && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-xl"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-credential-title"
+          >
+            {/* Backdrop Dismiss Button */}
+            <button
+              type="button"
+              onClick={() => setActiveModalItem(null)}
+              className="absolute inset-0 w-full h-full cursor-default"
+              aria-label="Close high-resolution inspection modal"
+            />
+
+            {/* Modal Dialog Container */}
+            <motion.div
+              initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, scale: 0.94 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.94 }}
+              transition={{ duration: 0.2 }}
+              className="relative z-10 w-full max-w-4xl max-h-[92vh] overflow-y-auto rounded-3xl bg-zinc-950 border border-white/20 shadow-2xl p-4 sm:p-7 flex flex-col justify-between space-y-5"
+            >
+              {/* Modal Top Bar: Title, Badge & Close Button */}
+              <div className="flex items-start justify-between gap-4 pb-4 border-b border-white/10">
+                <div>
+                  <div className="inline-flex items-center gap-2 mb-1.5">
+                    <span className="px-2.5 py-0.5 rounded bg-white/10 text-white font-mono-geist text-[10px] font-semibold tracking-wider uppercase">
+                      {activeModalItem.badge}
+                    </span>
+                  </div>
+                  <h3 id="modal-credential-title" className="font-geist text-xl sm:text-2xl font-bold text-white tracking-tight">
+                    {activeModalItem.title}
+                  </h3>
+                  <p className="font-mono-geist text-xs text-zinc-400 mt-1">
+                    {activeModalItem.subtitle}
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setActiveModalItem(null)}
+                  className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-all shrink-0"
+                  aria-label="Close modal window"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              {/* Modal Center Image Preview (Full Width / Contain) */}
+              <div className="relative w-full h-[45vh] sm:h-[55vh] rounded-2xl overflow-hidden border border-white/15 bg-black/60 shadow-inner flex items-center justify-center">
+                <Image
+                  src={activeModalItem.imageSrc}
+                  alt={activeModalItem.imageAlt}
+                  fill
+                  sizes="(max-width: 1200px) 100vw, 85vw"
+                  className="object-contain"
+                  priority
+                />
+              </div>
+
+              {/* Modal Citation / Bottom Bar */}
+              {activeModalItem.citation && (
+                <div className="p-3 rounded-xl bg-white/[0.04] border border-white/10 font-mono-geist text-xs text-zinc-300">
+                  <span className="text-zinc-500 block text-[10px] uppercase font-semibold mb-0.5">Citation &amp; Metadata:</span>
+                  {activeModalItem.citation}
+                </div>
+              )}
+
+              {/* Modal Action Buttons */}
+              <div className="pt-2 flex flex-wrap items-center justify-between gap-3 font-mono-geist text-xs">
+                <div className="flex flex-wrap items-center gap-3">
+                  {activeModalItem.externalUrl && (
+                    <a
+                      href={activeModalItem.externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold transition-all shadow-lg shadow-blue-600/30"
+                    >
+                      <ExternalLink size={14} />
+                      <span>{activeModalItem.externalLabel || "Visit External Publication"}</span>
+                    </a>
+                  )}
+
+                  {activeModalItem.fileUrl && (
+                    <a
+                      href={activeModalItem.fileUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold border border-white/15 transition-all"
+                    >
+                      <FileText size={14} className="text-emerald-400" />
+                      <span>{activeModalItem.fileLabel || "View Original File"}</span>
+                    </a>
+                  )}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setActiveModalItem(null)}
+                  className="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white transition-all font-mono-geist"
+                >
+                  Close (Esc)
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
     </section>
   );
 }
