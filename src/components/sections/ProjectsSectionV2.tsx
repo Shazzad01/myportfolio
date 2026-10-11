@@ -42,7 +42,7 @@ interface FrameworkArchitecture {
   }[];
   architecturalCapabilities: {
     title: string;
-    description: string;
+    tag: string;
   }[];
   consoleConfig: {
     fileName: string;
@@ -54,12 +54,12 @@ interface FrameworkArchitecture {
 const frameworksData: Record<FrameworkId, FrameworkArchitecture> = {
   "playwright-e2e": {
     id: "playwright-e2e",
-    name: "Playwright TypeScript E2E Framework",
+    name: "Playwright TypeScript E2E",
     tagline: "Modular Page Object Model Framework with Parallel Multi-Worker Execution",
     scopeTag: "[MODULAR_POM_E2E]",
-    targetApp: "Shwapno E-Commerce platform checkout & Algolia search journeys (60+ Retail Outlets, 500k+ Active Shoppers)",
+    targetApp: "Shwapno E-Commerce Checkout & Algolia Search Journeys",
     description:
-      "Architected a production-grade E2E test framework using TypeScript and Playwright Page Object Models (POM). Built with custom fixtures for multi-tenant auth hydration, strict web-first assertions with zero arbitrary waits, and 4-worker parallel execution across Chromium & WebKit.",
+      "Production-grade E2E test framework using TypeScript and Playwright Page Object Models (POM) with 4-worker parallel execution.",
     brandIcons: [
       { name: "Playwright", icon: PlaywrightIcon, accentColor: "#2EAD33" },
       { name: "TypeScript", icon: TypeScriptIcon, accentColor: "#3178C6" },
@@ -68,45 +68,41 @@ const frameworksData: Record<FrameworkId, FrameworkArchitecture> = {
     quantifiedMetrics: [
       {
         value: "120+",
-        label: "Automated E2E Flows",
-        subtext: "Mission-critical checkout journeys",
+        label: "Automated Flows",
+        subtext: "E2E checkout journeys",
       },
       {
         value: "4 Workers",
-        label: "Parallel Browser Grid",
-        subtext: "Concurrent headless runners",
+        label: "Parallel Grid",
+        subtext: "Concurrent cloud runners",
       },
       {
         value: "0 Flakes",
-        label: "Flaky Assertions",
-        subtext: "Strict auto-waiting locators",
+        label: "Auto-Waiting",
+        subtext: "Deterministic assertions",
       },
       {
-        value: "Chromium & WebKit",
-        label: "Cross-Engine Parity",
-        subtext: "Desktop & iOS mobile regression",
+        value: "Cross-Engine",
+        label: "Parity Matrix",
+        subtext: "Chromium & WebKit",
       },
     ],
     architecturalCapabilities: [
       {
         title: "Hermetic Page Object Architecture",
-        description:
-          "Strict separation of UI selectors, intent-driven user actions, and assertions across modular page classes with pre-hydrated state fixtures.",
+        tag: "POM Fixtures",
       },
       {
         title: "Parallel Multi-Worker Sharding",
-        description:
-          "Distributed execution across 4 parallel browser workers slashing full regression execution cycle from 14h down to 3.5h (75% faster).",
+        tag: "4x Workers · -75% Time",
       },
       {
         title: "Zero-Flake Web-First Assertions",
-        description:
-          "Strict auto-waiting assertions (expect(locator).toBeVisible()) completely eradicating flaky arbitrary sleeps (waitForTimeout: 0ms).",
+        tag: "0ms Arbitrary Waits",
       },
       {
-        title: "Multi-Gateway bKash & Nagad Validation",
-        description:
-          "End-to-end payment gateway verification including tokenized auth, OTP entry, stock rollback on failure, and idempotent order creation.",
+        title: "FinTech Gateway & OTP Validation",
+        tag: "bKash & Nagad Mocks",
       },
     ],
     consoleConfig: {
@@ -146,12 +142,12 @@ test.describe("Shwapno High-Concurrency Flash Sale Checkout", () => {
 
   "jmeter-benchmark": {
     id: "jmeter-benchmark",
-    name: "Apache JMeter Concurrency Benchmark Suite",
+    name: "Apache JMeter 15k Benchmark",
     tagline: "Distributed Non-GUI Load Generation Simulating 15,000+ Concurrent Virtual Users",
     scopeTag: "[DISTRIBUTED_LOAD_15K]",
-    targetApp: "Enterprise flash-sale checkout, dynamic coupon engine, and bKash webhook load handling",
+    targetApp: "Enterprise Flash-Sale Checkout & bKash Webhook Queues",
     description:
-      "Constructed a distributed non-GUI load generation suite simulating 15,000 concurrent virtual shoppers at 10,000+ RPM throughput surges. Validated database connection pool ceilings, bKash webhook reconciliation queues, and enforced strict p95 < 2.0s latency SLA guardrails.",
+      "Distributed load suite simulating 15,000 concurrent virtual shoppers at 10,000+ RPM surges with p95 < 2.0s latency guardrails.",
     brandIcons: [
       { name: "Apache JMeter", icon: JMeterIcon, accentColor: "#D22128" },
       { name: "Docker Grid", icon: DockerIcon, accentColor: "#2496ED" },
@@ -164,41 +160,37 @@ test.describe("Shwapno High-Concurrency Flash Sale Checkout", () => {
         subtext: "Stepped concurrency surge",
       },
       {
-        value: "p95 < 1.74s",
-        label: "Response Latency",
-        subtext: "Well within < 2.0s SLA target",
+        value: "< 1.74s",
+        label: "p95 Latency SLA",
+        subtext: "Target < 2.0s achieved",
       },
       {
         value: "0.02%",
-        label: "Error Rate",
-        subtext: "364 / 1.8M total requests",
+        label: "Error Tolerance",
+        subtext: "364 / 1.8M requests",
       },
       {
         value: "1.8M Req",
         label: "Benchmark Volume",
-        subtext: "Zero connection pool deadlocks",
+        subtext: "Zero DB pool deadlocks",
       },
     ],
     architecturalCapabilities: [
       {
         title: "Headless Distributed Worker Cluster",
-        description:
-          "Non-GUI distributed JMeter engine orchestrating remote worker nodes with real-time metric streaming to prevent controller CPU throttling.",
+        tag: "Non-GUI Grid Nodes",
       },
       {
         title: "Stepped Concurrency Surge Profiles",
-        description:
-          "Ramp-up schedules simulating realistic national flash-sale traffic spikes with Poisson-distributed think times and session cookie hydration.",
+        tag: "15k VU Poisson Surge",
       },
       {
         title: "Automated SLA Breach Guardrails",
-        description:
-          "Automated threshold assertions terminating test runs if p95 response time exceeds 2.000s or HTTP 5xx errors breach 0.1% tolerance.",
+        tag: "p95 < 2000ms Hard Stop",
       },
       {
         title: "Payment Webhook Queue Stress Testing",
-        description:
-          "Volumetric load testing of asynchronous bKash/Nagad callback queues under peak database connection pool strain.",
+        tag: "Async Callback Pools",
       },
     ],
     consoleConfig: {
@@ -237,12 +229,12 @@ test.describe("Shwapno High-Concurrency Flash Sale Checkout", () => {
 
   "github-actions-gate": {
     id: "github-actions-gate",
-    name: "GitHub Actions Continuous Quality Gate",
+    name: "GitHub Actions Quality Gate",
     tagline: "Multi-Stage Pull-Request Quality Gate with Sharded Containerized E2E Testing",
     scopeTag: "[PR_PIPELINE_GATE]",
-    targetApp: "Brain Station 23 CI/CD pipeline for nopStation e-commerce clients & enterprise plugins",
+    targetApp: "Brain Station 23 CI/CD Quality Governance for nopStation Clients",
     description:
-      "Engineered an automated multi-stage CI/CD quality gate triggered on every pull request. Orchestrates static code validation, secret scanning, unit testing, and parallel sharded Playwright E2E execution inside hermetic Docker containers before merge approval.",
+      "Automated multi-stage CI/CD quality gate orchestrating static analysis, security scans, and sharded Playwright E2E execution.",
     brandIcons: [
       { name: "GitHub Actions", icon: GitHubActionsIcon, accentColor: "#2088FF" },
       { name: "Docker Grid", icon: DockerIcon, accentColor: "#2496ED" },
@@ -252,7 +244,7 @@ test.describe("Shwapno High-Concurrency Flash Sale Checkout", () => {
       {
         value: "75% Cut",
         label: "Runtime Reduction",
-        subtext: "14h manual → 3.5h automated gate",
+        subtext: "14h manual → 3.5h CI gate",
       },
       {
         value: "100%",
@@ -260,36 +252,32 @@ test.describe("Shwapno High-Concurrency Flash Sale Checkout", () => {
         subtext: "Zero unverified PR merges",
       },
       {
-        value: "15+ Releases",
-        label: "Zero-Defect Milestones",
-        subtext: "Zero critical rollbacks in prod",
+        value: "15+ Sprints",
+        label: "Zero-Defect Cadence",
+        subtext: "0 rollbacks in production",
       },
       {
         value: "98.8%",
-        label: "Automated Pass Rate",
-        subtext: "Consistent quality governance",
+        label: "Pass Rate",
+        subtext: "Automated governance",
       },
     ],
     architecturalCapabilities: [
       {
         title: "Multi-Stage Pipeline Orchestration",
-        description:
-          "Sequential gating stages: Static Typecheck → Security Gitleaks Scan → Unit Matrix → Parallel Sharded Playwright E2E Grid.",
+        tag: "Static + Unit + E2E Matrix",
       },
       {
         title: "Intelligent Layer & Dependency Caching",
-        description:
-          "Browser binary and node_modules caching reducing CI workflow bootstrap overhead from 8m down to 42s per runner.",
+        tag: "8m → 42s CI Bootstrap",
       },
       {
         title: "Hermetic Dockerized Execution",
-        description:
-          "Standardized official Playwright Ubuntu containers ensuring identical headless browser rendering and font geometry between CI and local dev.",
+        tag: "Official Playwright Jammy",
       },
       {
         title: "Automated Trace & Artifact Publishing",
-        description:
-          "On-failure automatic upload of Playwright trace viewer files, MP4 run recordings, and JMeter HTML dashboards directly to PR checks.",
+        tag: "Trace Viewer & MP4s",
       },
     ],
     consoleConfig: {
@@ -450,7 +438,7 @@ export default function ProjectsSectionV2() {
             <div className="lg:col-span-5 space-y-6">
               
               {/* Architecture Monolithic Glass Slab */}
-              <div className="rounded-3xl bg-white/[0.02] dark:bg-white/[0.02] border-t border-black/20 dark:border-t-white/30 border-x border-b border-black/5 dark:border-white/5 backdrop-blur-2xl shadow-xl p-6 sm:p-8 space-y-6">
+              <div className="rounded-3xl bg-white/[0.02] dark:bg-white/[0.02] border-t border-black/20 dark:border-t-white/30 border-x border-b border-black/5 dark:border-white/5 backdrop-blur-2xl shadow-xl p-6 sm:p-7 space-y-5">
                 
                 {/* Framework Meta Head */}
                 <div>
@@ -465,79 +453,59 @@ export default function ProjectsSectionV2() {
                   <h3 className="font-geist text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white tracking-tight">
                     {activeFramework.name}
                   </h3>
-                  <p className="font-geist text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 font-medium mt-1">
-                    {activeFramework.tagline}
-                  </p>
+                  <div className="font-mono-geist text-xs text-zinc-500 dark:text-zinc-400 mt-1 flex items-center gap-2">
+                    <span className="text-emerald-500 font-semibold">•</span>
+                    <span className="truncate">{activeFramework.targetApp}</span>
+                  </div>
                 </div>
-
-                {/* Target Application Badge */}
-                <div className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5">
-                  <span className="font-mono-geist text-[10px] uppercase font-semibold text-zinc-500 dark:text-zinc-400 tracking-wider block mb-1">
-                    Target Application Scope:
-                  </span>
-                  <p className="font-geist text-xs text-zinc-800 dark:text-zinc-200 leading-relaxed font-normal">
-                    {activeFramework.targetApp}
-                  </p>
-                </div>
-
-                {/* Executive Description */}
-                <p className="font-geist text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal">
-                  {activeFramework.description}
-                </p>
 
                 {/* 4 Quantified Metrics Grid */}
-                <div>
-                  <span className="font-mono-geist text-[10px] uppercase font-semibold text-zinc-500 dark:text-zinc-400 tracking-wider block mb-3">
-                    Verified Quality Metrics:
-                  </span>
-                  <div className="grid grid-cols-2 gap-2.5">
-                    {activeFramework.quantifiedMetrics.map((metric, idx) => (
-                      <div
-                        key={idx}
-                        className="p-3 rounded-2xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5 flex flex-col justify-between"
-                      >
-                        <div className="font-mono-geist text-base sm:text-lg font-bold text-emerald-600 dark:text-emerald-400 tracking-tight">
-                          {metric.value}
-                        </div>
-                        <div className="font-geist text-xs font-semibold text-zinc-900 dark:text-white mt-1">
-                          {metric.label}
-                        </div>
-                        <div className="font-mono-geist text-[10px] text-zinc-500 dark:text-zinc-400 mt-0.5 leading-tight">
-                          {metric.subtext}
-                        </div>
+                <div className="grid grid-cols-2 gap-2.5">
+                  {activeFramework.quantifiedMetrics.map((metric, idx) => (
+                    <div
+                      key={idx}
+                      className="p-3.5 rounded-2xl bg-black/[0.015] dark:bg-white/[0.02] border border-black/5 dark:border-white/5 flex flex-col justify-between"
+                    >
+                      <div className="font-mono-geist text-lg sm:text-xl font-bold text-zinc-900 dark:text-white tracking-tight tabular-nums">
+                        {metric.value}
                       </div>
-                    ))}
-                  </div>
+                      <div className="font-geist text-xs font-semibold text-emerald-600 dark:text-emerald-400 mt-1">
+                        {metric.label}
+                      </div>
+                      <div className="font-mono-geist text-[10px] text-zinc-500 dark:text-zinc-400 mt-0.5 truncate">
+                        {metric.subtext}
+                      </div>
+                    </div>
+                  ))}
                 </div>
 
-                {/* 4 Architectural Capabilities */}
-                <div className="pt-2 border-t border-black/5 dark:border-white/5">
-                  <span className="font-mono-geist text-[10px] uppercase font-semibold text-zinc-500 dark:text-zinc-400 tracking-wider block mb-3">
-                    Architectural Capabilities:
+                {/* Core Architectural Invariants (Replacing Prose Paragraphs) */}
+                <div className="pt-3 border-t border-black/5 dark:border-white/5 space-y-2">
+                  <span className="font-mono-geist text-[10px] uppercase font-semibold text-zinc-500 dark:text-zinc-400 tracking-wider block mb-2">
+                    Core Architectural Invariants:
                   </span>
-                  <div className="space-y-3">
-                    {activeFramework.architecturalCapabilities.map((cap, cIdx) => (
-                      <div key={cIdx} className="flex items-start gap-2.5">
-                        <div className="w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 mt-0.5 border border-emerald-500/20">
-                          <CheckCircle2 size={12} />
-                        </div>
-                        <div>
-                          <h4 className="font-geist text-xs font-semibold text-zinc-900 dark:text-white">
-                            {cap.title}
-                          </h4>
-                          <p className="font-geist text-[11px] text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal mt-0.5">
-                            {cap.description}
-                          </p>
-                        </div>
+                  {activeFramework.architecturalCapabilities.map((cap, cIdx) => (
+                    <div
+                      key={cIdx}
+                      className="flex items-center justify-between p-2.5 rounded-xl bg-black/[0.015] dark:bg-white/[0.02] border border-black/5 dark:border-white/5 hover:border-emerald-500/30 transition-all gap-2"
+                    >
+                      <div className="flex items-center gap-2 min-w-0">
+                        <CheckCircle2 size={13} className="text-emerald-500 shrink-0" />
+                        <span className="font-geist text-xs font-semibold text-zinc-900 dark:text-zinc-100 truncate">
+                          {cap.title}
+                        </span>
                       </div>
-                    ))}
-                  </div>
+                      <span className="font-mono-geist text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 shrink-0 whitespace-nowrap">
+                        {cap.tag}
+                      </span>
+                    </div>
+                  ))}
                 </div>
 
                 {/* Universal Brand Tooling Row */}
-                <div className="pt-3 border-t border-black/5 dark:border-white/5">
-                  <span className="font-mono-geist text-[10px] uppercase font-semibold text-zinc-500 dark:text-zinc-400 tracking-wider block mb-2.5">
-                    Official Tooling Ecosystem:
+                <div className="pt-3 border-t border-black/5 dark:border-white/5 flex items-center justify-between gap-2">
+                  <span className="font-mono-geist text-[10px] uppercase font-semibold text-zinc-400 tracking-wider">
+                    Official Tooling:
                   </span>
                   <div className="flex flex-wrap items-center gap-2">
                     {activeFramework.brandIcons.map((tool) => {
@@ -545,7 +513,7 @@ export default function ProjectsSectionV2() {
                       return (
                         <div
                           key={tool.name}
-                          className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-white/[0.03] dark:bg-white/[0.03] border-t border-black/15 dark:border-t-white/20 border-x border-b border-black/5 dark:border-white/5 text-zinc-800 dark:text-zinc-200"
+                          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 text-zinc-800 dark:text-zinc-200"
                         >
                           <ToolIcon className="w-3.5 h-3.5 shrink-0" />
                           <span className="font-mono-geist text-[11px] font-medium">
