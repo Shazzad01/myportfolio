@@ -17,6 +17,8 @@ const fs = require('fs');
 
   const section = await page.$('#methodology');
   if (section) {
+    await section.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(1000);
     const filePath = path.join(screenshotsDir, 'qa_matrix_redesigned.png');
     await section.screenshot({ path: filePath });
     console.log('Saved QA matrix screenshot:', filePath);

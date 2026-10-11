@@ -9,7 +9,6 @@ import {
   Monitor,
   ShoppingBag,
   Flame,
-  Accessibility,
   Terminal,
   Copy,
   Check,
@@ -110,19 +109,6 @@ const dimensions: AuditDimension[] = [
     engine: "Route Intercept + Chaos Matrix",
     icon: Flame,
     accent: "text-rose-600 dark:text-rose-400 border-rose-500/20 bg-rose-500/10",
-  },
-  {
-    id: "07-wcag-accessibility",
-    num: "07",
-    title: "WCAG 2.1/2.2 AA Accessibility",
-    subtitle: "Flagship Assistive Standard",
-    tag: "[WCAG AA CERTIFIED]",
-    category: "resilience",
-    telemetrySnippet: `const { violations } = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();\nexpect(violations).toEqual([]); // 0 accessibility violations`,
-    metric: "100% Lighthouse A11y · 0 Axe Violations",
-    engine: "Axe-Core · Pa11y · NVDA / VoiceOver",
-    icon: Accessibility,
-    accent: "text-emerald-600 dark:text-emerald-400 border-emerald-500/20 bg-emerald-500/10",
   },
 ];
 
@@ -309,40 +295,6 @@ function Dimension06Visual() {
   );
 }
 
-function Dimension07Visual() {
-  return (
-    <div className="p-4 rounded-2xl bg-black/[0.03] dark:bg-black/60 border border-black/5 dark:border-white/5 space-y-3.5 font-mono-geist">
-      {/* Visual Color Contrast Meter */}
-      <div className="space-y-1.5">
-        <div className="flex justify-between text-[11px] text-zinc-600 dark:text-zinc-400 font-medium">
-          <span>Color Contrast (WCAG AA Target: 4.5:1)</span>
-          <span className="text-emerald-600 dark:text-emerald-400 font-bold">Verified: 8.2:1 (AAA)</span>
-        </div>
-        <div className="h-2 w-full bg-black/10 dark:bg-zinc-800 rounded-full overflow-hidden relative">
-          <div className="h-full bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-300 w-[85%] rounded-full shadow-[0_0_8px_rgba(52,211,153,0.5)]" />
-        </div>
-      </div>
-
-      {/* Screen Reader Audio Waveform & Key Traps Status */}
-      <div className="grid grid-cols-2 gap-2.5 pt-1 border-t border-black/5 dark:border-zinc-800/60">
-        <div className="flex items-center gap-2 p-2 rounded-xl bg-black/[0.02] dark:bg-zinc-900/80 border border-black/5 dark:border-zinc-800">
-          <div className="flex items-end gap-1 h-4">
-            <span className="w-1 bg-emerald-500 rounded-full h-2 motion-reduce:animate-none animate-pulse" />
-            <span className="w-1 bg-emerald-500 rounded-full h-4 motion-reduce:animate-none animate-pulse" />
-            <span className="w-1 bg-emerald-500 rounded-full h-2.5 motion-reduce:animate-none animate-pulse" />
-            <span className="w-1 bg-emerald-500 rounded-full h-3.5 motion-reduce:animate-none animate-pulse" />
-          </div>
-          <span className="text-[10.5px] text-zinc-700 dark:text-zinc-300 font-medium truncate">NVDA / VoiceOver</span>
-        </div>
-        <div className="flex items-center justify-between p-2 rounded-xl bg-black/[0.02] dark:bg-zinc-900/80 border border-black/5 dark:border-zinc-800 text-[10.5px] text-zinc-700 dark:text-zinc-300">
-          <span>Zero Key Traps</span>
-          <span className="text-emerald-600 dark:text-emerald-400 font-bold">✓ 100% Pass</span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 const renderVisualGraphic = (num: string) => {
   switch (num) {
     case "01":
@@ -393,10 +345,8 @@ export default function QaMethodologySectionV2() {
     setExpandedId((prev) => (prev === id ? null : id));
   };
 
-  // Dimensions 1–6 (Grid cards)
-  const gridCards = filteredDimensions.filter((d) => d.num !== "07");
-  // Dimension 7 (Flagship full-width card)
-  const flagshipCard = filteredDimensions.find((d) => d.num === "07");
+  // Grid cards (Dimensions 01–06)
+  const gridCards = filteredDimensions;
 
   return (
     <section id="methodology" className="section-padding relative overflow-hidden">
@@ -417,7 +367,7 @@ export default function QaMethodologySectionV2() {
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.7)] motion-reduce:animate-none animate-pulse" />
             </div>
             <h2 className="font-geist text-3xl sm:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white">
-              The 7-Dimension QA Audit Matrix
+              The QA Audit Matrix
             </h2>
             <p className="font-geist text-sm sm:text-base text-zinc-600 dark:text-zinc-400 mt-2 max-w-2xl font-normal leading-relaxed">
               Live telemetry and automated test invariants engineered at Brain Station 23 for Shwapno &amp; Paragon.
@@ -442,10 +392,10 @@ export default function QaMethodologySectionV2() {
           >
             {(
               [
-                { id: "all", label: "All 7 Dimensions" },
+                { id: "all", label: "All Dimensions" },
                 { id: "core", label: "Core Logic & Visual" },
                 { id: "e2e", label: "E2E & Concurrency" },
-                { id: "resilience", label: "Chaos & Accessibility" },
+                { id: "resilience", label: "Chaos Resilience" },
               ] as const
             ).map((tab) => {
               const isActive = activeFilter === tab.id;
@@ -493,10 +443,9 @@ export default function QaMethodologySectionV2() {
                   return (
                     <motion.div
                       key={dimension.id}
-                      initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, amount: 0.1 }}
-                      transition={{ duration: 0.35 }}
+                      initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}
                       className="p-7 rounded-3xl bg-white/[0.02] dark:bg-white/[0.02] border-t border-black/20 dark:border-t-white/30 border-x border-b border-black/5 dark:border-white/5 backdrop-blur-2xl shadow-xl hover:bg-white/[0.04] transition-all group flex flex-col justify-between"
                     >
                       {/* Top Bar: Number & Tag */}
@@ -543,12 +492,12 @@ export default function QaMethodologySectionV2() {
                         </div>
 
                         <div className="flex items-center justify-between gap-2">
-                          <span className="font-mono-geist text-[10px] text-zinc-600 dark:text-zinc-400 px-2.5 py-1 rounded bg-black/[0.03] dark:bg-white/[0.04] border border-black/5 dark:border-white/5 truncate">
+                          <span className="font-mono-geist text-[10px] text-zinc-600 dark:text-zinc-400 px-2.5 py-1 rounded bg-black/[0.03] dark:bg-white/[0.04] border border-black/5 dark:border-white/5 truncate min-w-0">
                             {dimension.engine}
                           </span>
                           <button
                             onClick={() => toggleExpand(dimension.id)}
-                            className="inline-flex items-center gap-1.5 font-mono-geist text-[11px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors cursor-pointer py-1 px-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5"
+                            className="inline-flex items-center gap-1.5 font-mono-geist text-[11px] text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors cursor-pointer py-1 px-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 shrink-0 whitespace-nowrap"
                             aria-expanded={isExpanded}
                             aria-label={`Toggle telemetry code for dimension ${dimension.num}`}
                           >
@@ -621,156 +570,6 @@ export default function QaMethodologySectionV2() {
                   );
                 })}
               </div>
-            )}
-
-            {/* Flagship Dimension 07 Card (Spanning full width) */}
-            {flagshipCard && (
-              <motion.div
-                key={flagshipCard.id}
-                initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.1 }}
-                transition={{ duration: 0.35 }}
-                className="p-7 sm:p-9 rounded-3xl bg-white/[0.02] dark:bg-white/[0.02] border-t border-black/20 dark:border-t-white/30 border-x border-b border-black/5 dark:border-white/5 backdrop-blur-2xl shadow-xl hover:bg-white/[0.04] transition-all group relative overflow-hidden"
-              >
-                {/* Specular Ambient Accent Glow */}
-                <div
-                  className="absolute -top-24 right-1/4 w-96 h-48 bg-emerald-500/[0.05] dark:bg-emerald-400/[0.04] rounded-full blur-[90px] pointer-events-none"
-                  aria-hidden="true"
-                />
-
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
-                  {/* Left Column (7 cols): Header, Visual Controls */}
-                  <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
-                    <div>
-                      <div className="flex items-center justify-between gap-3 mb-4">
-                        <span className="font-mono-geist text-3xl sm:text-4xl text-zinc-400 dark:text-zinc-500 font-extralight tracking-tight">
-                          {flagshipCard.num}
-                        </span>
-                        <div className="flex items-center gap-2">
-                          <span className="w-2 h-2 rounded-full bg-emerald-400 motion-reduce:animate-none animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
-                          <span className="font-mono-geist text-xs font-semibold text-emerald-600 dark:text-emerald-400 px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/10">
-                            {flagshipCard.tag}
-                          </span>
-                        </div>
-                      </div>
-
-                      <div className="flex items-start gap-3.5 mb-4">
-                        <div className="p-2.5 rounded-2xl shrink-0 border text-emerald-600 dark:text-emerald-400 border-emerald-500/20 bg-emerald-500/10">
-                          <Accessibility size={22} />
-                        </div>
-                        <div>
-                          <h3 className="font-geist text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white leading-snug">
-                            {flagshipCard.title}
-                          </h3>
-                          <span className="font-mono-geist text-xs text-zinc-500 dark:text-zinc-400">
-                            Flagship Accessibility Standard · WCAG 2.1 &amp; 2.2 AA / AAA
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Visual Dashboard for Dimension 07 */}
-                      <div className="mb-6">
-                        <Dimension07Visual />
-                      </div>
-                    </div>
-
-                    {/* Bottom Metrics Bar */}
-                    <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-black/5 dark:border-white/5">
-                      <div>
-                        <span className="font-mono-geist text-[10px] text-zinc-400 uppercase tracking-wider block">
-                          Verified Audit Metric
-                        </span>
-                        <span className="font-geist text-base font-bold text-emerald-600 dark:text-emerald-400">
-                          {flagshipCard.metric}
-                        </span>
-                      </div>
-                      <span className="font-mono-geist text-xs text-zinc-600 dark:text-zinc-400 px-3 py-1 rounded-lg bg-black/[0.03] dark:bg-white/[0.04] border border-black/5 dark:border-white/5">
-                        {flagshipCard.engine}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Right Column (5 cols): Live Telemetry Terminal Simulator */}
-                  <div className="lg:col-span-5">
-                    <div className="rounded-2xl bg-zinc-950 dark:bg-black border border-black/10 dark:border-white/10 p-4 font-mono-geist text-xs shadow-2xl">
-                      {/* Terminal Chrome Header */}
-                      <div className="flex items-center justify-between pb-3 mb-3 border-b border-zinc-800 text-[11px] text-zinc-400">
-                        <div className="flex items-center gap-2">
-                          <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block" />
-                          <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
-                          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
-                          <span className="text-zinc-500 ml-1">axe-accessibility.spec.ts</span>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => handleCopy("07", flagshipCard.telemetrySnippet)}
-                          className="hover:text-white transition-colors cursor-pointer flex items-center gap-1 text-[10px]"
-                          title="Copy snippet"
-                          aria-label="Copy axe accessibility assertion snippet"
-                        >
-                          {copiedId === "07" ? (
-                            <>
-                              <Check size={11} className="text-emerald-400" />
-                              <span className="text-emerald-400">Copied</span>
-                            </>
-                          ) : (
-                            <>
-                              <Copy size={11} />
-                              <span>Copy</span>
-                            </>
-                          )}
-                        </button>
-                      </div>
-
-                      {/* Code Execution Preview */}
-                      <pre className="text-emerald-400/90 whitespace-pre overflow-x-auto text-[11px] leading-relaxed mb-4">
-                        {flagshipCard.telemetrySnippet}
-                      </pre>
-
-                      {/* Live Diagnostic Audit Telemetry Output */}
-                      <div className="p-3 rounded-xl bg-zinc-900/90 border border-zinc-800 text-[10.5px] space-y-1.5 text-zinc-400">
-                        <div className="flex items-center justify-between text-zinc-300 font-semibold pb-1 border-b border-zinc-800">
-                          <span>AXE AUDIT REPORT (PORTFOLIO_V2)</span>
-                          <span className="text-emerald-400 font-mono-geist">100 / 100 PASS</span>
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <span>Color Contrast (4.5:1 ratio)</span>
-                          <span className="text-emerald-400 font-medium">✓ Pass (0 flags)</span>
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <span>ARIA Roles &amp; Live Landmarks</span>
-                          <span className="text-emerald-400 font-medium">✓ Pass (0 flags)</span>
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <span>Keyboard Focus Traps</span>
-                          <span className="text-emerald-400 font-medium">✓ Pass (0 trapped)</span>
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <span>prefers-reduced-motion</span>
-                          <span className="text-emerald-400 font-medium">✓ Honored Native</span>
-                        </div>
-                      </div>
-
-                      {/* Compliance Matrix Chips */}
-                      <div className="mt-4 pt-3 border-t border-zinc-800/80 flex flex-wrap items-center gap-1.5">
-                        <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                          WCAG 2.2 AA
-                        </span>
-                        <span className="text-[10px] px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">
-                          NVDA Verified
-                        </span>
-                        <span className="text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">
-                          VoiceOver Validated
-                        </span>
-                        <span className="text-[10px] px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20">
-                          Zero A11y Debt
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
             )}
           </motion.div>
         </AnimatePresence>
