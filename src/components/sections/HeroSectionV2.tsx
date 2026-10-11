@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
@@ -82,6 +83,39 @@ export default function HeroSectionV2() {
       className="relative min-h-[92vh] flex flex-col justify-center items-center pt-28 sm:pt-36 pb-20 sm:pb-28 overflow-hidden"
     >
       <div className="container-max px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col items-center text-center">
+        {/* Monolithic Glass Portrait Capsule */}
+        <motion.div
+          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, scale: 0.9, y: 10 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.05 }}
+          transition={{ duration: 0.5 }}
+          className="relative mb-5 sm:mb-6 group"
+        >
+          {/* Subtle ambient specular backlight aura */}
+          <div
+            className="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-emerald-500/25 via-cyan-500/20 to-amber-500/20 blur-md opacity-60 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+            aria-hidden="true"
+          />
+
+          {/* Frosted Glass Frame */}
+          <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full p-1 bg-white/70 dark:bg-white/[0.04] border-t border-black/20 dark:border-t-white/30 border-x border-b border-black/10 dark:border-white/10 backdrop-blur-2xl shadow-xl dark:shadow-2xl overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:border-emerald-500/40">
+            <Image
+              src="/images/profile.jpg"
+              alt="Muhammad Shazzad Mia — SQA Automation Engineer II"
+              width={112}
+              height={112}
+              priority
+              className="w-full h-full object-cover rounded-full select-none"
+            />
+          </div>
+
+          {/* Active Status Badge Pip */}
+          <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-zinc-950/90 dark:bg-[#030408]/95 border border-emerald-500/40 text-emerald-400 text-[10px] font-mono-geist font-semibold shadow-lg whitespace-nowrap select-none">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span>SQA II</span>
+          </div>
+        </motion.div>
+
         {/* Monospace Subtitle Badge */}
         <motion.div
           initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
