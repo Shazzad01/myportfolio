@@ -385,11 +385,49 @@
     transform: translateY(-2px);
   }
 
-  .border-specular-top {
-    border-top: 1px solid var(--border-specular);
-  }
-
   .horizon-light {
     background: var(--horizon-gradient);
+  }
+
+  /* Infinite Telemetry Marquee Keyframes */
+  @keyframes telemetry-scroll-ltr {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  @keyframes telemetry-scroll-rtl {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee-ltr {
+    animation: telemetry-scroll-ltr 38s linear infinite;
+    will-change: transform;
+  }
+
+  .animate-marquee-rtl {
+    animation: telemetry-scroll-rtl 38s linear infinite;
+    will-change: transform;
+  }
+
+  .animate-marquee-ltr:hover,
+  .animate-marquee-rtl:hover {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee-ltr,
+    .animate-marquee-rtl {
+      animation: none !important;
+      transform: none !important;
+    }
   }
 }
