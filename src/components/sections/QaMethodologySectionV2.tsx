@@ -10,14 +10,12 @@ import {
   ShoppingBag,
   Flame,
   Accessibility,
-  CheckCircle2,
   Terminal,
   Copy,
   Check,
   ChevronDown,
   Sparkles,
   Code2,
-  CheckCheck,
 } from "lucide-react";
 
 interface AuditDimension {
@@ -27,7 +25,7 @@ interface AuditDimension {
   tag: string;
   category: "core" | "e2e" | "resilience";
   summary: string;
-  criteria: string[];
+  chips: string[];
   telemetrySnippet: string;
   metric: string;
   engine: string;
@@ -39,15 +37,15 @@ const dimensions: AuditDimension[] = [
   {
     id: "01-functional",
     num: "01",
-    title: "Functional & Boundary Correctness",
-    tag: "[100% DETERMINISTIC]",
+    title: "Functional & Cart Boundaries",
+    tag: "[DETERMINISTIC]",
     category: "core",
     summary:
-      "Boundary Value Analysis (BVA), Equivalence Partitioning (EP), state transition validation, and negative input fuzzing across cart & payment webhooks.",
-    criteria: [
-      "BVA & Equivalence Partitioning across checkout quantity bounds (1 to 99 items)",
-      "Deterministic state transitions: Pending → Processing → Dispatched → Delivered",
-      "Negative payload fuzzing on payment webhook callbacks and discount injectors",
+      "Prevents cart crashes, invalid item quantities, and duplicate payment charges before they ever reach customers.",
+    chips: [
+      "1–99 Item Quantity Limits",
+      "Anti-Double Billing Guard",
+      "State: Cart → Confirmed",
     ],
     telemetrySnippet: `expect(order.status).toBe('CONFIRMED_IDEMPOTENT');\nawait expect(page.locator('[data-test="checkout-state"]')).toHaveAttribute('data-valid', 'true');`,
     metric: "0 Flaky Assertions · 100% Determinism",
@@ -58,17 +56,17 @@ const dimensions: AuditDimension[] = [
   {
     id: "02-visual",
     num: "02",
-    title: "Visual Hierarchy & Spatial Cadence",
-    tag: "[PIXEL PRECISION]",
+    title: "Visual & Responsive Precision",
+    tag: "[ZERO DRIFT]",
     category: "core",
     summary:
-      "8-point spatial cadence audit, fluid typography scaling (clamp()), Gestalt visual group balance, and zero layout shift (CLS < 0.05).",
-    criteria: [
-      "8-point geometric spatial cadence enforcement across paddings, margins, and gutters",
-      "Fluid clamp() scaling mathematically calibrated from 375px mobile to 1440px desktop",
-      "Zero Cumulative Layout Shift (CLS score < 0.01) with pre-allocated bounding boxes",
+      "Guarantees zero layout shifts and pixel-accurate alignment across mobile, tablet, and desktop screens.",
+    chips: [
+      "375px Mobile ↔ 1440px Desktop",
+      "CLS < 0.01 (Zero Shift)",
+      "8pt Spatial Rhythm",
     ],
-    telemetrySnippet: `const cls = await page.evaluate(() => window.performanceMetricCLS);\nexpect(cls).toBeLessThan(0.05); // Verified score: 0.008`,
+    telemetrySnippet: `const cls = await page.evaluate(() => window.performanceMetricCLS);\nexpect(cls).toBeLessThan(0.01); // Verified score: 0.008`,
     metric: "CLS < 0.01 · Zero Visual Drift",
     engine: "Pixelmatch + DevTools Engine",
     icon: Layout,
@@ -77,15 +75,15 @@ const dimensions: AuditDimension[] = [
   {
     id: "03-interaction",
     num: "03",
-    title: "Interaction & Keyboard Feedback",
+    title: "Keyboard & Interaction Flow",
     tag: "[ZERO KEY TRAPS]",
     category: "core",
     summary:
-      "Focus indicator visibility, keyboard navigation tab orders, enter/space trigger parity, and spring physics micro-interactions without latency.",
-    criteria: [
-      "2px high-contrast visible focus rings on all interactive triggers, links, and inputs",
-      "Logical sequential tab order traversal (tabindex='0') with zero modal focus traps",
-      "Enter / Space key trigger parity with 60fps spring-physics micro-interactions (< 16ms)",
+      "Ensures all buttons, modals, and menus are 100% navigable with Tab and Enter keys without getting trapped.",
+    chips: [
+      "Tab & Enter Key Parity",
+      "Visible Focus Rings",
+      "< 16ms Frame Budget",
     ],
     telemetrySnippet: `await page.keyboard.press('Tab');\nawait expect(page.locator(':focus')).toHaveAttribute('id', 'cta-trigger');\nawait page.keyboard.press('Enter');`,
     metric: "Zero Key Traps · < 16ms Frame Budget",
@@ -96,15 +94,15 @@ const dimensions: AuditDimension[] = [
   {
     id: "04-cross-browser",
     num: "04",
-    title: "Cross-Browser & Multi-Engine Concurrency",
+    title: "Cross-Browser Engine Parity",
     tag: "[PARALLEL GRID]",
     category: "e2e",
     summary:
-      "Chromium, Firefox, and WebKit parity; multi-viewport responsiveness (375px mobile to 1440px desktop); device emulation under 4 parallel workers.",
-    criteria: [
-      "Rendering engine parity verified across Chromium, Firefox, and WebKit engines",
-      "Multi-viewport responsiveness verified across 375px mobile, 768px tablet, and 1440px desktop",
-      "4 parallel GitHub Actions worker instances executing suites with zero state collision",
+      "Validates identical behavior across Chromium, Firefox, and WebKit running on 4 parallel cloud workers.",
+    chips: [
+      "Chrome · Firefox · Safari",
+      "4 Parallel Workers",
+      "Zero State Collisions",
     ],
     telemetrySnippet: `npx playwright test --project=chromium,firefox,webkit --workers=4\n// 3 engines · 4 parallel workers · 0 flakiness`,
     metric: "3 Browser Engines · 4 Parallel Workers",
@@ -115,15 +113,15 @@ const dimensions: AuditDimension[] = [
   {
     id: "05-e2e-journeys",
     num: "05",
-    title: "E2E User Shopping Journeys",
+    title: "E2E Checkout & Payment",
     tag: "[MISSION CRITICAL]",
     category: "e2e",
     summary:
-      "Full cart checkout, bKash & Nagad OTP payment gateways, multi-branch local inventory synchronization, and Algolia instant search verification (Shwapno & Paragon).",
-    criteria: [
-      "Full cart checkout automation with bKash & Nagad OTP mobile financial services",
-      "Real-time multi-branch local store inventory synchronization and stock reservation",
-      "Algolia instant search latency, facet filtering, and zero-result fallbacks (Shwapno & Paragon)",
+      "Automates full checkout journeys with bKash/Nagad OTP payments and live store stock sync (Shwapno & Paragon).",
+    chips: [
+      "bKash & Nagad OTP Flows",
+      "Multi-Branch Stock Sync",
+      "Instant Algolia Search",
     ],
     telemetrySnippet: `await cartPage.proceedToCheckout();\nawait paymentPage.selectMfs('bKash');\nawait paymentPage.submitOtp('123456');\nawait expect(orderPage.confirmationBadge).toBeVisible();`,
     metric: "120+ Critical Flows · 99.4% Platform Uptime",
@@ -134,15 +132,15 @@ const dimensions: AuditDimension[] = [
   {
     id: "06-edge-cases",
     num: "06",
-    title: "Edge Cases & Chaos Resilience",
+    title: "Chaos & Network Resilience",
     tag: "[CHAOS VERIFIED]",
     category: "resilience",
     summary:
-      "Network throttling (Slow 3G), API failure fallbacks, race conditions, empty data states, and rapid double-click debounce testing.",
-    criteria: [
-      "Network throttling simulation: Slow 3G latency, offline drops, and reconnect recovery",
-      "Upstream 500/503 API failure fallbacks with exponential backoff and toast notifications",
-      "Rapid double-click button debouncing preventing duplicate orders and double billing",
+      "Simulates Slow 3G network drops, API 500 errors, and rapid button double-clicks with graceful auto-recovery.",
+    chips: [
+      "Slow 3G Latency Simulation",
+      "Offline Auto-Recovery",
+      "Rapid Click Debouncing",
     ],
     telemetrySnippet: `await page.route('**/api/checkout', route => route.abort('failed'));\nawait page.locator('#pay-btn').click();\nawait expect(page.locator('.toast-fallback')).toContainText('Network retry in progress');`,
     metric: "0 Unhandled Rejections · 100% Graceful Fallback",
@@ -153,16 +151,16 @@ const dimensions: AuditDimension[] = [
   {
     id: "07-wcag-accessibility",
     num: "07",
-    title: "WCAG 2.1/2.2 AA Accessibility & Screen-Reader Compatibility",
+    title: "WCAG 2.1/2.2 AA Accessibility & Screen Readers",
     tag: "[WCAG AA CERTIFIED]",
     category: "resilience",
     summary:
-      "Contrast ratio ≥ 4.5:1, semantic ARIA roles & live regions, screen reader announcements (NVDA/VoiceOver), and prefers-reduced-motion compliance.",
-    criteria: [
-      "Color contrast ratio strictly ≥ 4.5:1 for body copy and ≥ 3.0:1 for graphical UI elements",
-      "Semantic HTML5 landmarks, ARIA live regions (aria-live='polite'), and explicit role contracts",
-      "Screen reader audio walkthrough verification using NVDA on Windows and VoiceOver on macOS",
-      "Strict honoring of prefers-reduced-motion user preference disabling non-essential transitions",
+      "Guarantees 100% keyboard accessibility, high-contrast text ratios, screen-reader audio announcements, and reduced-motion support for all users.",
+    chips: [
+      "4.5:1+ Contrast Ratio",
+      "NVDA & VoiceOver Tested",
+      "0 Keyboard Traps",
+      "Prefers-Reduced-Motion",
     ],
     telemetrySnippet: `const { violations } = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();\nexpect(violations).toEqual([]); // 0 accessibility violations`,
     metric: "100% Lighthouse A11y · 0 Axe Violations",
@@ -332,28 +330,27 @@ export default function QaMethodologySectionV2() {
                           </h3>
                         </div>
 
-                        {/* Concise Criteria Summary */}
-                        <p className="font-geist text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal mb-5">
+                        {/* Plain-English High-Impact Summary */}
+                        <p className="font-geist text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal mb-5 text-pretty">
                           {dimension.summary}
                         </p>
 
-                        {/* Verification Criteria Checklist (Always visible for clarity) */}
+                        {/* Visual Telemetry Feature Chips */}
                         <div className="space-y-2 mb-5">
                           <span className="font-mono-geist text-[10px] uppercase tracking-wider text-zinc-400 dark:text-zinc-500 font-semibold block">
-                            Audit Invariants:
+                            Verified Telemetry:
                           </span>
-                          {dimension.criteria.map((item, idx) => (
-                            <div
-                              key={idx}
-                              className="flex items-start gap-2 text-xs text-zinc-700 dark:text-zinc-300"
-                            >
-                              <CheckCircle2
-                                size={14}
-                                className="text-emerald-500 mt-0.5 shrink-0"
-                              />
-                              <span className="leading-relaxed">{item}</span>
-                            </div>
-                          ))}
+                          <div className="flex flex-wrap gap-1.5">
+                            {dimension.chips.map((chip, idx) => (
+                              <span
+                                key={idx}
+                                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-black/[0.03] dark:bg-white/[0.04] border border-black/5 dark:border-white/10 font-mono-geist text-[11px] text-zinc-700 dark:text-zinc-300 font-medium tracking-tight"
+                              >
+                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/80 shrink-0" />
+                                <span>{chip}</span>
+                              </span>
+                            ))}
+                          </div>
                         </div>
                       </div>
 
@@ -492,21 +489,26 @@ export default function QaMethodologySectionV2() {
                         </div>
                       </div>
 
-                      <p className="font-geist text-base text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal mb-5">
+                      <p className="font-geist text-base text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal mb-5 text-pretty">
                         {flagshipCard.summary}
                       </p>
 
-                      {/* 4 Criteria Invariants */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-                        {flagshipCard.criteria.map((item, idx) => (
-                          <div
-                            key={idx}
-                            className="flex items-start gap-2 text-xs text-zinc-700 dark:text-zinc-300 p-2.5 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5"
-                          >
-                            <CheckCheck size={15} className="text-emerald-500 mt-0.5 shrink-0" />
-                            <span className="leading-relaxed">{item}</span>
-                          </div>
-                        ))}
+                      {/* Visual Telemetry Feature Chips */}
+                      <div className="space-y-2 mb-6">
+                        <span className="font-mono-geist text-[10px] uppercase tracking-wider text-zinc-400 dark:text-zinc-500 font-semibold block">
+                          Verified Accessibility Controls:
+                        </span>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                          {flagshipCard.chips.map((chip, idx) => (
+                            <div
+                              key={idx}
+                              className="flex items-center gap-2 text-xs font-mono-geist font-medium text-zinc-700 dark:text-zinc-300 px-3 py-2 rounded-xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/5 dark:border-white/10"
+                            >
+                              <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0 shadow-[0_0_6px_rgba(52,211,153,0.5)]" />
+                              <span className="truncate">{chip}</span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
 
