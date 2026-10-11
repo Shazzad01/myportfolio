@@ -96,7 +96,7 @@ export default function AboutSectionV2() {
             transition={{ duration: 0.45, delay: 0.08 }}
             className="font-geist text-base sm:text-lg text-zinc-600 dark:text-zinc-400 font-normal leading-relaxed"
           >
-            At <strong className="text-zinc-900 dark:text-white font-semibold">Brain Station 23</strong>, I design autonomous verification pipelines for mission-critical e-commerce platforms (<strong className="text-zinc-900 dark:text-white font-semibold">Shwapno &amp; Paragon</strong>), replacing brittle manual test cycles with deterministic Playwright automation and resilient JMeter load benchmarks.
+            At <strong className="text-zinc-900 dark:text-white font-semibold">Brain Station 23</strong>, I design autonomous verification pipelines for mission-critical e-commerce platforms (<strong className="text-zinc-900 dark:text-white font-semibold">Shwapno &amp; Paragon</strong>), replacing brittle manual test cycles with deterministic Playwright automation, resilient JMeter load benchmarks, and agentic workflows (Claude Code &amp; Antigravity IDE).
           </motion.p>
         </div>
 

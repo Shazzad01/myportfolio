@@ -229,6 +229,12 @@ export default function HeroSectionV2() {
               <MapPin size={13} className="text-zinc-400" />
               <span>Dhaka, Bangladesh (UTC+6)</span>
             </div>
+
+            {/* Agentic SDET Telemetry Pill */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-black/10 dark:border-white/10 bg-white/60 dark:bg-white/[0.02] backdrop-blur-md text-zinc-600 dark:text-zinc-400 shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+              <span>AI-Augmented SQA · Claude Code &amp; Antigravity</span>
+            </div>
           </div>
         </motion.div>
 

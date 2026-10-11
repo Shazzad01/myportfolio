@@ -20,6 +20,9 @@ import {
   JiraIcon,
   AzureBoardsIcon,
   TrelloIcon,
+  ClaudeCodeIcon,
+  AntigravityIcon,
+  VSCodeIcon,
 } from "@/components/ui/SvgIcons";
 
 interface SkillItem {
@@ -428,6 +431,39 @@ export default function SkillsSectionV2() {
             })}
           </motion.div>
         </AnimatePresence>
+
+        {/* Clean Minimalist Strip: Modern IDEs & Agentic Toolchain */}
+        <div className="mt-10 p-4 sm:p-5 rounded-2xl bg-white/[0.02] dark:bg-white/[0.02] border-t border-black/15 dark:border-t-white/25 border-x border-b border-black/5 dark:border-white/5 backdrop-blur-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <span className="font-mono-geist text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
+              [AGENTIC_TOOLING_&amp;_IDES]
+            </span>
+            <span className="hidden sm:inline text-zinc-400 dark:text-zinc-600">•</span>
+            <span className="text-xs font-geist text-zinc-600 dark:text-zinc-400 font-normal">
+              Modern engineering environments &amp; autonomous agent workflows
+            </span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2.5">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black/[0.03] dark:bg-white/[0.04] border border-black/5 dark:border-white/10 hover:border-black/20 dark:hover:border-white/20 transition-all font-mono-geist text-xs text-zinc-800 dark:text-zinc-200">
+              <ClaudeCodeIcon className="w-4 h-4 shrink-0" />
+              <span className="font-semibold">Claude Code CLI</span>
+              <span className="text-[10px] text-zinc-400 dark:text-zinc-500">Autonomous Agent</span>
+            </div>
+
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black/[0.03] dark:bg-white/[0.04] border border-black/5 dark:border-white/10 hover:border-black/20 dark:hover:border-white/20 transition-all font-mono-geist text-xs text-zinc-800 dark:text-zinc-200">
+              <AntigravityIcon className="w-4 h-4 shrink-0" />
+              <span className="font-semibold">Antigravity IDE</span>
+              <span className="text-[10px] text-zinc-400 dark:text-zinc-500">Agentic Workspace</span>
+            </div>
+
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black/[0.03] dark:bg-white/[0.04] border border-black/5 dark:border-white/10 hover:border-black/20 dark:hover:border-white/20 transition-all font-mono-geist text-xs text-zinc-800 dark:text-zinc-200">
+              <VSCodeIcon className="w-4 h-4 shrink-0" />
+              <span className="font-semibold">VS Code</span>
+              <span className="text-[10px] text-zinc-400 dark:text-zinc-500">Core Editor</span>
+            </div>
+          </div>
+        </div>
 
         {/* Competency Summary & Architecture Footer */}
         <div className="mt-14 pt-8 border-t border-black/10 dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between text-xs font-mono-geist text-zinc-500 dark:text-zinc-400 gap-4">

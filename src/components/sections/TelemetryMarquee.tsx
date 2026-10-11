@@ -18,6 +18,9 @@ import {
   GitLabIcon,
   JiraIcon,
   AzureBoardsIcon,
+  ClaudeCodeIcon,
+  AntigravityIcon,
+  VSCodeIcon,
 } from "@/components/ui/SvgIcons";
 
 interface TechToolItem {
@@ -140,6 +143,27 @@ const techToolItems: TechToolItem[] = [
     role: "RTM Enterprise Requirements Mapping",
     badge: "TEST_OPS",
     icon: AzureBoardsIcon,
+  },
+  {
+    id: "claude-code",
+    name: "Claude Code",
+    role: "Autonomous Agentic CLI · Test Scaffolding",
+    badge: "AI_AGENT",
+    icon: ClaudeCodeIcon,
+  },
+  {
+    id: "antigravity",
+    name: "Antigravity IDE",
+    role: "Agentic Workspace · Multi-Model Pair Programming",
+    badge: "AGENTIC_IDE",
+    icon: AntigravityIcon,
+  },
+  {
+    id: "vscode",
+    name: "VS Code",
+    role: "Primary IDE · Playwright & Container Extension Matrix",
+    badge: "CORE_IDE",
+    icon: VSCodeIcon,
   },
 ];
 
