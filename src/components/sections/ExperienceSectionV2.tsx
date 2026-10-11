@@ -677,6 +677,9 @@ export default function ExperienceSectionV2() {
 
                 {/* Minimalist Visual Chips */}
                 <div className="flex flex-wrap items-center gap-2 shrink-0">
+                  <span className="font-mono-geist text-xs px-2.5 py-1 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 font-semibold whitespace-nowrap">
+                    IEEE Published Researcher · ICCCI &apos;23
+                  </span>
                   <span className="font-mono-geist text-xs px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-bold tabular-nums whitespace-nowrap">
                     CGPA 3.59 / 4.00
                   </span>
@@ -685,9 +688,6 @@ export default function ExperienceSectionV2() {
                   </span>
                   <span className="font-mono-geist text-xs px-2.5 py-1 rounded-lg bg-black/[0.03] dark:bg-white/[0.04] border border-black/5 dark:border-white/5 text-zinc-700 dark:text-zinc-300 font-medium whitespace-nowrap">
                     Distributed Systems
-                  </span>
-                  <span className="font-mono-geist text-xs px-2.5 py-1 rounded-lg bg-black/[0.03] dark:bg-white/[0.04] border border-black/5 dark:border-white/5 text-zinc-700 dark:text-zinc-300 font-medium whitespace-nowrap">
-                    DB Architecture
                   </span>
                 </div>
               </div>
@@ -705,6 +705,8 @@ export default function ExperienceSectionV2() {
 
           <div className="flex items-center gap-3">
             <span>Brain Station 23</span>
+            <span className="text-zinc-300 dark:text-zinc-700">•</span>
+            <span>IEEE Published Researcher</span>
             <span className="text-zinc-300 dark:text-zinc-700">•</span>
             <span>nopStation Agility &amp; Excellence Award</span>
           </div>
