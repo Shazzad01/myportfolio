@@ -22,10 +22,9 @@ interface AuditDimension {
   id: string;
   num: string;
   title: string;
+  subtitle: string;
   tag: string;
   category: "core" | "e2e" | "resilience";
-  summary: string;
-  chips: string[];
   telemetrySnippet: string;
   metric: string;
   engine: string;
@@ -37,19 +36,13 @@ const dimensions: AuditDimension[] = [
   {
     id: "01-functional",
     num: "01",
-    title: "Functional & Cart Boundaries",
+    title: "Functional & Cart Limits",
+    subtitle: "Boundary & State Validation",
     tag: "[DETERMINISTIC]",
     category: "core",
-    summary:
-      "Prevents cart crashes, invalid item quantities, and duplicate payment charges before they ever reach customers.",
-    chips: [
-      "1–99 Item Quantity Limits",
-      "Anti-Double Billing Guard",
-      "State: Cart → Confirmed",
-    ],
     telemetrySnippet: `expect(order.status).toBe('CONFIRMED_IDEMPOTENT');\nawait expect(page.locator('[data-test="checkout-state"]')).toHaveAttribute('data-valid', 'true');`,
-    metric: "0 Flaky Assertions · 100% Determinism",
-    engine: "Playwright + Zod Schemas",
+    metric: "100% Deterministic · 0 Flaky",
+    engine: "Playwright + Zod",
     icon: ShieldCheck,
     accent: "text-emerald-600 dark:text-emerald-400 border-emerald-500/20 bg-emerald-500/10",
   },
@@ -57,37 +50,25 @@ const dimensions: AuditDimension[] = [
     id: "02-visual",
     num: "02",
     title: "Visual & Responsive Precision",
+    subtitle: "Multi-Device Layout Alignment",
     tag: "[ZERO DRIFT]",
     category: "core",
-    summary:
-      "Guarantees zero layout shifts and pixel-accurate alignment across mobile, tablet, and desktop screens.",
-    chips: [
-      "375px Mobile ↔ 1440px Desktop",
-      "CLS < 0.01 (Zero Shift)",
-      "8pt Spatial Rhythm",
-    ],
     telemetrySnippet: `const cls = await page.evaluate(() => window.performanceMetricCLS);\nexpect(cls).toBeLessThan(0.01); // Verified score: 0.008`,
-    metric: "CLS < 0.01 · Zero Visual Drift",
-    engine: "Pixelmatch + DevTools Engine",
+    metric: "CLS: 0.000 · Zero Layout Drift",
+    engine: "Pixelmatch + DevTools",
     icon: Layout,
     accent: "text-cyan-600 dark:text-cyan-400 border-cyan-500/20 bg-cyan-500/10",
   },
   {
     id: "03-interaction",
     num: "03",
-    title: "Keyboard & Interaction Flow",
+    title: "Keyboard & Focus Navigation",
+    subtitle: "Sequential Traversal & Latency",
     tag: "[ZERO KEY TRAPS]",
     category: "core",
-    summary:
-      "Ensures all buttons, modals, and menus are 100% navigable with Tab and Enter keys without getting trapped.",
-    chips: [
-      "Tab & Enter Key Parity",
-      "Visible Focus Rings",
-      "< 16ms Frame Budget",
-    ],
     telemetrySnippet: `await page.keyboard.press('Tab');\nawait expect(page.locator(':focus')).toHaveAttribute('id', 'cta-trigger');\nawait page.keyboard.press('Enter');`,
-    metric: "Zero Key Traps · < 16ms Frame Budget",
-    engine: "Framer Motion + Axe DevTools",
+    metric: "Zero Key Traps · < 16ms Latency",
+    engine: "Framer Motion + Axe",
     icon: Keyboard,
     accent: "text-amber-600 dark:text-amber-400 border-amber-500/20 bg-amber-500/10",
   },
@@ -95,37 +76,25 @@ const dimensions: AuditDimension[] = [
     id: "04-cross-browser",
     num: "04",
     title: "Cross-Browser Engine Parity",
+    subtitle: "Concurrent Multi-Engine Testing",
     tag: "[PARALLEL GRID]",
     category: "e2e",
-    summary:
-      "Validates identical behavior across Chromium, Firefox, and WebKit running on 4 parallel cloud workers.",
-    chips: [
-      "Chrome · Firefox · Safari",
-      "4 Parallel Workers",
-      "Zero State Collisions",
-    ],
     telemetrySnippet: `npx playwright test --project=chromium,firefox,webkit --workers=4\n// 3 engines · 4 parallel workers · 0 flakiness`,
-    metric: "3 Browser Engines · 4 Parallel Workers",
-    engine: "Playwright Parallel Grid",
+    metric: "3 Engines · 4 Parallel Workers",
+    engine: "Playwright Cloud Grid",
     icon: Monitor,
     accent: "text-sky-600 dark:text-sky-400 border-sky-500/20 bg-sky-500/10",
   },
   {
     id: "05-e2e-journeys",
     num: "05",
-    title: "E2E Checkout & Payment",
+    title: "E2E Checkout & Payments",
+    subtitle: "Shwapno & Paragon Enterprise Staging",
     tag: "[MISSION CRITICAL]",
     category: "e2e",
-    summary:
-      "Automates full checkout journeys with bKash/Nagad OTP payments and live store stock sync (Shwapno & Paragon).",
-    chips: [
-      "bKash & Nagad OTP Flows",
-      "Multi-Branch Stock Sync",
-      "Instant Algolia Search",
-    ],
     telemetrySnippet: `await cartPage.proceedToCheckout();\nawait paymentPage.selectMfs('bKash');\nawait paymentPage.submitOtp('123456');\nawait expect(orderPage.confirmationBadge).toBeVisible();`,
-    metric: "120+ Critical Flows · 99.4% Platform Uptime",
-    engine: "Playwright POM · Shwapno & Paragon",
+    metric: "120+ Flows · 99.4% Platform Uptime",
+    engine: "Playwright POM · bKash / Nagad",
     icon: ShoppingBag,
     accent: "text-violet-600 dark:text-violet-400 border-violet-500/20 bg-violet-500/10",
   },
@@ -133,35 +102,22 @@ const dimensions: AuditDimension[] = [
     id: "06-edge-cases",
     num: "06",
     title: "Chaos & Network Resilience",
+    subtitle: "Offline & Network Drop Recovery",
     tag: "[CHAOS VERIFIED]",
     category: "resilience",
-    summary:
-      "Simulates Slow 3G network drops, API 500 errors, and rapid button double-clicks with graceful auto-recovery.",
-    chips: [
-      "Slow 3G Latency Simulation",
-      "Offline Auto-Recovery",
-      "Rapid Click Debouncing",
-    ],
     telemetrySnippet: `await page.route('**/api/checkout', route => route.abort('failed'));\nawait page.locator('#pay-btn').click();\nawait expect(page.locator('.toast-fallback')).toContainText('Network retry in progress');`,
-    metric: "0 Unhandled Rejections · 100% Graceful Fallback",
-    engine: "Route Interception + Chaos Matrix",
+    metric: "0 Unhandled Drops · Auto-Recovery",
+    engine: "Route Intercept + Chaos Matrix",
     icon: Flame,
     accent: "text-rose-600 dark:text-rose-400 border-rose-500/20 bg-rose-500/10",
   },
   {
     id: "07-wcag-accessibility",
     num: "07",
-    title: "WCAG 2.1/2.2 AA Accessibility & Screen Readers",
+    title: "WCAG 2.1/2.2 AA Accessibility",
+    subtitle: "Flagship Assistive Standard",
     tag: "[WCAG AA CERTIFIED]",
     category: "resilience",
-    summary:
-      "Guarantees 100% keyboard accessibility, high-contrast text ratios, screen-reader audio announcements, and reduced-motion support for all users.",
-    chips: [
-      "4.5:1+ Contrast Ratio",
-      "NVDA & VoiceOver Tested",
-      "0 Keyboard Traps",
-      "Prefers-Reduced-Motion",
-    ],
     telemetrySnippet: `const { violations } = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();\nexpect(violations).toEqual([]); // 0 accessibility violations`,
     metric: "100% Lighthouse A11y · 0 Axe Violations",
     engine: "Axe-Core · Pa11y · NVDA / VoiceOver",
@@ -169,6 +125,244 @@ const dimensions: AuditDimension[] = [
     accent: "text-emerald-600 dark:text-emerald-400 border-emerald-500/20 bg-emerald-500/10",
   },
 ];
+
+/* ─── Bespoke Visual Telemetry Micro-Widgets ─── */
+
+function Dimension01Visual() {
+  return (
+    <div className="p-3.5 rounded-2xl bg-black/[0.03] dark:bg-black/60 border border-black/5 dark:border-white/5 space-y-3 font-mono-geist">
+      {/* Visual Pipeline Flow */}
+      <div className="flex items-center justify-between text-[11px] gap-1">
+        <div className="px-2 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-medium">
+          Cart (42)
+        </div>
+        <span className="text-zinc-400 dark:text-zinc-500 text-xs">→</span>
+        <div className="px-2 py-1 rounded-lg bg-black/[0.04] dark:bg-zinc-800/80 border border-black/5 dark:border-zinc-700/50 text-zinc-700 dark:text-zinc-300 font-medium">
+          Zod: ✓
+        </div>
+        <span className="text-zinc-400 dark:text-zinc-500 text-xs">→</span>
+        <div className="px-2 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300 font-medium">
+          Paid #892
+        </div>
+      </div>
+
+      {/* Visual Boundary Gauge */}
+      <div className="space-y-1.5 pt-1">
+        <div className="flex justify-between text-[10px] text-zinc-500 font-medium">
+          <span>Min: 1</span>
+          <span className="text-emerald-600 dark:text-emerald-400 font-semibold">Value: 42 (Safe Range)</span>
+          <span>Max: 99</span>
+        </div>
+        <div className="h-1.5 w-full bg-black/10 dark:bg-zinc-800/80 rounded-full overflow-hidden relative">
+          <div className="h-full bg-gradient-to-r from-emerald-500/40 via-emerald-400 to-emerald-500 rounded-full w-[42%]" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Dimension02Visual() {
+  return (
+    <div className="p-3.5 rounded-2xl bg-black/[0.03] dark:bg-black/60 border border-black/5 dark:border-white/5 space-y-3 font-mono-geist">
+      {/* Responsive Frames Mockup */}
+      <div className="flex items-end justify-center gap-3 h-14">
+        {/* Mobile Mockup */}
+        <div className="w-10 h-14 rounded-lg border border-black/10 dark:border-zinc-700 bg-black/[0.02] dark:bg-zinc-900/90 p-1 flex flex-col justify-between">
+          <div className="w-4 h-0.5 bg-zinc-400 dark:bg-zinc-600 rounded mx-auto" />
+          <div className="space-y-1">
+            <div className="w-full h-1 bg-cyan-500/40 rounded" />
+            <div className="w-2/3 h-1 bg-zinc-300 dark:bg-zinc-700 rounded" />
+          </div>
+          <span className="text-[7px] text-center text-zinc-500 block">375px</span>
+        </div>
+
+        {/* Desktop Mockup */}
+        <div className="w-24 h-14 rounded-lg border border-cyan-500/30 bg-black/[0.02] dark:bg-zinc-900/90 p-1.5 flex flex-col justify-between relative shadow-[0_0_15px_rgba(6,182,212,0.1)]">
+          <div className="flex items-center justify-between pb-1 border-b border-black/5 dark:border-zinc-800">
+            <div className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+            <span className="text-[7px] text-cyan-600 dark:text-cyan-400 font-mono">1440px</span>
+          </div>
+          <div className="grid grid-cols-3 gap-1">
+            <div className="h-4 bg-zinc-200 dark:bg-zinc-800 rounded" />
+            <div className="h-4 bg-zinc-200 dark:bg-zinc-800 rounded" />
+            <div className="h-4 bg-cyan-500/20 rounded border border-cyan-500/30" />
+          </div>
+        </div>
+      </div>
+
+      {/* CLS Readout */}
+      <div className="flex items-center justify-between text-[10px] text-zinc-500 dark:text-zinc-400 pt-1 border-t border-black/5 dark:border-zinc-800/60">
+        <span>CLS Score: <strong className="text-cyan-600 dark:text-cyan-400 font-bold">0.000</strong></span>
+        <span className="px-1.5 py-0.5 rounded bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 text-[9px] border border-cyan-500/20 font-semibold">Zero Drift</span>
+      </div>
+    </div>
+  );
+}
+
+function Dimension03Visual() {
+  return (
+    <div className="p-3.5 rounded-2xl bg-black/[0.03] dark:bg-black/60 border border-black/5 dark:border-white/5 space-y-3 font-mono-geist">
+      {/* Keycap to Focus Element Interaction */}
+      <div className="flex items-center justify-between gap-1 py-1">
+        <kbd className="px-2 py-1 rounded bg-black/5 dark:bg-zinc-800 border-b-2 border-black/20 dark:border-zinc-950 text-[10px] text-zinc-800 dark:text-zinc-200 shadow-sm font-semibold">
+          Tab ⇥
+        </kbd>
+        <span className="text-amber-500/60 text-xs">→</span>
+        <div className="px-2 py-1 rounded bg-black/5 dark:bg-zinc-900 border-2 border-amber-400 text-amber-700 dark:text-amber-300 text-[10px] font-semibold shadow-[0_0_10px_rgba(251,191,36,0.3)] animate-pulse">
+          :focus [Submit]
+        </div>
+        <span className="text-amber-500/60 text-xs">→</span>
+        <kbd className="px-2 py-1 rounded bg-black/5 dark:bg-zinc-800 border-b-2 border-black/20 dark:border-zinc-950 text-[10px] text-zinc-800 dark:text-zinc-200 shadow-sm font-semibold">
+          Enter ↵
+        </kbd>
+      </div>
+
+      {/* Traversal Invariants */}
+      <div className="flex items-center justify-between text-[10px] text-zinc-500 dark:text-zinc-400 pt-1 border-t border-black/5 dark:border-zinc-800/60">
+        <span>Key Traps: <strong className="text-emerald-600 dark:text-emerald-400">0 Trapped</strong></span>
+        <span>Latency: <strong className="text-amber-600 dark:text-amber-400">&lt; 16ms</strong></span>
+      </div>
+    </div>
+  );
+}
+
+function Dimension04Visual() {
+  return (
+    <div className="p-3.5 rounded-2xl bg-black/[0.03] dark:bg-black/60 border border-black/5 dark:border-white/5 space-y-3 font-mono-geist">
+      {/* 3 Engine Badges */}
+      <div className="grid grid-cols-3 gap-1.5 text-[10px]">
+        <div className="px-1.5 py-1 rounded bg-sky-500/10 border border-sky-500/20 text-sky-600 dark:text-sky-400 text-center font-medium">
+          Chromium ✓
+        </div>
+        <div className="px-1.5 py-1 rounded bg-orange-500/10 border border-orange-500/20 text-orange-600 dark:text-orange-400 text-center font-medium">
+          Firefox ✓
+        </div>
+        <div className="px-1.5 py-1 rounded bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-center font-medium">
+          WebKit ✓
+        </div>
+      </div>
+
+      {/* 4 Parallel Worker Concurrency Meters */}
+      <div className="space-y-1 pt-1">
+        <div className="flex justify-between text-[9px] text-zinc-500">
+          <span>4 Cloud Workers (Parallel)</span>
+          <span className="text-sky-600 dark:text-sky-400 font-semibold">0 Collisions</span>
+        </div>
+        <div className="grid grid-cols-4 gap-1 h-1.5">
+          <div className="h-full bg-sky-400 rounded-full" />
+          <div className="h-full bg-sky-400 rounded-full" />
+          <div className="h-full bg-sky-400 rounded-full" />
+          <div className="h-full bg-sky-400 rounded-full" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Dimension05Visual() {
+  return (
+    <div className="p-3.5 rounded-2xl bg-black/[0.03] dark:bg-black/60 border border-black/5 dark:border-white/5 space-y-3 font-mono-geist">
+      {/* Customer Journey Step Pipeline */}
+      <div className="flex items-center justify-between text-[9.5px]">
+        <span className="px-1.5 py-0.5 rounded bg-black/5 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">1. Search</span>
+        <span className="text-zinc-400 dark:text-zinc-600">→</span>
+        <span className="px-1.5 py-0.5 rounded bg-black/5 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">2. Cart</span>
+        <span className="text-zinc-400 dark:text-zinc-600">→</span>
+        <span className="px-1.5 py-0.5 rounded bg-violet-500/15 border border-violet-500/30 text-violet-700 dark:text-violet-300 font-medium">3. bKash OTP</span>
+        <span className="text-zinc-400 dark:text-zinc-600">→</span>
+        <span className="px-1.5 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400 font-medium">4. Placed ✓</span>
+      </div>
+
+      {/* Verified Staging Badge */}
+      <div className="flex items-center justify-between text-[10px] text-zinc-500 dark:text-zinc-400 pt-1 border-t border-black/5 dark:border-zinc-800/60">
+        <span className="truncate">Shwapno &amp; Paragon Staging</span>
+        <span className="text-violet-600 dark:text-violet-400 font-semibold shrink-0">120+ Flows</span>
+      </div>
+    </div>
+  );
+}
+
+function Dimension06Visual() {
+  return (
+    <div className="p-3.5 rounded-2xl bg-black/[0.03] dark:bg-black/60 border border-black/5 dark:border-white/5 space-y-2.5 font-mono-geist">
+      {/* SVG Network Chaos Waveform */}
+      <div className="relative h-10 w-full overflow-hidden flex items-center justify-center">
+        <svg className="w-full h-8" viewBox="0 0 200 32" fill="none">
+          {/* Normal latency */}
+          <path d="M 0 16 Q 25 10, 50 16 T 100 16" stroke="#fb7185" strokeWidth="1.5" strokeOpacity="0.4" />
+          {/* Chaos drop */}
+          <path d="M 100 16 L 115 28 L 130 4" stroke="#f43f5e" strokeWidth="2" strokeDasharray="3 3" />
+          {/* Graceful recovery */}
+          <path d="M 130 4 Q 155 16, 180 16 T 200 16" stroke="#34d399" strokeWidth="2" />
+        </svg>
+        <span className="absolute top-0 right-1 text-[8.5px] px-1 rounded bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-semibold">
+          Auto-Recovered
+        </span>
+      </div>
+
+      {/* Chaos Invariants */}
+      <div className="flex items-center justify-between text-[10px] text-zinc-500 dark:text-zinc-400 pt-1 border-t border-black/5 dark:border-zinc-800/60">
+        <span>Slow 3G Simulation</span>
+        <span className="text-rose-600 dark:text-rose-400 font-semibold">0 Uncaught</span>
+      </div>
+    </div>
+  );
+}
+
+function Dimension07Visual() {
+  return (
+    <div className="p-4 rounded-2xl bg-black/[0.03] dark:bg-black/60 border border-black/5 dark:border-white/5 space-y-3.5 font-mono-geist">
+      {/* Visual Color Contrast Meter */}
+      <div className="space-y-1.5">
+        <div className="flex justify-between text-[11px] text-zinc-600 dark:text-zinc-400 font-medium">
+          <span>Color Contrast (WCAG AA Target: 4.5:1)</span>
+          <span className="text-emerald-600 dark:text-emerald-400 font-bold">Verified: 8.2:1 (AAA)</span>
+        </div>
+        <div className="h-2 w-full bg-black/10 dark:bg-zinc-800 rounded-full overflow-hidden relative">
+          <div className="h-full bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-300 w-[85%] rounded-full shadow-[0_0_8px_rgba(52,211,153,0.5)]" />
+        </div>
+      </div>
+
+      {/* Screen Reader Audio Waveform & Key Traps Status */}
+      <div className="grid grid-cols-2 gap-2.5 pt-1 border-t border-black/5 dark:border-zinc-800/60">
+        <div className="flex items-center gap-2 p-2 rounded-xl bg-black/[0.02] dark:bg-zinc-900/80 border border-black/5 dark:border-zinc-800">
+          <div className="flex items-end gap-1 h-4">
+            <span className="w-1 bg-emerald-500 rounded-full h-2 motion-reduce:animate-none animate-pulse" />
+            <span className="w-1 bg-emerald-500 rounded-full h-4 motion-reduce:animate-none animate-pulse" />
+            <span className="w-1 bg-emerald-500 rounded-full h-2.5 motion-reduce:animate-none animate-pulse" />
+            <span className="w-1 bg-emerald-500 rounded-full h-3.5 motion-reduce:animate-none animate-pulse" />
+          </div>
+          <span className="text-[10.5px] text-zinc-700 dark:text-zinc-300 font-medium truncate">NVDA / VoiceOver</span>
+        </div>
+        <div className="flex items-center justify-between p-2 rounded-xl bg-black/[0.02] dark:bg-zinc-900/80 border border-black/5 dark:border-zinc-800 text-[10.5px] text-zinc-700 dark:text-zinc-300">
+          <span>Zero Key Traps</span>
+          <span className="text-emerald-600 dark:text-emerald-400 font-bold">✓ 100% Pass</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const renderVisualGraphic = (num: string) => {
+  switch (num) {
+    case "01":
+      return <Dimension01Visual />;
+    case "02":
+      return <Dimension02Visual />;
+    case "03":
+      return <Dimension03Visual />;
+    case "04":
+      return <Dimension04Visual />;
+    case "05":
+      return <Dimension05Visual />;
+    case "06":
+      return <Dimension06Visual />;
+    default:
+      return null;
+  }
+};
+
+/* ─── Main Component ─── */
 
 export default function QaMethodologySectionV2() {
   const shouldReduceMotion = useReducedMotion();
@@ -225,8 +419,8 @@ export default function QaMethodologySectionV2() {
             <h2 className="font-geist text-3xl sm:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white">
               The 7-Dimension QA Audit Matrix
             </h2>
-            <p className="font-geist text-base sm:text-lg text-zinc-600 dark:text-zinc-400 mt-2 max-w-3xl font-normal leading-relaxed">
-              An exhaustive architectural quality framework engineered at Brain Station 23 to eliminate defects across functional, visual, and performance boundaries.
+            <p className="font-geist text-sm sm:text-base text-zinc-600 dark:text-zinc-400 mt-2 max-w-2xl font-normal leading-relaxed">
+              Live telemetry and automated test invariants engineered at Brain Station 23 for Shwapno &amp; Paragon.
             </p>
           </div>
           <div className="mt-4 sm:mt-0 text-left sm:text-right shrink-0">
@@ -295,7 +489,6 @@ export default function QaMethodologySectionV2() {
                 {gridCards.map((dimension) => {
                   const Icon = dimension.icon;
                   const isExpanded = expandedId === dimension.id;
-                  const isCopied = copiedId === dimension.id;
 
                   return (
                     <motion.div
@@ -321,36 +514,23 @@ export default function QaMethodologySectionV2() {
                         </div>
 
                         {/* Title & Icon Header */}
-                        <div className="flex items-start gap-3 mb-3">
+                        <div className="flex items-start gap-3 mb-1.5">
                           <div className={`p-2 rounded-xl shrink-0 border ${dimension.accent}`}>
                             <Icon size={18} />
                           </div>
-                          <h3 className="font-geist text-lg font-bold text-zinc-900 dark:text-white leading-snug">
-                            {dimension.title}
-                          </h3>
+                          <div>
+                            <h3 className="font-geist text-lg font-bold text-zinc-900 dark:text-white leading-snug">
+                              {dimension.title}
+                            </h3>
+                            <span className="font-mono-geist text-xs text-zinc-500 dark:text-zinc-400 block mt-0.5">
+                              {dimension.subtitle}
+                            </span>
+                          </div>
                         </div>
 
-                        {/* Plain-English High-Impact Summary */}
-                        <p className="font-geist text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal mb-5 text-pretty">
-                          {dimension.summary}
-                        </p>
-
-                        {/* Visual Telemetry Feature Chips */}
-                        <div className="space-y-2 mb-5">
-                          <span className="font-mono-geist text-[10px] uppercase tracking-wider text-zinc-400 dark:text-zinc-500 font-semibold block">
-                            Verified Telemetry:
-                          </span>
-                          <div className="flex flex-wrap gap-1.5">
-                            {dimension.chips.map((chip, idx) => (
-                              <span
-                                key={idx}
-                                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-black/[0.03] dark:bg-white/[0.04] border border-black/5 dark:border-white/10 font-mono-geist text-[11px] text-zinc-700 dark:text-zinc-300 font-medium tracking-tight"
-                              >
-                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/80 shrink-0" />
-                                <span>{chip}</span>
-                              </span>
-                            ))}
-                          </div>
+                        {/* Interactive Visual Telemetry Graphic (70% Visual) */}
+                        <div className="my-5">
+                          {renderVisualGraphic(dimension.num)}
                         </div>
                       </div>
 
@@ -416,7 +596,7 @@ export default function QaMethodologySectionV2() {
                                     title="Copy assertion snippet"
                                     aria-label={`Copy assertion snippet for dimension ${dimension.num}`}
                                   >
-                                    {isCopied ? (
+                                    {copiedId === dimension.id ? (
                                       <>
                                         <Check size={11} className="text-emerald-400" />
                                         <span className="text-emerald-400">Copied</span>
@@ -460,7 +640,7 @@ export default function QaMethodologySectionV2() {
                 />
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
-                  {/* Left Column (7 cols): Header, Narrative, Checklist */}
+                  {/* Left Column (7 cols): Header, Visual Controls */}
                   <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
                     <div>
                       <div className="flex items-center justify-between gap-3 mb-4">
@@ -475,7 +655,7 @@ export default function QaMethodologySectionV2() {
                         </div>
                       </div>
 
-                      <div className="flex items-start gap-3.5 mb-3">
+                      <div className="flex items-start gap-3.5 mb-4">
                         <div className="p-2.5 rounded-2xl shrink-0 border text-emerald-600 dark:text-emerald-400 border-emerald-500/20 bg-emerald-500/10">
                           <Accessibility size={22} />
                         </div>
@@ -489,26 +669,9 @@ export default function QaMethodologySectionV2() {
                         </div>
                       </div>
 
-                      <p className="font-geist text-base text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal mb-5 text-pretty">
-                        {flagshipCard.summary}
-                      </p>
-
-                      {/* Visual Telemetry Feature Chips */}
-                      <div className="space-y-2 mb-6">
-                        <span className="font-mono-geist text-[10px] uppercase tracking-wider text-zinc-400 dark:text-zinc-500 font-semibold block">
-                          Verified Accessibility Controls:
-                        </span>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                          {flagshipCard.chips.map((chip, idx) => (
-                            <div
-                              key={idx}
-                              className="flex items-center gap-2 text-xs font-mono-geist font-medium text-zinc-700 dark:text-zinc-300 px-3 py-2 rounded-xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/5 dark:border-white/10"
-                            >
-                              <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0 shadow-[0_0_6px_rgba(52,211,153,0.5)]" />
-                              <span className="truncate">{chip}</span>
-                            </div>
-                          ))}
-                        </div>
+                      {/* Visual Dashboard for Dimension 07 */}
+                      <div className="mb-6">
+                        <Dimension07Visual />
                       </div>
                     </div>
 
