@@ -7,7 +7,7 @@ import { Moon, Sun, Menu, X, Command, Download } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-const navLinks = [
+const allNavLinks = [
   { label: "Overview", href: "#hero" },
   { label: "Pipeline", href: "#pipeline" },
   { label: "Methodology", href: "#methodology" },
@@ -15,6 +15,14 @@ const navLinks = [
   { label: "Experience", href: "#experience" },
   { label: "Frameworks", href: "#frameworks" },
   { label: "Honors", href: "#honors" },
+  { label: "Contact", href: "#contact" },
+];
+
+const desktopNavLinks = [
+  { label: "Overview", href: "#hero" },
+  { label: "Skills", href: "#skills" },
+  { label: "Experience", href: "#experience" },
+  { label: "Frameworks", href: "#frameworks" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -50,38 +58,38 @@ export default function Navbar() {
     <header className="fixed top-3 sm:top-4 left-0 right-0 z-50 px-3 sm:px-6 lg:px-8 pointer-events-none transition-all duration-300">
       <nav
         className={cn(
-          "pointer-events-auto max-w-6xl mx-auto flex items-center justify-between h-14 px-3 sm:px-5 rounded-full transition-all duration-300 backdrop-blur-2xl shadow-xl dark:shadow-2xl",
+          "pointer-events-auto max-w-6xl mx-auto flex items-center justify-between h-14 px-3 sm:px-5 rounded-full transition-all duration-300 backdrop-blur-2xl shadow-xl dark:shadow-2xl gap-3 sm:gap-4",
           "bg-white/80 dark:bg-white/[0.03] border-t border-black/20 dark:border-t-white/30 border-x border-black/10 dark:border-x-white/10 border-b border-black/10 dark:border-b-white/10",
           scrolled && "shadow-black/10 dark:shadow-black/60 bg-white/95 dark:bg-[#030408]/90"
         )}
       >
-        {/* Brand Monogram Group */}
+        {/* Brand Monogram Group - Protected with shrink-0 and whitespace-nowrap */}
         <Link
           href="#hero"
           onClick={(e) => handleNavClick(e, "#hero")}
-          className="flex items-center gap-2.5 sm:gap-3 group"
+          className="flex items-center gap-2 sm:gap-2.5 shrink-0 group py-1"
         >
-          <div className="w-8 h-8 rounded-lg bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 flex items-center justify-center font-mono-geist font-bold text-xs tracking-wider shadow-sm group-hover:scale-105 transition-transform">
+          <div className="w-8 h-8 rounded-lg bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 flex items-center justify-center font-mono-geist font-bold text-xs tracking-wider shadow-sm group-hover:scale-105 transition-transform shrink-0">
             MSM
           </div>
-          <div className="flex flex-col">
-            <span className="font-geist font-semibold text-xs sm:text-sm text-zinc-900 dark:text-white tracking-tight leading-none">
-              Muhammad Shazzad Mia
+          <div className="flex flex-col whitespace-nowrap leading-tight">
+            <span className="font-geist font-semibold text-xs sm:text-sm text-zinc-900 dark:text-white tracking-tight">
+              <span className="hidden sm:inline">Muhammad </span>Shazzad Mia
             </span>
-            <span className="font-mono-geist text-[10px] text-zinc-500 dark:text-zinc-400 font-medium tracking-wide mt-0.5">
+            <span className="font-mono-geist text-[10px] text-zinc-500 dark:text-zinc-400 font-medium tracking-wide">
               SQA Engineer II · BS23
             </span>
           </div>
         </Link>
 
-        {/* Desktop Nav Links (Full) */}
-        <ul className="hidden xl:flex items-center gap-0.5 bg-black/[0.03] dark:bg-white/[0.03] p-1 rounded-full border border-black/10 dark:border-white/10">
-          {navLinks.map((link) => (
+        {/* Streamlined Desktop Nav Links (5 Core Destinations) */}
+        <ul className="hidden md:flex items-center gap-0.5 bg-black/[0.03] dark:bg-white/[0.03] p-1 rounded-full border border-black/10 dark:border-white/10 shrink-0">
+          {desktopNavLinks.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="px-3 py-1 rounded-full text-xs font-geist text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-all"
+                className="px-3 py-1 rounded-full text-xs font-geist text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-all whitespace-nowrap"
               >
                 {link.label}
               </Link>
@@ -89,36 +97,20 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Compact Desktop Nav (Medium/Large screens) */}
-        <ul className="hidden md:flex xl:hidden items-center gap-0.5 bg-black/[0.03] dark:bg-white/[0.03] p-1 rounded-full border border-black/10 dark:border-white/10">
-          {navLinks
-            .filter((l) => ["#hero", "#pipeline", "#skills", "#experience", "#frameworks", "#contact"].includes(l.href))
-            .map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className="px-2.5 py-1 rounded-full text-xs font-geist text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-all"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-        </ul>
-
         {/* Actions Cluster */}
-        <div className="flex items-center gap-2 sm:gap-2.5">
-          {/* Status Beacon */}
-          <div className="hidden lg:flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[11px] font-mono-geist font-medium">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span>Available for SDET Roles</span>
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          {/* Streamlined Status Beacon */}
+          <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[11px] font-mono-geist font-medium whitespace-nowrap">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+            <span className="hidden xl:inline">Available for Roles</span>
+            <span className="xl:hidden">Available</span>
           </div>
 
           {/* Direct Resume CTA */}
           <a
             href="/resume.pdf"
             download
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full btn-mono-primary text-xs font-medium cursor-pointer"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full btn-mono-primary text-xs font-medium cursor-pointer shrink-0"
             title="Download Curriculum Vitae (PDF)"
           >
             <Download size={12} />
@@ -128,7 +120,7 @@ export default function Navbar() {
           {/* Command Palette Trigger */}
           <button
             onClick={() => window.dispatchEvent(new CustomEvent("open-command-palette"))}
-            className="hidden sm:inline-flex items-center gap-1.5 px-2 py-1.5 rounded-lg bg-black/[0.04] dark:bg-white/[0.04] border border-black/10 dark:border-white/10 text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white hover:border-black/25 dark:hover:border-white/25 transition-all cursor-pointer"
+            className="hidden sm:inline-flex items-center gap-1.5 px-2 py-1.5 rounded-lg bg-black/[0.04] dark:bg-white/[0.04] border border-black/10 dark:border-white/10 text-xs text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white hover:border-black/25 dark:hover:border-white/25 transition-all cursor-pointer shrink-0"
             title="Open Command Palette (Ctrl+K)"
           >
             <Command size={12} className="text-zinc-500 dark:text-zinc-400" />
@@ -143,7 +135,7 @@ export default function Navbar() {
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               aria-label="Toggle color theme"
-              className="p-2 rounded-full text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors cursor-pointer"
+              className="p-2 rounded-full text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors cursor-pointer shrink-0"
             >
               <AnimatePresence mode="wait" initial={false}>
                 <motion.span
@@ -164,7 +156,7 @@ export default function Navbar() {
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle mobile navigation menu"
-            className="p-2 rounded-lg md:hidden text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white cursor-pointer"
+            className="p-2 rounded-lg md:hidden text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white cursor-pointer shrink-0"
           >
             {mobileOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
@@ -182,7 +174,7 @@ export default function Navbar() {
             className="pointer-events-auto md:hidden max-w-6xl mx-auto mt-2 p-4 rounded-2xl bg-white/95 dark:bg-[#030408]/95 backdrop-blur-2xl border-t border-black/20 dark:border-t-white/30 border-x border-black/10 dark:border-x-white/10 border-b border-black/10 dark:border-b-white/10 shadow-2xl"
           >
             <ul className="flex flex-col gap-1">
-              {navLinks.map((link) => (
+              {allNavLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
