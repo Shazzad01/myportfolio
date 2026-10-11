@@ -7,7 +7,7 @@ const fs = require('fs');
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
   const page = await context.newPage();
 
-  await page.goto('http://localhost:3000', { waitUntil: 'networkidle' });
+  await page.goto('https://myportfolio-vert-one-80.vercel.app/', { waitUntil: 'networkidle' });
   await page.waitForTimeout(1000);
 
   const screenshotsDir = 'C:\\Users\\User\\.gemini\\antigravity\\brain\\e0f4935c-bdec-49cd-8dbf-59da2a6615ee\\screenshots';
