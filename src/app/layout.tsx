@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import CommandPalette from "@/components/ui/CommandPalette";
+import MonolithicSpecularHorizon from "@/components/background/MonolithicSpecularHorizon";
 import "./globals.css";
 
 const inter = Inter({
@@ -155,12 +156,13 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
       </head>
-      <body className="font-sans">
+      <body className="font-sans antialiased bg-[#faf8f5] dark:bg-[#030408] text-zinc-900 dark:text-white transition-colors duration-300">
         <ThemeProvider>
+          <MonolithicSpecularHorizon />
           <ScrollProgress />
           <CommandPalette />
           <Navbar />
-          <main>{children}</main>
+          <main className="relative z-10">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

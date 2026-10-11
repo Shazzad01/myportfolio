@@ -81,23 +81,12 @@ export default function HeroSectionV2() {
       id="hero"
       className="relative min-h-[92vh] flex flex-col justify-center items-center pt-28 sm:pt-36 pb-20 sm:pb-28 overflow-hidden"
     >
-      {/* Cold Specular Horizon Glow */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[420px] bg-gradient-to-b from-black/[0.04] via-black/[0.015] to-transparent dark:from-white/[0.06] dark:via-white/[0.02] dark:to-transparent rounded-[100%] blur-[140px] pointer-events-none"
-        aria-hidden="true"
-      />
-
-      {/* Subtle Dot Matrix Texture */}
-      <div
-        className="absolute inset-0 mono-grid opacity-50 dark:opacity-30 pointer-events-none"
-        aria-hidden="true"
-      />
-
       <div className="container-max px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col items-center text-center">
         {/* Monospace Subtitle Badge */}
         <motion.div
           initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.05 }}
           transition={{ duration: 0.45 }}
           className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-black/10 dark:border-white/10 bg-white/70 dark:bg-white/[0.03] backdrop-blur-xl shadow-sm mb-6 sm:mb-8"
         >
@@ -110,7 +99,8 @@ export default function HeroSectionV2() {
         {/* Flagship Typography */}
         <motion.div
           initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.05 }}
           transition={{ duration: 0.5, delay: 0.05 }}
           className="max-w-4xl"
         >
