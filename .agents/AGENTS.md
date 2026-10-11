@@ -26,6 +26,7 @@ You are the **sole owner of all roles** on this portfolio project: PM, BA, QA, D
 - **Experience**: 3+ years building modern frontend applications
 - **Primary Stack**: Next.js + TypeScript + Tailwind CSS
 - **Deployment**: Vercel (primary), Cloudflare Pages, GitHub Pages — CI/CD from GitHub
+- **Live Production Site**: https://myportfolio-vert-one-80.vercel.app/
 - **Breadth**: SEO, accessibility (WCAG), personal branding, polished UI, smooth animations
 - **GitHub Repo**: https://github.com/Shazzad01/myportfolio.git
 
@@ -148,6 +149,7 @@ When writing or suggesting copy:
 # Standard CI/CD setup
 git push origin main → Vercel auto-deploys preview
 git push origin main → production deploy (on Vercel main branch)
+# Production Live Site: https://myportfolio-vert-one-80.vercel.app/
 
 # Environment variables in Vercel dashboard, never committed
 # Custom domain configured with HTTPS auto-enabled
@@ -187,6 +189,34 @@ git push origin main → production deploy (on Vercel main branch)
 
 - **Selective Extraction**: When leveraging external UI component libraries (e.g. React Bits, Magic UI, Aceternity), extract and adapt standalone TS-TW (TypeScript + Tailwind) primitives directly into `@/components/ui/` rather than adding unnecessary npm package bloat.
 - **Theme & Motion Compliance**: Ensure every extracted component natively binds to our theme variables and explicitly honors `useReducedMotion()`.
+
+---
+
+## Production Live Site Invariant
+
+- **Canonical Live Site URL**: The active, public production URL is `https://myportfolio-vert-one-80.vercel.app/`.
+- **Deployment Verification**: When validating production deployments or providing links to the user, always target `https://myportfolio-vert-one-80.vercel.app/` rather than internal SSO-protected preview hashes or unconfigured custom domains.
+
+---
+
+## High-Performance Living Background Invariant
+
+- **Zero React State on Pointer Move**: NEVER bind pointer/mouse movement listeners directly to React component state (`useState` + `onMouseMove`). Doing so triggers 60–120+ React re-render cycles per second across the tree, causing severe frame drops and jank.
+- **Zero Root CSS Variable Mutation**: NEVER mutate CSS custom properties on `:root` (`document.documentElement.style.setProperty`) on high-frequency animation loops. It invalidates computed styles and forces layout reflows across the entire DOM tree.
+- **Direct GPU DOM Ref Transforms**: ALWAYS update DOM element transforms directly via element refs (`ref.current.style.transform = "translate3d(x, y, 0)"`) inside a `requestAnimationFrame` loop with smooth liquid spring lerp (0.05–0.08 damping factor).
+- **Autonomous Living Motion (Never Freeze When Idle)**: Interactive backgrounds must never rely 100% on cursor movement. Always layer:
+  1. A continuous GPU-composited breathing keyframe animation (8–12s sinusoidal pulse or wave) so the viewport feels alive even when idle.
+  2. An idle harmonic Lissajous drift (`Math.sin(t * 0.7) * 32px`) that gently moves focal points when stationary.
+  3. A reactive cursor-following spotlight layered smoothly on top.
+
+---
+
+## Floating Pill Navbar Ergonomics Invariant
+
+- **Strict Brand Container Shielding**: In fixed-height floating navbar pills (e.g. `h-14` / 56px), brand identity containers MUST explicitly enforce `shrink-0` and `whitespace-nowrap leading-tight`. Flex items without `shrink-0` will shrink and wrap under horizontal pressure, bursting outside fixed vertical bounds.
+- **Responsive Brand Typography**: For multi-word names or titles, use responsive text truncation or hide non-essential prefixes on compact widths (e.g. `<span className="hidden sm:inline">Muhammad </span>Shazzad Mia`) to guarantee zero vertical overflow on viewports down to 320px.
+- **Desktop 5-Link Maximum Threshold**: Floating pill desktop menus must strictly limit primary navigation links to ≤ 5 core high-intent destinations (e.g. `Overview`, `Skills`, `Experience`, `Frameworks`, `Contact`). Secondary destinations must be routed to the mobile drawer or keyboard command palette (`⌘K`) to prevent horizontal squashing on 1280px–1440px laptop displays.
+- **Compact Telemetry Badges**: Availability and status chips embedded within navbar pills must remain compact (pulsing indicator + concise label ≤ 140px max width; e.g. "Available for Roles" rather than full sentence descriptions).
 
 ---
 
